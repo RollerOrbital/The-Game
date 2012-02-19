@@ -10,8 +10,8 @@ public class Action implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         JLabel label = new JLabel("clicked");
+
         panel.add(label);
         frame.add(panel);
-
     }
 }

@@ -40,6 +40,6 @@ public class Screen {
         panel.add(credits, c);
 
         //add panel to frame
-        frame.add(panel, c);
+        frame.add(panel);
     }
 }
