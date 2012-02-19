@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 public class Action implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("clicked");
         frame.setVisible(true);
         frame.setSize(300, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
