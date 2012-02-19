@@ -15,20 +15,25 @@ public class Screen {
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         GridBagConstraints c = new GridBagConstraints();
 
-        //title and button
+        //title and buttons
+        //title
         JLabel gameName = new JLabel("The Game");
         c.gridx = 0;
         c.gridy = 1;
         c.insets = new Insets(10, 10, 10, 10);
         panel.add(gameName, c);
+        //start game
         JButton startGame = new JButton("Start Game");
         c.gridx = 0;
         c.gridy = 2;
+        startGame.addActionListener(new Action());
         panel.add(startGame, c);
+        //instructions
         JButton instructions = new JButton("Instructions");
         c.gridx = 0;
         c.gridy = 3;
         panel.add(instructions, c);
+        //credits
         JButton credits = new JButton("Credits");
         c.gridx = 0;
         c.gridy = 4;
