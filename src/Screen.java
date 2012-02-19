@@ -1,18 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Screen {
 
-    public static void screen() {
+    public static JFrame screen() {
         //game screen
-        JFrame frame = new JFrame("The Game");
-        frame.setVisible(true);
-        frame.setSize(400, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame gameWindow = new JFrame("The Game");
+        gameWindow.setVisible(true);
+        gameWindow.setSize(400, 400);
+        gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //screen panel
-        JPanel panel = new JPanel(new GridBagLayout());
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        //screen titleScreenPanel
+        JPanel titleScreenPanel = new JPanel(new GridBagLayout());
+        gameWindow.getContentPane().add(titleScreenPanel, BorderLayout.CENTER);
         GridBagConstraints c = new GridBagConstraints();
 
         //title and buttons
@@ -21,26 +23,39 @@ public class Screen {
         c.gridx = 0;
         c.gridy = 1;
         c.insets = new Insets(10, 10, 10, 10);
-        panel.add(gameName, c);
+        titleScreenPanel.add(gameName, c);
         //start game
         JButton startGame = new JButton("Start Game");
         c.gridx = 0;
         c.gridy = 2;
         startGame.addActionListener(new Action());
-        panel.add(startGame, c);
+        titleScreenPanel.add(startGame, c);
         //instructions
         JButton instructions = new JButton("Instructions");
         c.gridx = 0;
         c.gridy = 3;
-        panel.add(instructions, c);
+        titleScreenPanel.add(instructions, c);
         //credits
         JButton credits = new JButton("Credits");
         c.gridx = 0;
         c.gridy = 4;
-        panel.add(credits, c);
+        titleScreenPanel.add(credits, c);
 
-        //add panel to frame
-        frame.add(panel);
+        //add titleScreenPanel to gameWindow
+        gameWindow.add(titleScreenPanel);
+        return gameWindow;
+    }
+
+    public static class Action implements ActionListener {
+        private void gameStartedScreen() {
+            JPanel introScreen = new JPanel();
+            screen().add(introScreen);
+
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            gameStartedScreen();
+        }
     }
 }
 //
