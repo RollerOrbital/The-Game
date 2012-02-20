@@ -5,10 +5,9 @@ public class MainClass {
     }
 
     public static void game() {
-        //System.out.println(PlayerAtt.name);
-        //MeleeBattle.meleeFight(Enemy.enemyYouFight, PlayerAtt.player);
+        System.out.println(PlayerAtt.name);
+        //CombatOptions.meleeFight(Enemy.enemyYouFight, PlayerAtt.player);
         //CombatBoard.boardDisplay();
-        Screen.screen();
         System.out.println("Program Terminated");
     }
 }
