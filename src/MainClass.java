@@ -4,9 +4,9 @@ public class MainClass {
     }
 
     public static void game() {
-        System.out.println(PlayerAtt.name);
+        //System.out.println(PlayerAtt.name);
         //CombatBoard.boardDisplay();
-        CombatOptions.combatTurn(Enemy.enemyYouFight, PlayerAtt.player);
+        //CombatEngine.combatTurn(Enemy.mafia_executive, PlayerAtt.player);
         System.out.println("Program Terminated");
     }
 }

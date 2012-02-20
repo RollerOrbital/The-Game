@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class CombatOptions {
+public class CombatEngine {
     static Random randomNum = new Random();
     static Scanner input = new Scanner(System.in);
     static Scanner time = new Scanner(System.in);
@@ -137,7 +137,9 @@ public class CombatOptions {
 
         switch (lowerZero(player.hp)) {
             case 0:
-                System.out.println("The world goes black and you enter hell...");
+                System.out.println("The world goes black and you enter the underworld...");
+                time.next();
+                DeathsDice.die(player);
                 break;
             default:
                 System.out.println("You defeat the " + enemy.name + " and you are very happy about this :)");
