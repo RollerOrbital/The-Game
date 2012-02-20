@@ -6,10 +6,7 @@ public class CombatOptions {
     static Scanner input = new Scanner(System.in);
 
     private static int playerCombatChoice() {
-        System.out.println("What will you do?");
-        System.out.println("Melee");
-        System.out.println("Range");
-        System.out.println("Magic");
+        System.out.println("What will you do; Melee, Range or Magic?");
         int choice = input.nextInt();
         return (choice);
     }
@@ -281,4 +278,3 @@ public class CombatOptions {
         ifYouWinOrLose(enemy, player);
     }
 }
-//
