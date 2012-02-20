@@ -62,6 +62,8 @@ public class CombatOptions {
                                 time.nextInt();
                                 break;
                         }
+                        break;
+
                     default:
                         System.out.println("You strike your enemy for " + meleeDamageDealt + " damage");
                         time.nextInt();
@@ -74,7 +76,7 @@ public class CombatOptions {
     }
 
     private static int enemyCombatChoice() {
-        int enemyChoice = lowerOne(randomNum.nextInt(3));
+        int enemyChoice = lowerOne(randomNum.nextInt(4));
         return (enemyChoice);
     }
 
@@ -114,19 +116,24 @@ public class CombatOptions {
                         time.nextInt();
                         break;
                     case 3:
-                        switch (didMagicWork) {
-                            case 1:
-                                System.out.println("Your enemy fires a spell for " + magicDamageDealt + " damage");
-                                time.nextInt();
-                                player.hp -= magicDamageDealt;
-                                System.out.println("You have " + lowerZero(player.hp) + " hp remaining");
-                                time.nextInt();
-                                break;
-                            default:
-                                System.out.println("Your enemy's spell fizzles out!");
-                                time.nextInt();
-                                break;
+                        if (didMagicWork == 1) {
+                            System.out.println("Your enemy fires a spell for " + magicDamageDealt + " damage");
+                            time.nextInt();
+                            player.hp -= magicDamageDealt;
+                            System.out.println("You have " + lowerZero(player.hp) + " hp remaining");
+                            time.nextInt();
+                        } else {
+                            System.out.println("Your enemy's spell fizzles out!");
+                            time.nextInt();
                         }
+                        break;
+                    default:
+                        System.out.println("Your enemy strikes you for " + meleeDamageDealt + " damage");
+                        time.nextInt();
+                        player.hp -= meleeDamageDealt;
+                        System.out.println("You have " + lowerZero(player.hp) + " hp remaining");
+                        time.nextInt();
+                        break;
                 }
         }
     }
