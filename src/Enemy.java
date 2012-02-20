@@ -37,3 +37,4 @@ public class Enemy {
     static Enemy enemies[] = {mafia_grunt, mafia_executive, shuffle_drone, nano_drone, police_trooper, police_riotshield};
     static Enemy enemyYouFight = enemies[randomEnemy];
 }
+//
