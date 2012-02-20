@@ -13,13 +13,13 @@ public class TitleScreenCredits {
     }
 
     private static void instructions() {
-        System.out.println("Press any number and then enter to advance.");
-        time.nextInt();
+        System.out.println("Press any character and then enter to advance.");
+        time.next();
     }
 
     private static void credits() {
         System.out.println("Text Based sudoGame by RobM");
-        time.nextInt();
+        time.next();
     }
 
     public static void titleRun() {

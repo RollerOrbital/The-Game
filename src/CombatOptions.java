@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class CombatOptions {
     static Random randomNum = new Random();
     static Scanner input = new Scanner(System.in);
+    static Scanner time = new Scanner(System.in);
 
     private static int playerCombatChoice() {
         System.out.println("What will you do; Melee, Range or Magic?");
@@ -12,8 +13,6 @@ public class CombatOptions {
     }
 
     private static void playerCombatRun(Enemy enemy, PlayerAtt player) {
-        Scanner time = new Scanner(System.in);
-
         int meleeDamageDealt = lowerOne(randomNum.nextInt(10) + player.vigor - randomNum.nextInt(enemy.aegis));
         int rangeDamageDealt = lowerOne(randomNum.nextInt(15) + player.scope + player.agility - randomNum.nextInt(enemy.aegis));
         int didMagicWork;
@@ -33,40 +32,40 @@ public class CombatOptions {
                 switch (playerCombatChoice()) {
                     case 1:
                         System.out.println("You strike your enemy for " + meleeDamageDealt + " damage");
-                        time.nextInt();
+                        time.next();
                         enemy.hp -= meleeDamageDealt;
                         System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
-                        time.nextInt();
+                        time.next();
                         break;
                     case 2:
                         System.out.println("You fire your weapon at the enemy for " + rangeDamageDealt + " damage");
-                        time.nextInt();
+                        time.next();
                         enemy.hp -= rangeDamageDealt;
                         System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
-                        time.nextInt();
+                        time.next();
                         break;
                     case 3:
                         switch (didMagicWork) {
                             case 1:
                                 System.out.println("You fire a spell at your opponent and it does " + magicDamageDealt + " damage");
-                                time.nextInt();
+                                time.next();
                                 enemy.hp -= magicDamageDealt;
                                 System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
-                                time.nextInt();
+                                time.next();
                                 break;
                             default:
                                 System.out.println("Your spell fizzles out...");
-                                time.nextInt();
+                                time.next();
                                 break;
                         }
                         break;
 
                     default:
                         System.out.println("You strike your enemy for " + meleeDamageDealt + " damage");
-                        time.nextInt();
+                        time.next();
                         enemy.hp -= meleeDamageDealt;
                         System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
-                        time.nextInt();
+                        time.next();
                         break;
                 }
         }
@@ -78,8 +77,6 @@ public class CombatOptions {
     }
 
     private static void enemyCombatRun(Enemy enemy, PlayerAtt player) {
-        Scanner time = new Scanner(System.in);
-
         int meleeDamageDealt = lowerOne(randomNum.nextInt(15) + enemy.vigor - randomNum.nextInt(player.aegis));
         int rangeDamageDealt = lowerOne(randomNum.nextInt(10) + enemy.scope + enemy.agility - randomNum.nextInt(player.aegis));
         int didMagicWork;
@@ -103,40 +100,39 @@ public class CombatOptions {
                         time.nextInt();
                         player.hp -= meleeDamageDealt;
                         System.out.println("You have " + lowerZero(player.hp) + " hp remaining");
-                        time.nextInt();
+                        time.next();
                         break;
                     case 2:
                         System.out.println("Your enemy fires their weapon for " + rangeDamageDealt + " damage");
-                        time.nextInt();
+                        time.next();
                         player.hp -= rangeDamageDealt;
                         System.out.println("You have " + lowerZero(player.hp) + " hp remaining");
-                        time.nextInt();
+                        time.next();
                         break;
                     case 3:
                         if (didMagicWork == 1) {
                             System.out.println("Your enemy fires a spell for " + magicDamageDealt + " damage");
-                            time.nextInt();
+                            time.next();
                             player.hp -= magicDamageDealt;
                             System.out.println("You have " + lowerZero(player.hp) + " hp remaining");
-                            time.nextInt();
+                            time.next();
                         } else {
                             System.out.println("Your enemy's spell fizzles out!");
-                            time.nextInt();
+                            time.next();
                         }
                         break;
                     default:
                         System.out.println("Your enemy strikes you for " + meleeDamageDealt + " damage");
-                        time.nextInt();
+                        time.next();
                         player.hp -= meleeDamageDealt;
                         System.out.println("You have " + lowerZero(player.hp) + " hp remaining");
-                        time.nextInt();
+                        time.next();
                         break;
                 }
         }
     }
 
     private static void ifYouWinOrLose(Enemy enemy, PlayerAtt player) {
-        Scanner time = new Scanner(System.in);
         int xpGained = (randomNum.nextInt(PlayerAtt.luck) + (enemy.pace + enemy.aegis + enemy.agility + (enemy.cognition / 10) + enemy.scope + enemy.vigor) / 6 * enemy.baseYield) - ((PlayerAtt.level - enemy.level) * (PlayerAtt.level - enemy.level));
 
         switch (lowerZero(player.hp)) {
@@ -145,9 +141,9 @@ public class CombatOptions {
                 break;
             default:
                 System.out.println("You defeat the " + enemy.name + " and you are very happy about this :)");
-                time.nextInt();
+                time.next();
                 System.out.println("You gain " + xpGained + " xp");
-                time.nextInt();
+                time.next();
                 player.xp += xpGained;
                 System.out.println("You now have " + player.xp + " xp");
                 levelUp(player);
@@ -180,10 +176,9 @@ public class CombatOptions {
     }
 
     private static void levelUp(PlayerAtt player) {
-        Scanner time = new Scanner(System.in);
         if (player.xp >= player.levelUpxp) {
             System.out.println("You levelled up!");
-            time.nextInt();
+            time.next();
             PlayerAtt.level++;
             player.xp -= player.xp;
             player.sp += 3;
@@ -207,8 +202,7 @@ public class CombatOptions {
     }
 
     private static void spSpend(PlayerAtt player) {
-        Scanner time = new Scanner(System.in);
-        time.nextInt();
+        time.next();
         while (player.sp > 0) {
             switch (spChoice()) {
                 case 1:
@@ -258,9 +252,8 @@ public class CombatOptions {
     }
 
     public static void combatTurn(Enemy enemy, PlayerAtt player) {
-        Scanner time = new Scanner(System.in);
         System.out.println("You are in a battle with a " + enemy.name + "!");
-        time.nextInt();
+        time.next();
         switch (whoGoesFirst(player.agility, enemy.agility)) {
             case 0:
                 while (player.hp > 0 && enemy.hp > 0) {
