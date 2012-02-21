@@ -6,7 +6,7 @@ public class MainClass {
     public static void game() {
         //System.out.println(PlayerAtt.name);
         //CombatBoard.boardDisplay();
-        //CombatEngine.combatTurn(Enemy.enemyYouFight, PlayerAtt.player);
+        CombatEngine.combatTurn(Enemy.enemyYouFight, PlayerAtt.player);
         System.out.println("Program Terminated");
     }
 }

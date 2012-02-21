@@ -31,14 +31,14 @@ public class CombatEngine {
             default:
                 switch (playerCombatChoice()) {
                     case 1:
-                        System.out.println("You strike your enemy with your " + player.Mweapon.name + " for " + meleeDamageDealt + " damage");
+                        System.out.println("You strike your enemy with your " + meleeWeaponChoice().name + " for " + meleeDamageDealt + " damage");
                         time.next();
                         enemy.hp -= meleeDamageDealt;
                         System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
                         time.next();
                         break;
                     case 2:
-                        System.out.println("You fire your " + player.Rweapon.name + " at the enemy for " + rangeDamageDealt + " damage");
+                        System.out.println("You fire your " + rangeWeaponChoice().name + " at the enemy for " + rangeDamageDealt + " damage");
                         time.next();
                         enemy.hp -= rangeDamageDealt;
                         System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
@@ -61,7 +61,7 @@ public class CombatEngine {
                         break;
 
                     default:
-                        System.out.println("You strike your enemy with your " + player.Mweapon.name + " for " + meleeDamageDealt + " damage");
+                        System.out.println("You strike your enemy with your " + meleeWeaponChoice().name + " for " + meleeDamageDealt + " damage");
                         time.next();
                         enemy.hp -= meleeDamageDealt;
                         System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
@@ -250,6 +250,40 @@ public class CombatEngine {
                 default:
                     spSpend(PlayerAtt.player);
             }
+        }
+    }
+
+    private static MeleeWeapon meleeWeaponChoice() {
+        System.out.println("Which weapon would you like to use?");
+        try {
+            for (int x = 0; x < 100; x++) {
+                System.out.println(PlayerAtt.MweaponInventory[x].name);
+            }
+        } catch (Exception e) {
+            System.out.print("");
+        }
+        int choice = input.nextInt();
+        try {
+            return (PlayerAtt.MweaponInventory[choice - 1]);
+        } catch (Exception e) {
+            return (PlayerAtt.MweaponInventory[0]);
+        }
+    }
+
+    private static RangeWeapon rangeWeaponChoice() {
+        System.out.println("Which weapon would you like to use?");
+        try {
+            for (int x = 0; x < 100; x++) {
+                System.out.println(PlayerAtt.RweaponInventory[x].name);
+            }
+        } catch (Exception e) {
+            System.out.print("");
+        }
+        int choice = input.nextInt();
+        try {
+            return (PlayerAtt.RweaponInventory[choice - 1]);
+        } catch (Exception e) {
+            return (PlayerAtt.RweaponInventory[0]);
         }
     }
 

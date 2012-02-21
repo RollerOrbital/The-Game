@@ -39,4 +39,6 @@ public class PlayerAtt {
 
     static PlayerAtt player = new PlayerAtt(MeleeWeapon.fists, RangeWeapon.bb_gun, 2, 5, 5, 10, 30, 15, 0, 100, 100, 50, 50, (level * level) + 40, 0);
 
+    public static MeleeWeapon MweaponInventory[] = {MeleeWeapon.fists, MeleeWeapon.police_baton};
+    public static RangeWeapon RweaponInventory[] = {RangeWeapon.bb_gun, RangeWeapon.revolver};
 }
