@@ -13,8 +13,8 @@ public class CombatEngine {
     }
 
     private static void playerCombatRun(Enemy enemy, PlayerAtt player) {
-        int meleeDamageDealt = lowerOne(randomNum.nextInt(10) + player.vigor - randomNum.nextInt(enemy.aegis));
-        int rangeDamageDealt = lowerOne(randomNum.nextInt(15) + player.scope + player.agility - randomNum.nextInt(enemy.aegis));
+        int meleeDamageDealt = lowerOne(randomNum.nextInt(10) + player.vigor + player.Mweapon.damage - randomNum.nextInt(enemy.aegis));
+        int rangeDamageDealt = lowerOne(randomNum.nextInt(15) + player.scope + player.Rweapon.damage - randomNum.nextInt(enemy.aegis));
         int didMagicWork;
         int magicDamageDealt;
         if (randomNum.nextInt(101) < player.cognition) {
@@ -31,14 +31,14 @@ public class CombatEngine {
             default:
                 switch (playerCombatChoice()) {
                     case 1:
-                        System.out.println("You strike your enemy for " + meleeDamageDealt + " damage");
+                        System.out.println("You strike your enemy with your " + player.Mweapon.name + " for " + meleeDamageDealt + " damage");
                         time.next();
                         enemy.hp -= meleeDamageDealt;
                         System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
                         time.next();
                         break;
                     case 2:
-                        System.out.println("You fire your weapon at the enemy for " + rangeDamageDealt + " damage");
+                        System.out.println("You fire your " + player.Rweapon.name + " at the enemy for " + rangeDamageDealt + " damage");
                         time.next();
                         enemy.hp -= rangeDamageDealt;
                         System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
@@ -61,7 +61,7 @@ public class CombatEngine {
                         break;
 
                     default:
-                        System.out.println("You strike your enemy for " + meleeDamageDealt + " damage");
+                        System.out.println("You strike your enemy with your " + player.Mweapon.name + " for " + meleeDamageDealt + " damage");
                         time.next();
                         enemy.hp -= meleeDamageDealt;
                         System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
@@ -254,7 +254,7 @@ public class CombatEngine {
     }
 
     public static void combatTurn(Enemy enemy, PlayerAtt player) {
-        System.out.println("You are in a battle with a " + enemy.name + "!");
+        System.out.println(PlayerAtt.name + "! You are in a battle with a " + enemy.name + "!");
         time.next();
         switch (whoGoesFirst(player.agility, enemy.agility)) {
             case 0:
