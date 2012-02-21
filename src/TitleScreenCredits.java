@@ -18,7 +18,7 @@ public class TitleScreenCredits {
     }
 
     private static void credits() {
-        System.out.println("Text Based sudoGame by RobM");
+        System.out.println("Text Based Game Engine by RobM");
         time.next();
     }
 

@@ -13,12 +13,12 @@ public class PlayerAtt {
     RangeWeapon Rweapon;
     static String name;
     int scope, aegis, pace, agility, cognition, vigor, xp, hp, basehp, ep, baseep, levelUpxp, sp;
-    static int luck, level;{
+    static int luck, level;static {
         luck = 10;
         level = 1;
     }
 
-    public PlayerAtt(MeleeWeapon Mweapon, RangeWeapon Rweapon, String name, int scope, int aegis, int pace, int agility, int cognition, int vigor, int xp, int hp, int basehp, int ep, int baseep, int levelUpxp, int sp) {
+    public PlayerAtt(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int agility, int cognition, int vigor, int xp, int hp, int basehp, int ep, int baseep, int levelUpxp, int sp) {
         this.Mweapon = Mweapon;
         this.Rweapon = Rweapon;
         PlayerAtt.name = name();
@@ -37,7 +37,7 @@ public class PlayerAtt {
         this.sp = sp;
     }
 
-    static PlayerAtt player = new PlayerAtt(MeleeWeapon.fists, RangeWeapon.bb_gun, name, 2, 5, 5, 10, 30, 15, 0, 100, 100, 50, 50, (level * level) + 40, 0);
+    static PlayerAtt player = new PlayerAtt(MeleeWeapon.fists, RangeWeapon.bb_gun, 2, 5, 5, 10, 30, 15, 0, 100, 100, 50, 50, (level * level) + 40, 0);
 
 }
 //
