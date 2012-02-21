@@ -38,5 +38,6 @@ public class PlayerAtt {
     }
 
     static PlayerAtt player = new PlayerAtt(MeleeWeapon.fists, RangeWeapon.bb_gun, name, 2, 5, 5, 10, 30, 15, 0, 100, 100, 50, 50, (level * level) + 40, 0);
+
 }
 //
