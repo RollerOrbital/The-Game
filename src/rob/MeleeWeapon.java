@@ -1,3 +1,5 @@
+package rob;
+
 public class MeleeWeapon {
     String name;
     int damage;

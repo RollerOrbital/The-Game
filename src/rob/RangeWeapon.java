@@ -1,3 +1,5 @@
+package rob;
+
 public class RangeWeapon {
     String name;
     int damage;

@@ -1,3 +1,5 @@
+package rob;
+
 public class DamageMagic {
     String name;
     int damage, mpCost;

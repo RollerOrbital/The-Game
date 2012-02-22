@@ -1,3 +1,5 @@
+package rob;
+
 public class HealingMagic {
     String name;
     int healthRestored, mpCost;

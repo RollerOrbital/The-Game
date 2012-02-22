@@ -1,3 +1,5 @@
+package rob;
+
 public class HealingItem {
     String name;
     int healthRestored;
