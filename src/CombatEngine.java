@@ -7,7 +7,7 @@ public class CombatEngine {
     static Scanner time = new Scanner(System.in);
 
     private static int playerCombatChoice() {
-        System.out.println("What will you do; Melee, Range or Magic?");
+        System.out.println("What will you do; Melee, Range, Magic or Healing Item?");
         int choice = input.nextInt();
         return (choice);
     }
@@ -24,6 +24,7 @@ public class CombatEngine {
             magicDamageDealt = 0;
             didMagicWork = 0;
         }
+
         switch (lowerZero(player.hp)) {
             case 0:
                 System.out.print("");
@@ -60,6 +61,14 @@ public class CombatEngine {
                         }
                         break;
 
+                    case 4:
+                        HealingItem healingItem = healingItemChoice();
+                        System.out.println("You use your " + healingItem.name + " to heal " + healingItem.healthRestored + " health");
+                        time.nextInt();
+                        lowerThan(player.hp += healingItem.healthRestored, player.basehp);
+                        System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
+                        time.nextInt();
+                        break;
                     default:
                         System.out.println("You strike your enemy with your " + meleeWeaponChoice().name + " for " + meleeDamageDealt + " damage");
                         time.next();
@@ -177,6 +186,14 @@ public class CombatEngine {
         }
     }
 
+    private static int lowerThan(int number, int upperLimit) {
+        if (number >= upperLimit) {
+            return (upperLimit);
+        } else {
+            return (number);
+        }
+    }
+
     private static void levelUp(PlayerAtt player) {
         if (player.xp >= player.levelUpxp) {
             System.out.println("You levelled up!");
@@ -195,7 +212,7 @@ public class CombatEngine {
         System.out.println("ep");
         System.out.println("vigor");
         System.out.println("pace");
-        System.out.println("agility");
+        System.out.println("twitch");
         System.out.println("cognition");
         System.out.println("scope");
         System.out.println("aegis");
@@ -228,8 +245,8 @@ public class CombatEngine {
                     player.sp--;
                     break;
                 case 5:
-                    System.out.println("agility was increased by 1");
-                    player.agility++;
+                    System.out.println("twitch was increased by 1");
+                    player.twitch++;
                     player.sp--;
                     break;
                 case 6:
@@ -270,6 +287,23 @@ public class CombatEngine {
         }
     }
 
+    private static HealingItem healingItemChoice() {
+        System.out.println("Which healing item would you like to use?");
+        try {
+            for (int x = 0; x < 100; x++) {
+                System.out.println(PlayerAtt.HIInventory[x].name);
+            }
+        } catch (Exception e) {
+            System.out.print("");
+        }
+        int choice = input.nextInt();
+        try {
+            return (PlayerAtt.HIInventory[choice - 1]);
+        } catch (Exception e) {
+            return (PlayerAtt.HIInventory[0]);
+        }
+    }
+
     private static RangeWeapon rangeWeaponChoice() {
         System.out.println("Which weapon would you like to use?");
         try {
@@ -290,7 +324,7 @@ public class CombatEngine {
     public static void combatTurn(Enemy enemy, PlayerAtt player) {
         System.out.println(PlayerAtt.name + "! You are in a battle with a " + enemy.name + "!");
         time.next();
-        switch (whoGoesFirst(player.agility, enemy.agility)) {
+        switch (whoGoesFirst(player.twitch, enemy.agility)) {
             case 0:
                 while (player.hp > 0 && enemy.hp > 0) {
                     playerCombatRun(enemy, player);
