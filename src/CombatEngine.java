@@ -188,7 +188,7 @@ public class CombatEngine {
                 DeathsDice.die(player);
                 break;
             default:
-                System.out.println("You defeat the " + enemy.name + " and you are very happy about this :)");
+                System.out.println("You defeat the " + enemy.name + " and you are very happy about this");
                 time.next();
                 System.out.println("You gain " + xpGained + " xp");
                 time.next();
