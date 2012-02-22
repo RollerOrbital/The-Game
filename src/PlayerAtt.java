@@ -12,13 +12,13 @@ public class PlayerAtt {
     MeleeWeapon Mweapon;
     RangeWeapon Rweapon;
     static String name;
-    int scope, aegis, pace, twitch, cognition, vigor, xp, hp, basehp, ep, baseep, levelUpxp, sp;
+    int scope, aegis, pace, twitch, cognition, vigor, xp, hp, basehp, mp, basemp, levelUpxp, sp;
     static int luck, level;static {
         luck = 10;
         level = 1;
     }
 
-    public PlayerAtt(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int xp, int hp, int basehp, int ep, int baseep, int levelUpxp, int sp) {
+    public PlayerAtt(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int xp, int hp, int basehp, int mp, int basemp, int levelUpxp, int sp) {
         this.Mweapon = Mweapon;
         this.Rweapon = Rweapon;
         PlayerAtt.name = name();
@@ -31,8 +31,8 @@ public class PlayerAtt {
         this.xp = xp;
         this.hp = hp;
         this.basehp = basehp;
-        this.ep = ep;
-        this.baseep = baseep;
+        this.mp = mp;
+        this.basemp = basemp;
         this.levelUpxp = levelUpxp;
         this.sp = sp;
     }
@@ -42,4 +42,6 @@ public class PlayerAtt {
     public static MeleeWeapon MweaponInventory[] = {MeleeWeapon.fists, MeleeWeapon.police_baton};
     public static RangeWeapon RweaponInventory[] = {RangeWeapon.bb_gun, RangeWeapon.revolver};
     public static HealingItem HIInventory[] = {HealingItem.bandages, HealingItem.potion};
+    public static DamageMagic DMInventory[] = {DamageMagic.fireball, DamageMagic.thunder_bolt};
+    public static HealingMagic HMInventory[] = {HealingMagic.basic_heal, HealingMagic.recover};
 }

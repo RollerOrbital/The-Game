@@ -16,12 +16,9 @@ public class CombatEngine {
         int meleeDamageDealt = lowerOne(randomNum.nextInt(10) + player.vigor + player.Mweapon.damage - randomNum.nextInt(enemy.aegis));
         int rangeDamageDealt = lowerOne(randomNum.nextInt(15) + player.scope + player.Rweapon.damage - randomNum.nextInt(enemy.aegis));
         int didMagicWork;
-        int magicDamageDealt;
         if (randomNum.nextInt(101) < player.cognition) {
-            magicDamageDealt = lowerOne(randomNum.nextInt(25) + ((player.cognition / 10) * 3));
             didMagicWork = 1;
         } else {
-            magicDamageDealt = 0;
             didMagicWork = 0;
         }
 
@@ -46,18 +43,58 @@ public class CombatEngine {
                         time.next();
                         break;
                     case 3:
-                        switch (didMagicWork) {
+                        switch (whichTypeOfMagic()) {
                             case 1:
-                                System.out.println("You fire a spell at your opponent and it does " + magicDamageDealt + " damage");
-                                time.next();
-                                enemy.hp -= magicDamageDealt;
-                                System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
-                                time.next();
+                                DamageMagic damageSpell = damageMagicChoice();
+                                if (player.mp >= damageSpell.mpCost) {
+                                    int magicDamageDealt = lowerOne(randomNum.nextInt(25) + ((player.cognition / 10)) + damageSpell.damage);
+
+                                    switch (didMagicWork) {
+                                        case 1:
+                                            System.out.println("You cast " + damageSpell.name + " and it does " + magicDamageDealt + " damage");
+                                            player.mp -= damageSpell.mpCost;
+                                            time.next();
+                                            System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
+                                            enemy.hp -= magicDamageDealt;
+                                            time.next();
+                                            System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
+                                            time.next();
+                                            break;
+                                        default:
+                                            System.out.println("Your spell fizzles out...");
+                                            time.next();
+                                            break;
+                                    }
+                                } else {
+                                    System.out.println("You don't have enough mp to cast " + damageSpell.name);
+                                }
                                 break;
-                            default:
-                                System.out.println("Your spell fizzles out...");
-                                time.next();
-                                break;
+                            case 2:
+                                HealingMagic healingSpell = healingMagicChoice();
+                                if (player.mp >= healingSpell.mpCost) {
+                                    int healthRestored = healingSpell.healthRestored + randomNum.nextInt(5);
+
+                                    switch (didMagicWork) {
+                                        case 1:
+                                            System.out.println("You cast " + healingSpell.name + " to heal you for " + healthRestored + "hp");
+                                            time.nextInt();
+                                            System.out.println("It costs you " + healingSpell.mpCost + " mp points");
+                                            player.mp -= healingSpell.mpCost;
+                                            time.next();
+                                            System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
+                                            time.nextInt();
+                                            lowerThan(player.hp += healthRestored, player.basehp);
+                                            System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
+                                            time.nextInt();
+                                            break;
+                                        default:
+                                            System.out.println("Your spell fizzles out...");
+                                            time.next();
+                                            break;
+                                    }
+                                } else {
+                                    System.out.println("You don't have enough mp to cast " + healingSpell.name);
+                                }
                         }
                         break;
 
@@ -209,7 +246,7 @@ public class CombatEngine {
         Scanner input = new Scanner(System.in);
         System.out.println("Which skill would you like to advance? (1-8)");
         System.out.println("hp");
-        System.out.println("ep");
+        System.out.println("mp");
         System.out.println("vigor");
         System.out.println("pace");
         System.out.println("twitch");
@@ -230,8 +267,8 @@ public class CombatEngine {
                     player.sp--;
                     break;
                 case 2:
-                    System.out.println("ep was increased by 5");
-                    player.ep += 5;
+                    System.out.println("mp was increased by 5");
+                    player.mp += 5;
                     player.sp--;
                     break;
                 case 3:
@@ -318,6 +355,48 @@ public class CombatEngine {
             return (PlayerAtt.RweaponInventory[choice - 1]);
         } catch (Exception e) {
             return (PlayerAtt.RweaponInventory[0]);
+        }
+    }
+
+    private static int whichTypeOfMagic() {
+        System.out.println("Which type of magic would you like to use?");
+        System.out.println("Damaging");
+        System.out.println("Healing");
+        int choice = input.nextInt();
+        return (choice);
+    }
+
+    private static HealingMagic healingMagicChoice() {
+        System.out.println("Which spell would you like to use?");
+        try {
+            for (int x = 0; x < 100; x++) {
+                System.out.println(PlayerAtt.HMInventory[x].name);
+            }
+        } catch (Exception e) {
+            System.out.print("");
+        }
+        int choice = input.nextInt();
+        try {
+            return (PlayerAtt.HMInventory[choice - 1]);
+        } catch (Exception e) {
+            return (PlayerAtt.HMInventory[0]);
+        }
+    }
+
+    private static DamageMagic damageMagicChoice() {
+        System.out.println("Which spell would you like to use?");
+        try {
+            for (int x = 0; x < 100; x++) {
+                System.out.println(PlayerAtt.DMInventory[x].name);
+            }
+        } catch (Exception e) {
+            System.out.print("");
+        }
+        int choice = input.nextInt();
+        try {
+            return (PlayerAtt.DMInventory[choice - 1]);
+        } catch (Exception e) {
+            return (PlayerAtt.DMInventory[0]);
         }
     }
 
