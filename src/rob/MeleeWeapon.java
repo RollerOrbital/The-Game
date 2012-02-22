@@ -11,5 +11,4 @@ public class MeleeWeapon {
 
     static MeleeWeapon fists = new MeleeWeapon("Fist", 1);
     static MeleeWeapon police_baton = new MeleeWeapon("Police Baton", 5);
-    static MeleeWeapon guitar = new MeleeWeapon("Guitar", 3);
 }

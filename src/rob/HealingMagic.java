@@ -12,6 +12,5 @@ public class HealingMagic {
 
     static HealingMagic basic_heal = new HealingMagic("Basic Heal", 20, 30);
     static HealingMagic recover = new HealingMagic("Recover", 30, 50);
-    static HealingMagic regeneration = new HealingMagic("Regeneration", 70, 90);
 
 }
