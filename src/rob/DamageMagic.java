@@ -12,5 +12,5 @@ public class DamageMagic {
 
     static DamageMagic fireball = new DamageMagic("Fireball", 30, 30);
     static DamageMagic thunder_bolt = new DamageMagic("Thunder Bolt", 40, 45);
-    static DamageMagic avalanche = new DamageMagic("Avalanche", 55, 70);
 }
+//
