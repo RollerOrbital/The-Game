@@ -13,8 +13,8 @@ public class CombatEngine {
     }
 
     private static void playerCombatRun(Enemy enemy, PlayerAtt player) {
-        int meleeDamageDealt = lowerOne(randomNum.nextInt(10) + player.vigor + player.Mweapon.damage - randomNum.nextInt(enemy.aegis));
-        int rangeDamageDealt = lowerOne(randomNum.nextInt(15) + player.scope + player.Rweapon.damage - randomNum.nextInt(enemy.aegis));
+        int meleeDamageDealt = lowerOne(randomNum.nextInt(PlayerAtt.fortune + 5) + player.vigor + player.Mweapon.damage - randomNum.nextInt(enemy.aegis));
+        int rangeDamageDealt = lowerOne(randomNum.nextInt(PlayerAtt.fortune) + player.scope + player.Rweapon.damage - randomNum.nextInt(enemy.aegis));
         int didMagicWork;
         if (randomNum.nextInt(101) < player.cognition) {
             didMagicWork = 1;
@@ -47,7 +47,7 @@ public class CombatEngine {
                             case 1:
                                 DamageMagic damageSpell = damageMagicChoice();
                                 if (player.mp >= damageSpell.mpCost) {
-                                    int magicDamageDealt = lowerOne(randomNum.nextInt(25) + ((player.cognition / 10)) + damageSpell.damage);
+                                    int magicDamageDealt = lowerOne(randomNum.nextInt(PlayerAtt.fortune + 15) + ((player.cognition / 10)) + damageSpell.damage);
 
                                     switch (didMagicWork) {
                                         case 1:
@@ -72,7 +72,7 @@ public class CombatEngine {
                             case 2:
                                 HealingMagic healingSpell = healingMagicChoice();
                                 if (player.mp >= healingSpell.mpCost) {
-                                    int healthRestored = healingSpell.healthRestored + randomNum.nextInt(5);
+                                    int healthRestored = healingSpell.healthRestored + randomNum.nextInt(PlayerAtt.fortune);
 
                                     switch (didMagicWork) {
                                         case 1:
