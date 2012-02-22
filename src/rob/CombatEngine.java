@@ -53,14 +53,7 @@ public class CombatEngine {
 
                                     switch (didMagicWork) {
                                         case 1:
-                                            System.out.println("You cast " + damageSpell.name + " and it does " + magicDamageDealt + " damage");
-                                            player.mp -= damageSpell.mpCost;
-                                            time.next();
-                                            System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
-                                            enemy.hp -= magicDamageDealt;
-                                            time.next();
-                                            System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
-                                            time.next();
+                                            damageSpellWorks(damageSpell, player, enemy, magicDamageDealt);
                                             break;
                                         default:
                                             System.out.println("Your spell fizzles out...");
@@ -78,16 +71,7 @@ public class CombatEngine {
 
                                     switch (didMagicWork) {
                                         case 1:
-                                            System.out.println("You cast " + healingSpell.name + " to heal you for " + healthRestored + "hp");
-                                            time.nextInt();
-                                            System.out.println("It costs you " + healingSpell.mpCost + " mp points");
-                                            player.mp -= healingSpell.mpCost;
-                                            time.next();
-                                            System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
-                                            time.nextInt();
-                                            lowerThan(player.hp += healthRestored, player.basehp);
-                                            System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
-                                            time.nextInt();
+                                            healingSpellWorks(healingSpell, player, healthRestored);
                                             break;
                                         default:
                                             System.out.println("Your spell fizzles out...");
@@ -117,6 +101,30 @@ public class CombatEngine {
                         break;
                 }
         }
+    }
+
+    private static void damageSpellWorks(DamageMagic damageSpell, PlayerAtt player, Enemy enemy, int magicDamageDealt) {
+        System.out.println("You cast " + damageSpell.name + " and it does " + magicDamageDealt + " damage");
+        player.mp -= damageSpell.mpCost;
+        time.next();
+        System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
+        enemy.hp -= magicDamageDealt;
+        time.next();
+        System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
+        time.next();
+    }
+
+    private static void healingSpellWorks(HealingMagic healingSpell, PlayerAtt player, int healthRestored) {
+        System.out.println("You cast " + healingSpell.name + " to heal you for " + healthRestored + "hp");
+        time.nextInt();
+        System.out.println("It costs you " + healingSpell.mpCost + " mp points");
+        player.mp -= healingSpell.mpCost;
+        time.next();
+        System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
+        time.nextInt();
+        lowerThan(player.hp += healthRestored, player.basehp);
+        System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
+        time.nextInt();
     }
 
     private static int enemyCombatChoice() {
