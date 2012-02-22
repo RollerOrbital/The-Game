@@ -134,7 +134,7 @@ public class CombatEngine {
 
     private static void enemyCombatRun(Enemy enemy, PlayerAtt player) {
         int meleeDamageDealt = lowerOne(randomNum.nextInt(15) + enemy.vigor - randomNum.nextInt(player.aegis));
-        int rangeDamageDealt = lowerOne(randomNum.nextInt(10) + enemy.scope + enemy.agility - randomNum.nextInt(player.aegis));
+        int rangeDamageDealt = lowerOne(randomNum.nextInt(10) + enemy.scope + enemy.twitch - randomNum.nextInt(player.aegis));
         int didMagicWork;
         int magicDamageDealt;
 
@@ -189,7 +189,7 @@ public class CombatEngine {
     }
 
     private static void ifYouWinOrLose(Enemy enemy, PlayerAtt player) {
-        int xpGained = (randomNum.nextInt(PlayerAtt.fortune) + (enemy.pace + enemy.aegis + enemy.agility + (enemy.cognition / 10) + enemy.scope + enemy.vigor) / 6 * enemy.baseYield) - ((PlayerAtt.level - enemy.level) * (PlayerAtt.level - enemy.level));
+        int xpGained = (randomNum.nextInt(PlayerAtt.fortune) + (enemy.pace + enemy.aegis + enemy.twitch + (enemy.cognition / 10) + enemy.scope + enemy.vigor) / 6 * enemy.baseYield) - ((PlayerAtt.level - enemy.level) * (PlayerAtt.level - enemy.level));
 
         switch (lowerZero(player.hp)) {
             case 0:
@@ -419,7 +419,7 @@ public class CombatEngine {
     public static void combatTurn(Enemy enemy, PlayerAtt player) {
         System.out.println(PlayerAtt.name + "! You are in a battle with a " + enemy.name + "!");
         time.next();
-        switch (whoGoesFirst(player.twitch, enemy.agility)) {
+        switch (whoGoesFirst(player.twitch, enemy.twitch)) {
             case 0:
                 while (player.hp > 0 && enemy.hp > 0) {
                     playerCombatRun(enemy, player);

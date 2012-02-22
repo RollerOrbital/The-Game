@@ -4,20 +4,20 @@ import java.util.Random;
 
 public class Enemy {
     String name;
-    int scope, aegis, pace, agility, cognition, vigor, hp, basehp, ep, baseep, luck, baseYield, level;
+    int scope, aegis, pace, twitch, cognition, vigor, hp, basehp, mp, basemp, luck, baseYield, level;
 
-    public Enemy(String name, int scope, int aegis, int pace, int agility, int cognition, int vigor, int hp, int basehp, int ep, int baseep, int luck, int baseYield, int level) {
+    public Enemy(String name, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int hp, int basehp, int mp, int basemp, int luck, int baseYield, int level) {
         this.name = name;
         this.scope = scope;
         this.aegis = aegis;
         this.pace = pace;
-        this.agility = agility;
+        this.twitch = twitch;
         this.cognition = cognition;
         this.vigor = vigor;
         this.hp = hp;
         this.basehp = basehp;
-        this.ep = ep;
-        this.baseep = baseep;
+        this.mp = mp;
+        this.basemp = basemp;
         this.luck = luck;
         this.baseYield = baseYield;
         this.level = level;
