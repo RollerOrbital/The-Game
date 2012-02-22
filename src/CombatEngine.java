@@ -179,7 +179,7 @@ public class CombatEngine {
     }
 
     private static void ifYouWinOrLose(Enemy enemy, PlayerAtt player) {
-        int xpGained = (randomNum.nextInt(PlayerAtt.luck) + (enemy.pace + enemy.aegis + enemy.agility + (enemy.cognition / 10) + enemy.scope + enemy.vigor) / 6 * enemy.baseYield) - ((PlayerAtt.level - enemy.level) * (PlayerAtt.level - enemy.level));
+        int xpGained = (randomNum.nextInt(PlayerAtt.fortune) + (enemy.pace + enemy.aegis + enemy.agility + (enemy.cognition / 10) + enemy.scope + enemy.vigor) / 6 * enemy.baseYield) - ((PlayerAtt.level - enemy.level) * (PlayerAtt.level - enemy.level));
 
         switch (lowerZero(player.hp)) {
             case 0:
@@ -244,15 +244,16 @@ public class CombatEngine {
 
     private static int spChoice() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Which skill would you like to advance? (1-8)");
-        System.out.println("hp");
-        System.out.println("mp");
-        System.out.println("vigor");
-        System.out.println("pace");
-        System.out.println("twitch");
-        System.out.println("cognition");
-        System.out.println("scope");
-        System.out.println("aegis");
+        System.out.println("Which skill would you like to advance? (1-9)");
+        System.out.println("HP");
+        System.out.println("MP");
+        System.out.println("Vigor");
+        System.out.println("Pace");
+        System.out.println("Twitch");
+        System.out.println("Cognition");
+        System.out.println("Scope");
+        System.out.println("Aegis");
+        System.out.println("Fortune");
         int choice = input.nextInt();
         return (choice);
     }
@@ -262,43 +263,48 @@ public class CombatEngine {
         while (player.sp > 0) {
             switch (spChoice()) {
                 case 1:
-                    System.out.println("hp was increased by 5");
+                    System.out.println("HP was increased by 5");
                     player.hp += 5;
                     player.sp--;
                     break;
                 case 2:
-                    System.out.println("mp was increased by 5");
+                    System.out.println("MP was increased by 5");
                     player.mp += 5;
                     player.sp--;
                     break;
                 case 3:
-                    System.out.println("vigor was increased by 2");
+                    System.out.println("Vigor was increased by 2");
                     player.vigor += 2;
                     player.sp--;
                     break;
                 case 4:
-                    System.out.println("pace was increased by 1");
+                    System.out.println("Pace was increased by 1");
                     player.pace++;
                     player.sp--;
                     break;
                 case 5:
-                    System.out.println("twitch was increased by 1");
+                    System.out.println("Twitch was increased by 1");
                     player.twitch++;
                     player.sp--;
                     break;
                 case 6:
-                    System.out.println("cognition was increased by 2");
+                    System.out.println("Cognition was increased by 2");
                     player.cognition += 3;
                     player.sp--;
                     break;
                 case 7:
-                    System.out.println("scope was increased by 1");
+                    System.out.println("Scope was increased by 1");
                     player.scope++;
                     player.sp--;
                     break;
                 case 8:
-                    System.out.println("aegis was increased by 2");
+                    System.out.println("Aegis was increased by 2");
                     player.aegis += 2;
+                    player.sp--;
+                    break;
+                case 9:
+                    System.out.println("Fortune was increased by 1");
+                    PlayerAtt.fortune += 2;
                     player.sp--;
                     break;
                 default:

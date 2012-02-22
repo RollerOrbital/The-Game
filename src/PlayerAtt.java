@@ -13,8 +13,8 @@ public class PlayerAtt {
     RangeWeapon Rweapon;
     static String name;
     int scope, aegis, pace, twitch, cognition, vigor, xp, hp, basehp, mp, basemp, levelUpxp, sp;
-    static int luck, level;static {
-        luck = 10;
+    static int fortune, level;static {
+        fortune = 10;
         level = 1;
     }
 
