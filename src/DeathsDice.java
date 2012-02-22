@@ -7,7 +7,7 @@ public class DeathsDice {
 
     public static void die(PlayerAtt player) {
         player.hp = player.basehp;
-        System.out.println("You open your eyes and realise that your not dead...");
+        System.out.println("You open your eyes and realise that you're not dead...");
         time.next();
         System.out.println("You think \"This cannot be possible.\"");
         time.next();
