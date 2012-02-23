@@ -14,11 +14,18 @@ public class MainClass {
         //System.out.println(rob.PlayerAtt.name);
         //CombatEngine.combatTurn(Enemy.enemyYouFight, PlayerAtt.player);
         String[][] board = new String[5][5];
-        CombatEngine.move(board, 2, 1, PlayerAtt.player);
+        Board.setBoard(2, 1);
+        Board.setAll(board, "O");
+        int x = 0;
+        while (x < 100) {
+            Board.stepsRequired(2, 1, PlayerAtt.player, board);
+        }
         System.out.println("Program Terminated");
     }
-    //right = board[x][y+1]
-    //left = board[x][y-1]
-    //down = board[x+1][y]
-    //up = board[x-1][y]
+    //I need to make a method that finds out how many steps it will require to get to a position a,b from position x,y.
+
+    //Find x-a; that is how many along it will have to go to get in line
+    //Find (x-a) + (y-b) that is how many steps it will require to get from a,b to x,y!!!
+
+    //WIN
 }
