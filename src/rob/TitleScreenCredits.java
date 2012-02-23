@@ -1,3 +1,5 @@
+package rob;
+
 import java.util.Scanner;
 
 public class TitleScreenCredits {
