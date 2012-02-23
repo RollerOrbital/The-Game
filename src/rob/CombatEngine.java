@@ -53,14 +53,7 @@ public class CombatEngine {
 
                                     switch (didMagicWork) {
                                         case 1:
-                                            System.out.println("You cast " + damageSpell.name + " and it does " + magicDamageDealt + " damage");
-                                            player.mp -= damageSpell.mpCost;
-                                            time.next();
-                                            System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
-                                            enemy.hp -= magicDamageDealt;
-                                            time.next();
-                                            System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
-                                            time.next();
+                                            damageSpellWorks(damageSpell, player, enemy, magicDamageDealt);
                                             break;
                                         default:
                                             System.out.println("Your spell fizzles out...");
@@ -78,16 +71,7 @@ public class CombatEngine {
 
                                     switch (didMagicWork) {
                                         case 1:
-                                            System.out.println("You cast " + healingSpell.name + " to heal you for " + healthRestored + "hp");
-                                            time.nextInt();
-                                            System.out.println("It costs you " + healingSpell.mpCost + " mp points");
-                                            player.mp -= healingSpell.mpCost;
-                                            time.next();
-                                            System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
-                                            time.nextInt();
-                                            lowerThan(player.hp += healthRestored, player.basehp);
-                                            System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
-                                            time.nextInt();
+                                            healingSpellWorks(healingSpell, player, healthRestored);
                                             break;
                                         default:
                                             System.out.println("Your spell fizzles out...");
@@ -119,6 +103,30 @@ public class CombatEngine {
         }
     }
 
+    private static void damageSpellWorks(DamageMagic damageSpell, PlayerAtt player, Enemy enemy, int magicDamageDealt) {
+        System.out.println("You cast " + damageSpell.name + " and it does " + magicDamageDealt + " damage");
+        player.mp -= damageSpell.mpCost;
+        time.next();
+        System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
+        enemy.hp -= magicDamageDealt;
+        time.next();
+        System.out.println("Your opponent has " + lowerZero(enemy.hp) + " hp remaining");
+        time.next();
+    }
+
+    private static void healingSpellWorks(HealingMagic healingSpell, PlayerAtt player, int healthRestored) {
+        System.out.println("You cast " + healingSpell.name + " to heal you for " + healthRestored + "hp");
+        time.nextInt();
+        System.out.println("It costs you " + healingSpell.mpCost + " mp points");
+        player.mp -= healingSpell.mpCost;
+        time.next();
+        System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
+        time.nextInt();
+        lowerThan(player.hp += healthRestored, player.basehp);
+        System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
+        time.nextInt();
+    }
+
     private static int enemyCombatChoice() {
         int enemyChoice = lowerOne(randomNum.nextInt(4));
         return (enemyChoice);
@@ -126,7 +134,7 @@ public class CombatEngine {
 
     private static void enemyCombatRun(Enemy enemy, PlayerAtt player) {
         int meleeDamageDealt = lowerOne(randomNum.nextInt(15) + enemy.vigor - randomNum.nextInt(player.aegis));
-        int rangeDamageDealt = lowerOne(randomNum.nextInt(10) + enemy.scope + enemy.agility - randomNum.nextInt(player.aegis));
+        int rangeDamageDealt = lowerOne(randomNum.nextInt(10) + enemy.scope + enemy.twitch - randomNum.nextInt(player.aegis));
         int didMagicWork;
         int magicDamageDealt;
 
@@ -181,7 +189,7 @@ public class CombatEngine {
     }
 
     private static void ifYouWinOrLose(Enemy enemy, PlayerAtt player) {
-        int xpGained = (randomNum.nextInt(PlayerAtt.fortune) + (enemy.pace + enemy.aegis + enemy.agility + (enemy.cognition / 10) + enemy.scope + enemy.vigor) / 6 * enemy.baseYield) - ((PlayerAtt.level - enemy.level) * (PlayerAtt.level - enemy.level));
+        int xpGained = (randomNum.nextInt(PlayerAtt.fortune) + (enemy.pace + enemy.aegis + enemy.twitch + (enemy.cognition / 10) + enemy.scope + enemy.vigor) / 6 * enemy.baseYield) - ((PlayerAtt.level - enemy.level) * (PlayerAtt.level - enemy.level));
 
         switch (lowerZero(player.hp)) {
             case 0:
@@ -411,7 +419,7 @@ public class CombatEngine {
     public static void combatTurn(Enemy enemy, PlayerAtt player) {
         System.out.println(PlayerAtt.name + "! You are in a battle with a " + enemy.name + "!");
         time.next();
-        switch (whoGoesFirst(player.twitch, enemy.agility)) {
+        switch (whoGoesFirst(player.twitch, enemy.twitch)) {
             case 0:
                 while (player.hp > 0 && enemy.hp > 0) {
                     playerCombatRun(enemy, player);
