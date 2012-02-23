@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class Board extends JPanel implements ActionListener {
 
-    Image star;
+    Image sprite;
     Timer timer;
     int x, y;
 
@@ -15,14 +15,14 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
 
         ImageIcon ii =
-                new ImageIcon(this.getClass().getResource("Young Mage.jpg"));
-        star = ii.getImage();
+                new ImageIcon(this.getClass().getResource("spr_test.jpg"));
+        sprite = ii.getImage();
 
         setDoubleBuffered(true);
 
         x = 10;
-        y = 0;
-        timer = new Timer(1, this);
+        y = 150;
+        timer = new Timer(15, this);
         timer.start();
     }
 
@@ -31,7 +31,7 @@ public class Board extends JPanel implements ActionListener {
         super.paint(g);
 
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(star, x, y, this);
+        g2d.drawImage(sprite, x, y, this);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
