@@ -8,7 +8,7 @@ public class Skeleton extends JFrame {
         add(new Board());
         setTitle("Game Window");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(320, 180);
+        setSize(280, 240);
         setLocationRelativeTo(null);
         setVisible(true);
     }
