@@ -1,14 +1,10 @@
 package rob;
 
-import java.util.Scanner;
-
 public class MainClass {
     public static void main(String args[]) {
         //TitleScreenCredits.titleRun();
         game();
     }
-
-    static Scanner input = new Scanner(System.in);
 
     public static void game() {
         //System.out.println(rob.PlayerAtt.name);
