@@ -9,7 +9,7 @@ public class CombatEngine {
     static Scanner time = new Scanner(System.in);
 
     private static int playerCombatChoice() {
-        System.out.println("What will you do; Melee, Range, Magic or Healing Item?");
+        System.out.println("What will you do; Melee, Range, Magic, Healing Item?");
         int choice = input.nextInt();
         return (choice);
     }
