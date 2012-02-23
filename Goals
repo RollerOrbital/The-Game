@@ -2,16 +2,19 @@
 *WHAT WOULD BE HELPFUL IS IF PEOPLE WROTE DOWN THE NAMES OF PEOPLE ASSIGNED TO A CERTAIN TASK*
 
 ROB M:
--Continue developing the Combat system + visual interface of such
+-Continue developing the game ENGINE no graphics for me
 
 ROB D:
--BUTTONS EVERYWHERE
+-JFrame, JPanel, these kinds of graphics things
 
 JOE:
+-Give good ideas(as always) and work on a minigame in order to improve confidence in Java
 
 CIARAN:
+-Working on a minigame in order to improve confidence in Java
 
 KRIS:
+-Working on a minigame in order to improve confidence in Java
 
 WILL:
 -Get a game window that displays graphics and allows us to control a sprite on screen
