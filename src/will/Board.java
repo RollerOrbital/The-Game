@@ -20,8 +20,9 @@ public class Board extends JPanel implements ActionListener {
 
         setDoubleBuffered(true);
 
-        x = y = 10;
-        timer = new Timer(25, this);
+        x = 10;
+        y = 0;
+        timer = new Timer(1, this);
         timer.start();
     }
 
@@ -39,9 +40,9 @@ public class Board extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         x += 1;
-        y += 1;
+        y += 0;
 
-        if (y > 240) {
+        if (y > 1280) {
             y = -45;
             x = -45;
         }
