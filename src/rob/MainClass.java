@@ -31,4 +31,3 @@ public class MainClass {
 
 //    The player can still go on top of the enemy without contest -__-
 }
-//

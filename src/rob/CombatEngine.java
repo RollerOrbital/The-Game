@@ -118,7 +118,7 @@ public class CombatEngine {
         HealingItem healingItem = healingItemChoice();
         System.out.println("You use your " + healingItem.name + " to heal " + healingItem.healthRestored + " health");
         time.nextInt();
-        lowerThan(player.hp += healingItem.healthRestored, player.basehp);
+        lowerThan(player.hp + healingItem.healthRestored, player.basehp);
         System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
         time.nextInt();
     }
