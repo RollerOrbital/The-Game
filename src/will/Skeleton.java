@@ -1,19 +1,22 @@
-package will;  //my package
+package will;
 
 import javax.swing.*;
 
 public class Skeleton extends JFrame {
 
-    public Skeleton() {   //new skeleton object
-        add(new Board()); //create a new panel "board"
-        setTitle("Game Window");    //set the title on the top of the frame
-        setDefaultCloseOperation(EXIT_ON_CLOSE); //what should happen if it closes
-        setSize(480, 360);   //set size, can change to what is needed
-        setLocationRelativeTo(null);  //not in a relative location
-        setVisible(true);      //make it visible
+    public Skeleton() {
+
+        add(new Board());
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        setTitle("Resist");
+        setResizable(false);
+        setVisible(true);
     }
 
-    public static void main(String[] args) {    //main method
-        new Skeleton();           //output the object that we just made "skeleton"
+    public static void main(String[] args) {
+        new Skeleton();
     }
 }

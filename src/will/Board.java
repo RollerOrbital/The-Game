@@ -2,76 +2,55 @@ package will;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class Board extends JPanel implements Runnable {
+public class Board extends JPanel implements ActionListener {
 
-    private Image sprite;
-    private Thread animator;
-    private int x, y;
-    private final int DELAY = 50;
+    private Timer timer;
+    private Sprite sprite;
 
     public Board() {
+
+        addKeyListener(new TAdapter());
+        setFocusable(true);
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("spr_test.jpg"));
-        sprite = ii.getImage();
+        sprite = new Sprite();
 
-        x = y = 10;
+        timer = new Timer(5, this);
+        timer.start();
     }
-
-    public void addNotify() {
-        super.addNotify();
-        animator = new Thread(this);
-        animator.start();
-    }
-
 
     public void paint(Graphics g) {
         super.paint(g);
 
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(sprite, x, y, this);
+        g2d.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), this);
+
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
 
-
-    public void cycle() {
-
-        x += 1;
-        y += 1;
-
-        if (y > 480) {
-            y = -45;
-            x = -45;
-        }
+    public void actionPerformed(ActionEvent e) {
+        sprite.move();
+        repaint();
     }
 
-    public void run() {
+    private class TAdapter extends KeyAdapter {
 
-        long beforeTime, timeDiff, sleep;
-
-        beforeTime = System.currentTimeMillis();
-
-        while (true) {
-            cycle();
-            repaint();
-
-            timeDiff = System.currentTimeMillis() - beforeTime;
-            sleep = DELAY - timeDiff;
-
-            if (sleep < 0)
-                sleep = 2;
-            try {
-                Thread.sleep(sleep);
-            } catch (InterruptedException e) {
-                System.out.println("interrupted");
-            }
-
-            beforeTime = System.currentTimeMillis();
-
-
+        public void keyReleased(KeyEvent e) {
+            sprite.keyReleased(e);
         }
+
+        public void keyPressed(KeyEvent e) {
+            sprite.keyPressed(e);
+        }
+
     }
+
+
 }
