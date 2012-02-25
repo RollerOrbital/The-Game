@@ -118,8 +118,11 @@ public class CombatEngine {
         HealingItem healingItem = healingItemChoice();
         System.out.println("You use your " + healingItem.name + " to heal " + healingItem.healthRestored + " health");
         time.nextInt();
-        lowerThan(player.hp + healingItem.healthRestored, player.basehp);
-        System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
+        player.hp += healingItem.healthRestored;
+        if (player.hp > player.basehp) {
+            player.hp = player.basehp;
+        }
+        System.out.println("You now have " + player.hp + " hp remaining");
         time.nextInt();
     }
 
@@ -146,25 +149,25 @@ public class CombatEngine {
         time.next();
         System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
         time.nextInt();
-        lowerThan(player.hp += healthRestored, player.basehp);
+        lower(player.hp += healthRestored, player.basehp);
         System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
         time.nextInt();
     }
 
     private static int enemyCombatChoice(PlayerAtt player, Enemy enemy) {
-        int rangeOrMagic = randomNum.nextInt(1);
+        int rangeOrMagic = randomNum.nextInt(101);
         int returnThing;
 
         if (Board.isNextToEnemy(player, enemy)) {
             returnThing = 1;
         } else if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
-            if (rangeOrMagic == 1) {
+            if (rangeOrMagic <= 50) {
                 returnThing = 2;
             } else {
                 returnThing = 3;
             }
         } else {
-            return 1;
+            returnThing = 1;
         }
         return returnThing;
     }
@@ -289,7 +292,7 @@ public class CombatEngine {
         }
     }
 
-    private static int lowerThan(int number, int upperLimit) {
+    private static int lower(int number, int upperLimit) {
         if (number >= upperLimit) {
             return (upperLimit);
         } else {

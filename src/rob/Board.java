@@ -13,21 +13,21 @@ public class Board {
 
     public static void playerMove(PlayerAtt player, Enemy enemy, Board board) {
         System.out.println("What is the xco of where you want to go?");
-        int xco = input.nextInt();
-        System.out.println("What is the yco of where you want to go?");
         int yco = input.nextInt();
-        if (xco < board.xBoardMax && yco < board.yBoardMax) {
-            if (yco != enemy.ypos || xco != enemy.xpos) {
-                player.xpos = xco;
-                player.ypos = yco;
-                System.out.println("You are now at position (" + player.xpos + "," + player.ypos + ")");
+        System.out.println("What is the yco of where you want to go?");
+        int xco = input.nextInt();
+        if (xco - 1 < board.xBoardMax && yco - 1 < board.yBoardMax) {
+            if (yco - 1 != enemy.ypos || xco - 1 != enemy.xpos) {
+                player.xpos = xco - 1;
+                player.ypos = yco - 1;
+                System.out.println("You are now at position (" + yco + "," + xco + ")");
             } else {
                 System.out.println("On top of enemy -__-");
-                System.out.println("You are now at position (" + player.xpos + "," + player.ypos + ")");
+                System.out.println("You are now at position (" + player.ypos + "," + player.xpos + ")");
             }
         } else {
             System.out.println("Out of range -__-");
-            System.out.println("You are now at position (" + player.xpos + "," + player.ypos + ")");
+            System.out.println("You are now at position (" + player.ypos + "," + player.xpos + ")");
         }
     }
 
@@ -38,12 +38,15 @@ public class Board {
                     if (x == player.xpos && i == player.ypos) {
                         System.out.print("P\t");
                         i++;
-                    } else if (x == enemy.xpos && i == enemy.ypos) {
+                    }
+                    if (x == enemy.xpos && i == enemy.ypos) {
                         System.out.print("E\t");
                         i++;
                     }
-                    System.out.print("O\t");
-                    if (i == 4) {
+                    if (i != 5) {
+                        System.out.print("O\t");
+                    }
+                    if (i >= 4) {
                         System.out.println();
                     }
                 }
