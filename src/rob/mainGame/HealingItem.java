@@ -1,4 +1,4 @@
-package rob;
+package rob.mainGame;
 
 public class HealingItem {
     String name;

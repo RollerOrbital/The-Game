@@ -1,4 +1,4 @@
-package rob;
+package rob.mainGame;
 
 import java.util.Scanner;
 

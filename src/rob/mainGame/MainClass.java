@@ -1,4 +1,4 @@
-package rob;
+package rob.mainGame;
 
 public class MainClass {
     public static void main(String args[]) {
@@ -6,7 +6,7 @@ public class MainClass {
     }
 
     public static void game() {
-        System.out.println(rob.PlayerAtt.name);
+        System.out.println(PlayerAtt.name);
         CombatEngine.combatTurn(Enemy.enemyYouFight, PlayerAtt.player, Board.board);
         System.out.println("Program Terminated");
     }
