@@ -1,6 +1,6 @@
 package rob.mazeGame;
 
 public class Player {
-    Player player = new Player();
-    int stage;
+    static int xpos = 0;
+    static int ypos = 0;
 }
