@@ -2,8 +2,7 @@ package rob;
 
 public class MainClass {
     public static void main(String args[]) {
-        //TitleScreenCredits.titleRun();
-        game();
+        TitleScreenCredits.titleRun();
     }
 
     public static void game() {
