@@ -63,11 +63,9 @@ public class CombatEngine {
                             case 2:
                                 HealingMagic healingSpell = healingMagicChoice();
                                 if (player.mp >= healingSpell.mpCost) {
-                                    int healthRestored = healingSpell.healthRestored + randomNum.nextInt(PlayerAtt.fortune);
-
                                     switch (didMagicWork) {
                                         case 1:
-                                            healingSpellWorks(healingSpell, player, healthRestored);
+                                            healingSpellWorks(healingSpell, player);
                                             break;
                                         default:
                                             System.out.println("Your spell fizzles out...");
@@ -141,15 +139,15 @@ public class CombatEngine {
         }
     }
 
-    private static void healingSpellWorks(HealingMagic healingSpell, PlayerAtt player, int healthRestored) {
-        System.out.println("You cast " + healingSpell.name + " to heal you for " + healthRestored + "hp");
+    private static void healingSpellWorks(HealingMagic healingSpell, PlayerAtt player) {
+        System.out.println("You cast " + healingSpell.name + " to heal you for " + healingSpell.healthRestored + randomNum.nextInt(PlayerAtt.fortune) + "hp");
         time.nextInt();
         System.out.println("It costs you " + healingSpell.mpCost + " mp points");
         player.mp -= healingSpell.mpCost;
         time.next();
         System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
         time.nextInt();
-        lower(player.hp += healthRestored, player.basehp);
+        lower(player.hp += healingSpell.healthRestored + randomNum.nextInt(PlayerAtt.fortune), player.basehp);
         System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
         time.nextInt();
     }

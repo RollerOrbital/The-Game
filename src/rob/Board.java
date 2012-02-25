@@ -96,11 +96,7 @@ public class Board {
     }
 
     public static boolean isNextToEnemy(PlayerAtt player, Enemy enemy) {
-        if (player.xpos == enemy.xpos && Math.abs(enemy.ypos - player.ypos) == 1) {
-            return true;
-        } else {
-            return (player.ypos == enemy.ypos && Math.abs(enemy.xpos - player.xpos) == 1);
-        }
+        return player.xpos == enemy.xpos && Math.abs(enemy.ypos - player.ypos) == 1 || (player.ypos == enemy.ypos && Math.abs(enemy.xpos - player.xpos) == 1);
     }
 
     private static boolean canGoNextToPlayer(PlayerAtt player, Enemy enemy) {
@@ -109,17 +105,7 @@ public class Board {
         int stepsRequiredDown = Math.abs(player.xpos - enemy.xpos) + Math.abs(player.ypos + 1 - enemy.ypos);
         int stepsRequiredUp = Math.abs(player.xpos - enemy.xpos) + Math.abs(player.ypos - 1 - enemy.ypos);
 
-        if (stepsRequiredRight <= enemy.pace) {
-            return true;
-        } else if (stepsRequiredLeft <= enemy.pace) {
-            return true;
-        } else if (stepsRequiredDown <= enemy.pace) {
-            return true;
-        } else if (stepsRequiredUp <= enemy.pace) {
-            return true;
-        } else {
-            return false;
-        }
+        return stepsRequiredRight <= enemy.pace || stepsRequiredLeft <= enemy.pace || stepsRequiredDown <= enemy.pace || stepsRequiredUp <= enemy.pace;
     }
 
     private static void goRandomPlace(Enemy enemy) {
@@ -131,12 +117,6 @@ public class Board {
         int stepsRequiredx = player.xpos - enemy.xpos;
         int stepsRequiredy = player.ypos - enemy.ypos;
 
-        if (stepsRequiredx <= enemy.pace) {
-            return true;
-        } else if (stepsRequiredy <= enemy.pace) {
-            return true;
-        } else {
-            return false;
-        }
+        return !(stepsRequiredx <= enemy.pace || stepsRequiredy <= enemy.pace ? true : false) ? false : true;
     }
 }

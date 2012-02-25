@@ -2,6 +2,8 @@
   <dictionary name="robert">
     <words>
       <w>heptahedron</w>
+      <w>requiredx</w>
+      <w>requiredy</w>
     </words>
   </dictionary>
 </component>
