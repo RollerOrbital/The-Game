@@ -14,13 +14,13 @@ public class PlayerAtt {
     MeleeWeapon Mweapon;
     RangeWeapon Rweapon;
     static String name;
-    int scope, aegis, pace, twitch, cognition, vigor, xp, hp, basehp, mp, basemp, levelUpxp, sp;
+    int scope, aegis, pace, twitch, cognition, vigor, exp, hp, basehp, mp, basemp, levelUpxp, sp, xpos, ypos;
     static int fortune, level;static {
         fortune = 10;
         level = 1;
     }
 
-    public PlayerAtt(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int xp, int hp, int basehp, int mp, int basemp, int levelUpxp, int sp) {
+    public PlayerAtt(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int exp, int hp, int basehp, int mp, int basemp, int levelUpxp, int sp, int xpos, int ypos) {
         this.Mweapon = Mweapon;
         this.Rweapon = Rweapon;
         PlayerAtt.name = name();
@@ -30,16 +30,18 @@ public class PlayerAtt {
         this.twitch = twitch;
         this.cognition = cognition;
         this.vigor = vigor;
-        this.xp = xp;
+        this.exp = exp;
         this.hp = hp;
         this.basehp = basehp;
         this.mp = mp;
         this.basemp = basemp;
         this.levelUpxp = levelUpxp;
         this.sp = sp;
+        this.xpos = xpos;
+        this.ypos = ypos;
     }
 
-    static PlayerAtt player = new PlayerAtt(MeleeWeapon.fists, RangeWeapon.bb_gun, 2, 5, 5, 10, 30, 15, 0, 100, 100, 50, 50, (level * level) + 40, 0);
+    static PlayerAtt player = new PlayerAtt(MeleeWeapon.fists, RangeWeapon.bb_gun, 2, 5, 5, 10, 30, 15, 0, 100, 100, 50, 50, (level * level) + 40, 0, 0, 0);
 
     public static MeleeWeapon MweaponInventory[] = {MeleeWeapon.fists, MeleeWeapon.police_baton};
     public static RangeWeapon RweaponInventory[] = {RangeWeapon.bb_gun, RangeWeapon.revolver};
