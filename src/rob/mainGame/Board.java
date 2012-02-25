@@ -44,7 +44,7 @@ public class Board {
                         i++;
                     }
                     if (i != 5) {
-                        System.out.print("O\t");
+                        System.out.print(".\t");
                     }
                     if (i >= 4) {
                         System.out.println();
