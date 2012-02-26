@@ -20,7 +20,7 @@ public class Board {
 
         if (yco - 1 < xBoardMax && xco - 1 < yBoardMax) {
             if (stepsRequired <= player.pace) {
-                if (xco - 1 != enemy.ypos || yco - 1 != enemy.xpos) {
+                if (xco - 1 != enemy.xpos || yco - 1 != enemy.ypos) {
                     System.out.println();
                     player.ypos = yco - 1;
                     player.xpos = xco - 1;
@@ -49,7 +49,7 @@ public class Board {
                         System.out.print("P\t");
                         i++;
                     }
-                    if (x == enemy.xpos && i == enemy.ypos) {
+                    if (x == enemy.ypos && i == enemy.xpos) {
                         System.out.print("E\t");
                         i++;
                     }
@@ -65,35 +65,35 @@ public class Board {
     }
 
     public void enemyAIMove(Player player, Enemy enemy) {
-        int stepsRequiredRight = Math.abs(player.ypos + 1 - enemy.xpos) + Math.abs(player.xpos - enemy.ypos);
-        int stepsRequiredLeft = Math.abs(player.ypos - 1 - enemy.xpos) + Math.abs(player.xpos - enemy.ypos);
-        int stepsRequiredDown = Math.abs(player.ypos - enemy.xpos) + Math.abs(player.xpos + 1 - enemy.ypos);
-        int stepsRequiredUp = Math.abs(player.ypos - enemy.xpos) + Math.abs(player.xpos - 1 - enemy.ypos);
+        int stepsRequiredRight = Math.abs(player.ypos + 1 - enemy.ypos) + Math.abs(player.xpos - enemy.xpos);
+        int stepsRequiredLeft = Math.abs(player.ypos - 1 - enemy.ypos) + Math.abs(player.xpos - enemy.xpos);
+        int stepsRequiredDown = Math.abs(player.ypos - enemy.ypos) + Math.abs(player.xpos + 1 - enemy.xpos);
+        int stepsRequiredUp = Math.abs(player.ypos - enemy.ypos) + Math.abs(player.xpos - 1 - enemy.xpos);
 
-        int stepsRequiredx = player.ypos - enemy.xpos;
-        int stepsRequiredy = player.xpos - enemy.ypos;
+        int stepsRequiredx = player.ypos - enemy.ypos;
+        int stepsRequiredy = player.xpos - enemy.xpos;
 
         if (canGoNextToPlayer(Player.player, Enemy.enemyYouFight)) {
             if (stepsRequiredRight <= enemy.pace) {
-                enemy.xpos = player.ypos + 1;
-                enemy.ypos = player.xpos;
+                enemy.ypos = player.ypos + 1;
+                enemy.xpos = player.xpos;
             } else if (stepsRequiredLeft <= enemy.pace) {
-                enemy.xpos = player.ypos - 1;
-                enemy.ypos = player.xpos;
+                enemy.ypos = player.ypos - 1;
+                enemy.xpos = player.xpos;
             } else if (stepsRequiredDown <= enemy.pace) {
-                enemy.xpos = player.ypos;
-                enemy.ypos = player.xpos + 1;
+                enemy.ypos = player.ypos;
+                enemy.xpos = player.xpos + 1;
             } else if (stepsRequiredUp <= enemy.pace) {
-                enemy.xpos = player.ypos;
-                enemy.ypos = player.xpos - 1;
+                enemy.ypos = player.ypos;
+                enemy.xpos = player.xpos - 1;
             } else {
                 goRandomPlace(enemy);
             }
         } else if (canGoInLineWithPlayer(player, enemy)) {
             if (stepsRequiredx <= enemy.pace) {
-                enemy.xpos = player.xpos;
-            } else if (stepsRequiredy <= enemy.pace) {
                 enemy.ypos = player.xpos;
+            } else if (stepsRequiredy <= enemy.pace) {
+                enemy.xpos = player.xpos;
             }
         } else {
             goRandomPlace(enemy);
@@ -101,30 +101,30 @@ public class Board {
     }
 
     public static boolean isNextToPlayer(Player player, Enemy enemy) {
-        return player.ypos == enemy.xpos && Math.abs(player.xpos - enemy.ypos) == 1 || (player.xpos == enemy.ypos && Math.abs(enemy.xpos - player.ypos) == 1);
+        return player.ypos == enemy.ypos && Math.abs(player.xpos - enemy.xpos) == 1 || (player.xpos == enemy.xpos && Math.abs(enemy.ypos - player.ypos) == 1);
     }
 
     public static boolean isNextToEnemy(Player player, Enemy enemy) {
-        return player.ypos == enemy.xpos && Math.abs(enemy.ypos - player.xpos) == 1 || (player.xpos == enemy.ypos && Math.abs(enemy.xpos - player.ypos) == 1);
+        return player.ypos == enemy.ypos && Math.abs(enemy.xpos - player.xpos) == 1 || (player.xpos == enemy.xpos && Math.abs(enemy.ypos - player.ypos) == 1);
     }
 
     private static boolean canGoNextToPlayer(Player player, Enemy enemy) {
-        int stepsRequiredRight = Math.abs(player.ypos + 1 - enemy.xpos) + Math.abs(player.xpos - enemy.ypos);
-        int stepsRequiredLeft = Math.abs(player.ypos - 1 - enemy.xpos) + Math.abs(player.xpos - enemy.ypos);
-        int stepsRequiredDown = Math.abs(player.ypos - enemy.xpos) + Math.abs(player.xpos + 1 - enemy.ypos);
-        int stepsRequiredUp = Math.abs(player.ypos - enemy.xpos) + Math.abs(player.xpos - 1 - enemy.ypos);
+        int stepsRequiredRight = Math.abs(player.ypos + 1 - enemy.ypos) + Math.abs(player.xpos - enemy.xpos);
+        int stepsRequiredLeft = Math.abs(player.ypos - 1 - enemy.ypos) + Math.abs(player.xpos - enemy.xpos);
+        int stepsRequiredDown = Math.abs(player.ypos - enemy.ypos) + Math.abs(player.xpos + 1 - enemy.xpos);
+        int stepsRequiredUp = Math.abs(player.ypos - enemy.ypos) + Math.abs(player.xpos - 1 - enemy.xpos);
 
         return stepsRequiredRight <= enemy.pace || stepsRequiredLeft <= enemy.pace || stepsRequiredDown <= enemy.pace || stepsRequiredUp <= enemy.pace;
     }
 
     private void goRandomPlace(Enemy enemy) {
-        enemy.xpos = randomNum.nextInt(enemy.pace - 1) % xBoardMax;
-        enemy.ypos = randomNum.nextInt(enemy.pace - 1) % yBoardMax;
+        enemy.ypos = randomNum.nextInt(enemy.pace - 1) % xBoardMax;
+        enemy.xpos = randomNum.nextInt(enemy.pace - 1) % yBoardMax;
     }
 
     private static boolean canGoInLineWithPlayer(Player player, Enemy enemy) {
-        int stepsRequiredx = player.ypos - enemy.xpos;
-        int stepsRequiredy = player.xpos - enemy.ypos;
+        int stepsRequiredx = player.ypos - enemy.ypos;
+        int stepsRequiredy = player.xpos - enemy.xpos;
 
         return stepsRequiredx <= enemy.pace || stepsRequiredy <= enemy.pace;
     }
