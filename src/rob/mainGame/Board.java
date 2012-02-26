@@ -87,7 +87,7 @@ public class Board {
                 enemy.xpos = player.xpos;
                 enemy.ypos = player.ypos - 1;
             } else {
-                goRandomPlace(enemy, this);
+                goRandomPlace(enemy);
             }
         } else if (canGoInLineWithPlayer(player, enemy)) {
             if (stepsRequiredx <= enemy.pace) {
@@ -96,7 +96,7 @@ public class Board {
                 enemy.ypos = player.ypos;
             }
         } else {
-            goRandomPlace(enemy, this);
+            goRandomPlace(enemy);
         }
     }
 
@@ -117,9 +117,9 @@ public class Board {
         return stepsRequiredRight <= enemy.pace || stepsRequiredLeft <= enemy.pace || stepsRequiredDown <= enemy.pace || stepsRequiredUp <= enemy.pace;
     }
 
-    private static void goRandomPlace(Enemy enemy, Board board) {
-        enemy.xpos = randomNum.nextInt(enemy.pace - 1) % board.xBoardMax;
-        enemy.ypos = randomNum.nextInt(enemy.pace - 1) % board.yBoardMax;
+    private void goRandomPlace(Enemy enemy) {
+        enemy.xpos = randomNum.nextInt(enemy.pace - 1) % xBoardMax;
+        enemy.ypos = randomNum.nextInt(enemy.pace - 1) % yBoardMax;
     }
 
     private static boolean canGoInLineWithPlayer(Player player, Enemy enemy) {
