@@ -31,7 +31,7 @@ public class CombatEngine {
             default:
                 System.out.println();
                 board.playerMove(player, enemy);
-                Board.displayBoard(player, enemy, board);
+                board.displayBoard(player, enemy);
                 switch (playerCombatChoice()) {
                     case 1:
                         playerMeleeStrike(enemy, meleeDamageDealt, player);
@@ -191,7 +191,7 @@ public class CombatEngine {
             default:
                 System.out.println();
                 Board.enemyAIMove(player, enemy);
-                Board.displayBoard(player, enemy, board);
+                board.displayBoard(player, enemy);
                 switch (enemyCombatChoice(player, enemy)) {
                     case 1:
                         enemyMeleeStrike(player, meleeDamageDealt, enemy);
@@ -474,7 +474,7 @@ public class CombatEngine {
 
     public static void combatTurn(Enemy enemy, Player player, Board board) {
         System.out.println(Player.name + "! You are in a battle with a " + enemy.name + "!");
-        Board.displayBoard(player, enemy, board);
+        board.displayBoard(player, enemy);
         System.out.println();
         time.next();
         switch (whoGoesFirst(player.twitch, enemy.twitch)) {

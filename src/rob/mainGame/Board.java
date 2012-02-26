@@ -43,10 +43,10 @@ public class Board {
         }
     }
 
-    public static void displayBoard(Player player, Enemy enemy, Board board) {
-        for (int x = 0; x < board.xBoardMax; x++) {
-            for (int i = 0; i < board.yBoardMax; i++) {
-                if (x < board.xBoardMax) {
+    public void displayBoard(Player player, Enemy enemy) {
+        for (int x = 0; x < xBoardMax; x++) {
+            for (int i = 0; i < yBoardMax; i++) {
+                if (x < xBoardMax) {
                     if (x == player.xpos && i == player.ypos) {
                         System.out.print("P\t");
                         i++;
@@ -67,7 +67,6 @@ public class Board {
     }
 
     public static void enemyAIMove(Player player, Enemy enemy) {
-
         int stepsRequiredRight = Math.abs(player.xpos + 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
         int stepsRequiredLeft = Math.abs(player.xpos - 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
         int stepsRequiredDown = Math.abs(player.xpos - enemy.xpos) + Math.abs(player.ypos + 1 - enemy.ypos);
