@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    static int xpos = 0;
-    static int ypos = 0;
-    static int fouls = 0;
+//    static int xpos = 0;
+//    static int ypos = 0;
+//    static int fouls = 0;
 
-    private String player = "rock.gif";
+    private String player = "craft.png";
     private int dx;
     private int dy;
     private int x;
@@ -21,8 +21,8 @@ public class Player {
     public Player() {
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
-        x = 168;
-        y = 600;
+        x = 100;
+        y = 100;
         width = image.getWidth(null);
         height = image.getHeight(null);
     }
