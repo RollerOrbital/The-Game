@@ -4,7 +4,7 @@ import java.awt.*;
 
 import javax.swing.ImageIcon;
 
-public class Rock implements Runnable{
+public class Rock{
 
     private String craft = "rock.gif";
 
@@ -38,13 +38,6 @@ public class Rock implements Runnable{
 
         }
     }
-
-    public void run() {
-        x += dx;
-        y += dy;
-
-    }
-
     public int getX() {
         return x;
     }

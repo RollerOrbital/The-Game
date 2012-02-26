@@ -11,7 +11,7 @@ public class MainClass extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 700);
         setLocationRelativeTo(null);
-        setTitle("Asteroid Game");
+        setTitle("Rock Game");
         setResizable(false);
         setVisible(true);
     }
