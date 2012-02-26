@@ -1,4 +1,4 @@
-package will;
+package will.ActualGameCode;
 
 import javax.swing.*;
 
@@ -9,7 +9,7 @@ public class Skeleton extends JFrame {
         add(new Board());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(621, 350);
         setLocationRelativeTo(null);
         setTitle("Resist");
         setResizable(false);
