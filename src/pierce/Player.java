@@ -1,11 +1,10 @@
-package kaashif;
+package pierce;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import javax.swing.ImageIcon;
-
-public class Craft {
+public class Player {
 
     private String craft = "craft.png";
 
@@ -17,7 +16,7 @@ public class Craft {
     private int height;
     private Image image;
 
-    public Craft() {
+    public Player() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource(craft));
         image = ii.getImage();
         x = 168;
