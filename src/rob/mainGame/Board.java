@@ -8,8 +8,9 @@ public class Board {
     static Random randomNum = new Random();
 
     static Board board = new Board();
-    int xBoardMax = 5;
-    int yBoardMax = 5;
+
+    private int xBoardMax = 5;
+    private int yBoardMax = 5;
 
     public static void playerMove(Player player, Enemy enemy, Board board) {
         System.out.println("What is the xco of where you want to go?");
