@@ -61,12 +61,19 @@ public class Board {
                 try {
                     if (board[Player.xpos][Player.ypos] != "W") {
                         board[Player.xpos][Player.ypos] = "P";
+                    } else if (Player.xpos == 7 && Player.ypos == 9) {
+                        board[Player.xpos][Player.ypos] = "P";
                     } else {
-                        System.out.println("You can't go on the wall -__-");
+                        Player.xpos = 0;
+                        Player.ypos = 0;
                         board[0][0] = "P";
+                        Player.fouls++;
                     }
                 } catch (Exception e) {
+                    Player.xpos = 0;
+                    Player.ypos = 0;
                     board[0][0] = "P";
+                    Player.fouls++;
                 }
                 board[9][9] = "F";
                 System.out.print(board[x][i] + "\t");
@@ -95,8 +102,19 @@ public class Board {
     }
 
     private static int choice() {
-        System.out.println("D, U, R, L?");
-        return input.nextInt();
+        System.out.println("###");
+        String d = input.nextLine();
+        if (d.equals("s")) {
+            return 1;
+        } else if (d.equals("w")) {
+            return 2;
+        } else if (d.equals("d")) {
+            return 3;
+        } else if (d.equals("a")) {
+            return 4;
+        } else {
+            return 1;
+        }
     }
 
     public static void move() {
@@ -114,10 +132,25 @@ public class Board {
     }
 
     public static void game() {
+        int numberOfMoves = 0;
+        int time = 0;
         while (!(isGameOver())) {
             displayBoard(board);
             playerMoves();
+            numberOfMoves++;
         }
+        time += System.currentTimeMillis() / 1000000000;
+        int score = lowerOne(1000 - 3 * numberOfMoves - 5 * Player.fouls - time / 100);
         System.out.println("You Won!!!");
+        input.next();
+        System.out.println("Your score was " + score + "!");
+    }
+
+    private static int lowerOne(int x) {
+        if (x < 1) {
+            return (1);
+        } else {
+            return (x);
+        }
     }
 }
