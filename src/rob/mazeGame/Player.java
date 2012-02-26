@@ -9,7 +9,7 @@ public class Player {
 //    static int ypos = 0;
 //    static int fouls = 0;
 
-    private String player = "player.jpg";
+    private String player = "craft.png";
     private int dx;
     private int dy;
     private int x;
@@ -21,8 +21,8 @@ public class Player {
     public Player() {
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
-        x = 100;
-        y = 100;
+        x = 10;
+        y = 10;
         width = image.getWidth(null);
         height = image.getHeight(null);
     }
