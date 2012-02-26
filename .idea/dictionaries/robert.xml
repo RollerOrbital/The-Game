@@ -4,6 +4,8 @@
       <w>heptahedron</w>
       <w>requiredx</w>
       <w>requiredy</w>
+      <w>xpos</w>
+      <w>ypos</w>
     </words>
   </dictionary>
 </component>

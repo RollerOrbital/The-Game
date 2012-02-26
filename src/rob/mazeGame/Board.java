@@ -59,7 +59,7 @@ public class Board {
                 }
 
                 try {
-                    if (board[Player.xpos][Player.ypos] != "W") {
+                    if (!board[Player.xpos][Player.ypos].equals("W")) {
                         board[Player.xpos][Player.ypos] = "P";
                     } else if (Player.xpos == 7 && Player.ypos == 9) {
                         board[Player.xpos][Player.ypos] = "P";
@@ -117,30 +117,18 @@ public class Board {
         }
     }
 
-    public static void move() {
-        if (!(isGameOver())) {
-            System.out.println();
-            displayBoard(board);
-            playerMoves();
-            System.out.println();
-            displayBoard(board);
-        }
-    }
-
     public static boolean isGameOver() {
         return Player.xpos == 9 && Player.ypos == 9;
     }
 
     public static void game() {
         int numberOfMoves = 0;
-        int time = 0;
         while (!(isGameOver())) {
             displayBoard(board);
             playerMoves();
             numberOfMoves++;
         }
-        time += System.currentTimeMillis() / 1000000000;
-        int score = lowerOne(1000 - 3 * numberOfMoves - 5 * Player.fouls - time / 100);
+        int score = lowerOne(100 - numberOfMoves - Player.fouls);
         System.out.println("You Won!!!");
         input.next();
         System.out.println("Your score was " + score + "!");
