@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 public class Player {
 
     private int fouls = 0;
-    private String player = "PLAYER.png";
+    private String player = "craft.png";
     private int dx;
     private int dy;
     private int x;
