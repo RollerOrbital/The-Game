@@ -16,9 +16,6 @@ public class Board extends JPanel implements ActionListener {
     private Timer timer;
     private Craft craft;
     private Rock rock;
-    
-    Rectangle r1 = craft.getBounds();
-    Rectangle r2 = rock.getBounds();
 
 
     public Board() {
