@@ -1,4 +1,4 @@
-package rob.mazeGame;
+package pierce;
 
 import javax.swing.*;
 
@@ -6,12 +6,12 @@ public class MainClass extends JFrame {
 
     public MainClass() {
 
-        add(new Board());
+        add(new Map());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(621, 350);
+        setSize((180*2)+6, (110*2)+28);
         setLocationRelativeTo(null);
-        setTitle("Maze Game");
+        setTitle("RESIST");
         setResizable(false);
         setVisible(true);
     }

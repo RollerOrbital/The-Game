@@ -1,4 +1,5 @@
-package will;
+package will.ActualGameCode;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,21 +8,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+
 public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
     private Sprite sprite;
+    Image img = Toolkit.getDefaultToolkit().createImage("bedmap_incomplete.jpg");
+
 
     public Board() {
 
+
         addKeyListener(new TAdapter());
         setFocusable(true);
-        setBackground(Color.BLACK);
+
         setDoubleBuffered(true);
 
         sprite = new Sprite();
 
-        timer = new Timer(5, this);
+        timer = new Timer(100, this);
         timer.start();
     }
 
@@ -41,7 +46,6 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private class TAdapter extends KeyAdapter {
-
         public void keyReleased(KeyEvent e) {
             sprite.keyReleased(e);
         }
@@ -49,8 +53,6 @@ public class Board extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent e) {
             sprite.keyPressed(e);
         }
-
     }
-
 
 }

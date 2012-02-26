@@ -1,4 +1,4 @@
-package will;
+package will.ActualGameCode;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +22,21 @@ public class Sprite {
         x += dx;
         y += dy;
 
+        if (x < 1) {
+            x = 1;
+        }
+
+        if (y < 1) {
+            y = 1;
+        }
+
+        if (x > 570) {
+            x = 570;
+        }
+
+        if (y > 250) {
+            y = 250;
+        }
     }
 
     public int getX() {
@@ -36,9 +51,11 @@ public class Sprite {
         return image;
     }
 
+
     public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
+
 
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
@@ -54,7 +71,9 @@ public class Sprite {
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
         }
+
     }
+
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
