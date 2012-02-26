@@ -12,8 +12,6 @@ public class Rock implements Runnable{
     private int dy;
     private int x;
     private int y;
-    private int width;
-    private int height;
     private Image image;
 
     public Rock() {
@@ -24,11 +22,6 @@ public class Rock implements Runnable{
         run();
 
     }
-
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
-    }
-
 
     public void run() {
         x += dx;
