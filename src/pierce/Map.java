@@ -30,17 +30,12 @@ public class Map extends JPanel implements ActionListener {
 
     }
 
-
-
     public void paint(Graphics g) {
         super.paint(g);
 
         Graphics2D g2d = (Graphics2D)g;
-        g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
-        
-        if(rock.getVis()==true){
         g2d.drawImage(rock.getImage(), rock.getX(), rock.getY(), this);
-        }
+        g2d.drawImage(player.getImage(), player.getX(), player.getY()-4, (player.getX()+(player.getWidth()*2)), (player.getY()+(player.getHeight()*2)-4), player.getSprFrame(), player.getSprDir(), (player.getSprFrame()+player.getWidth()), (player.getSprDir()+player.getHeight()), this);
 
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
