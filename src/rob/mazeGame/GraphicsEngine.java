@@ -4,13 +4,14 @@ import javax.swing.*;
 
 public class GraphicsEngine {
     public static void getFrame() {
-        JFrame frame = new JFrame("Maze Game");
+        JFrame frame = new JFrame(" Resist");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.setSize(274, 176);
-    }
+        frame.setSize(621, 350);
+        frame.dispose();
 
-    public static void getPanel() {
         JPanel panel = new JPanel();
+
+        frame.add(panel);
     }
 }
