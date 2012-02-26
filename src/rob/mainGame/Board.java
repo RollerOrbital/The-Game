@@ -12,7 +12,7 @@ public class Board {
     private int xBoardMax = 5;
     private int yBoardMax = 5;
 
-    public static void playerMove(Player player, Enemy enemy, Board board) {
+    public void playerMove(Player player, Enemy enemy) {
         System.out.println("What is the xco of where you want to go?");
         int yco = input.nextInt();
         System.out.println("What is the yco of where you want to go?");
@@ -20,7 +20,7 @@ public class Board {
 
         int stepsRequired = Math.abs(xco - player.xpos) + Math.abs(yco - 1 - player.ypos);
 
-        if (xco - 1 < board.xBoardMax && yco - 1 < board.yBoardMax) {
+        if (xco - 1 < xBoardMax && yco - 1 < yBoardMax) {
             if (stepsRequired <= player.pace) {
                 if (yco - 1 != enemy.ypos || xco - 1 != enemy.xpos) {
                     System.out.println();

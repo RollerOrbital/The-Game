@@ -30,7 +30,7 @@ public class CombatEngine {
                 break;
             default:
                 System.out.println();
-                Board.playerMove(player, enemy, board);
+                board.playerMove(player, enemy);
                 Board.displayBoard(player, enemy, board);
                 switch (playerCombatChoice()) {
                     case 1:
