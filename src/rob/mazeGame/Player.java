@@ -9,7 +9,7 @@ public class Player {
 //    static int ypos = 0;
 //    static int fouls = 0;
 
-    private String player = "craft.png";
+    private String player = "player.jpg";
     private int dx;
     private int dy;
     private int x;
