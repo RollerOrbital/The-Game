@@ -1,12 +1,12 @@
 package pierce;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class MainClass extends JFrame {
 
     public MainClass() {
 
-        add(new Board());
+        add(new Map());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 700);
