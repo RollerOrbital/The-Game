@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Enemy {
     String name;
-    int scope, aegis, pace, twitch, cognition, vigor, hp, basehp, mp, basemp, luck, baseYield, level, xpos, ypos;
+    int scope, aegis, pace, twitch, cognition, vigor, hp, basehp, mp, basemp, luck, baseYield, level, ypos, xpos;
 
-    public Enemy(String name, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int hp, int basehp, int mp, int basemp, int luck, int baseYield, int level, int xpos, int ypos) {
+    public Enemy(String name, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int hp, int basehp, int mp, int basemp, int luck, int baseYield, int level, int ypos, int xpos) {
         this.name = name;
         this.scope = scope;
         this.aegis = aegis;
@@ -21,8 +21,8 @@ public class Enemy {
         this.luck = luck;
         this.baseYield = baseYield;
         this.level = level;
-        this.xpos = xpos;
         this.ypos = ypos;
+        this.xpos = xpos;
     }
 
     //mafia enemies
