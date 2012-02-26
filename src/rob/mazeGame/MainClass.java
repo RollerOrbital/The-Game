@@ -9,10 +9,10 @@ public class MainClass extends JFrame {
         add(new Board());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(621, 350);
+        setSize(725, 425);
         setLocationRelativeTo(null);
         setTitle("Maze Game");
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
     }
 
