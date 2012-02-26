@@ -1,4 +1,4 @@
-package rob.mazeGame;
+package pierce;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,8 +6,8 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
-    private String player = "craft.png";
-    private int fouls;
+    private String craft = "craft.png";
+
     private int dx;
     private int dy;
     private int x;
@@ -17,11 +17,10 @@ public class Player {
     private Image image;
 
     public Player() {
-        fouls = 0;
-        ImageIcon i = new ImageIcon(this.getClass().getResource(player));
-        image = i.getImage();
-        x = 10;
-        y = 10;
+        ImageIcon ii = new ImageIcon(this.getClass().getResource(craft));
+        image = ii.getImage();
+        x = 168;
+        y = 600;
         width = image.getWidth(null);
         height = image.getHeight(null);
     }
@@ -29,15 +28,15 @@ public class Player {
     public void move() {
         x += dx;
         y += dy;
-        if (y > 350) {
-            y = 350;
-        } else if (y < 0) {
-            y = 0;
+        if (y>700){
+            y=700;
+        } else if (y<0){
+            y=0;
         }
-        if (x < 0) {
-            x = 0;
-        } else if (x > 621) {
-            x = 621;
+        if(x<0){
+            x=0;
+        }else if(x>362){
+            x=362;
         }
     }
 
@@ -93,8 +92,7 @@ public class Player {
             dy = 0;
         }
     }
-
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
+    public Rectangle getBounds(){
+        return new Rectangle(x,y,width,height);
     }
 }

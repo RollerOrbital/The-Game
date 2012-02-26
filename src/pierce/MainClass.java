@@ -1,4 +1,4 @@
-package kaashif;
+package pierce;
 
 import javax.swing.JFrame;
 

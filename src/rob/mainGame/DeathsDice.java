@@ -7,7 +7,7 @@ public class DeathsDice {
     static Scanner time = new Scanner(System.in);
     static Random randomNum = new Random();
 
-    public static void die(PlayerAtt player) {
+    public static void die(Player player) {
         player.hp = player.basehp;
         System.out.println("You open your eyes and realise that you're not dead...");
         time.next();

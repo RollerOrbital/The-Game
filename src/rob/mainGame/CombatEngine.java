@@ -14,10 +14,9 @@ public class CombatEngine {
         return (choice);
     }
 
-    private static void playerCombatRun(Enemy enemy, PlayerAtt player, Board board) {
-
-        int meleeDamageDealt = lowerOne(randomNum.nextInt(PlayerAtt.fortune + 5) + player.vigor + player.Mweapon.damage - randomNum.nextInt(enemy.aegis));
-        int rangeDamageDealt = lowerOne(randomNum.nextInt(PlayerAtt.fortune) + player.scope + player.Rweapon.damage - randomNum.nextInt(enemy.aegis));
+    private static void playerCombatRun(Enemy enemy, Player player, Board board) {
+        int meleeDamageDealt = lowerOne(randomNum.nextInt(Player.fortune + 5) + player.vigor + player.Mweapon.damage - randomNum.nextInt(enemy.aegis));
+        int rangeDamageDealt = lowerOne(randomNum.nextInt(Player.fortune) + player.scope + player.Rweapon.damage - randomNum.nextInt(enemy.aegis));
         int didMagicWork;
         if (randomNum.nextInt(101) < player.cognition) {
             didMagicWork = 1;
@@ -31,8 +30,8 @@ public class CombatEngine {
                 break;
             default:
                 System.out.println();
-                Board.playerMove(player, enemy, board);
-                Board.displayBoard(player, enemy, board);
+                board.playerMove(player, enemy);
+                board.displayBoard(player, enemy);
                 switch (playerCombatChoice()) {
                     case 1:
                         playerMeleeStrike(enemy, meleeDamageDealt, player);
@@ -45,7 +44,7 @@ public class CombatEngine {
                             case 1:
                                 DamageMagic damageSpell = damageMagicChoice();
                                 if (player.mp >= damageSpell.mpCost) {
-                                    int magicDamageDealt = lowerOne(randomNum.nextInt(PlayerAtt.fortune + 15) + ((player.cognition / 10)) + damageSpell.damage);
+                                    int magicDamageDealt = lowerOne(randomNum.nextInt(Player.fortune + 15) + ((player.cognition / 10)) + damageSpell.damage);
 
                                     switch (didMagicWork) {
                                         case 1:
@@ -88,8 +87,8 @@ public class CombatEngine {
         }
     }
 
-    private static void playerFireRangeWeapon(Enemy enemy, int rangeDamageDealt, PlayerAtt player) {
-        if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+    private static void playerFireRangeWeapon(Enemy enemy, int rangeDamageDealt, Player player) {
+        if (player.ypos == enemy.ypos || player.xpos == enemy.xpos) {
             System.out.println("You fire your " + rangeWeaponChoice().name + " at the enemy for " + rangeDamageDealt + " damage");
             time.next();
             enemy.hp -= rangeDamageDealt;
@@ -100,8 +99,8 @@ public class CombatEngine {
         }
     }
 
-    private static void playerMeleeStrike(Enemy enemy, int meleeDamageDealt, PlayerAtt player) {
-        if (Board.isNextToPlayer(player, enemy)) {
+    private static void playerMeleeStrike(Enemy enemy, int meleeDamageDealt, Player player) {
+        if (Board.areNextToEachOther(player, enemy)) {
             System.out.println("You strike your enemy with your " + meleeWeaponChoice().name + " for " + meleeDamageDealt + " damage");
             time.next();
             enemy.hp -= meleeDamageDealt;
@@ -112,7 +111,7 @@ public class CombatEngine {
         }
     }
 
-    private static void useHealingItem(PlayerAtt player) {
+    private static void useHealingItem(Player player) {
         HealingItem healingItem = healingItemChoice();
         System.out.println("You use your " + healingItem.name + " to heal " + healingItem.healthRestored + " health");
         time.nextInt();
@@ -124,8 +123,8 @@ public class CombatEngine {
         time.nextInt();
     }
 
-    private static void damageSpellWorks(DamageMagic damageSpell, PlayerAtt player, Enemy enemy, int magicDamageDealt) {
-        if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+    private static void damageSpellWorks(DamageMagic damageSpell, Player player, Enemy enemy, int magicDamageDealt) {
+        if (player.ypos == enemy.ypos || player.xpos == enemy.xpos) {
             System.out.println("You cast " + damageSpell.name + " and it does " + magicDamageDealt + " damage");
             player.mp -= damageSpell.mpCost;
             time.next();
@@ -139,26 +138,26 @@ public class CombatEngine {
         }
     }
 
-    private static void healingSpellWorks(HealingMagic healingSpell, PlayerAtt player) {
-        System.out.println("You cast " + healingSpell.name + " to heal you for " + healingSpell.healthRestored + randomNum.nextInt(PlayerAtt.fortune) + "hp");
+    private static void healingSpellWorks(HealingMagic healingSpell, Player player) {
+        System.out.println("You cast " + healingSpell.name + " to heal you for " + healingSpell.healthRestored + randomNum.nextInt(Player.fortune) + "hp");
         time.nextInt();
         System.out.println("It costs you " + healingSpell.mpCost + " mp points");
         player.mp -= healingSpell.mpCost;
         time.next();
         System.out.println("You have " + lowerZero(player.mp) + " mp remaining");
         time.nextInt();
-        lower(player.hp += healingSpell.healthRestored + randomNum.nextInt(PlayerAtt.fortune), player.basehp);
+        lower(player.hp += healingSpell.healthRestored + randomNum.nextInt(Player.fortune), player.basehp);
         System.out.println("You now have " + lowerZero(player.hp) + " hp remaining");
         time.nextInt();
     }
 
-    private static int enemyCombatChoice(PlayerAtt player, Enemy enemy) {
+    private static int enemyCombatChoice(Player player, Enemy enemy) {
         int rangeOrMagic = randomNum.nextInt(101);
         int returnThing;
 
-        if (Board.isNextToEnemy(player, enemy)) {
+        if (Board.areNextToEachOther(player, enemy)) {
             returnThing = 1;
-        } else if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+        } else if (player.ypos == enemy.ypos || player.xpos == enemy.xpos) {
             if (rangeOrMagic <= 50) {
                 returnThing = 2;
             } else {
@@ -170,7 +169,7 @@ public class CombatEngine {
         return returnThing;
     }
 
-    private static void enemyCombatRun(Enemy enemy, PlayerAtt player, Board board) {
+    private static void enemyCombatRun(Enemy enemy, Player player, Board board) {
         int meleeDamageDealt = lowerOne(randomNum.nextInt(15) + enemy.vigor - randomNum.nextInt(player.aegis));
         int rangeDamageDealt = lowerOne(randomNum.nextInt(10) + enemy.scope + enemy.twitch - randomNum.nextInt(player.aegis));
         int didMagicWork;
@@ -191,8 +190,8 @@ public class CombatEngine {
                 break;
             default:
                 System.out.println();
-                Board.enemyAIMove(player, enemy);
-                Board.displayBoard(player, enemy, board);
+                board.enemyAIMove(player, enemy);
+                board.displayBoard(player, enemy);
                 switch (enemyCombatChoice(player, enemy)) {
                     case 1:
                         enemyMeleeStrike(player, meleeDamageDealt, enemy);
@@ -215,8 +214,8 @@ public class CombatEngine {
         }
     }
 
-    private static void enemyDamageSpellFire(PlayerAtt player, int magicDamageDealt, Enemy enemy) {
-        if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+    private static void enemyDamageSpellFire(Player player, int magicDamageDealt, Enemy enemy) {
+        if (player.ypos == enemy.ypos || player.xpos == enemy.xpos) {
             System.out.println("Your enemy fires a spell for " + magicDamageDealt + " damage");
             time.next();
             player.hp -= magicDamageDealt;
@@ -225,8 +224,8 @@ public class CombatEngine {
         }
     }
 
-    private static void enemyFireRangeWeapon(PlayerAtt player, int rangeDamageDealt, Enemy enemy) {
-        if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+    private static void enemyFireRangeWeapon(Player player, int rangeDamageDealt, Enemy enemy) {
+        if (player.ypos == enemy.ypos || player.xpos == enemy.xpos) {
             System.out.println("Your enemy fires their weapon for " + rangeDamageDealt + " damage");
             time.next();
             player.hp -= rangeDamageDealt;
@@ -235,8 +234,8 @@ public class CombatEngine {
         }
     }
 
-    private static void enemyMeleeStrike(PlayerAtt player, int meleeDamageDealt, Enemy enemy) {
-        if (Board.isNextToEnemy(player, enemy)) {
+    private static void enemyMeleeStrike(Player player, int meleeDamageDealt, Enemy enemy) {
+        if (Board.areNextToEachOther(player, enemy)) {
             System.out.println("Your enemy strikes you for " + meleeDamageDealt + " damage");
             time.nextInt();
             player.hp -= meleeDamageDealt;
@@ -245,8 +244,8 @@ public class CombatEngine {
         }
     }
 
-    private static void ifYouWinOrLose(Enemy enemy, PlayerAtt player) {
-        int xpGained = (randomNum.nextInt(PlayerAtt.fortune) + (enemy.pace + enemy.aegis + enemy.twitch + (enemy.cognition / 10) + enemy.scope + enemy.vigor) / 6 * enemy.baseYield) - ((PlayerAtt.level - enemy.level) * (PlayerAtt.level - enemy.level));
+    private static void ifYouWinOrLose(Enemy enemy, Player player) {
+        int xpGained = (randomNum.nextInt(Player.fortune) + (enemy.pace + enemy.aegis + enemy.twitch + (enemy.cognition / 10) + enemy.scope + enemy.vigor) / 6 * enemy.baseYield) - ((Player.level - enemy.level) * (Player.level - enemy.level));
 
         switch (lowerZero(player.hp)) {
             case 0:
@@ -298,14 +297,14 @@ public class CombatEngine {
         }
     }
 
-    private static void levelUp(PlayerAtt player) {
+    private static void levelUp(Player player) {
         if (player.exp >= player.levelUpxp) {
             System.out.println("You levelled up!");
             time.next();
-            PlayerAtt.level++;
+            Player.level++;
             player.exp -= player.exp;
             player.sp += 3;
-            spSpend(PlayerAtt.player);
+            spSpend(Player.player);
         }
     }
 
@@ -325,7 +324,7 @@ public class CombatEngine {
         return (choice);
     }
 
-    private static void spSpend(PlayerAtt player) {
+    private static void spSpend(Player player) {
         time.next();
         while (player.sp > 0) {
             switch (spChoice()) {
@@ -371,11 +370,11 @@ public class CombatEngine {
                     break;
                 case 9:
                     System.out.println("Fortune was increased by 1");
-                    PlayerAtt.fortune += 2;
+                    Player.fortune += 2;
                     player.sp--;
                     break;
                 default:
-                    spSpend(PlayerAtt.player);
+                    spSpend(Player.player);
             }
         }
     }
@@ -384,16 +383,16 @@ public class CombatEngine {
         System.out.println("Which weapon would you like to use?");
         try {
             for (int x = 0; x < 100; x++) {
-                System.out.println(PlayerAtt.MweaponInventory[x].name);
+                System.out.println(Player.MweaponInventory[x].name);
             }
         } catch (Exception e) {
             System.out.print("");
         }
         int choice = input.nextInt();
         try {
-            return (PlayerAtt.MweaponInventory[choice - 1]);
+            return (Player.MweaponInventory[choice - 1]);
         } catch (Exception e) {
-            return (PlayerAtt.MweaponInventory[0]);
+            return (Player.MweaponInventory[0]);
         }
     }
 
@@ -401,16 +400,16 @@ public class CombatEngine {
         System.out.println("Which healing item would you like to use?");
         try {
             for (int x = 0; x < 100; x++) {
-                System.out.println(PlayerAtt.HIInventory[x].name);
+                System.out.println(Player.HIInventory[x].name);
             }
         } catch (Exception e) {
             System.out.print("");
         }
         int choice = input.nextInt();
         try {
-            return (PlayerAtt.HIInventory[choice - 1]);
+            return (Player.HIInventory[choice - 1]);
         } catch (Exception e) {
-            return (PlayerAtt.HIInventory[0]);
+            return (Player.HIInventory[0]);
         }
     }
 
@@ -418,16 +417,16 @@ public class CombatEngine {
         System.out.println("Which weapon would you like to use?");
         try {
             for (int x = 0; x < 100; x++) {
-                System.out.println(PlayerAtt.RweaponInventory[x].name);
+                System.out.println(Player.RweaponInventory[x].name);
             }
         } catch (Exception e) {
             System.out.print("");
         }
         int choice = input.nextInt();
         try {
-            return (PlayerAtt.RweaponInventory[choice - 1]);
+            return (Player.RweaponInventory[choice - 1]);
         } catch (Exception e) {
-            return (PlayerAtt.RweaponInventory[0]);
+            return (Player.RweaponInventory[0]);
         }
     }
 
@@ -443,16 +442,16 @@ public class CombatEngine {
         System.out.println("Which spell would you like to use?");
         try {
             for (int x = 0; x < 100; x++) {
-                System.out.println(PlayerAtt.HMInventory[x].name);
+                System.out.println(Player.HMInventory[x].name);
             }
         } catch (Exception e) {
             System.out.print("");
         }
         int choice = input.nextInt();
         try {
-            return (PlayerAtt.HMInventory[choice - 1]);
+            return (Player.HMInventory[choice - 1]);
         } catch (Exception e) {
-            return (PlayerAtt.HMInventory[0]);
+            return (Player.HMInventory[0]);
         }
     }
 
@@ -460,22 +459,22 @@ public class CombatEngine {
         System.out.println("Which spell would you like to use?");
         try {
             for (int x = 0; x < 100; x++) {
-                System.out.println(PlayerAtt.DMInventory[x].name);
+                System.out.println(Player.DMInventory[x].name);
             }
         } catch (Exception e) {
             System.out.print("");
         }
         int choice = input.nextInt();
         try {
-            return (PlayerAtt.DMInventory[choice - 1]);
+            return (Player.DMInventory[choice - 1]);
         } catch (Exception e) {
-            return (PlayerAtt.DMInventory[0]);
+            return (Player.DMInventory[0]);
         }
     }
 
-    public static void combatTurn(Enemy enemy, PlayerAtt player, Board board) {
-        System.out.println(PlayerAtt.name + "! You are in a battle with a " + enemy.name + "!");
-        Board.displayBoard(player, enemy, board);
+    public static void combatTurn(Enemy enemy, Player player, Board board) {
+        System.out.println(Player.name + "! You are in a battle with a " + enemy.name + "!");
+        board.displayBoard(player, enemy);
         System.out.println();
         time.next();
         switch (whoGoesFirst(player.twitch, enemy.twitch)) {

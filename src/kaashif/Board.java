@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -16,9 +15,6 @@ public class Board extends JPanel implements ActionListener {
     private Timer timer;
     private Craft craft;
     private Rock rock;
-    
-    Rectangle r1 = craft.getBounds();
-    Rectangle r2 = rock.getBounds();
 
 
     public Board() {
