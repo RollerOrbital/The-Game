@@ -44,6 +44,7 @@ public class combat {
 
                 enemyhp -= attack1stat;
                 System.out.println("He now has " + enemyhp + " hp");
+                attack1stat -= extra;
             } else if (attack == 2) {
                 attack2stat += extra;
 
@@ -51,6 +52,7 @@ public class combat {
 
                 enemyhp -= attack2stat;
                 System.out.println("He now has " + enemyhp + " hp");
+                attack2stat -= extra;
             } else if (attack == 3) {
                 attack3stat += extra;
 
@@ -58,6 +60,7 @@ public class combat {
 
                 enemyhp -= attack3stat;
                 System.out.println("He now has " + enemyhp + " hp");
+                attack3stat -= extra;
             }
         }
 
