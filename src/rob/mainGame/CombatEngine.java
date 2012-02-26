@@ -15,7 +15,6 @@ public class CombatEngine {
     }
 
     private static void playerCombatRun(Enemy enemy, Player player, Board board) {
-
         int meleeDamageDealt = lowerOne(randomNum.nextInt(Player.fortune + 5) + player.vigor + player.Mweapon.damage - randomNum.nextInt(enemy.aegis));
         int rangeDamageDealt = lowerOne(randomNum.nextInt(Player.fortune) + player.scope + player.Rweapon.damage - randomNum.nextInt(enemy.aegis));
         int didMagicWork;

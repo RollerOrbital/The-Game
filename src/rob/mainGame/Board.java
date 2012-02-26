@@ -17,13 +17,24 @@ public class Board {
         int yco = input.nextInt();
         System.out.println("What is the yco of where you want to go?");
         int xco = input.nextInt();
+
+        int stepsRequired = Math.abs(xco - player.xpos) + Math.abs(yco - 1 - player.ypos);
+
         if (xco - 1 < board.xBoardMax && yco - 1 < board.yBoardMax) {
-            if (yco - 1 != enemy.ypos || xco - 1 != enemy.xpos) {
-                player.xpos = xco - 1;
-                player.ypos = yco - 1;
-                System.out.println("You are now at position (" + yco + "," + xco + ")");
+            if (stepsRequired <= player.pace) {
+                if (yco - 1 != enemy.ypos || xco - 1 != enemy.xpos) {
+                    System.out.println();
+                    player.xpos = xco - 1;
+                    player.ypos = yco - 1;
+                    System.out.println("You are now at position (" + yco + "," + xco + ")");
+                } else {
+                    System.out.println();
+                    System.out.println("On top of enemy -__-");
+                    System.out.println("You are now at position (" + player.ypos + "," + player.xpos + ")");
+                }
             } else {
-                System.out.println("On top of enemy -__-");
+                System.out.println();
+                System.out.println("You don't have a high enough pace skill -__-");
                 System.out.println("You are now at position (" + player.ypos + "," + player.xpos + ")");
             }
         } else {
