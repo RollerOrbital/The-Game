@@ -2,7 +2,7 @@ package rob.mainGame;
 
 import java.util.Scanner;
 
-public class PlayerAtt {
+public class Player {
 
     private String name() {
         Scanner input = new Scanner(System.in);
@@ -20,10 +20,10 @@ public class PlayerAtt {
         level = 1;
     }
 
-    public PlayerAtt(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int exp, int hp, int basehp, int mp, int basemp, int levelUpxp, int sp, int xpos, int ypos) {
+    public Player(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int exp, int hp, int basehp, int mp, int basemp, int levelUpxp, int sp, int xpos, int ypos) {
         this.Mweapon = Mweapon;
         this.Rweapon = Rweapon;
-        PlayerAtt.name = name();
+        Player.name = name();
         this.scope = scope;
         this.aegis = aegis;
         this.pace = pace;
@@ -41,7 +41,7 @@ public class PlayerAtt {
         this.ypos = ypos;
     }
 
-    static PlayerAtt player = new PlayerAtt(MeleeWeapon.fists, RangeWeapon.bb_gun, 2, 5, 5, 10, 30, 15, 0, 100, 100, 50, 50, (level * level) + 40, 0, 0, 0);
+    static Player player = new Player(MeleeWeapon.fists, RangeWeapon.bb_gun, 2, 5, 5, 10, 30, 15, 0, 100, 100, 50, 50, (level * level) + 40, 0, 0, 0);
 
     public static MeleeWeapon MweaponInventory[] = {MeleeWeapon.fists, MeleeWeapon.police_baton};
     public static RangeWeapon RweaponInventory[] = {RangeWeapon.bb_gun, RangeWeapon.revolver};

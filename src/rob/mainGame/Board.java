@@ -11,7 +11,7 @@ public class Board {
     int xBoardMax = 5;
     int yBoardMax = 5;
 
-    public static void playerMove(PlayerAtt player, Enemy enemy, Board board) {
+    public static void playerMove(Player player, Enemy enemy, Board board) {
         System.out.println("What is the xco of where you want to go?");
         int yco = input.nextInt();
         System.out.println("What is the yco of where you want to go?");
@@ -31,7 +31,7 @@ public class Board {
         }
     }
 
-    public static void displayBoard(PlayerAtt player, Enemy enemy, Board board) {
+    public static void displayBoard(Player player, Enemy enemy, Board board) {
         for (int x = 0; x < board.xBoardMax; x++) {
             for (int i = 0; i < board.yBoardMax; i++) {
                 if (x < board.xBoardMax) {
@@ -54,7 +54,7 @@ public class Board {
         }
     }
 
-    public static void enemyAIMove(PlayerAtt player, Enemy enemy) {
+    public static void enemyAIMove(Player player, Enemy enemy) {
 
         int stepsRequiredRight = Math.abs(player.xpos + 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
         int stepsRequiredLeft = Math.abs(player.xpos - 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
@@ -64,7 +64,7 @@ public class Board {
         int stepsRequiredx = player.xpos - enemy.xpos;
         int stepsRequiredy = player.ypos - enemy.ypos;
 
-        if (canGoNextToPlayer(PlayerAtt.player, Enemy.enemyYouFight)) {
+        if (canGoNextToPlayer(Player.player, Enemy.enemyYouFight)) {
             if (stepsRequiredRight <= enemy.pace) {
                 enemy.xpos = player.xpos + 1;
                 enemy.ypos = player.ypos;
@@ -91,15 +91,15 @@ public class Board {
         }
     }
 
-    public static boolean isNextToPlayer(PlayerAtt player, Enemy enemy) {
+    public static boolean isNextToPlayer(Player player, Enemy enemy) {
         return player.xpos == enemy.xpos && Math.abs(player.ypos - enemy.ypos) == 1 || (player.ypos == enemy.ypos && Math.abs(enemy.xpos - player.xpos) == 1);
     }
 
-    public static boolean isNextToEnemy(PlayerAtt player, Enemy enemy) {
+    public static boolean isNextToEnemy(Player player, Enemy enemy) {
         return player.xpos == enemy.xpos && Math.abs(enemy.ypos - player.ypos) == 1 || (player.ypos == enemy.ypos && Math.abs(enemy.xpos - player.xpos) == 1);
     }
 
-    private static boolean canGoNextToPlayer(PlayerAtt player, Enemy enemy) {
+    private static boolean canGoNextToPlayer(Player player, Enemy enemy) {
         int stepsRequiredRight = Math.abs(player.xpos + 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
         int stepsRequiredLeft = Math.abs(player.xpos - 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
         int stepsRequiredDown = Math.abs(player.xpos - enemy.xpos) + Math.abs(player.ypos + 1 - enemy.ypos);
@@ -113,7 +113,7 @@ public class Board {
         enemy.ypos = randomNum.nextInt(enemy.pace - 1) % board.yBoardMax;
     }
 
-    private static boolean canGoInLineWithPlayer(PlayerAtt player, Enemy enemy) {
+    private static boolean canGoInLineWithPlayer(Player player, Enemy enemy) {
         int stepsRequiredx = player.xpos - enemy.xpos;
         int stepsRequiredy = player.ypos - enemy.ypos;
 
