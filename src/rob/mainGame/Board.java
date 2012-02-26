@@ -7,8 +7,6 @@ public class Board {
     static Scanner input = new Scanner(System.in);
     static Random randomNum = new Random();
 
-    static Board board = new Board();
-
     private int xBoardMax = 5;
     private int yBoardMax = 5;
 
@@ -66,7 +64,7 @@ public class Board {
         }
     }
 
-    public static void enemyAIMove(Player player, Enemy enemy) {
+    public static void enemyAIMove(Player player, Enemy enemy, Board board) {
         int stepsRequiredRight = Math.abs(player.xpos + 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
         int stepsRequiredLeft = Math.abs(player.xpos - 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
         int stepsRequiredDown = Math.abs(player.xpos - enemy.xpos) + Math.abs(player.ypos + 1 - enemy.ypos);
@@ -89,7 +87,7 @@ public class Board {
                 enemy.xpos = player.xpos;
                 enemy.ypos = player.ypos - 1;
             } else {
-                goRandomPlace(enemy);
+                goRandomPlace(enemy, board);
             }
         } else if (canGoInLineWithPlayer(player, enemy)) {
             if (stepsRequiredx <= enemy.pace) {
@@ -98,7 +96,7 @@ public class Board {
                 enemy.ypos = player.ypos;
             }
         } else {
-            goRandomPlace(enemy);
+            goRandomPlace(enemy, board);
         }
     }
 
@@ -119,7 +117,7 @@ public class Board {
         return stepsRequiredRight <= enemy.pace || stepsRequiredLeft <= enemy.pace || stepsRequiredDown <= enemy.pace || stepsRequiredUp <= enemy.pace;
     }
 
-    private static void goRandomPlace(Enemy enemy) {
+    private static void goRandomPlace(Enemy enemy, Board board) {
         enemy.xpos = randomNum.nextInt(enemy.pace - 1) % board.xBoardMax;
         enemy.ypos = randomNum.nextInt(enemy.pace - 1) % board.yBoardMax;
     }

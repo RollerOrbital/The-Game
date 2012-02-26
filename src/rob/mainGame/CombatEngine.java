@@ -190,7 +190,7 @@ public class CombatEngine {
                 break;
             default:
                 System.out.println();
-                Board.enemyAIMove(player, enemy);
+                Board.enemyAIMove(player, enemy, board);
                 board.displayBoard(player, enemy);
                 switch (enemyCombatChoice(player, enemy)) {
                     case 1:
