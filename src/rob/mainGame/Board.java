@@ -64,7 +64,7 @@ public class Board {
         }
     }
 
-    public static void enemyAIMove(Player player, Enemy enemy, Board board) {
+    public void enemyAIMove(Player player, Enemy enemy) {
         int stepsRequiredRight = Math.abs(player.xpos + 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
         int stepsRequiredLeft = Math.abs(player.xpos - 1 - enemy.xpos) + Math.abs(player.ypos - enemy.ypos);
         int stepsRequiredDown = Math.abs(player.xpos - enemy.xpos) + Math.abs(player.ypos + 1 - enemy.ypos);
@@ -87,7 +87,7 @@ public class Board {
                 enemy.xpos = player.xpos;
                 enemy.ypos = player.ypos - 1;
             } else {
-                goRandomPlace(enemy, board);
+                goRandomPlace(enemy, this);
             }
         } else if (canGoInLineWithPlayer(player, enemy)) {
             if (stepsRequiredx <= enemy.pace) {
@@ -96,7 +96,7 @@ public class Board {
                 enemy.ypos = player.ypos;
             }
         } else {
-            goRandomPlace(enemy, board);
+            goRandomPlace(enemy, this);
         }
     }
 
