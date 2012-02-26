@@ -5,11 +5,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-//    static int xpos = 0;
-//    static int ypos = 0;
-//    static int fouls = 0;
 
     private String player = "craft.png";
+    private int fouls;
     private int dx;
     private int dy;
     private int x;
@@ -19,6 +17,7 @@ public class Player {
     private Image image;
 
     public Player() {
+        fouls = 0;
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
         x = 10;
@@ -30,15 +29,15 @@ public class Player {
     public void move() {
         x += dx;
         y += dy;
-        if (y > 700) {
-            y = 700;
+        if (y > 350) {
+            y = 350;
         } else if (y < 0) {
             y = 0;
         }
         if (x < 0) {
             x = 0;
-        } else if (x > 362) {
-            x = 362;
+        } else if (x > 621) {
+            x = 621;
         }
     }
 

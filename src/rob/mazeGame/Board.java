@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 public class Board extends JPanel implements ActionListener {
     private Timer timer;
     private Player player;
+    private Maze maze;
 
     public Board() {
         addKeyListener(new adapter());
@@ -17,7 +18,9 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
+
         player = new Player();
+        maze = new Maze();
 
         timer = new Timer(5, this);
         timer.start();
@@ -28,6 +31,7 @@ public class Board extends JPanel implements ActionListener {
 
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
+        g2d.drawImage(maze.getImage(), maze.getX(), maze.getY(), this);
 
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
