@@ -5,11 +5,12 @@ import java.util.Random;
 public class Enemy {
 
     Random r = new Random();
+    static int enemyHp = 100;
     String SlappySam = "Slappy Sam";
     String FreddyFin = "Freddy Fin";
     String FergusFlipper = "Fergus Flipper";
     String ThomasTail = "Thomas Tail";
-    String name;
+    static String name;
 
     public void enemyName() {
         int nameNum = r.nextInt(4) + 1;

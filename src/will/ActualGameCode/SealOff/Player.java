@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Player {
 
     String playerName;
-    int playerhp = 100;
+    static int playerhp = 100;
     Scanner scan = new Scanner(System.in);
 
     public void name() {
