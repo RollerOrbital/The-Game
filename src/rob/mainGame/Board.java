@@ -117,6 +117,6 @@ public class Board {
         int stepsRequiredx = player.xpos - enemy.xpos;
         int stepsRequiredy = player.ypos - enemy.ypos;
 
-        return !(stepsRequiredx <= enemy.pace || stepsRequiredy <= enemy.pace ? true : false) ? false : true;
+        return stepsRequiredx <= enemy.pace || stepsRequiredy <= enemy.pace;
     }
 }
