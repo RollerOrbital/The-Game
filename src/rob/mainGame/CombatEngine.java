@@ -100,7 +100,7 @@ public class CombatEngine {
     }
 
     private static void playerMeleeStrike(Enemy enemy, int meleeDamageDealt, Player player) {
-        if (Board.isNextToPlayer(player, enemy)) {
+        if (Board.areNextToEachOther(player, enemy)) {
             System.out.println("You strike your enemy with your " + meleeWeaponChoice().name + " for " + meleeDamageDealt + " damage");
             time.next();
             enemy.hp -= meleeDamageDealt;
@@ -155,7 +155,7 @@ public class CombatEngine {
         int rangeOrMagic = randomNum.nextInt(101);
         int returnThing;
 
-        if (Board.isNextToEnemy(player, enemy)) {
+        if (Board.areNextToEachOther(player, enemy)) {
             returnThing = 1;
         } else if (player.ypos == enemy.ypos || player.xpos == enemy.xpos) {
             if (rangeOrMagic <= 50) {
@@ -235,7 +235,7 @@ public class CombatEngine {
     }
 
     private static void enemyMeleeStrike(Player player, int meleeDamageDealt, Enemy enemy) {
-        if (Board.isNextToEnemy(player, enemy)) {
+        if (Board.areNextToEachOther(player, enemy)) {
             System.out.println("Your enemy strikes you for " + meleeDamageDealt + " damage");
             time.nextInt();
             player.hp -= meleeDamageDealt;

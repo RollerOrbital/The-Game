@@ -100,12 +100,8 @@ public class Board {
         }
     }
 
-    public static boolean isNextToPlayer(Player player, Enemy enemy) {
+    public static boolean areNextToEachOther(Player player, Enemy enemy) {
         return player.ypos == enemy.ypos && Math.abs(player.xpos - enemy.xpos) == 1 || (player.xpos == enemy.xpos && Math.abs(enemy.ypos - player.ypos) == 1);
-    }
-
-    public static boolean isNextToEnemy(Player player, Enemy enemy) {
-        return player.ypos == enemy.ypos && Math.abs(enemy.xpos - player.xpos) == 1 || (player.xpos == enemy.xpos && Math.abs(enemy.ypos - player.ypos) == 1);
     }
 
     private static boolean canGoNextToPlayer(Player player, Enemy enemy) {
