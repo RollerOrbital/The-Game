@@ -26,7 +26,6 @@ public class Craft {
         height = image.getHeight(null);
     }
 
-
     public void move() {
         x += dx;
         y += dy;
