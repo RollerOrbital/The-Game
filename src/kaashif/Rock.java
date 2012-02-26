@@ -10,8 +10,13 @@ public class Rock{
 
     private int dx;
     private int dy;
-    private int x;
-    private int y;
+    public int x = 1;
+    public int y = 1;
+
+    public Rock(int i, int i1) {
+
+    }
+
     private int width;
     private int height;
     private Image image;
@@ -27,6 +32,8 @@ public class Rock{
         height = image.getHeight(null);
 
     }
+
+
 
     public void setVis(Boolean vis){
         this.vis = vis;

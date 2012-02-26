@@ -16,6 +16,7 @@ public class Craft {
     private int width;
     private int height;
     private Image image;
+    private boolean vis = true;
 
     public Craft() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource(craft));
@@ -36,8 +37,8 @@ public class Craft {
         }
         if(x<0){
             x=0;
-        }else if(x>362){
-            x=362;
+        }else if(x>378){
+            x=378;
         }
     }
 
@@ -95,5 +96,12 @@ public class Craft {
     }
     public Rectangle getBounds(){
         return new Rectangle(x,y,width,height);
+    }
+    public void setVis(boolean vis){
+        this.vis = vis;
+
+    }
+    public boolean getVis(){
+        return vis;
     }
 }
