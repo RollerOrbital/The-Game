@@ -18,9 +18,8 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
-
-        player = new Player();
         maze = new Maze();
+        player = new Player();
 
         timer = new Timer(5, this);
         timer.start();
@@ -30,8 +29,9 @@ public class Board extends JPanel implements ActionListener {
         super.paint(g);
 
         Graphics2D g2d = (Graphics2D) g;
+        Graphics2D g2d2 = (Graphics2D) g;
+        g2d2.drawImage(maze.getImage(), maze.getX(), maze.getY(), this);
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
-        g2d.drawImage(maze.getImage(), maze.getX(), maze.getY(), this);
 
         Toolkit.getDefaultToolkit().sync();
         g.dispose();

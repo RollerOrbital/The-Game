@@ -8,8 +8,6 @@ public class Maze {
     private String maze = "mazePic.png";
     private int x;
     private int y;
-    private int width;
-    private int height;
     private Image image;
 
     public Maze() {
@@ -17,8 +15,6 @@ public class Maze {
         image = i.getImage();
         x = 10;
         y = 10;
-        width = image.getWidth(null);
-        height = image.getHeight(null);
     }
 
     public int getX() {

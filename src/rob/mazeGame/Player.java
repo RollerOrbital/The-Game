@@ -6,8 +6,8 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
+    private int fouls = 0;
     private String player = "craft.png";
-    private int fouls;
     private int dx;
     private int dy;
     private int x;
@@ -17,11 +17,10 @@ public class Player {
     private Image image;
 
     public Player() {
-        fouls = 0;
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
-        x = 10;
-        y = 10;
+        x = 40;
+        y = 40;
         width = image.getWidth(null);
         height = image.getHeight(null);
     }
@@ -29,15 +28,36 @@ public class Player {
     public void move() {
         x += dx;
         y += dy;
-        if (y > 350) {
-            y = 350;
+        if (y > 425) {
+            y = 425;
+            fouls++;
         } else if (y < 0) {
             y = 0;
+            fouls++;
+
+            //Horizontal Lines
+        } else if ((x >= -10 && x < 100) && (y <= 100 && y >= 90)) {
+            if (y > 95) {
+                y = 100;
+            } else if (y < 95) {
+                y = 90;
+            }
+            fouls++;
+        } else if ((x >= -10 && x < 100) && (y <= 300 && y >= 290)) {
+            if (y > 295) {
+                y = 300;
+            } else if (y < 295) {
+                y = 290;
+            }
+            fouls++;
         }
+
         if (x < 0) {
             x = 0;
-        } else if (x > 621) {
-            x = 621;
+            fouls++;
+        } else if (x > 725) {
+            x = 725;
+            fouls++;
         }
     }
 
