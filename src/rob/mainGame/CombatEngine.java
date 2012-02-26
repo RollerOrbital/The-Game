@@ -88,7 +88,7 @@ public class CombatEngine {
     }
 
     private static void playerFireRangeWeapon(Enemy enemy, int rangeDamageDealt, Player player) {
-        if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+        if (player.ypos == enemy.xpos || player.xpos == enemy.ypos) {
             System.out.println("You fire your " + rangeWeaponChoice().name + " at the enemy for " + rangeDamageDealt + " damage");
             time.next();
             enemy.hp -= rangeDamageDealt;
@@ -124,7 +124,7 @@ public class CombatEngine {
     }
 
     private static void damageSpellWorks(DamageMagic damageSpell, Player player, Enemy enemy, int magicDamageDealt) {
-        if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+        if (player.ypos == enemy.xpos || player.xpos == enemy.ypos) {
             System.out.println("You cast " + damageSpell.name + " and it does " + magicDamageDealt + " damage");
             player.mp -= damageSpell.mpCost;
             time.next();
@@ -157,7 +157,7 @@ public class CombatEngine {
 
         if (Board.isNextToEnemy(player, enemy)) {
             returnThing = 1;
-        } else if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+        } else if (player.ypos == enemy.xpos || player.xpos == enemy.ypos) {
             if (rangeOrMagic <= 50) {
                 returnThing = 2;
             } else {
@@ -215,7 +215,7 @@ public class CombatEngine {
     }
 
     private static void enemyDamageSpellFire(Player player, int magicDamageDealt, Enemy enemy) {
-        if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+        if (player.ypos == enemy.xpos || player.xpos == enemy.ypos) {
             System.out.println("Your enemy fires a spell for " + magicDamageDealt + " damage");
             time.next();
             player.hp -= magicDamageDealt;
@@ -225,7 +225,7 @@ public class CombatEngine {
     }
 
     private static void enemyFireRangeWeapon(Player player, int rangeDamageDealt, Enemy enemy) {
-        if (player.xpos == enemy.xpos || player.ypos == enemy.ypos) {
+        if (player.ypos == enemy.xpos || player.xpos == enemy.ypos) {
             System.out.println("Your enemy fires their weapon for " + rangeDamageDealt + " damage");
             time.next();
             player.hp -= rangeDamageDealt;
