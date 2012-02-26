@@ -28,4 +28,4 @@ public class Maze {
     public Image getImage() {
         return image;
     }
-}//
+}
