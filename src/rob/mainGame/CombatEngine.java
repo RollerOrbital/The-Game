@@ -14,7 +14,7 @@ public class CombatEngine {
         return (choice);
     }
 
-    private static void playerCombatRun(Enemy enemy, Player player, Board board) {
+    private static void playerCombatRun(Enemy enemy, Player player, GameBoard gameBoard) {
         int meleeDamageDealt = lowerOne(randomNum.nextInt(Player.fortune + 5) + player.vigor + player.Mweapon.damage - randomNum.nextInt(enemy.aegis));
         int rangeDamageDealt = lowerOne(randomNum.nextInt(Player.fortune) + player.scope + player.Rweapon.damage - randomNum.nextInt(enemy.aegis));
         int didMagicWork;
@@ -30,8 +30,8 @@ public class CombatEngine {
                 break;
             default:
                 System.out.println();
-                board.playerMove(player, enemy);
-                board.displayBoard(player, enemy);
+                gameBoard.playerMove(player, enemy);
+                gameBoard.displayBoard(player, enemy);
                 switch (playerCombatChoice()) {
                     case 1:
                         playerMeleeStrike(enemy, meleeDamageDealt, player);
@@ -100,7 +100,7 @@ public class CombatEngine {
     }
 
     private static void playerMeleeStrike(Enemy enemy, int meleeDamageDealt, Player player) {
-        if (Board.areNextToEachOther(player, enemy)) {
+        if (GameBoard.areNextToEachOther(player, enemy)) {
             System.out.println("You strike your enemy with your " + meleeWeaponChoice().name + " for " + meleeDamageDealt + " damage");
             time.next();
             enemy.hp -= meleeDamageDealt;
@@ -155,7 +155,7 @@ public class CombatEngine {
         int rangeOrMagic = randomNum.nextInt(101);
         int returnThing;
 
-        if (Board.areNextToEachOther(player, enemy)) {
+        if (GameBoard.areNextToEachOther(player, enemy)) {
             returnThing = 1;
         } else if (player.y == enemy.y || player.x == enemy.x) {
             if (rangeOrMagic <= 50) {
@@ -169,7 +169,7 @@ public class CombatEngine {
         return returnThing;
     }
 
-    private static void enemyCombatRun(Enemy enemy, Player player, Board board) {
+    private static void enemyCombatRun(Enemy enemy, Player player, GameBoard gameBoard) {
         int meleeDamageDealt = lowerOne(randomNum.nextInt(15) + enemy.vigor - randomNum.nextInt(player.aegis));
         int rangeDamageDealt = lowerOne(randomNum.nextInt(10) + enemy.scope + enemy.twitch - randomNum.nextInt(player.aegis));
         int didMagicWork;
@@ -190,8 +190,8 @@ public class CombatEngine {
                 break;
             default:
                 System.out.println();
-                board.enemyAIMove(player, enemy);
-                board.displayBoard(player, enemy);
+                gameBoard.enemyAIMove(player, enemy);
+                gameBoard.displayBoard(player, enemy);
                 switch (enemyCombatChoice(player, enemy)) {
                     case 1:
                         enemyMeleeStrike(player, meleeDamageDealt, enemy);
@@ -235,7 +235,7 @@ public class CombatEngine {
     }
 
     private static void enemyMeleeStrike(Player player, int meleeDamageDealt, Enemy enemy) {
-        if (Board.areNextToEachOther(player, enemy)) {
+        if (GameBoard.areNextToEachOther(player, enemy)) {
             System.out.println("Your enemy strikes you for " + meleeDamageDealt + " damage");
             time.nextInt();
             player.hp -= meleeDamageDealt;
@@ -472,22 +472,22 @@ public class CombatEngine {
         }
     }
 
-    public static void combatTurn(Enemy enemy, Player player, Board board) {
+    public static void combatTurn(Enemy enemy, Player player, GameBoard gameBoard) {
         System.out.println(Player.name + "! You are in a battle with a " + enemy.name + "!");
-        board.displayBoard(player, enemy);
+        gameBoard.displayBoard(player, enemy);
         System.out.println();
         time.next();
         switch (whoGoesFirst(player.twitch, enemy.twitch)) {
             case 0:
                 while (player.hp > 0 && enemy.hp > 0) {
-                    playerCombatRun(enemy, player, board);
-                    enemyCombatRun(enemy, player, board);
+                    playerCombatRun(enemy, player, gameBoard);
+                    enemyCombatRun(enemy, player, gameBoard);
                 }
                 break;
             case 1:
                 while (player.hp > 0 && enemy.hp > 0) {
-                    enemyCombatRun(enemy, player, board);
-                    playerCombatRun(enemy, player, board);
+                    enemyCombatRun(enemy, player, gameBoard);
+                    playerCombatRun(enemy, player, gameBoard);
                 }
                 break;
         }

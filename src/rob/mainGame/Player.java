@@ -51,6 +51,17 @@ public class Player {
     public static DamageMagic DMInventory[] = {DamageMagic.fireball, DamageMagic.thunder_bolt};
     public static HealingMagic HMInventory[] = {HealingMagic.basic_heal, HealingMagic.recover};
 
+    public void move() {
+        if (y > 425) {
+            y = 425;
+        }
+        if (x < 10) {
+            x = 10;
+        } else if (y < 10) {
+            y = 10;
+        }
+    }
+
     public int getX() {
         return x;
     }
