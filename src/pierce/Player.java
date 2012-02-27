@@ -2,6 +2,7 @@ package pierce;
 
 import javax.swing.*;
 import java.awt.*;
+import java.math.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
@@ -10,6 +11,8 @@ public class Player {
     private int dy;
     private int x;
     private int y;
+    private int movex;
+    private int movey;
     private int width;
     private int height;
     private Image image;
@@ -19,16 +22,25 @@ public class Player {
     private int ybound;
     private int[] AnimationFrame;
     private int AnimationCounter;
+    private int AnimationSpeed;
+    private boolean upheld;
+    private boolean downheld;
+    private boolean leftheld;
+    private boolean rightheld;
     
     public Player() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
         image = ii.getImage();
         x = 0;
         y = 0;
+        dx = 0;
+        dy = 0;
+        movex = 0;
+        movey = 0;
         width = 12; //image.getWidth(null);
         height = 18; //image.getHeight(null);
         xbound = 16;
-        ybound = 16;
+        ybound = 12;
         sprframe = 0;
         sprdir = 0;
         AnimationFrame = new int[4];
@@ -37,14 +49,25 @@ public class Player {
         AnimationFrame[2] = 0;
         AnimationFrame[3] = 2;
         AnimationCounter = 0;
+        AnimationSpeed = 1;
     }
     
     public void move() {
-        x += dx;
-        y += dy;
+        if (movex!=0) {x += dx; movex -= dx;}
+        else if (movey!=0) {y += dy; movey -= dy;}
+        else if (leftheld) {AnimationSpeed = 1; dx = -1; sprdir = 1; movex=-32;}
+        else if (rightheld) {AnimationSpeed = 1;dx = 1; sprdir = 3; movex=32;}
+        else if (upheld) {dy = -1; sprdir = 2; movey=-24;}
+        else if (downheld) {dy = 1; sprdir = 0; movey=24;}
+        else {dx = 0; dy = 0;}
+
+        if ((rightheld)||(leftheld)||(upheld)||(downheld)) {if(AnimationSpeed==0) {AnimationSpeed = 1;}}
+        else {if ((movex==0)&&(movey==0)) {AnimationSpeed = 0; if (sprframe != 0 && sprframe != 2) {sprframe--;}}}
 
         if (AnimationCounter==16) {
-            if (sprframe+(dx*dx)+(dy*dy)>3) {sprframe=0;} else {sprframe += (dx*dx)+(dy*dy);} AnimationCounter = 0;}
+            if ((sprframe+AnimationSpeed)>3) {sprframe=0;}
+            else {sprframe += AnimationSpeed;}
+            AnimationCounter = 0;}
         else {AnimationCounter += 1;}
 
         if (y>(110-ybound)*2){
@@ -65,6 +88,14 @@ public class Player {
 
     public int getY() {
         return y;
+    }
+    
+    public int getXsquare(){
+     return (x/(xbound*2)*xbound)*2;
+    }
+
+    public int getYsquare(){
+        return (y/(ybound*2)*ybound)*2;
     }
 
     public int getWidth() {
@@ -91,52 +122,18 @@ public class Player {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
-            dy = 0;
-            sprdir = 1;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
-            dy = 0;
-            sprdir = 3;
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            dx = 0;
-            dy = -1;
-            sprdir = 2;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            dx = 0;
-            dy = 1;
-            sprdir = 0;
-        }
+        leftheld = (key == KeyEvent.VK_LEFT);
+        rightheld = (key == KeyEvent.VK_RIGHT);
+        upheld = (key == KeyEvent.VK_UP);
+        downheld = (key == KeyEvent.VK_DOWN);
     }
 
     public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
+        int key = 1 - (e.getKeyCode());
 
-        if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
-            sprframe = 0;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-            sprframe = 0;
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            dy = 0;
-            sprframe = 0;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 0;
-            sprframe = 0;
-        }
+        leftheld = (key == KeyEvent.VK_LEFT);
+        rightheld = (key == KeyEvent.VK_RIGHT);
+        upheld = (key == KeyEvent.VK_UP);
+        downheld = (key == KeyEvent.VK_DOWN);
     }
 }
