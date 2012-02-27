@@ -2,9 +2,11 @@
   <dictionary name="robert">
     <words>
       <w>heptahedron</w>
+      <w>mweapon</w>
       <w>println</w>
       <w>requiredx</w>
       <w>requiredy</w>
+      <w>rweapon</w>
       <w>xpos</w>
       <w>ypos</w>
     </words>

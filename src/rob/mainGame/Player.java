@@ -15,7 +15,7 @@ public class Player {
     MeleeWeapon Mweapon;
     RangeWeapon Rweapon;
 
-    int scope, aegis, pace, twitch, cognition, vigor, exp, hp, basehp, mp, basemp, levelUpxp, sp, ypos, xpos;
+    int scope, aegis, pace, twitch, cognition, vigor, exp, hp, basehp, mp, basemp, levelUpxp, sp, y, x;
 
     static int fortune, level;
 
@@ -24,7 +24,7 @@ public class Player {
         level = 1;
     }
 
-    public Player(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int exp, int hp, int basehp, int mp, int basemp, int levelUpxp, int sp, int ypos, int xpos) {
+    public Player(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int exp, int hp, int basehp, int mp, int basemp, int levelUpxp, int sp, int y, int x) {
         this.Mweapon = Mweapon;
         this.Rweapon = Rweapon;
         Player.name = name();
@@ -41,8 +41,8 @@ public class Player {
         this.basemp = basemp;
         this.levelUpxp = levelUpxp;
         this.sp = sp;
-        this.ypos = ypos;
-        this.xpos = xpos;
+        this.y = y;
+        this.x = x;
     }
 
     static Player player = new Player(MeleeWeapon.fists, RangeWeapon.bb_gun, 2, 5, 5, 10, 30, 15, 0, 100, 100, 50, 50, (level * level) + 40, 0, 0, 0);
