@@ -9,8 +9,8 @@ public class CombatCursor {
     private GraphicPlayer graphicPlayer;
     private int dx;
     private int dy;
-    private int x;
-    private int y;
+    public int x;
+    public int y;
     private Image image;
 
     public CombatCursor() {
@@ -66,7 +66,7 @@ public class CombatCursor {
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
         }
-        if (key == KeyEvent.VK_SPACE) {
+        if (key == KeyEvent.VK_Z) {
             graphicPlayer.x = x;
             graphicPlayer.y = y;
             new CombatBoard();
@@ -91,7 +91,7 @@ public class CombatCursor {
         if (key == KeyEvent.VK_DOWN) {
             dy = 0;
         }
-        if (key == KeyEvent.VK_SPACE) {
+        if (key == KeyEvent.VK_Z) {
             graphicPlayer.x = x;
             graphicPlayer.y = y;
             new CombatBoard();
