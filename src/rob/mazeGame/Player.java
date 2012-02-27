@@ -128,8 +128,15 @@ public class Player {
                 x = 140;
             }
             fouls++;
-        } else if ((y >= -50 && y < 800) && (x >= 700)) {
+        } else if ((y >= -50 && y < 550) && (x >= 700)) {
             x = 700;
+            fouls++;
+        } else if ((y >= 120 && y < 550) && (x <= 450 && x >= 440)) {
+            if (x > 445) {
+                x = 450;
+            } else if (x < 445) {
+                x = 440;
+            }
             fouls++;
         }
     }
@@ -150,19 +157,19 @@ public class Player {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_LEFT && key != KeyEvent.VK_UP && key != KeyEvent.VK_DOWN) {
             dx = -1;
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_RIGHT && key != KeyEvent.VK_UP && key != KeyEvent.VK_DOWN) {
             dx = 1;
         }
 
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_UP && key != KeyEvent.VK_LEFT && key != KeyEvent.VK_RIGHT) {
             dy = -1;
         }
 
-        if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_DOWN && key != KeyEvent.VK_LEFT && key != KeyEvent.VK_RIGHT) {
             dy = 1;
         }
     }
