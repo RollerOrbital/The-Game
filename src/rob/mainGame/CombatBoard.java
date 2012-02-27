@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class CombatBoard extends JPanel implements ActionListener {
 
+    private BoardImage board;
     private Player player;
 
     public CombatBoard() {
@@ -17,6 +18,7 @@ public class CombatBoard extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
+        board = new BoardImage();
         player = new Player();
 
         Timer timer = new Timer(5, this);
@@ -26,6 +28,7 @@ public class CombatBoard extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(board.getImage(), board.getX(), board.getY(), this);
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();

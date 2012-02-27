@@ -6,6 +6,8 @@ public class MainClass extends JFrame {
 
     public MainClass() {
 
+        add(new CombatBoard());
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(725, 425);
         setLocationRelativeTo(null);
