@@ -6,8 +6,7 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
-    private int fouls = 0;
-    private String player = "PLAYER.png";
+    public static int fouls = 0;
     private int dx;
     private int dy;
     private int x;
@@ -15,6 +14,7 @@ public class Player {
     private Image image;
 
     public Player() {
+        String player = "PLAYER.png";
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
         x = 40;
@@ -169,6 +169,8 @@ public class Player {
                 x = 590;
             }
             fouls++;
+        } else if (y >= 600 && y <= 700 && x >= 600 && x <= 700) {
+            Board.isGameOver = true;
         }
     }
 
