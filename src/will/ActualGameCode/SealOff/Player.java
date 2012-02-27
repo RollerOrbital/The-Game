@@ -8,14 +8,6 @@ public class Player {
     static int playerhp = 100;
     Scanner scan = new Scanner(System.in);
 
-    public void isAlive() {
-        if (playerhp > 0) {
-            alive = true;
-        } else {
-            alive = false;
-        }
-    }
-
     public void name() {
         System.out.println("Hello there, what is your name?");
         System.out.println();

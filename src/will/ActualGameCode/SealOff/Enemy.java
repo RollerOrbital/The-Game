@@ -6,20 +6,12 @@ public class Enemy {
 
     Random r = new Random();
     static int enemyHp = 100;
-    static boolean enemyIsAlive;
+    static boolean eAlive;
     String SlappySam = "Slappy Sam";
     String FreddyFin = "Freddy Fin";
     String FergusFlipper = "Fergus Flipper";
     String ThomasTail = "Thomas Tail";
     static String name;
-
-    public void enemyIsAlive() {
-        if (enemyHp > 0) {
-            enemyIsAlive = true;
-        } else if (enemyHp < 0) {
-            enemyIsAlive = false;
-        }
-    }
 
     public void enemyName() {
         int nameNum = r.nextInt(4) + 1;
