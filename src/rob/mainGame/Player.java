@@ -15,8 +15,8 @@ public class Player {
         String player = "player.png";
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
-        x = 0;
-        y = 0;
+        x = 40;
+        y = 10;
     }
 
     public void move() {
@@ -25,10 +25,10 @@ public class Player {
         if (y > 425) {
             y = 425;
         }
-        if (x < 10) {
-            x = 10;
-        } else if (y < 10) {
-            y = 10;
+        if (x < 0) {
+            x = 0;
+        } else if (y < 0) {
+            y = 0;
         }
     }
 

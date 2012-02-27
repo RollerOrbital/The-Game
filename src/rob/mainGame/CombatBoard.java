@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class CombatBoard extends JPanel implements ActionListener {
 
+    private Enemy enemy;
     private BoardImage board;
     private Player player;
 
@@ -18,6 +19,7 @@ public class CombatBoard extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
+        enemy = new Enemy();
         board = new BoardImage();
         player = new Player();
 
@@ -30,6 +32,7 @@ public class CombatBoard extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(board.getImage(), board.getX(), board.getY(), this);
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
+        g2d.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), this);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
