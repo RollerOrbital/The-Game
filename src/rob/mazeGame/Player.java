@@ -12,8 +12,6 @@ public class Player {
     private int dy;
     private int x;
     private int y;
-    private int width;
-    private int height;
     private Image image;
 
     public Player() {
@@ -21,8 +19,6 @@ public class Player {
         image = i.getImage();
         x = 40;
         y = 40;
-        width = image.getWidth(null);
-        height = image.getHeight(null);
     }
 
     public void move() {
@@ -119,6 +115,13 @@ public class Player {
         } else if ((x >= -50 && x < 750) && (y >= 350)) {
             y = 350;
             fouls++;
+        } else if ((x >= 370 && x < 530) && (y <= 80 && y >= 70)) {
+            if (y > 75) {
+                y = 80;
+            } else if (y < 75) {
+                y = 70;
+            }
+            fouls++;
         }
         //vertical lines
         else if ((y >= 40 && y < 140) && (x <= 150 && x >= 140)) {
@@ -136,6 +139,34 @@ public class Player {
                 x = 450;
             } else if (x < 445) {
                 x = 440;
+            }
+            fouls++;
+        } else if ((y >= -20 && y < 100) && (x <= 500 && x >= 490)) {
+            if (x > 495) {
+                x = 500;
+            } else if (x < 495) {
+                x = 490;
+            }
+            fouls++;
+        } else if ((y >= 20 && y < 170) && (x <= 590 && x >= 580)) {
+            if (x > 585) {
+                x = 590;
+            } else if (x < 585) {
+                x = 580;
+            }
+            fouls++;
+        } else if ((y >= 170 && y < 300) && (x <= 530 && x >= 520)) {
+            if (x > 525) {
+                x = 530;
+            } else if (x < 525) {
+                x = 520;
+            }
+            fouls++;
+        } else if ((y >= 240 && y < 500) && (x <= 600 && x >= 590)) {
+            if (x > 595) {
+                x = 600;
+            } else if (x < 595) {
+                x = 590;
             }
             fouls++;
         }
@@ -157,19 +188,19 @@ public class Player {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT && key != KeyEvent.VK_UP && key != KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_LEFT) {
             dx = -1;
         }
 
-        if (key == KeyEvent.VK_RIGHT && key != KeyEvent.VK_UP && key != KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_RIGHT) {
             dx = 1;
         }
 
-        if (key == KeyEvent.VK_UP && key != KeyEvent.VK_LEFT && key != KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_UP) {
             dy = -1;
         }
 
-        if (key == KeyEvent.VK_DOWN && key != KeyEvent.VK_LEFT && key != KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_DOWN) {
             dy = 1;
         }
     }
@@ -192,9 +223,5 @@ public class Player {
         if (key == KeyEvent.VK_DOWN) {
             dy = 0;
         }
-    }
-
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
     }
 }
