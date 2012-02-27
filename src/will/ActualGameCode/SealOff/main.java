@@ -6,12 +6,19 @@ public class main {
 
         Player player = new Player();
         player.name();
+        player.isAlive();
 
         Enemy enemy = new Enemy();
         enemy.enemyName();
 
         combatEngine combatEngine = new combatEngine();
         combatEngine.intro();
+
+
+        while (Player.alive) {
+            while (Enemy.enemyIsAlive)
+                combatEngine.moveChoice();
+        }
     }
 
 }

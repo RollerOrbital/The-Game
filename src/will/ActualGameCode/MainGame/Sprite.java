@@ -1,4 +1,4 @@
-package will.ActualGameCode;
+package will.ActualGameCode.MainGame;
 
 import javax.swing.*;
 import java.awt.*;
