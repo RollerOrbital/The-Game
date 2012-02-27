@@ -1,19 +1,20 @@
-package rob.mainGame;
+package minigames.mazeGame;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Enemy {
+public class Maze {
+
+    private String maze = "mazePic.png";
     private int x;
     private int y;
     private Image image;
 
-    public Enemy() {
-        String enemy = "enemy.png";
-        ImageIcon i = new ImageIcon(this.getClass().getResource(enemy));
+    public Maze() {
+        ImageIcon i = new ImageIcon(this.getClass().getResource(maze));
         image = i.getImage();
-        x = 540;
-        y = 290;
+        x = 10;
+        y = 10;
     }
 
     public int getX() {

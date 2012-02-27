@@ -1,13 +1,22 @@
 package rob.mainGame;
 
-public class MainClass {
-    public static void main(String args[]) {
-        TitleScreenCredits.titleRun();
+import javax.swing.*;
+
+public class MainClass extends JFrame {
+
+    public MainClass() {
+
+        add(new CombatBoard());
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(725, 425);
+        setLocationRelativeTo(null);
+        setTitle("Maze Game");
+        setResizable(true);
+        setVisible(true);
     }
 
-    public static void game() {
-        System.out.println(Player.name);
-        CombatEngine.combatTurn(Enemy.enemyYouFight, Player.player, new Board());
-        System.out.println("Program Terminated");
+    public static void main(String[] args) {
+        new MainClass();
     }
 }

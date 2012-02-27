@@ -2,6 +2,10 @@
   <dictionary name="Pierce">
     <words>
       <w>playerdefault</w>
+      <w>sprdir</w>
+      <w>sprframe</w>
+      <w>xbound</w>
+      <w>ybound</w>
     </words>
   </dictionary>
 </component>
