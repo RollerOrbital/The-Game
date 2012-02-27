@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
+
     public static int fouls = 0;
     private int dx;
     private int dy;
@@ -28,15 +29,19 @@ public class Player {
             y = 425;
             fouls++;
         }
-        if (x < 0) {
-            x = 0;
+        if (x < 10) {
+            x = 10;
             fouls++;
-        } else if (y < 0) {
-            y = 0;
+        } else if (y < 10) {
+            y = 10;
             fouls++;
+        }
+        wallsOfMaze();
+    }
 
-            //Horizontal Lines
-        } else if ((x >= -10 && x < 100) && (y <= 90 && y >= 80)) {
+    private void wallsOfMaze() {
+        //Horizontal lines
+        if ((x >= -10 && x < 100) && (y <= 90 && y >= 80)) {
             if (y > 85) {
                 y = 90;
             } else if (y < 85) {
@@ -123,7 +128,7 @@ public class Player {
             }
             fouls++;
         }
-        //vertical lines
+        //Vertical lines
         else if ((y >= 40 && y < 140) && (x <= 150 && x >= 140)) {
             if (x > 145) {
                 x = 150;
@@ -169,8 +174,6 @@ public class Player {
                 x = 590;
             }
             fouls++;
-        } else if (y >= 600 && y <= 700 && x >= 600 && x <= 700) {
-            Board.isGameOver = true;
         }
     }
 

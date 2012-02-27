@@ -11,7 +11,6 @@ public class Board extends JPanel implements ActionListener {
 
     private Player player;
     private Maze maze;
-    public static boolean isGameOver = false;
 
     public Board() {
         addKeyListener(new adapter());
@@ -28,22 +27,12 @@ public class Board extends JPanel implements ActionListener {
 
     public void paint(Graphics g) {
         super.paint(g);
-
         Graphics2D g2d = (Graphics2D) g;
         Graphics2D g2d2 = (Graphics2D) g;
-
-        if (isGameOver) {
-            g.dispose();
-            g.drawString("You Won!\nYour Score was " + Player.fouls, 350, 200);
-        } else {
-
-
-            g2d2.drawImage(maze.getImage(), maze.getX(), maze.getY(), this);
-            g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
-
-            Toolkit.getDefaultToolkit().sync();
-            g.dispose();
-        }
+        g2d2.drawImage(maze.getImage(), maze.getX(), maze.getY(), this);
+        g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
+        Toolkit.getDefaultToolkit().sync();
+        g.dispose();
     }
 
     public void actionPerformed(ActionEvent e) {
