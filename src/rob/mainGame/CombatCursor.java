@@ -4,19 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class Player {
+public class CombatCursor {
+
+    private GraphicPlayer graphicPlayer;
     private int dx;
     private int dy;
     private int x;
     private int y;
     private Image image;
 
-    public Player() {
-        String player = "player.png";
-        ImageIcon i = new ImageIcon(this.getClass().getResource(player));
+    public CombatCursor() {
+        String cc = "combatCursor.png";
+        ImageIcon i = new ImageIcon(this.getClass().getResource(cc));
         image = i.getImage();
-        x = 40;
-        y = 10;
+        x = 270;
+        y = 160;
+        graphicPlayer = new GraphicPlayer();
     }
 
     public void move() {
@@ -63,6 +66,11 @@ public class Player {
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
         }
+        if (key == KeyEvent.VK_SPACE) {
+            graphicPlayer.x = x;
+            graphicPlayer.y = y;
+            new CombatBoard();
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -82,6 +90,11 @@ public class Player {
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 0;
+        }
+        if (key == KeyEvent.VK_SPACE) {
+            graphicPlayer.x = x;
+            graphicPlayer.y = y;
+            new CombatBoard();
         }
     }
 }

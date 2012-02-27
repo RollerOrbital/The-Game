@@ -9,9 +9,10 @@ import java.awt.event.KeyEvent;
 
 public class CombatBoard extends JPanel implements ActionListener {
 
+    private GraphicPlayer graphicPlayer;
     private Enemy enemy;
     private BoardImage board;
-    private Player player;
+    private CombatCursor combatCursor;
 
     public CombatBoard() {
         addKeyListener(new adapter());
@@ -19,9 +20,10 @@ public class CombatBoard extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
+        graphicPlayer = new GraphicPlayer();
         enemy = new Enemy();
         board = new BoardImage();
-        player = new Player();
+        combatCursor = new CombatCursor();
 
         Timer timer = new Timer(5, this);
         timer.start();
@@ -31,24 +33,25 @@ public class CombatBoard extends JPanel implements ActionListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(board.getImage(), board.getX(), board.getY(), this);
-        g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
+        g2d.drawImage(combatCursor.getImage(), combatCursor.getX(), combatCursor.getY(), this);
+        g2d.drawImage(graphicPlayer.getImage(), graphicPlayer.getX(), graphicPlayer.getY(), this);
         g2d.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), this);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
 
     public void actionPerformed(ActionEvent e) {
-        player.move();
+        combatCursor.move();
         repaint();
     }
 
     private class adapter extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
-            player.keyPressed(e);
+            combatCursor.keyPressed(e);
         }
 
         public void keyReleased(KeyEvent e) {
-            player.keyReleased(e);
+            combatCursor.keyReleased(e);
         }
     }
 }
