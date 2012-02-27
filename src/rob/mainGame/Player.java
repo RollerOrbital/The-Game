@@ -1,16 +1,14 @@
 package rob.mainGame;
 
-import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Player {
 
-    private String name() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("What is your name?");
-        String name = input.nextLine();
-        return (name);
-    }
-
+    String playerImage = "playr.png";
+    ImageIcon ii = new ImageIcon(this.getClass().getResource(playerImage));
+    Image image = ii.getImage();
     static String name;
     MeleeWeapon Mweapon;
     RangeWeapon Rweapon;
@@ -27,7 +25,7 @@ public class Player {
     public Player(MeleeWeapon Mweapon, RangeWeapon Rweapon, int scope, int aegis, int pace, int twitch, int cognition, int vigor, int exp, int hp, int basehp, int mp, int basemp, int levelUpxp, int sp, int y, int x) {
         this.Mweapon = Mweapon;
         this.Rweapon = Rweapon;
-        Player.name = name();
+        Player.name = "Rob";
         this.scope = scope;
         this.aegis = aegis;
         this.pace = pace;
@@ -52,4 +50,55 @@ public class Player {
     public static HealingItem HIInventory[] = {HealingItem.bandages, HealingItem.potion};
     public static DamageMagic DMInventory[] = {DamageMagic.fireball, DamageMagic.thunder_bolt};
     public static HealingMagic HMInventory[] = {HealingMagic.basic_heal, HealingMagic.recover};
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void keyPressed(KeyEvent e) {
+
+        int key = e.getKeyCode();
+
+        switch (key) {
+            case KeyEvent.VK_LEFT:
+                x -= 10;
+                break;
+            case KeyEvent.VK_RIGHT:
+                x += 10;
+                break;
+            case KeyEvent.VK_UP:
+                y -= 10;
+                break;
+            case KeyEvent.VK_DOWN:
+                y += 10;
+                break;
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+
+        switch (key) {
+            case KeyEvent.VK_LEFT:
+                x = 0;
+                break;
+            case KeyEvent.VK_RIGHT:
+                x = 0;
+                break;
+            case KeyEvent.VK_UP:
+                y = 0;
+                break;
+            case KeyEvent.VK_DOWN:
+                y = 0;
+                break;
+        }
+    }
 }
