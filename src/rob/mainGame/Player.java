@@ -17,8 +17,6 @@ public class Player {
     private Image image;
     private int sprframe;
     private int sprdir;
-    private int xbound;
-    private int ybound;
     private int[] AnimationFrame;
     private int AnimationCounter;
     private int AnimationSpeed;
@@ -30,16 +28,14 @@ public class Player {
     public Player() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
         image = ii.getImage();
-        x = 0;
-        y = 0;
+        x = 80;
+        y = 80;
         dx = 0;
         dy = 0;
         movex = 0;
         movey = 0;
         width = 12; //image.getWidth(null);
         height = 18; //image.getHeight(null);
-        xbound = 16;
-        ybound = 12;
         sprframe = 0;
         sprdir = 0;
         AnimationFrame = new int[4];
@@ -50,6 +46,8 @@ public class Player {
         AnimationCounter = 0;
         AnimationSpeed = 1;
     }
+//xbound = 16;
+//ybound = 12;
 
     public void move() {
         if (movex != 0) {
@@ -105,15 +103,15 @@ public class Player {
             AnimationCounter += 1;
         }
 
-        if (y > (110 - ybound) * 2) {
-            y = (110 - ybound) * 2;
-        } else if (y < 0) {
-            y = 0;
+        if (y > 320) {
+            y = 320;
+        } else if (y < 10) {
+            y = 10;
         }
-        if (x < 0) {
-            x = 0;
-        } else if (x > (180 - xbound) * 2) {
-            x = (180 - xbound) * 2;
+        if (x < 10) {
+            x = 10;
+        } else if (x > 550) {
+            x = 550;
         }
     }
 
@@ -123,14 +121,6 @@ public class Player {
 
     public int getY() {
         return y;
-    }
-
-    public int getXsquare() {
-        return (x / (xbound * 2) * xbound) * 2;
-    }
-
-    public int getYsquare() {
-        return (y / (ybound * 2) * ybound) * 2;
     }
 
     public int getWidth() {

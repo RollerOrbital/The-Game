@@ -9,10 +9,10 @@ public class MainClass extends JFrame {
         add(new Map());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize((180 * 2) + 6, (110 * 2) + 28);
+        setSize(650, 400);
         setLocationRelativeTo(null);
         setTitle("RESIST");
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
     }
 
