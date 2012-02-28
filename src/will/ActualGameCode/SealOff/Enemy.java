@@ -6,7 +6,6 @@ public class Enemy {
 
     Random r = new Random();
     static int enemyHp = 100;
-    static boolean eAlive;
     String SlappySam = "Slappy Sam";
     String FreddyFin = "Freddy Fin";
     String FergusFlipper = "Fergus Flipper";

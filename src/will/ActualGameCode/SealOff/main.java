@@ -1,5 +1,3 @@
-//TODO: Make it so that the player or the enemy's hp can go below 0
-
 package will.ActualGameCode.SealOff;
 
 public class main {
@@ -17,7 +15,7 @@ public class main {
 
         while (Player.playerhp > 0) {
             while (Enemy.enemyHp > 0) {
-                combatEngine.moveChoice();
+                combatEngine.fight();
             }
         }
 

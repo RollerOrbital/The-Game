@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Player {
     String playerName;
-    static Boolean alive;
     static int playerhp = 100;
     Scanner scan = new Scanner(System.in);
 
