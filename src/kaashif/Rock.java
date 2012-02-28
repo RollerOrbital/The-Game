@@ -9,7 +9,13 @@ public class Rock{
 
     private int dx;
     private int dy;
-    public int x = (int)(Math.random()*416);
+    public int x = getRandomX();
+
+    private int getRandomX() {
+        int xx = (int)(Math.random()*416);
+        return xx;
+    }
+
     public int y = 0;
 
     private int width;
