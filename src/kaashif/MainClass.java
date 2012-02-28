@@ -3,13 +3,16 @@ package kaashif;
 import javax.swing.JFrame;
 
 public class MainClass extends JFrame {
+    
+    public int sq;
 
     public MainClass() {
 
         add(new Board());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 700);
+        sq = 32;
+        setSize(13*sq, 22*sq);
         setLocationRelativeTo(null);
         setTitle("Rock Game");
         setResizable(false);
