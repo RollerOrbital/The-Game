@@ -1,8 +1,7 @@
 package kaashif;
 
+import javax.swing.*;
 import java.awt.*;
-
-import javax.swing.ImageIcon;
 
 public class Rock{
 
@@ -10,12 +9,8 @@ public class Rock{
 
     private int dx;
     private int dy;
-    public int x = 1;
-    public int y = 1;
-
-    public Rock(int i, int i1) {
-
-    }
+    public int x = (int)(Math.random()*416);
+    public int y = 0;
 
     private int width;
     private int height;
@@ -27,7 +22,7 @@ public class Rock{
         image = ii.getImage();
         vis = true;
         dx = 0;
-        dy = 5;
+        dy = 1;
         width = image.getWidth(null);
         height = image.getHeight(null);
 
@@ -40,6 +35,7 @@ public class Rock{
     }
 
     public void move(){
+        y+=dy;
         if(y>750){
             vis = false;
 
