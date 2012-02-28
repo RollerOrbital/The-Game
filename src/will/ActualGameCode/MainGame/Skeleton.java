@@ -1,22 +1,22 @@
-package rob.mazeGame;
+package will.ActualGameCode.MainGame;
 
 import javax.swing.*;
 
-public class MainClass extends JFrame {
+public class Skeleton extends JFrame {
 
-    public MainClass() {
+    public Skeleton() {
 
         add(new Board());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(725, 425);
+        setSize(621, 350);
         setLocationRelativeTo(null);
-        setTitle("Maze Game");
-        setResizable(true);
+        setTitle("Resist");
+        setResizable(false);
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        new MainClass();
+        new Skeleton();
     }
 }

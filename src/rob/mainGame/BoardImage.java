@@ -3,17 +3,18 @@ package rob.mainGame;
 import javax.swing.*;
 import java.awt.*;
 
-public class Enemy {
+public class BoardImage {
+
+    private String bi = "combatBoard.png";
     private int x;
     private int y;
     private Image image;
 
-    public Enemy() {
-        String enemy = "enemy.png";
-        ImageIcon i = new ImageIcon(this.getClass().getResource(enemy));
+    public BoardImage() {
+        ImageIcon i = new ImageIcon(this.getClass().getResource(bi));
         image = i.getImage();
-        x = 540;
-        y = 290;
+        x = 0;
+        y = 0;
     }
 
     public int getX() {

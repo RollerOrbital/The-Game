@@ -1,4 +1,4 @@
-package rob.mazeGame;
+package rob.bombGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,20 +7,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Board extends JPanel implements ActionListener {
-
+public class Arena extends JPanel implements ActionListener {
     private Player player;
-    private Maze maze;
+    private Bomb bomb;
 
-    public Board() {
+    public Arena() {
         addKeyListener(new adapter());
         setFocusable(true);
-        setBackground(Color.BLACK);
+        setBackground(Color.WHITE);
         setDoubleBuffered(true);
-
-        maze = new Maze();
         player = new Player();
-
+        bomb = new Bomb();
         Timer timer = new Timer(5, this);
         timer.start();
     }
@@ -28,16 +25,26 @@ public class Board extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        Graphics2D g2d2 = (Graphics2D) g;
-        g2d2.drawImage(maze.getImage(), maze.getX(), maze.getY(), this);
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
+        g2d.drawImage(bomb.getImage(), bomb.getX(), bomb.getY(), this);
+        g2d.drawString("YOUR SCORE: " + Player.score, 100, 100);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
 
     public void actionPerformed(ActionEvent e) {
+        bomb.move();
         player.move();
-        repaint();
+        if (Player.bombs <= 10) {
+            if (Math.abs(player.x - bomb.x) < 5) {
+                if (Math.abs(player.y - bomb.y) < 20) {
+                    Player.score++;
+                }
+                Player.bombs++;
+                bomb = new Bomb();
+            }
+            repaint();
+        }
     }
 
     private class adapter extends KeyAdapter {

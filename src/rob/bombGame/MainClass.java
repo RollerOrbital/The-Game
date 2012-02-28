@@ -1,17 +1,14 @@
-package rob.mazeGame;
+package rob.bombGame;
 
 import javax.swing.*;
 
 public class MainClass extends JFrame {
-
     public MainClass() {
-
-        add(new Board());
-
+        add(new Arena());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(725, 425);
         setLocationRelativeTo(null);
-        setTitle("Maze Game");
+        setTitle("Bomb Game");
         setResizable(true);
         setVisible(true);
     }
