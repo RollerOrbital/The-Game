@@ -12,7 +12,7 @@ public class Player {
     private Image image;
 
     public Player() {
-        String player = "player.png";
+        String player = "Bomb.png";
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
         x = 40;
