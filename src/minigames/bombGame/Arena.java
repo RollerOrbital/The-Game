@@ -1,4 +1,4 @@
-package rob.mainGame;
+package minigames.bombGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,24 +7,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class CombatBoard extends JPanel implements ActionListener {
+public class Arena extends JPanel implements ActionListener {
+    private Player player;
+    private Bomb bomb;
 
-    public static Player player;
-    private Enemy enemy;
-    private BoardImage board;
-    public static CombatCursor cursor;
-
-    public CombatBoard() {
+    public Arena() {
         addKeyListener(new adapter());
         setFocusable(true);
-        setBackground(Color.BLACK);
+        setBackground(Color.WHITE);
         setDoubleBuffered(true);
-
         player = new Player();
-        enemy = new Enemy();
-        board = new BoardImage();
-        cursor = new CombatCursor();
-
+        bomb = new Bomb();
         Timer timer = new Timer(5, this);
         timer.start();
     }
@@ -32,28 +25,35 @@ public class CombatBoard extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(board.getImage(), board.getX(), board.getY(), this);
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
-        g2d.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), this);
-        g2d.drawImage(cursor.getImage(), cursor.getX(), cursor.getY(), this);
+        g2d.drawImage(bomb.getImage(), bomb.getX(), bomb.getY(), this);
+        g2d.drawString("YOUR SCORE: " + Player.score, 100, 100);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
 
     public void actionPerformed(ActionEvent e) {
-        cursor.move();
-        repaint();
+        bomb.move();
+        player.move();
+        if (Player.bombs <= 10) {
+            if (Math.abs(player.x - bomb.x) < 5) {
+                if (Math.abs(player.y - bomb.y) < 20) {
+                    Player.score++;
+                }
+                Player.bombs++;
+                bomb = new Bomb();
+            }
+            repaint();
+        }
     }
 
     private class adapter extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
-            cursor.keyPressed(e);
         }
 
         public void keyReleased(KeyEvent e) {
             player.keyReleased(e);
-            cursor.keyReleased(e);
         }
     }
 }
