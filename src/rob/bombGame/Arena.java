@@ -19,6 +19,7 @@ public class Arena extends JPanel implements ActionListener {
         setDoubleBuffered(true);
 
         player = new Player();
+
         bomb = new Bomb();
 
         Timer timer = new Timer(5, this);
@@ -30,13 +31,24 @@ public class Arena extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
         g2d.drawImage(bomb.getImage(), bomb.getX(), bomb.getY(), this);
+        g2d.drawString("YOUR SCORE: " + player.score, 100, 100);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
 
     public void actionPerformed(ActionEvent e) {
+        bomb.move();
         player.move();
-        repaint();
+        if (Player.bombs <= 10) {
+            if (Math.abs(player.x - bomb.x) < 5) {
+                if (Math.abs(player.y - bomb.y) < 20) {
+                    Player.score++;
+                }
+                Player.bombs++;
+                bomb = new Bomb();
+            }
+            repaint();
+        }
     }
 
     private class adapter extends KeyAdapter {

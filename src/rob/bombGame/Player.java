@@ -5,12 +5,17 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
+
+    public static int bombs;
+    public static int score;
     private int dy;
     public int x;
     public int y;
     private Image image;
 
     public Player() {
+        bombs = 0;
+        score = 0;
         String player = "player.png";
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
@@ -44,11 +49,11 @@ public class Player {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_UP) {
-            dy = -5;
+            dy = -1;
         }
 
         if (key == KeyEvent.VK_DOWN) {
-            dy = 5;
+            dy = 1;
         }
     }
 

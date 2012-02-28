@@ -2,30 +2,24 @@ package rob.bombGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class Bomb {
-    private int x, y, dx, dy;
+    Random random = new Random();
+    public int x, y;
+    private int dx;
     private Image image;
 
     public Bomb() {
+        dx = 2;
         x = 0;
-        y = 0;
+        y = random.nextInt(300) + 50;
         ImageIcon i = new ImageIcon(this.getClass().getResource("bomb.png"));
         image = i.getImage();
     }
 
     public void move() {
         x += dx;
-        y += dy;
-        if (x <= 0) {
-            x = 0;
-        } else if (x >= 725) {
-            x = 725;
-        } else if (y <= 0) {
-            y = 0;
-        } else if (y >= 425) {
-            y = 425;
-        }
     }
 
     public int getX() {
