@@ -1,4 +1,4 @@
-package minigames.part1_demon_soul_dodging;
+package minigames.bombGame;
 
 import javax.swing.*;
 import java.awt.*;
