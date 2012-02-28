@@ -4,17 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class GraphicPlayer {
+public class Player {
+
+    public int pace;
     public int x;
     public int y;
     private Image image;
 
-    public GraphicPlayer() {
+    public Player() {
         String player = "player.png";
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
         x = 40;
         y = 10;
+        pace = 3;
     }
 
     public int getX() {

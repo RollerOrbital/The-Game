@@ -23,13 +23,15 @@ public class CombatCursor {
     public void move() {
         x += dx;
         y += dy;
-        if (y > 425) {
-            y = 425;
+        if (y >= (CombatBoard.player.pace * 71)) {
+            y = CombatBoard.player.pace * 71;
         }
         if (x < 0) {
             x = 0;
         } else if (y < 0) {
             y = 0;
+        } else if (x > CombatBoard.player.pace * 125) {
+            x = CombatBoard.player.pace * 125;
         }
     }
 

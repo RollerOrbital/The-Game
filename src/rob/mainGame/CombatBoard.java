@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class CombatBoard extends JPanel implements ActionListener {
 
-    private GraphicPlayer player;
+    public static Player player;
     private Enemy enemy;
     private BoardImage board;
     public static CombatCursor cursor;
@@ -20,7 +20,7 @@ public class CombatBoard extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
-        player = new GraphicPlayer();
+        player = new Player();
         enemy = new Enemy();
         board = new BoardImage();
         cursor = new CombatCursor();
