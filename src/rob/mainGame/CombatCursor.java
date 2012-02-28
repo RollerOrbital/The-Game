@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 
 public class CombatCursor {
 
-    private GraphicPlayer graphicPlayer;
     private int dx;
     private int dy;
     public int x;
@@ -19,7 +18,6 @@ public class CombatCursor {
         image = i.getImage();
         x = 270;
         y = 160;
-        graphicPlayer = new GraphicPlayer();
     }
 
     public void move() {
@@ -66,11 +64,6 @@ public class CombatCursor {
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
         }
-        if (key == KeyEvent.VK_Z) {
-            graphicPlayer.x = x;
-            graphicPlayer.y = y;
-            new CombatBoard();
-        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -90,11 +83,6 @@ public class CombatCursor {
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 0;
-        }
-        if (key == KeyEvent.VK_Z) {
-            graphicPlayer.x = x;
-            graphicPlayer.y = y;
-            new CombatBoard();
         }
     }
 }
