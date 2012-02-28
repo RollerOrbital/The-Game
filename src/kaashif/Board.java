@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 
 public class Board extends JPanel implements ActionListener {
@@ -14,7 +13,6 @@ public class Board extends JPanel implements ActionListener {
     private Timer timer;
     public Craft craft;
     public Rock rock;
-    private ArrayList rocks;
     public boolean lost;
     int i = 0;
 
@@ -50,7 +48,7 @@ public class Board extends JPanel implements ActionListener {
         }
         if(lost){
             g2d.setColor(Color.white);
-            g2d.drawString("You suck", 208, 350);
+            g2d.drawString("You suck", 175, 350);
         }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
@@ -67,8 +65,9 @@ public class Board extends JPanel implements ActionListener {
     public void collide() {
         Rectangle rect1 = craft.getBounds();
         Rectangle rect2 = rock.getBounds();
-        
-        if (rock.getVis()==false)  {
+
+
+        if (!rock.getVis())  {
             rock = new Rock();
         }
 
@@ -79,6 +78,8 @@ public class Board extends JPanel implements ActionListener {
                 rock = new Rock();
                 
             }
+
+
         }
     class adapter extends KeyAdapter {
 
