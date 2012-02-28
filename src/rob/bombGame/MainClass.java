@@ -5,6 +5,8 @@ import javax.swing.*;
 public class MainClass extends JFrame {
     public MainClass() {
 
+        add(new Arena());
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(725, 425);
         setLocationRelativeTo(null);

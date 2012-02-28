@@ -1,12 +1,11 @@
-package rob.mainGame;
+package rob.bombGame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-
-    public int pace;
+    private int dy;
     public int x;
     public int y;
     private Image image;
@@ -15,9 +14,8 @@ public class Player {
         String player = "player.png";
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
         image = i.getImage();
-        x = 40;
-        y = 10;
-        pace = 3;
+        x = 600;
+        y = 212;
     }
 
     public int getX() {
@@ -32,24 +30,37 @@ public class Player {
         return image;
     }
 
+    public void move() {
+        y += dy;
+        if (y >= 350) {
+            y = 350;
+        } else if (y <= 5) {
+            y = 5;
+        }
+    }
+
     public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_Z) {
-            if (Math.abs(CombatBoard.cursor.x - x) <= pace * 125) {
-                x = CombatBoard.cursor.x;
-            }
-            if (Math.abs(CombatBoard.cursor.y - y) <= pace * 71) {
-                y = CombatBoard.cursor.y;
-            }
+        if (key == KeyEvent.VK_UP) {
+            dy = -5;
+        }
+
+        if (key == KeyEvent.VK_DOWN) {
+            dy = 5;
         }
     }
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_Z) {
+        if (key == KeyEvent.VK_UP) {
+            dy = 0;
+        }
+
+        if (key == KeyEvent.VK_DOWN) {
+            dy = 0;
         }
     }
 }
