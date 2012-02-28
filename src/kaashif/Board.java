@@ -14,13 +14,12 @@ public class Board extends JPanel implements ActionListener {
     public Craft craft;
     public Rock rock;
     public boolean lost;
-    int i = 0;
-
+    public long score;
+    public int realscore;
 
 
     public Board() {
 
-        
 
         addKeyListener(new adapter());
         setFocusable(true);
@@ -31,9 +30,13 @@ public class Board extends JPanel implements ActionListener {
         rock = new Rock();
 
         timer = new Timer(5, this);
+
         timer.start();
 
-        
+
+        score = 0;
+        realscore = 0;
+
 
     }
 
@@ -41,14 +44,16 @@ public class Board extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
 
-        Graphics2D g2d = (Graphics2D)g;
-        if(craft.getVis()){
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.white);
+        g2d.drawString("Score:" + score, 0, 15);
+        if (craft.getVis()) {
             g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(), this);
             g2d.drawImage(rock.getImage(), rock.getX(), rock.getY(), this);
         }
-        if(lost){
+        if (lost) {
             g2d.setColor(Color.white);
-            g2d.drawString("You suck", 175, 350);
+            g2d.drawString("Your score was: " + score, 175, 350);
         }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
@@ -58,6 +63,11 @@ public class Board extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         craft.move();
         rock.move();
+        realscore++;
+        score = realscore / 20;
+        if (!craft.getVis()) {
+            timer.stop();
+        }
         repaint();
         collide();
     }
@@ -67,27 +77,28 @@ public class Board extends JPanel implements ActionListener {
         Rectangle rect2 = rock.getBounds();
 
 
-        if (!rock.getVis())  {
+        if (!rock.getVis()) {
             rock = new Rock();
         }
 
-            if (rect1.intersects(rect2)) {
-                craft.setVis(false);
-                rock.setVis(false);
-                lost = true;
-                rock = new Rock();
-                
-            }
-
+        if (rect1.intersects(rect2)) {
+            craft.setVis(false);
+            rock.setVis(false);
+            lost = true;
+            rock = new Rock();
 
         }
+
+
+    }
+
     class adapter extends KeyAdapter {
 
         public void keyPressed(KeyEvent e) {
             craft.keyPressed(e);
         }
 
-        public void keyReleased(KeyEvent e){
+        public void keyReleased(KeyEvent e) {
             craft.keyReleased(e);
         }
     }
