@@ -37,8 +37,12 @@ public class Player {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_Z) {
-            x = CombatBoard.cursor.x;
-            y = CombatBoard.cursor.y;
+            if (Math.abs(CombatBoard.cursor.x - x) <= pace * 125) {
+                x = CombatBoard.cursor.x;
+            }
+            if (Math.abs(CombatBoard.cursor.y - y) <= pace * 71) {
+                y = CombatBoard.cursor.y;
+            }
         }
     }
 

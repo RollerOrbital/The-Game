@@ -23,15 +23,14 @@ public class CombatCursor {
     public void move() {
         x += dx;
         y += dy;
-        if (y >= (CombatBoard.player.pace * 71)) {
-            y = CombatBoard.player.pace * 71;
-        }
-        if (x < 0) {
+        if (x <= 0) {
             x = 0;
-        } else if (y < 0) {
+        } else if (x >= 580) {
+            x = 580;
+        } else if (y <= 0) {
             y = 0;
-        } else if (x > CombatBoard.player.pace * 125) {
-            x = CombatBoard.player.pace * 125;
+        } else if (y >= 309) {
+            y = 309;
         }
     }
 
@@ -52,19 +51,19 @@ public class CombatCursor {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
+            dx = -2;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
+            dx = 2;
         }
 
         if (key == KeyEvent.VK_UP) {
-            dy = -1;
+            dy = -2;
         }
 
         if (key == KeyEvent.VK_DOWN) {
-            dy = 1;
+            dy = 2;
         }
     }
 

@@ -33,9 +33,9 @@ public class CombatBoard extends JPanel implements ActionListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(board.getImage(), board.getX(), board.getY(), this);
-        g2d.drawImage(cursor.getImage(), cursor.getX(), cursor.getY(), this);
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
         g2d.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), this);
+        g2d.drawImage(cursor.getImage(), cursor.getX(), cursor.getY(), this);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
