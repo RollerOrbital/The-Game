@@ -1,4 +1,4 @@
-package rob.mazeGame.mazeGame;
+package rob.mazeGame;
 
 import javax.swing.*;
 import java.awt.*;
