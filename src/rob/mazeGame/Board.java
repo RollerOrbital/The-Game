@@ -11,7 +11,6 @@ public class Board extends JPanel implements ActionListener {
 
     private Player player;
     private Maze maze;
-    String win = "";
     int score = Player.fouls;
 
     public Board() {
