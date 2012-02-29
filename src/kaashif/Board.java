@@ -33,7 +33,6 @@ public class Board extends JPanel implements ActionListener {
 
         timer.start();
 
-
         score = 0;
         realscore = 0;
 

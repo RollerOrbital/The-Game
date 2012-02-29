@@ -1,9 +1,8 @@
 package kaashif;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-
-import javax.swing.ImageIcon;
 
 public class Craft {
 
@@ -30,15 +29,15 @@ public class Craft {
     public void move() {
         x += dx;
         y += dy;
-        if (y>700){
-            y=700;
-        } else if (y<0){
-            y=0;
+        if (y > 700) {
+            y = 700;
+        } else if (y < 0) {
+            y = 0;
         }
-        if(x<0){
-            x=0;
-        }else if(x>378){
-            x=378;
+        if (x < 0) {
+            x = 0;
+        } else if (x > 378) {
+            x = 378;
         }
     }
 
@@ -59,19 +58,19 @@ public class Craft {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
+            dx = -2;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
+            dx = 2;
         }
 
         if (key == KeyEvent.VK_UP) {
-            dy = -1;
+            dy = -2;
         }
 
         if (key == KeyEvent.VK_DOWN) {
-            dy = 1;
+            dy = 2;
         }
     }
 
@@ -94,14 +93,17 @@ public class Craft {
             dy = 0;
         }
     }
-    public Rectangle getBounds(){
-        return new Rectangle(x,y,width,height);
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
     }
-    public void setVis(boolean vis){
+
+    public void setVis(boolean vis) {
         this.vis = vis;
 
     }
-    public boolean getVis(){
+
+    public boolean getVis() {
         return vis;
     }
 }

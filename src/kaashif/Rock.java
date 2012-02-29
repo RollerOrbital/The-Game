@@ -28,7 +28,7 @@ public class Rock {
         image = ii.getImage();
         vis = true;
         dx = 0;
-        dy = 10;
+        dy = 6;
         width = image.getWidth(null);
         height = image.getHeight(null);
 
