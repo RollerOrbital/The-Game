@@ -1,4 +1,4 @@
-package minigames.mazeGame;
+package minigames.scytheGame;
 
 import javax.swing.*;
 

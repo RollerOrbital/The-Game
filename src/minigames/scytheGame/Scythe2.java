@@ -1,19 +1,19 @@
-package rob.mazeGame;
+package minigames.scytheGame;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Scythe1 {
-    int dx = 2;
-    int dy = 2;
+public class Scythe2 {
     public static int x, y;
     private Image image;
+    int dx = 2;
+    int dy = 2;
 
-    public Scythe1() {
+    public Scythe2() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("scythe.png"));
         image = ii.getImage();
-        x = 300;
-        y = 0;
+        x = 0;
+        y = 200;
     }
 
     public void move() {
@@ -25,6 +25,7 @@ public class Scythe1 {
             dy *= -1;
         }
     }
+
 
     public int getX() {
         return x;

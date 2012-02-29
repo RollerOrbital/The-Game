@@ -1,4 +1,4 @@
-package minigames.mazeGame;
+package minigames.scytheGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +10,8 @@ public class Player {
     public static int fouls = 0;
     private int dx;
     private int dy;
-    private int x;
-    private int y;
+    public static int x;
+    public static int y;
     private Image image;
 
     public Player() {
@@ -25,33 +25,26 @@ public class Player {
     public void move() {
         x += dx;
         y += dy;
-        if (y > 425) {
-            y = 425;
-            fouls++;
-        }
-        if (x < 10) {
-            x = 10;
-            fouls++;
-        } else if (y < 10) {
-            y = 10;
-            fouls++;
-        }
+
+        hwall(-10, 800, 370, 360);
         hwall(-10, 100, 90, 80);
         hwall(-10, 100, 270, 260);
         hwall(90, 320, 195, 185);
         hwall(150, 370, 50, 40);
         hwall(150, 370, 120, 110);
         hwall(-10, 100, 100, 90);
-        hwall(150, 465, 300, 290);
-        hwall(380, 465, 230, 220);
-        hwall(465, 650, 140, 130);
+        hwall(150, 450, 300, 290);
+        hwall(300, 450, 230, 220);
+        hwall(440, 650, 140, 130);
         hwall(500, 690, 200, 190);
-        hwall(370, 530, 80, 70);
-        vwall(40, 140, 150, 140);
+        hwall(350, 530, 80, 70);
+
+        vwall(-10, 500, 700, 690);
+        vwall(40, 120, 150, 140);
         vwall(120, 550, 450, 440);
-        vwall(-20, 100, 500, 490);
-        vwall(20, 170, 590, 580);
-        vwall(170, 300, 530, 520);
+        vwall(-20, 80, 500, 490);
+        vwall(20, 140, 590, 580);
+        vwall(200, 300, 530, 520);
         vwall(240, 500, 600, 590);
     }
 

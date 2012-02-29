@@ -1,16 +1,16 @@
-package minigames.mazeGame;
+package minigames.scytheGame;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Maze {
 
-    private String maze = "mazePic.png";
     private int x;
     private int y;
     private Image image;
 
     public Maze() {
+        String maze = "mazePic.png";
         ImageIcon i = new ImageIcon(this.getClass().getResource(maze));
         image = i.getImage();
         x = 10;
