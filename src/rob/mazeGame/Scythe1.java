@@ -4,16 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-public class Scythe {
+public class Scythe1 {
     Random random = new Random();
+    int dx = 3;
+    int dy = 1;
     public static int x, y;
     private Image image;
 
-    public Scythe() {
+    public Scythe1() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("scythe.png"));
         image = ii.getImage();
-        int dx = random.nextInt(5) + 1;
-        int dy = random.nextInt(5) + 1;
+        edgeChoice();
+    }
+
+    public void move() {
+        x += dx;
+        y += dy;
+        if (x <= 0 || x >= 700) {
+            dx *= -1;
+        } else if (y <= 0 || y >= 350) {
+            dy *= -1;
+        }
     }
 
     private void edgeChoice() {
