@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Scythe1 {
-    int dx = 3;
-    int dy = 1;
+    int dx = 2;
+    int dy = 2;
     public static int x, y;
     private Image image;
 

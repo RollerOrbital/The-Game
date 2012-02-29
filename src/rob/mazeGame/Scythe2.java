@@ -6,8 +6,8 @@ import java.awt.*;
 public class Scythe2 {
     public static int x, y;
     private Image image;
-    int dx = 1;
-    int dy = 3;
+    int dx = 2;
+    int dy = 2;
 
     public Scythe2() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("scythe.png"));

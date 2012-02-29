@@ -38,8 +38,7 @@ public class Board extends JPanel implements ActionListener {
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
         g2d.drawImage(s1.getImage(), s1.getX(), s1.getY(), this);
         g2d.drawImage(s2.getImage(), s2.getX(), s2.getY(), this);
-        g2d.drawString("P = " + Player.x + ", " + Player.y, 100, 100);
-        g2d.drawString("" + (lowerZero(1000 - Player.fouls)), 50, 100);
+        g2d.drawString("" + lowerZero(1000 - Player.fouls), 50, 100);
         g2d.drawString(win, 50, 200);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
@@ -57,7 +56,14 @@ public class Board extends JPanel implements ActionListener {
         }
 
         if (Player.x > 600 && Player.x < 740 && Player.y > 250 && Player.y < 400) {
-            win = "YOU WIN, YOUR SCORE WAS " + (lowerZero(1000 - Player.fouls));
+            final int score = 1000 - Player.fouls;
+            win = "YOU WIN, YOUR SCORE WAS " + lowerZero(score);
+            Scythe1.x = 0;
+            Scythe2.x = 0;
+            s1.dx = 0;
+            s1.dy = 0;
+            s2.dx = 0;
+            s2.dy = 0;
         }
         repaint();
     }
