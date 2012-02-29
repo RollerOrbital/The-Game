@@ -10,8 +10,8 @@ public class Player {
     public static int fouls = 0;
     private int dx;
     private int dy;
-    private int x;
-    private int y;
+    public static int x;
+    public static int y;
     private Image image;
 
     public Player() {
@@ -25,14 +25,16 @@ public class Player {
     public void move() {
         x += dx;
         y += dy;
-        if (y > 425) {
-            y = 425;
+        if (y >= 200) {
+            y = 200;
             fouls++;
-        }
-        if (x < 10) {
+        } else if (x >= 690) {
+            x = 690;
+            fouls++;
+        } else if (x <= 10) {
             x = 10;
             fouls++;
-        } else if (y < 10) {
+        } else if (y <= 10) {
             y = 10;
             fouls++;
         }
