@@ -50,8 +50,12 @@ public class Map extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         player.move();
-        if (player.getX() == 10 && player.getY() > 78 && player.getY() < 90 && player.dx < 0 && player.room == "testArea") {
+        if (player.getX() == 10 && player.getY() >= 75 && player.getY() < 95 && player.dx < 0 && player.room == "testArea") {
+            player.x = 700;
             player.room = "testRoom";
+        } else if (player.getX() == 550 && player.getY() > 78 && player.getY() < 90 && player.dx > 0 && player.room == "testRoom") {
+            player.x = 10;
+            player.room = "testArea";
         }
         repaint();
     }

@@ -9,7 +9,7 @@ public class Player {
     public String room;
     public int dx;
     private int dy;
-    private int x;
+    public int x;
     private int y;
     private int movex;
     private int movey;
