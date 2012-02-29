@@ -49,6 +49,13 @@ public class Board extends JPanel implements ActionListener {
         player.move();
         s1.move();
         s2.move();
+        if (Math.abs(Player.x - Scythe1.x) < 40 && Math.abs(Player.y - Scythe1.y) < 40) {
+            Player.fouls += 3;
+        }
+        if (Math.abs(Player.x - Scythe2.x) < 40 && Math.abs(Player.y - Scythe2.y) < 40) {
+            Player.fouls += 3;
+        }
+
         if (Player.x > 600 && Player.x < 740 && Player.y > 250 && Player.y < 400) {
             win = "YOU WIN, YOUR SCORE WAS " + (lowerZero(1000 - Player.fouls));
         }

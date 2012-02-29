@@ -2,10 +2,8 @@ package rob.mazeGame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
 public class Scythe2 {
-    Random random = new Random();
     public static int x, y;
     private Image image;
     int dx = 1;
@@ -14,7 +12,8 @@ public class Scythe2 {
     public Scythe2() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("scythe.png"));
         image = ii.getImage();
-        edgeChoice();
+        x = 0;
+        y = 200;
     }
 
     public void move() {
@@ -38,19 +37,5 @@ public class Scythe2 {
 
     public Image getImage() {
         return image;
-    }
-
-    private void edgeChoice() {
-        int x = random.nextInt(700);
-        int y = random.nextInt(360);
-
-        if (y != 0 && x != 0) {
-            int choice = random.nextInt(2);
-            if (choice == 0) {
-                y = 0;
-            } else {
-                x = 0;
-            }
-        }
     }
 }
