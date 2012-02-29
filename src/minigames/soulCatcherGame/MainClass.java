@@ -1,4 +1,4 @@
-package minigames.bombGame;
+package minigames.soulCatcherGame;
 
 import javax.swing.*;
 
