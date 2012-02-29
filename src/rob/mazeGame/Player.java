@@ -25,19 +25,8 @@ public class Player {
     public void move() {
         x += dx;
         y += dy;
-        if (y >= 200) {
-            y = 200;
-            fouls++;
-        } else if (x >= 690) {
-            x = 690;
-            fouls++;
-        } else if (x <= 10) {
-            x = 10;
-            fouls++;
-        } else if (y <= 10) {
-            y = 10;
-            fouls++;
-        }
+
+        hwall(-10, 800, 370, 360);
         hwall(-10, 100, 90, 80);
         hwall(-10, 100, 270, 260);
         hwall(90, 320, 195, 185);
@@ -49,6 +38,7 @@ public class Player {
         hwall(465, 650, 140, 130);
         hwall(500, 690, 200, 190);
         hwall(370, 530, 80, 70);
+        vwall(-10, 500, 700, 690);
         vwall(40, 140, 150, 140);
         vwall(120, 550, 450, 440);
         vwall(-20, 100, 500, 490);
