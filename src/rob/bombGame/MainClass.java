@@ -8,7 +8,7 @@ public class MainClass extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(725, 425);
         setLocationRelativeTo(null);
-        setTitle("Bomb Game");
+        setTitle("GoodSoul Game");
         setResizable(true);
         setVisible(true);
     }

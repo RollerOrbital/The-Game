@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    public static int bombs;
+    public static int souls;
     public static int score;
     private int dy;
     public int x;
@@ -13,7 +13,7 @@ public class Player {
     private Image image;
 
     public Player() {
-        bombs = 0;
+        souls = 0;
         score = 0;
         String player = "player.png";
         ImageIcon i = new ImageIcon(this.getClass().getResource(player));
