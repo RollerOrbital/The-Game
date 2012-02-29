@@ -11,8 +11,8 @@ public class BadSoul {
     private Image image;
 
     public BadSoul() {
-        dx = lowerOne(random.nextInt(4));
-        dy = lowerOne(random.nextInt(4));
+        dx = GoodSoul.lowerOne(random.nextInt(4));
+        dy = GoodSoul.lowerOne(random.nextInt(4));
         x = 0;
         y = random.nextInt(300) + 50;
         ImageIcon i = new ImageIcon(this.getClass().getResource("badSoul.png"));
@@ -25,14 +25,6 @@ public class BadSoul {
 
         if (y <= 10 || y >= 350) {
             dy *= -1;
-        }
-    }
-
-    public int lowerOne(int x) {
-        if (x < 1) {
-            return 1;
-        } else {
-            return x;
         }
     }
 

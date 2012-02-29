@@ -28,9 +28,17 @@ public class GoodSoul {
         }
     }
 
-    public int lowerOne(int x) {
+    public static int lowerOne(int x) {
         if (x < 1) {
             return 1;
+        } else {
+            return x;
+        }
+    }
+
+    public static int lowerZero(int x) {
+        if (x < 1) {
+            return 0;
         } else {
             return x;
         }
