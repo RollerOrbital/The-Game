@@ -115,28 +115,24 @@ public class Player {
         }
     }
 
-    public void horizontalWall(int xStart, int xEnd, int yStart, int yEnd, int xExtra, int yExtra) {
-        if (x >= xStart && x < xEnd && y >= yStart && y <= yEnd) {
-            if (y > avg(yStart, yEnd) - yExtra) {
-                y = yEnd - yExtra;
-            } else if (y < avg(yStart, yEnd) - yExtra) {
-                y = yStart - yExtra;
+    private void hwall(int xs, int xe, int ys, int ye) {
+        if ((x >= xs && x < xe) && (y <= ys && y >= ye)) {
+            if (y > (ys + ye) / 2) {
+                y = ys;
+            } else if (y < (ys + ye) / 2) {
+                y = ye;
             }
         }
     }
 
-    public void verticalWall(int xStart, int xEnd, int yStart, int yEnd, int xExtra, int yExtra) {
-        if ((x >= xStart && x < xEnd) && (y >= yStart && y <= yEnd)) {
-            if (x > avg(xStart, xEnd) - xExtra) {
-                x = xEnd - xExtra;
-            } else if (x < avg(xStart, xEnd) - xExtra) {
-                x = xStart - xExtra;
+    public void vwall(int ys, int ye, int xs, int xe) {
+        if ((y >= ys && y < ye) && (x <= xs && x >= xe)) {
+            if (x > (xs + xe) / 2) {
+                x = xs;
+            } else if (x < (xs + xe) / 2) {
+                x = xe;
             }
         }
-    }
-
-    public int avg(int x, int y) {
-        return (x + y) / 2;
     }
 
     public int getX() {
