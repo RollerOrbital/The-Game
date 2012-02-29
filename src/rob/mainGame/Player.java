@@ -6,7 +6,8 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
-    private int dx;
+    public String room;
+    public int dx;
     private int dy;
     private int x;
     private int y;
@@ -26,6 +27,7 @@ public class Player {
     private boolean rightheld;
 
     public Player() {
+        room = "testArea";
         ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
         image = ii.getImage();
         x = 80;
@@ -103,6 +105,9 @@ public class Player {
             AnimationCounter += 1;
         }
 
+        //boundaries
+
+        //constant
         if (y > 320) {
             y = 320;
         } else if (y < 10) {
@@ -113,9 +118,17 @@ public class Player {
         } else if (x > 550) {
             x = 550;
         }
+
+        //testArea
+        if (room == "testArea") {
+            hwall(32 * 2, 32 * 7, 32 * 3, 32 * 3 - 10);
+            hwall(32 * 2, 32 * 7, 32 * 5, 32 * 5 - 10);
+
+            vwall(32 * 3, 32 * 5, 32 * 7, 32 * 7 - 10);
+        }
     }
 
-    private void hwall(int xs, int xe, int ys, int ye) {
+    public void hwall(int xs, int xe, int ys, int ye) {
         if ((x >= xs && x < xe) && (y <= ys && y >= ye)) {
             if (y > (ys + ye) / 2) {
                 y = ys;
