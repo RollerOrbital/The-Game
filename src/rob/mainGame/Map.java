@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 
 public class Map extends JPanel implements ActionListener {
 
-    private TestRoomTwo tr2;
+    private battleRoom tr2;
     private TestRoom tr;
     private TestArea ta;
     public static Player player;
@@ -23,7 +23,7 @@ public class Map extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
-        tr2 = new TestRoomTwo();
+        tr2 = new battleRoom();
         tr = new TestRoom();
         ta = new TestArea();
         player = new Player();
@@ -42,7 +42,7 @@ public class Map extends JPanel implements ActionListener {
             g2d.drawImage(ta.getImage(), ta.getX(), ta.getY(), this);
         } else if (player.room.equals("testRoom")) {
             g2d.drawImage(tr.getImage(), tr.getX(), tr.getY(), this);
-        } else if (player.room.equals("testRoomTwo")) {
+        } else if (player.room.equals("battleRoom")) {
             g2d.drawImage(tr2.getImage(), ta.getX(), ta.getY(), this);
         }
 
@@ -65,7 +65,7 @@ public class Map extends JPanel implements ActionListener {
         } else if (player.getY() == 350 && player.getX() > 200 && player.getX() < 240 && player.dy > 0 && player.room.equals("testRoom")) {
             player.y = 10;
             player.x = 110;
-            player.room = "testRoomTwo";
+            player.room = "battleRoom";
         } else if (player.getY() == 10 && player.getX() > 95 && player.getX() < 135 && player.dy < 0 && player.room.equals("testRoomTwo")) {
             player.y = 350;
             player.x = 210;

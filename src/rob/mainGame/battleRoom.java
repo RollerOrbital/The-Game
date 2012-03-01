@@ -3,12 +3,12 @@ package rob.mainGame;
 import javax.swing.*;
 import java.awt.*;
 
-public class TestRoomTwo {
+public class battleRoom {
     private Image image;
     public static int x, y;
 
-    public TestRoomTwo() {
-        ImageIcon i = new ImageIcon(this.getClass().getResource("testRoomTwo.png"));
+    public battleRoom() {
+        ImageIcon i = new ImageIcon(this.getClass().getResource("battleRoom.png"));
         image = i.getImage();
         x = 0;
         y = 0;
