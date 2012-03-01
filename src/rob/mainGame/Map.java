@@ -57,7 +57,7 @@ public class Map extends JPanel implements ActionListener {
         g2d.drawString(CombatEngine.enemyStrikes, 100, 315);
         g2d.drawString(CombatEngine.enemyShoots, 100, 315);
         g2d.drawString(CombatEngine.enemyMages, 100, 315);
-        if (player.room == droid.room) {
+        if (player.room.equals(droid.room)) {
             g2d.drawImage(droid.getImage(), droid.getX() + 4, droid.getY() - 20, (droid.getX() + 4 + (droid.getWidth() * 2)), (droid.getY() + (droid.getHeight() * 2) - 20), droid.getSprFrame(), droid.getSprDir(), (droid.getSprFrame() + droid.getWidth()), (droid.getSprDir() + droid.getHeight()), this);
         }
         g2d.drawImage(player.getImage(), player.getX() + 4, player.getY() - 20, (player.getX() + 4 + (player.getWidth() * 2)), (player.getY() + (player.getHeight() * 2) - 20), player.getSprFrame(), player.getSprDir(), (player.getSprFrame() + player.getWidth()), (player.getSprDir() + player.getHeight()), this);
