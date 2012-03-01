@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class IDroid {
-    //movement stats:
+
+    public String room = "battleRoom";
+
     public int dx;
     public int dy;
     public int x;
@@ -54,14 +56,14 @@ public class IDroid {
         mp = 40;
         basemp = 40;
 
-        x = 100;
-        y = 100;
+        x = 270;
+        y = 170;
 
         AnimationFrame = new int[4];
         AnimationFrame[0] = 0;
-        AnimationFrame[1] = 1;
+        AnimationFrame[1] = 2;
         AnimationFrame[2] = 0;
-        AnimationFrame[3] = 2;
+        AnimationFrame[3] = 1;
         AnimationCounter = 0;
         AnimationSpeed = 1;
         sprframe = 0;

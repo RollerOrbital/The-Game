@@ -65,7 +65,7 @@ public class Player {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
         image = ii.getImage();
         x = 10;
-        y = 10;
+        y = 20;
         dx = 0;
         dy = 0;
         movex = 0;
@@ -112,30 +112,8 @@ public class Player {
             dx = 0;
             dy = 0;
         }
-
-        if ((rightheld) || (leftheld) || (upheld) || (downheld)) {
-            if (AnimationSpeed == 0) {
-                AnimationSpeed = 1;
-            }
-        } else {
-            if ((movex == 0) && (movey == 0)) {
-                AnimationSpeed = 0;
-                if (sprframe != 0 && sprframe != 2) {
-                    sprframe--;
-                }
-            }
-        }
-
-        if (AnimationCounter == 16) {
-            if ((sprframe + AnimationSpeed) > 3) {
-                sprframe = 0;
-            } else {
-                sprframe += AnimationSpeed;
-            }
-            AnimationCounter = 0;
-        } else {
-            AnimationCounter += 1;
-        }
+        findAnimationSpeed();
+        setAnimationSpeed();
 
         if (y > 350) {
             y = 350;
@@ -160,6 +138,34 @@ public class Player {
             hwall(0, 300, 180, 170);
             vwall(0, 180, 10, 0);
             vwall(0, 180, 300, 290);
+        }
+    }
+
+    private void setAnimationSpeed() {
+        if (AnimationCounter == 16) {
+            if ((sprframe + AnimationSpeed) > 3) {
+                sprframe = 0;
+            } else {
+                sprframe += AnimationSpeed;
+            }
+            AnimationCounter = 0;
+        } else {
+            AnimationCounter += 1;
+        }
+    }
+
+    private void findAnimationSpeed() {
+        if ((rightheld) || (leftheld) || (upheld) || (downheld)) {
+            if (AnimationSpeed == 0) {
+                AnimationSpeed = 1;
+            }
+        } else {
+            if ((movex == 0) && (movey == 0)) {
+                AnimationSpeed = 0;
+                if (sprframe != 0 && sprframe != 2) {
+                    sprframe--;
+                }
+            }
         }
     }
 
