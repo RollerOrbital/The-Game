@@ -12,7 +12,7 @@ public class MainClass extends JFrame {
         setSize(650, 400);
         setLocationRelativeTo(null);
         setTitle("RESIST");
-        setResizable(true);
+        setResizable(false);
         setVisible(true);
     }
 
