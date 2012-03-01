@@ -62,9 +62,13 @@ public class Map extends JPanel implements ActionListener {
         } else if (player.getX() == 550 && player.getY() > 78 && player.getY() < 90 && player.dx > 0 && player.room.equals("testRoom")) {
             player.x = 10;
             player.room = "testArea";
-        } else if (player.getY() == 350 && player.getX() > 200 && player.getX() < 240) {
+        } else if (player.getY() == 350 && player.getX() > 200 && player.getX() < 240 && player.dy > 0 && player.room.equals("testRoom")) {
             player.y = 10;
+            player.x = 110;
             player.room = "testRoomTwo";
+        } else if (player.getY() == 10 && player.getX() > 100 && player.getX() < 130 && player.dy < 0 && player.room.equals("testRoomTwo")) {
+            player.y = 350;
+            player.room = "testRoom";
         }
         repaint();
     }

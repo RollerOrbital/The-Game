@@ -9,7 +9,7 @@ public class Player {
     //movement stats:
     public String room;
     public int dx;
-    private int dy;
+    public int dy;
     public int x;
     public int y;
     private int movex;
