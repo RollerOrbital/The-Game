@@ -47,8 +47,16 @@ public class Map extends JPanel implements ActionListener {
             g2d.drawImage(tr2.getImage(), ta.getX(), ta.getY(), this);
         }
 
+        g2d.drawLine(0, 300, 650, 300);
+        g2d.setColor(Color.BLUE);
+        g2d.drawString(CombatEngine.playerStrikes, 100, 315);
+        g2d.drawString(CombatEngine.playerShoots, 100, 315);
+        g2d.drawString(CombatEngine.playerMages, 100, 315);
+        g2d.drawString(CombatEngine.enemyStrikes, 100, 315);
+        g2d.drawString(CombatEngine.enemyShoots, 100, 315);
+        g2d.drawString(CombatEngine.enemyMages, 100, 315);
         g2d.drawImage(player.getImage(), player.getX() + 4, player.getY() - 20, (player.getX() + 4 + (player.getWidth() * 2)), (player.getY() + (player.getHeight() * 2) - 20), player.getSprFrame(), player.getSprDir(), (player.getSprFrame() + player.getWidth()), (player.getSprDir() + player.getHeight()), this);
-        g2d.drawString(("Position = " + player.getX() + ", " + player.getY()), 300, 300);
+        g2d.drawString(("Position = " + player.getX() + ", " + player.getY()), 10, 315);
 
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
@@ -67,7 +75,7 @@ public class Map extends JPanel implements ActionListener {
             player.y = 10;
             player.x = 110;
             player.room = "battleRoom";
-        } else if (player.getY() == 10 && player.getX() > 95 && player.getX() < 135 && player.dy < 0 && player.room.equals("testRoomTwo")) {
+        } else if (player.getY() == 10 && player.getX() > 95 && player.getX() < 135 && player.dy < 0 && player.room.equals("battleRoom")) {
             player.y = 350;
             player.x = 210;
             player.room = "testRoom";

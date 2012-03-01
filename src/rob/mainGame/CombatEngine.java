@@ -4,10 +4,14 @@ import java.util.Random;
 
 public class CombatEngine {
 
-    public String playerStrikes = "";
-    public String enemyStrikes = "";
-    public String playerShoots = "";
-    public String enemyShoots = "";
+    public static String playerStrikes = "";
+    public static String enemyStrikes = "";
+    public static String playerShoots = "";
+    public static String enemyShoots = "";
+    public static String playerMages = "";
+    public static String enemyMages = "";
+
+    int moves = 0;
 
     Random random = new Random();
     Player p;
@@ -48,33 +52,53 @@ public class CombatEngine {
     public void playerMages() {
         int damage = p.cognition / 2 + random.nextInt(p.fortune);
         e.hp -= damage;
-        playerShoots = "You fire a spell at your opponent for " + damage + " damage.\nThey have " + lowerZero(e.hp) + " hp remaining";
+        playerMages = "You fire a spell at your opponent for " + damage + " damage.\nThey have " + lowerZero(e.hp) + " hp remaining";
     }
 
     public void enemyMages() {
         int damage = e.cognition / 2 + random.nextInt(e.fortune);
         p.hp -= damage;
-        enemyShoots = "Your opponent fires a spell at you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining";
+        enemyMages = "Your opponent fires a spell at you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining";
     }
 
     public void basicCombat() {
         if (p.twitch >= e.twitch) {
-            if (Math.abs(p.x - e.x) <= 40 && Math.abs(p.y - e.y) <= 40) {
-                playerStrike();
-            } else if (Math.abs(p.x - e.x) <= 40 || Math.abs(p.y - e.y) <= 40) {
-                playerShoots();
-            } else {
-                playerMages();
-            }
+            playerCombatRun();
+            enemyCombatRun();
         } else {
-            if (Math.abs(p.x - e.x) <= 40 && Math.abs(p.y - e.y) <= 40) {
-                enemyStrikes();
-            } else if (Math.abs(p.x - e.x) <= 40 || Math.abs(p.y - e.y) <= 40) {
-                enemyShoots();
-            } else {
-                enemyMages();
-            }
+            enemyCombatRun();
+            playerCombatRun();
         }
     }
 
+    private void enemyCombatRun() {
+        if (Math.abs(p.x - e.x) <= 40 && Math.abs(p.y - e.y) <= 40) {
+            enemyStrikes();
+        } else if (Math.abs(p.x - e.x) <= 40 || Math.abs(p.y - e.y) <= 40) {
+            enemyShoots();
+        } else {
+            enemyMages();
+        }
+    }
+
+    private void playerCombatRun() {
+        if (Math.abs(p.x - e.x) <= 40 && Math.abs(p.y - e.y) <= 40) {
+            playerStrike();
+        } else if (Math.abs(p.x - e.x) <= 40 || Math.abs(p.y - e.y) <= 40) {
+            playerShoots();
+        } else {
+            playerMages();
+        }
+    }
+
+    public void playerMove() {
+        if (moves <= p.pace) {
+            p.move();
+            moves++;
+        }
+    }
+
+    public void enemyMove() {
+
+    }
 }

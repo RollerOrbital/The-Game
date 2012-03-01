@@ -29,7 +29,7 @@ public class Player {
 
     //battle stats:
     public int vigor;
-    private int pace;
+    public int pace;
     public int fortune;
     public int twitch;
     public int aegis;
@@ -65,8 +65,8 @@ public class Player {
         room = "battleRoom";
         ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
         image = ii.getImage();
-        x = 80;
-        y = 80;
+        x = 10;
+        y = 10;
         dx = 0;
         dy = 0;
         movex = 0;
@@ -162,7 +162,7 @@ public class Player {
         } else if (room.equals("testRoom")) {
             hwall(576, 768, 128, 118);
             vwall(0, 128, 576, 566);
-        } else if (room.equals("testRoomTwo")) {
+        } else if (room.equals("battleRoom")) {
             hwall(0, 300, 10, 0);
             hwall(0, 300, 180, 170);
             vwall(0, 180, 10, 0);
