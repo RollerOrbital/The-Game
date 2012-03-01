@@ -10,12 +10,14 @@ import java.awt.event.KeyEvent;
 
 public class Map extends JPanel implements ActionListener {
 
+    private String levelup = "";
+
     private CombatEngine ce;
-    private battleRoom tr2;
+    private battleRoom br;
     private TestRoom tr;
     private TestArea ta;
     public static Player player;
-    public static IDroid droid;
+    public static IDroid iDroid;
 
     public Map() {
 
@@ -25,10 +27,10 @@ public class Map extends JPanel implements ActionListener {
         setDoubleBuffered(true);
 
         ce = new CombatEngine();
-        tr2 = new battleRoom();
+        br = new battleRoom();
         tr = new TestRoom();
         ta = new TestArea();
-        droid = new IDroid();
+        iDroid = new IDroid();
         player = new Player();
 
         Timer timer = new Timer(5, this);
@@ -47,7 +49,7 @@ public class Map extends JPanel implements ActionListener {
             g2d.drawImage(tr.getImage(), tr.getX(), tr.getY(), this);
         } else if (player.room.equals("battleRoom")) {
             Player.inCombat = true;
-            g2d.drawImage(tr2.getImage(), ta.getX(), ta.getY(), this);
+            g2d.drawImage(br.getImage(), ta.getX(), ta.getY(), this);
         }
 
         g2d.drawLine(0, 300, 650, 300);
@@ -58,8 +60,8 @@ public class Map extends JPanel implements ActionListener {
         g2d.drawString(CombatEngine.enemyStrikes, 100, 315);
         g2d.drawString(CombatEngine.enemyShoots, 100, 315);
         g2d.drawString(CombatEngine.enemyMages, 100, 315);
-        if (player.room.equals(droid.room)) {
-            g2d.drawImage(droid.getImage(), droid.getX() + 4, droid.getY() - 20, (droid.getX() + 4 + (droid.getWidth() * 2)), (droid.getY() + (droid.getHeight() * 2) - 20), droid.getSprFrame(), droid.getSprDir(), (droid.getSprFrame() + droid.getWidth()), (droid.getSprDir() + droid.getHeight()), this);
+        if (player.room.equals(iDroid.room)) {
+            g2d.drawImage(iDroid.getImage(), iDroid.getX() + 4, iDroid.getY() - 20, (iDroid.getX() + 4 + (iDroid.getWidth() * 2)), (iDroid.getY() + (iDroid.getHeight() * 2) - 20), iDroid.getSprFrame(), iDroid.getSprDir(), (iDroid.getSprFrame() + iDroid.getWidth()), (iDroid.getSprDir() + iDroid.getHeight()), this);
         }
         g2d.drawImage(player.getImage(), player.getX() + 4, player.getY() - 20, (player.getX() + 4 + (player.getWidth() * 2)), (player.getY() + (player.getHeight() * 2) - 20), player.getSprFrame(), player.getSprDir(), (player.getSprFrame() + player.getWidth()), (player.getSprDir() + player.getHeight()), this);
         g2d.drawString(("Position = " + player.getX() + ", " + player.getY()), 10, 315);
@@ -89,15 +91,21 @@ public class Map extends JPanel implements ActionListener {
             }
         } else {
             player.mp = player.basemp;
-            droid.mp = droid.basemp;
+            iDroid.mp = iDroid.basemp;
             player.hp = player.basehp;
-            droid.hp = droid.basehp;
-            while (player.hp > 0 && droid.hp > 0) {
+            iDroid.hp = iDroid.basehp;
+            while (player.hp > 0 && iDroid.hp > 0) {
                 ce.basicCombat();
             }
-            player.xp += (droid.aegis + droid.cognition / 10 + droid.fortune + droid.pace + droid.twitch + droid.scope + droid.vigor) / 7 * droid.baseYield;
-            if (player.xp >= player.levelUpxp) {
-                player.level++;
+            if (player.hp > 0) {
+                player.xp += (iDroid.aegis + iDroid.cognition / 10 + iDroid.fortune + iDroid.pace + iDroid.twitch + iDroid.scope + iDroid.vigor) / 7 * iDroid.baseYield;
+                if (player.xp >= player.levelUpxp) {
+                    player.level++;
+                    levelup = "You leveled up!\nYou are now level " + player.level + "!";
+                }
+            } else {
+                String[] asd = {"a"};
+                rob.scytheGame.MainClass.main(asd);
             }
             Player.inCombat = false;
         }
@@ -116,3 +124,28 @@ public class Map extends JPanel implements ActionListener {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,18 +4,16 @@ import java.util.Random;
 
 public class CombatEngine {
 
+    Random random = new Random();
     public static String playerStrikes = "";
     public static String enemyStrikes = "";
     public static String playerShoots = "";
     public static String enemyShoots = "";
     public static String playerMages = "";
     public static String enemyMages = "";
-
-    int moves = 0;
-
-    Random random = new Random();
-    Player p;
-    IDroid i;
+    private int moves;
+    private Player p;
+    private IDroid i;
 
     public int lowerZero(int x) {
         if (x < 0) {
@@ -26,8 +24,9 @@ public class CombatEngine {
     }
 
     public CombatEngine() {
+        moves = 0;
         p = Map.player;
-        i = Map.droid;
+        i = Map.iDroid;
     }
 
     public void playerStrike() {

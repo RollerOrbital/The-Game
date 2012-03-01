@@ -110,7 +110,11 @@ public class Player {
         }
         findAnimationSpeed();
         setAnimationSpeed();
+        standardBounds();
+        roomWalls();
+    }
 
+    private void standardBounds() {
         if (y > 350) {
             y = 350;
         } else if (y < 10) {
@@ -121,7 +125,9 @@ public class Player {
         } else if (x > 550) {
             x = 550;
         }
+    }
 
+    private void roomWalls() {
         if (room.equals("testArea")) {
             hwall(64, 224, 96, 86);
             hwall(64, 224, 160, 150);
