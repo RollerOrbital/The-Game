@@ -60,6 +60,7 @@ public class Map extends JPanel implements ActionListener {
         g2d.drawString(CombatEngine.enemyStrikes, 100, 315);
         g2d.drawString(CombatEngine.enemyShoots, 100, 315);
         g2d.drawString(CombatEngine.enemyMages, 100, 315);
+        g2d.drawString(levelup, 100, 315);
         if (player.room.equals(iDroid.room)) {
             g2d.drawImage(iDroid.getImage(), iDroid.getX() + 4, iDroid.getY() - 20, (iDroid.getX() + 4 + (iDroid.getWidth() * 2)), (iDroid.getY() + (iDroid.getHeight() * 2) - 20), iDroid.getSprFrame(), iDroid.getSprDir(), (iDroid.getSprFrame() + iDroid.getWidth()), (iDroid.getSprDir() + iDroid.getHeight()), this);
         }
