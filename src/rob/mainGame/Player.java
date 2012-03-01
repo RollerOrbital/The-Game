@@ -11,7 +11,7 @@ public class Player {
     public int dx;
     private int dy;
     public int x;
-    private int y;
+    public int y;
     private int movex;
     private int movey;
     private int width;
@@ -128,8 +128,8 @@ public class Player {
         //boundaries
 
         //constant
-        if (y > 320) {
-            y = 320;
+        if (y > 350) {
+            y = 350;
         } else if (y < 10) {
             y = 10;
         }
@@ -143,8 +143,15 @@ public class Player {
         if (room.equals("testArea")) {
             hwall(32 * 2, 32 * 7, 32 * 3, 32 * 3 - 10);
             hwall(32 * 2, 32 * 7, 32 * 5, 32 * 5 - 10);
-
             vwall(32 * 3, 32 * 5, 32 * 7, 32 * 7 - 10);
+        } else if (room.equals("testRoom")) {
+            hwall(32 * 18, 32 * 24, 32 * 4, 32 * 4 - 10);
+            vwall(32 * 0, 32 * 4, 32 * 18, 32 * 18 - 10);
+        } else if (room.equals("testRoomTwo")) {
+            hwall(0, 300, 10, 0);
+            hwall(0, 300, 180, 170);
+            vwall(0, 180, 10, 0);
+            vwall(0, 180, 300, 290);
         }
     }
 
