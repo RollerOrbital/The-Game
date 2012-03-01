@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
+    //movement stats:
     public String room;
     public int dx;
     private int dy;
@@ -26,7 +27,26 @@ public class Player {
     private boolean leftheld;
     private boolean rightheld;
 
+    //battle stats:
+    private int vigor, pace, fortune, agility, aegis, xp, level, levelUpxp;
+    private int hp, basehp, mp, basemp;
+
     public Player() {
+
+        hp = 100;
+        basehp = 100;
+        mp = 100;
+        basemp = 100;
+
+        vigor = 15;
+        pace = 3;
+        fortune = 10;
+        agility = 10;
+        aegis = 5;
+        xp = 0;
+        level = 1;
+        levelUpxp = level * level + 40;
+
         room = "testArea";
         ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
         image = ii.getImage();
@@ -120,7 +140,7 @@ public class Player {
         }
 
         //testArea
-        if (room == "testArea") {
+        if (room.equals("testArea")) {
             hwall(32 * 2, 32 * 7, 32 * 3, 32 * 3 - 10);
             hwall(32 * 2, 32 * 7, 32 * 5, 32 * 5 - 10);
 

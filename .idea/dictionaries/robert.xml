@@ -1,9 +1,13 @@
 <component name="ProjectDictionaryState">
   <dictionary name="robert">
     <words>
+      <w>basehp</w>
+      <w>basemp</w>
       <w>downheld</w>
       <w>heptahedron</w>
       <w>hwall</w>
+      <w>idroidbasic</w>
+      <w>immer</w>
       <w>ipod</w>
       <w>leftheld</w>
       <w>movex</w>
@@ -18,6 +22,7 @@
       <w>riotshield</w>
       <w>rweapon</w>
       <w>swall</w>
+      <w>upxp</w>
       <w>vwall</w>
       <w>xpos</w>
       <w>xsquare</w>
