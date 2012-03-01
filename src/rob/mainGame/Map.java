@@ -64,21 +64,25 @@ public class Map extends JPanel implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
-        player.move();
-        if (player.getX() == 10 && player.getY() >= 75 && player.getY() < 95 && player.dx < 0 && player.room.equals("testArea")) {
-            player.x = 700;
-            player.room = "testRoom";
-        } else if (player.getX() == 550 && player.getY() > 78 && player.getY() < 90 && player.dx > 0 && player.room.equals("testRoom")) {
-            player.x = 10;
-            player.room = "testArea";
-        } else if (player.getY() == 350 && player.getX() > 200 && player.getX() < 240 && player.dy > 0 && player.room.equals("testRoom")) {
-            player.y = 10;
-            player.x = 110;
-            player.room = "battleRoom";
-        } else if (player.getY() == 10 && player.getX() > 95 && player.getX() < 135 && player.dy < 0 && player.room.equals("battleRoom")) {
-            player.y = 350;
-            player.x = 210;
-            player.room = "testRoom";
+        if (Player.inCombat == false) {
+            player.move();
+            if (player.getX() == 10 && player.getY() >= 75 && player.getY() < 95 && player.dx < 0 && player.room.equals("testArea")) {
+                player.x = 700;
+                player.room = "testRoom";
+            } else if (player.getX() == 550 && player.getY() > 78 && player.getY() < 90 && player.dx > 0 && player.room.equals("testRoom")) {
+                player.x = 10;
+                player.room = "testArea";
+            } else if (player.getY() == 350 && player.getX() > 200 && player.getX() < 240 && player.dy > 0 && player.room.equals("testRoom")) {
+                player.y = 10;
+                player.x = 110;
+                player.room = "battleRoom";
+            } else if (player.getY() == 10 && player.getX() > 95 && player.getX() < 135 && player.dy < 0 && player.room.equals("battleRoom")) {
+                player.y = 350;
+                player.x = 210;
+                player.room = "testRoom";
+            }
+        } else {
+            CombatEngine.basicCombat();
         }
         repaint();
     }

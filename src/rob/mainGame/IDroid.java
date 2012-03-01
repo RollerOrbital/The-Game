@@ -20,7 +20,7 @@ public class IDroid {
     private int AnimationSpeed;
 
     public int vigor;
-    private int pace;
+    public int pace;
     public int fortune;
     public int twitch;
     public int aegis;

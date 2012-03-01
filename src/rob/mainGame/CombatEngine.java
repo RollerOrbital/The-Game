@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class CombatEngine {
 
+
     public static String playerStrikes = "";
     public static String enemyStrikes = "";
     public static String playerShoots = "";
@@ -63,10 +64,14 @@ public class CombatEngine {
 
     public void basicCombat() {
         if (p.twitch >= e.twitch) {
+            playerMove();
             playerCombatRun();
+            enemyMove();
             enemyCombatRun();
         } else {
+            enemyMove();
             enemyCombatRun();
+            playerMove();
             playerCombatRun();
         }
     }
@@ -99,6 +104,23 @@ public class CombatEngine {
     }
 
     public void enemyMove() {
+        int stepsReqR = Math.abs(p.x + 1 - e.x) + Math.abs(p.y - e.y);
+        int stepsReqL = Math.abs(p.x - 1 - e.x) + Math.abs(p.y - e.y);
+        int stepsReqU = Math.abs(p.x - e.x) + Math.abs(p.y - 1 - e.y);
+        int stepsReqD = Math.abs(p.x - e.x) + Math.abs(p.y + 1 - e.y);
 
+        if (stepsReqR <= e.pace) {
+            e.x = p.x + 1;
+            e.y = p.y;
+        } else if (stepsReqL <= e.pace) {
+            e.x = p.x - 1;
+            e.y = p.y;
+        } else if (stepsReqU <= e.pace) {
+            e.x = p.x;
+            e.y = p.y - 1;
+        } else if (stepsReqD <= e.pace) {
+            e.x = p.x;
+            e.y = p.y + 1;
+        }
     }
 }

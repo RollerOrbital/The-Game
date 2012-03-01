@@ -27,6 +27,8 @@ public class Player {
     private boolean leftheld;
     private boolean rightheld;
 
+    public static boolean inCombat = false;
+
     //battle stats:
     public int vigor;
     public int pace;
