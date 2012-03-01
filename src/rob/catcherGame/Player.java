@@ -1,4 +1,4 @@
-package minigames.soulCatcherGame;
+package rob.catcherGame;
 
 import javax.swing.*;
 import java.awt.*;

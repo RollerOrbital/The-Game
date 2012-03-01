@@ -1,17 +1,18 @@
-package minigames.mazeGame;
+package minigames.catcherGame;
 
 import javax.swing.*;
 
 public class MainClass extends JFrame {
 
+    public int sq;
+
     public MainClass() {
-
-        add(new Board());
-
+        add(new Arena());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(725, 425);
+        sq = 32;
+        setSize(sq * 23, sq * 14);
         setLocationRelativeTo(null);
-        setTitle("Maze Game");
+        setTitle("Catcher Game");
         setResizable(true);
         setVisible(true);
     }

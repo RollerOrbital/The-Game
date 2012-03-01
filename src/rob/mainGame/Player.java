@@ -6,10 +6,12 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
-    private int dx;
-    private int dy;
-    private int x;
-    private int y;
+    //movement stats:
+    public String room;
+    public int dx;
+    public int dy;
+    public int x;
+    public int y;
     private int movex;
     private int movey;
     private int width;
@@ -25,11 +27,48 @@ public class Player {
     private boolean leftheld;
     private boolean rightheld;
 
+    public static boolean inCombat = false;
+
+    //battle stats:
+    public int vigor;
+    public int pace;
+    public int fortune;
+    public int twitch;
+    public int aegis;
+    public int scope;
+    public int cognition;
+    private int xp;
+    private int level;
+    private int levelUpxp;
+    public int hp;
+    private int basehp;
+    private int mp;
+    private int basemp;
+
     public Player() {
+
+        hp = 100;
+        basehp = 100;
+        mp = 100;
+        basemp = 100;
+
+        vigor = 15;
+        pace = 3;
+        fortune = 10;
+        twitch = 10;
+        aegis = 5;
+        scope = 10;
+        cognition = 50;
+
+        xp = 0;
+        level = 1;
+        levelUpxp = level * level + 40;
+
+        room = "battleRoom";
         ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
         image = ii.getImage();
-        x = 80;
-        y = 80;
+        x = 10;
+        y = 10;
         dx = 0;
         dy = 0;
         movex = 0;
@@ -103,8 +142,11 @@ public class Player {
             AnimationCounter += 1;
         }
 
-        if (y > 320) {
-            y = 320;
+        //boundaries
+
+        //constant
+        if (y > 350) {
+            y = 350;
         } else if (y < 10) {
             y = 10;
         }
@@ -113,30 +155,41 @@ public class Player {
         } else if (x > 550) {
             x = 550;
         }
+
+        //testArea
+        if (room.equals("testArea")) {
+            hwall(64, 224, 96, 86);
+            hwall(64, 224, 160, 150);
+            vwall(96, 160, 224, 214);
+        } else if (room.equals("testRoom")) {
+            hwall(576, 768, 128, 118);
+            vwall(0, 128, 576, 566);
+        } else if (room.equals("battleRoom")) {
+            hwall(0, 300, 10, 0);
+            hwall(0, 300, 180, 170);
+            vwall(0, 180, 10, 0);
+            vwall(0, 180, 300, 290);
+        }
     }
 
-    public void horizontalWall(int xStart, int xEnd, int yStart, int yEnd, int xExtra, int yExtra) {
-        if (x >= xStart && x < xEnd && y >= yStart && y <= yEnd) {
-            if (y > avg(yStart, yEnd) - yExtra) {
-                y = yEnd - yExtra;
-            } else if (y < avg(yStart, yEnd) - yExtra) {
-                y = yStart - yExtra;
+    public void hwall(int xs, int xe, int ys, int ye) {
+        if ((x >= xs && x < xe) && (y <= ys && y >= ye)) {
+            if (y > (ys + ye) / 2) {
+                y = ys;
+            } else if (y < (ys + ye) / 2) {
+                y = ye;
             }
         }
     }
 
-    public void verticalWall(int xStart, int xEnd, int yStart, int yEnd, int xExtra, int yExtra) {
-        if ((x >= xStart && x < xEnd) && (y >= yStart && y <= yEnd)) {
-            if (x > avg(xStart, xEnd) - xExtra) {
-                x = xEnd - xExtra;
-            } else if (x < avg(xStart, xEnd) - xExtra) {
-                x = xStart - xExtra;
+    public void vwall(int ys, int ye, int xs, int xe) {
+        if ((y >= ys && y < ye) && (x <= xs && x >= xe)) {
+            if (x > (xs + xe) / 2) {
+                x = xs;
+            } else if (x < (xs + xe) / 2) {
+                x = xe;
             }
         }
-    }
-
-    public int avg(int x, int y) {
-        return (x + y) / 2;
     }
 
     public int getX() {

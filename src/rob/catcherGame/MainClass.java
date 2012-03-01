@@ -1,4 +1,4 @@
-package rob.soulCatcherGame;
+package rob.catcherGame;
 
 import javax.swing.*;
 
@@ -8,7 +8,7 @@ public class MainClass extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(725, 425);
         setLocationRelativeTo(null);
-        setTitle("GoodSoul Game");
+        setTitle("Catcher Game");
         setResizable(true);
         setVisible(true);
     }

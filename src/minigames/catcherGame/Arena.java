@@ -1,4 +1,4 @@
-package minigames.soulCatcherGame;
+package minigames.catcherGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +36,7 @@ public class Arena extends JPanel implements ActionListener {
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
         g2d.drawString("YOUR SCORE: " + GoodSoul.lowerZero(Player.score), 100, 100);
         if (Player.score >= 10) {
-            g2d.drawString("YOU WON!", 100, 200);
+            g2d.drawString("YOU WON!", 100, 125);
         }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
@@ -47,22 +47,22 @@ public class Arena extends JPanel implements ActionListener {
         goodSoul.move();
         player.move();
         if (Player.score < 10) {
-            if (Math.abs(player.x - GoodSoul.x) <= 20 && Math.abs(player.y - GoodSoul.y) <= 20) {
+            if (Math.abs(player.x - GoodSoul.x) <= 25 && Math.abs(player.y - GoodSoul.y) <= 25) {
                 Player.score++;
                 new GoodSoul();
                 goodSoul.dx = GoodSoul.lowerOne(random.nextInt(4));
                 goodSoul.dy = GoodSoul.lowerOne(random.nextInt(4));
-            } else if (GoodSoul.x >= 600) {
+            } else if (GoodSoul.x >= 700) {
                 new GoodSoul();
                 goodSoul.dx = GoodSoul.lowerOne(random.nextInt(4));
                 goodSoul.dy = GoodSoul.lowerOne(random.nextInt(4));
             }
-            if (Math.abs(player.x - BadSoul.x) <= 20 && Math.abs(player.y - BadSoul.y) <= 20) {
+            if (Math.abs(player.x - BadSoul.x) <= 25 && Math.abs(player.y - BadSoul.y) <= 25) {
                 Player.score--;
                 new BadSoul();
                 badSoul.dx = GoodSoul.lowerOne(random.nextInt(4));
                 badSoul.dy = GoodSoul.lowerOne(random.nextInt(4));
-            } else if (BadSoul.x >= 600) {
+            } else if (BadSoul.x >= 700) {
                 new BadSoul();
                 badSoul.dx = GoodSoul.lowerOne(random.nextInt(4));
                 badSoul.dy = GoodSoul.lowerOne(random.nextInt(4));
