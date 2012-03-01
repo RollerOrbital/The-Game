@@ -82,7 +82,6 @@ public class Map extends JPanel implements ActionListener {
                 player.room = "testRoom";
             }
         } else {
-            CombatEngine.basicCombat();
         }
         repaint();
     }

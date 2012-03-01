@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class CombatEngine {
 
-
     public static String playerStrikes = "";
     public static String enemyStrikes = "";
     public static String playerShoots = "";
