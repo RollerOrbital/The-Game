@@ -43,12 +43,10 @@ public class Player {
     public int basemp;
 
     public Player() {
-
         hp = 100;
         basehp = 100;
         mp = 100;
         basemp = 100;
-
         vigor = 15;
         pace = 3;
         fortune = 10;
@@ -56,11 +54,9 @@ public class Player {
         aegis = 5;
         scope = 10;
         cognition = 50;
-
         xp = 0;
         level = 1;
         levelUpxp = level * level + 40;
-
         room = "battleRoom";
         ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
         image = ii.getImage();

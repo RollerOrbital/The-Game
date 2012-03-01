@@ -40,9 +40,7 @@ public class IDroid {
     public IDroid() {
         ImageIcon i = new ImageIcon(this.getClass().getResource("idroid.png"));
         image = i.getImage();
-
         baseYield = 5;
-
         scope = 5;
         vigor = 5;
         pace = 3;
@@ -50,15 +48,12 @@ public class IDroid {
         twitch = 15;
         aegis = 5;
         cognition = 30;
-
         hp = 40;
         basehp = 40;
         mp = 40;
         basemp = 40;
-
         x = 270;
         y = 170;
-
         AnimationFrame = new int[4];
         AnimationFrame[0] = 0;
         AnimationFrame[1] = 2;
