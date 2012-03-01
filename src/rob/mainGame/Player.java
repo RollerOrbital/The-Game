@@ -141,12 +141,12 @@ public class Player {
 
         //testArea
         if (room.equals("testArea")) {
-            hwall(32 * 2, 32 * 7, 32 * 3, 32 * 3 - 10);
-            hwall(32 * 2, 32 * 7, 32 * 5, 32 * 5 - 10);
-            vwall(32 * 3, 32 * 5, 32 * 7, 32 * 7 - 10);
+            hwall(64, 224, 96, 86);
+            hwall(64, 224, 160, 150);
+            vwall(96, 160, 224, 214);
         } else if (room.equals("testRoom")) {
-            hwall(32 * 18, 32 * 24, 32 * 4, 32 * 4 - 10);
-            vwall(32 * 0, 32 * 4, 32 * 18, 32 * 18 - 10);
+            hwall(576, 768, 128, 118);
+            vwall(0, 128, 576, 566);
         } else if (room.equals("testRoomTwo")) {
             hwall(0, 300, 10, 0);
             hwall(0, 300, 180, 170);
