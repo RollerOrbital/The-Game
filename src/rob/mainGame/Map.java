@@ -14,7 +14,7 @@ public class Map extends JPanel implements ActionListener {
     private TestRoom tr;
     private TestArea ta;
     public static Player player;
-
+    public static IDroid droid;
 
     public Map() {
 
@@ -26,6 +26,7 @@ public class Map extends JPanel implements ActionListener {
         tr2 = new battleRoom();
         tr = new TestRoom();
         ta = new TestArea();
+        droid = new IDroid();
         player = new Player();
 
         Timer timer = new Timer(5, this);

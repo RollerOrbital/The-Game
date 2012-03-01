@@ -28,8 +28,20 @@ public class Player {
     private boolean rightheld;
 
     //battle stats:
-    private int vigor, pace, fortune, agility, aegis, xp, level, levelUpxp;
-    private int hp, basehp, mp, basemp;
+    public int vigor;
+    private int pace;
+    public int fortune;
+    public int twitch;
+    public int aegis;
+    public int scope;
+    public int cognition;
+    private int xp;
+    private int level;
+    private int levelUpxp;
+    public int hp;
+    private int basehp;
+    private int mp;
+    private int basemp;
 
     public Player() {
 
@@ -41,13 +53,16 @@ public class Player {
         vigor = 15;
         pace = 3;
         fortune = 10;
-        agility = 10;
+        twitch = 10;
         aegis = 5;
+        scope = 10;
+        cognition = 50;
+
         xp = 0;
         level = 1;
         levelUpxp = level * level + 40;
 
-        room = "testArea";
+        room = "battleRoom";
         ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
         image = ii.getImage();
         x = 80;
