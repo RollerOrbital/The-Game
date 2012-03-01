@@ -2,7 +2,6 @@ package pierce;
 
 import javax.swing.*;
 import java.awt.*;
-import java.math.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
@@ -27,9 +26,9 @@ public class Player {
     private boolean downheld;
     private boolean leftheld;
     private boolean rightheld;
-    
+
     public Player() {
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
         image = ii.getImage();
         x = 0;
         y = 0;
@@ -51,34 +50,70 @@ public class Player {
         AnimationCounter = 0;
         AnimationSpeed = 1;
     }
-    
+
     public void move() {
-        if (movex!=0) {x += dx; movex -= dx;}
-        else if (movey!=0) {y += dy; movey -= dy;}
-        else if (leftheld) {AnimationSpeed = 1; dx = -1; sprdir = 1; movex=-32;}
-        else if (rightheld) {AnimationSpeed = 1;dx = 1; sprdir = 3; movex=32;}
-        else if (upheld) {dy = -1; sprdir = 2; movey=-24;}
-        else if (downheld) {dy = 1; sprdir = 0; movey=24;}
-        else {dx = 0; dy = 0;}
-
-        if ((rightheld)||(leftheld)||(upheld)||(downheld)) {if(AnimationSpeed==0) {AnimationSpeed = 1;}}
-        else {if ((movex==0)&&(movey==0)) {AnimationSpeed = 0; if (sprframe != 0 && sprframe != 2) {sprframe--;}}}
-
-        if (AnimationCounter==16) {
-            if ((sprframe+AnimationSpeed)>3) {sprframe=0;}
-            else {sprframe += AnimationSpeed;}
-            AnimationCounter = 0;}
-        else {AnimationCounter += 1;}
-
-        if (y>(110-ybound)*2){
-            y=(110-ybound)*2;
-        } else if (y<0){
-            y=0;
+        if (movex != 0) {
+            x += dx;
+            movex -= dx;
+        } else if (movey != 0) {
+            y += dy;
+            movey -= dy;
+        } else if (leftheld) {
+            AnimationSpeed = 1;
+            dx = -1;
+            sprdir = 1;
+            movex = -32;
+        } else if (rightheld) {
+            AnimationSpeed = 1;
+            dx = 1;
+            sprdir = 3;
+            movex = 32;
+        } else if (upheld) {
+            dy = -1;
+            sprdir = 2;
+            movey = -24;
+        } else if (downheld) {
+            dy = 1;
+            sprdir = 0;
+            movey = 24;
+        } else {
+            dx = 0;
+            dy = 0;
         }
-        if(x<0){
-            x=0;
-        }else if(x>(180-xbound)*2){
-            x=(180-xbound)*2;
+
+        if ((rightheld) || (leftheld) || (upheld) || (downheld)) {
+            if (AnimationSpeed == 0) {
+                AnimationSpeed = 1;
+            }
+        } else {
+            if ((movex == 0) && (movey == 0)) {
+                AnimationSpeed = 0;
+                if (sprframe != 0 && sprframe != 2) {
+                    sprframe--;
+                }
+            }
+        }
+
+        if (AnimationCounter == 16) {
+            if ((sprframe + AnimationSpeed) > 3) {
+                sprframe = 0;
+            } else {
+                sprframe += AnimationSpeed;
+            }
+            AnimationCounter = 0;
+        } else {
+            AnimationCounter += 1;
+        }
+
+        if (y > (110 - ybound) * 2) {
+            y = (110 - ybound) * 2;
+        } else if (y < 0) {
+            y = 0;
+        }
+        if (x < 0) {
+            x = 0;
+        } else if (x > (180 - xbound) * 2) {
+            x = (180 - xbound) * 2;
         }
     }
 
@@ -89,13 +124,13 @@ public class Player {
     public int getY() {
         return y;
     }
-    
-    public int getXsquare(){
-     return (x/(xbound*2)*xbound)*2;
+
+    public int getXsquare() {
+        return (x / (xbound * 2) * xbound) * 2;
     }
 
-    public int getYsquare(){
-        return (y/(ybound*2)*ybound)*2;
+    public int getYsquare() {
+        return (y / (ybound * 2) * ybound) * 2;
     }
 
     public int getWidth() {
@@ -107,13 +142,13 @@ public class Player {
     }
 
     public int getSprFrame() {
-        return (AnimationFrame[sprframe]*width);
+        return (AnimationFrame[sprframe] * width);
     }
 
     public int getSprDir() {
-        return (sprdir*height);
+        return (sprdir * height);
     }
-    
+
     public Image getImage() {
         return image;
     }

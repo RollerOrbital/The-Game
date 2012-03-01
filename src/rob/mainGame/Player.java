@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-
-    //movement stats:
     public String room;
     public int dx;
     public int dy;
@@ -29,7 +27,6 @@ public class Player {
 
     public static boolean inCombat = false;
 
-    //battle stats:
     public int vigor;
     public int pace;
     public int fortune;
@@ -37,13 +34,13 @@ public class Player {
     public int aegis;
     public int scope;
     public int cognition;
-    private int xp;
-    private int level;
-    private int levelUpxp;
+    public int xp;
+    public int level;
+    public int levelUpxp;
     public int hp;
-    private int basehp;
-    private int mp;
-    private int basemp;
+    public int basehp;
+    public int mp;
+    public int basemp;
 
     public Player() {
 
@@ -65,7 +62,7 @@ public class Player {
         levelUpxp = level * level + 40;
 
         room = "battleRoom";
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
         image = ii.getImage();
         x = 10;
         y = 10;
@@ -73,8 +70,8 @@ public class Player {
         dy = 0;
         movex = 0;
         movey = 0;
-        width = 12; //image.getWidth(null);
-        height = 18; //image.getHeight(null);
+        width = 12;
+        height = 18;
         sprframe = 0;
         sprdir = 0;
         AnimationFrame = new int[4];
@@ -85,8 +82,6 @@ public class Player {
         AnimationCounter = 0;
         AnimationSpeed = 1;
     }
-//xbound = 16;
-//ybound = 12;
 
     public void move() {
         if (movex != 0) {
@@ -142,9 +137,6 @@ public class Player {
             AnimationCounter += 1;
         }
 
-        //boundaries
-
-        //constant
         if (y > 350) {
             y = 350;
         } else if (y < 10) {
@@ -156,7 +148,6 @@ public class Player {
             x = 550;
         }
 
-        //testArea
         if (room.equals("testArea")) {
             hwall(64, 224, 96, 86);
             hwall(64, 224, 160, 150);

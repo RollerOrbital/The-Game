@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 
 public class Map extends JPanel implements ActionListener {
 
+    private CombatEngine combatEngine = new CombatEngine();
     private battleRoom tr2;
     private TestRoom tr;
     private TestArea ta;
@@ -44,6 +45,7 @@ public class Map extends JPanel implements ActionListener {
         } else if (player.room.equals("testRoom")) {
             g2d.drawImage(tr.getImage(), tr.getX(), tr.getY(), this);
         } else if (player.room.equals("battleRoom")) {
+            Player.inCombat = true;
             g2d.drawImage(tr2.getImage(), ta.getX(), ta.getY(), this);
         }
 
@@ -55,6 +57,7 @@ public class Map extends JPanel implements ActionListener {
         g2d.drawString(CombatEngine.enemyStrikes, 100, 315);
         g2d.drawString(CombatEngine.enemyShoots, 100, 315);
         g2d.drawString(CombatEngine.enemyMages, 100, 315);
+        g2d.drawImage(droid.getImage(), droid.getX() + 4, droid.getY() - 20, (droid.getX() + 4 + (droid.getWidth() * 2)), (droid.getY() + (droid.getHeight() * 2) - 20), droid.getSprFrame(), droid.getSprDir(), (droid.getSprFrame() + droid.getWidth()), (droid.getSprDir() + droid.getHeight()), this);
         g2d.drawImage(player.getImage(), player.getX() + 4, player.getY() - 20, (player.getX() + 4 + (player.getWidth() * 2)), (player.getY() + (player.getHeight() * 2) - 20), player.getSprFrame(), player.getSprDir(), (player.getSprFrame() + player.getWidth()), (player.getSprDir() + player.getHeight()), this);
         g2d.drawString(("Position = " + player.getX() + ", " + player.getY()), 10, 315);
 
@@ -64,7 +67,7 @@ public class Map extends JPanel implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
-        if (Player.inCombat == false) {
+        if (!Player.inCombat) {
             player.move();
             if (player.getX() == 10 && player.getY() >= 75 && player.getY() < 95 && player.dx < 0 && player.room.equals("testArea")) {
                 player.x = 700;
@@ -82,6 +85,18 @@ public class Map extends JPanel implements ActionListener {
                 player.room = "testRoom";
             }
         } else {
+            player.mp = player.basemp;
+            droid.mp = droid.basemp;
+            player.hp = player.basehp;
+            droid.hp = droid.basehp;
+            while (player.hp > 0 && droid.hp > 0) {
+                combatEngine.basicCombat();
+            }
+            player.xp += (droid.aegis + droid.cognition / 10 + droid.fortune + droid.pace + droid.twitch + droid.scope + droid.vigor) / 7 * droid.baseYield;
+            if (player.xp >= player.levelUpxp) {
+                player.level++;
+            }
+            Player.inCombat = false;
         }
         repaint();
     }
