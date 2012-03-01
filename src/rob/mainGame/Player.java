@@ -60,8 +60,8 @@ public class Player {
         room = "battleRoom";
         ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
         image = ii.getImage();
-        x = 10;
-        y = 20;
+        x = 32;
+        y = 32;
         dx = 0;
         dy = 0;
         movex = 0;

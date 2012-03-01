@@ -5,12 +5,6 @@ import java.util.Random;
 public class CombatEngine {
 
     Random random = new Random();
-    public static String playerStrikes = "";
-    public static String enemyStrikes = "";
-    public static String playerShoots = "";
-    public static String enemyShoots = "";
-    public static String playerMages = "";
-    public static String enemyMages = "";
     private int moves;
     private Player p;
     private IDroid i;
@@ -32,39 +26,39 @@ public class CombatEngine {
     public void playerStrike() {
         int damage = p.vigor + random.nextInt(p.fortune) - random.nextInt(i.aegis);
         i.hp -= damage;
-        playerStrikes = "You strike your opponent for " + damage + " damage.\nThey have " + lowerZero(i.hp) + " hp remaining";
+        System.out.println("You strike your opponent for " + damage + " damage.\nThey have " + lowerZero(i.hp) + " hp remaining");
     }
 
     public void enemyStrikes() {
         int damage = i.vigor + random.nextInt(i.fortune) - random.nextInt(p.aegis);
         p.hp -= damage;
-        enemyStrikes = "Your opponent strikes you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining";
+        System.out.println("Your opponent strikes you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining");
     }
 
     public void playerShoots() {
         int damage = p.scope + random.nextInt(p.fortune) - random.nextInt(i.aegis);
         i.hp -= damage;
-        playerShoots = "You shoot your opponent for " + damage + " damage.\nThey have " + lowerZero(i.hp) + " hp remaining";
+        System.out.println("You shoot your opponent for " + damage + " damage.\nThey have " + lowerZero(i.hp) + " hp remaining");
     }
 
     public void enemyShoots() {
         int damage = i.scope + random.nextInt(i.fortune) - random.nextInt(p.aegis);
         p.hp -= damage;
-        enemyShoots = "Your opponent shoots you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining";
+        System.out.println("Your opponent shoots you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining");
     }
 
     public void playerMages() {
         int damage = p.cognition / 2 + random.nextInt(p.fortune);
         i.hp -= damage;
         p.mp -= 30;
-        playerMages = "You fire a spell at your opponent for " + damage + " damage.\nThey have " + lowerZero(i.hp) + " hp remaining.\nYou have " + lowerZero(p.mp) + " mp remaining";
+        System.out.println("You fire a spell at your opponent for " + damage + " damage.\nThey have " + lowerZero(i.hp) + " hp remaining.\nYou have " + lowerZero(p.mp) + " mp remaining");
     }
 
     public void enemyMages() {
         int damage = i.cognition / 2 + random.nextInt(i.fortune);
         p.hp -= damage;
         i.mp -= 30;
-        enemyMages = "Your opponent fires a spell at you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining";
+        System.out.println("Your opponent fires a spell at you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining");
     }
 
     public void basicCombat() {

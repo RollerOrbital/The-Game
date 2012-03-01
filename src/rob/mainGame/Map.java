@@ -6,11 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 
 public class Map extends JPanel implements ActionListener {
 
-    private String levelup = "";
+    private Random random = new Random();
 
     private CombatEngine ce;
     private battleRoom br;
@@ -54,13 +55,6 @@ public class Map extends JPanel implements ActionListener {
 
         g2d.drawLine(0, 300, 650, 300);
         g2d.setColor(Color.BLUE);
-        g2d.drawString(CombatEngine.playerStrikes, 100, 315);
-        g2d.drawString(CombatEngine.playerShoots, 100, 315);
-        g2d.drawString(CombatEngine.playerMages, 100, 315);
-        g2d.drawString(CombatEngine.enemyStrikes, 100, 315);
-        g2d.drawString(CombatEngine.enemyShoots, 100, 315);
-        g2d.drawString(CombatEngine.enemyMages, 100, 315);
-        g2d.drawString(levelup, 100, 315);
         if (player.room.equals(iDroid.room)) {
             g2d.drawImage(iDroid.getImage(), iDroid.getX() + 4, iDroid.getY() - 20, (iDroid.getX() + 4 + (iDroid.getWidth() * 2)), (iDroid.getY() + (iDroid.getHeight() * 2) - 20), iDroid.getSprFrame(), iDroid.getSprDir(), (iDroid.getSprFrame() + iDroid.getWidth()), (iDroid.getSprDir() + iDroid.getHeight()), this);
         }
@@ -73,43 +67,49 @@ public class Map extends JPanel implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
-        if (!Player.inCombat) {
-            player.move();
-            if (player.getX() == 10 && player.getY() >= 75 && player.getY() < 95 && player.dx < 0 && player.room.equals("testArea")) {
-                player.x = 700;
-                player.room = "testRoom";
-            } else if (player.getX() == 550 && player.getY() > 78 && player.getY() < 90 && player.dx > 0 && player.room.equals("testRoom")) {
-                player.x = 10;
-                player.room = "testArea";
-            } else if (player.getY() == 350 && player.getX() > 200 && player.getX() < 240 && player.dy > 0 && player.room.equals("testRoom")) {
-                player.y = 10;
-                player.x = 110;
-                player.room = "battleRoom";
-            } else if (player.getY() == 10 && player.getX() > 95 && player.getX() < 135 && player.dy < 0 && player.room.equals("battleRoom")) {
-                player.y = 350;
-                player.x = 210;
-                player.room = "testRoom";
-            }
-        } else {
-            player.mp = player.basemp;
-            iDroid.mp = iDroid.basemp;
-            player.hp = player.basehp;
-            iDroid.hp = iDroid.basehp;
-            while (player.hp > 0 && iDroid.hp > 0) {
-                ce.basicCombat();
-            }
-            if (player.hp > 0) {
-                player.xp += (iDroid.aegis + iDroid.cognition / 10 + iDroid.fortune + iDroid.pace + iDroid.twitch + iDroid.scope + iDroid.vigor) / 7 * iDroid.baseYield;
-                if (player.xp >= player.levelUpxp) {
-                    player.level++;
-                    levelup = "You leveled up!\nYou are now level " + player.level + "!";
-                }
-            } else {
-                String[] asd = {"a"};
-                rob.scytheGame.MainClass.main(asd);
-            }
-            Player.inCombat = false;
+        player.move();
+        if (player.getX() == 10 && player.getY() >= 70 && player.getY() < 100 && player.dx < 0 && player.room.equals("testArea")) {
+            player.x = 700;
+            player.room = "testRoom";
+        } else if (player.getX() == 550 && player.getY() > 75 && player.getY() < 100 && player.dx > 0 && player.room.equals("testRoom")) {
+            player.x = 10;
+            player.room = "testArea";
+        } else if (player.getY() == 350 && player.getX() > 200 && player.getX() < 240 && player.dy > 0 && player.room.equals("testRoom")) {
+            player.y = 10;
+            player.x = 110;
+            player.room = "battleRoom";
+        } else if (player.getY() == 10 && player.getX() > 95 && player.getX() < 135 && player.dy < 0 && player.room.equals("battleRoom")) {
+            player.y = 350;
+            player.x = 210;
+            player.room = "testRoom";
         }
+//        } else {
+//            player.mp = player.basemp;
+//            iDroid.mp = iDroid.basemp;
+//            player.hp = player.basehp;
+//            iDroid.hp = iDroid.basehp;
+//            while (player.hp > 0 && iDroid.hp > 0) {
+//                ce.basicCombat();
+//            }
+//            if (player.hp > 0) {
+//                player.xp += (iDroid.aegis + iDroid.cognition / 10 + iDroid.fortune + iDroid.pace + iDroid.twitch + iDroid.scope + iDroid.vigor) / 7 * iDroid.baseYield;
+//                if (player.xp >= player.levelUpxp) {
+//                    player.level++;
+//                    System.out.println("You leveled up!\nYou are now level " + player.level + "!");
+//                }
+//            } else {
+//                String[] asd = {"a"};
+//                System.out.println("You are dead and now will face a minigame...");
+//                int choice = random.nextInt(3);
+//                if(choice == 0){
+//                    minigames.scytheGame.MainClass.main(asd);
+//                }else if(choice == 1){
+//                    minigames.rockGame.MainClass.main(asd);
+//                }else if(choice == 2){
+//                    minigames.catcherGame.MainClass.main(asd);
+//                }
+//            }
+//            Player.inCombat = false;
         repaint();
     }
 
@@ -125,28 +125,3 @@ public class Map extends JPanel implements ActionListener {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
