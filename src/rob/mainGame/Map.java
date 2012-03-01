@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 
 public class Map extends JPanel implements ActionListener {
 
-    private CombatEngine combatEngine = new CombatEngine();
+    private CombatEngine ce;
     private battleRoom tr2;
     private TestRoom tr;
     private TestArea ta;
@@ -24,6 +24,7 @@ public class Map extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
+        ce = new CombatEngine();
         tr2 = new battleRoom();
         tr = new TestRoom();
         ta = new TestArea();
@@ -92,7 +93,7 @@ public class Map extends JPanel implements ActionListener {
             player.hp = player.basehp;
             droid.hp = droid.basehp;
             while (player.hp > 0 && droid.hp > 0) {
-                combatEngine.basicCombat();
+                ce.basicCombat();
             }
             player.xp += (droid.aegis + droid.cognition / 10 + droid.fortune + droid.pace + droid.twitch + droid.scope + droid.vigor) / 7 * droid.baseYield;
             if (player.xp >= player.levelUpxp) {

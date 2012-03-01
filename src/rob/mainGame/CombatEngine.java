@@ -25,6 +25,11 @@ public class CombatEngine {
         }
     }
 
+    public CombatEngine() {
+        p = Map.player;
+        i = Map.droid;
+    }
+
     public void playerStrike() {
         int damage = p.vigor + random.nextInt(p.fortune) - random.nextInt(i.aegis);
         i.hp -= damage;
