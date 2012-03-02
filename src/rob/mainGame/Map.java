@@ -66,6 +66,8 @@ public class Map extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         player.move();
+        fb.move();
+        new fireBallSpell();
         if (player.getX() == 10 && player.getY() >= 70 && player.getY() < 100 && player.dx < 0 && player.room.equals("testArea")) {
             player.x = 700;
             player.room = "testRoom";

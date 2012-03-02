@@ -9,6 +9,7 @@ public class Player {
     private IDroid i;
 
     public String room;
+
     public int dx;
     public int dy;
     public int x;

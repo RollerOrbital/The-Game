@@ -8,12 +8,15 @@ public class TestArea {
     private int x;
     private int y;
     private Image image;
+    public int width, height;
 
     public TestArea() {
-        ImageIcon i = new ImageIcon(this.getClass().getResource("GameTestArea.png"));
+        ImageIcon i = new ImageIcon(this.getClass().getResource("testArea.png"));
         image = i.getImage();
         x = 0;
         y = 0;
+        width = 606;
+        height = 353;
     }
 
     public int getX() {
