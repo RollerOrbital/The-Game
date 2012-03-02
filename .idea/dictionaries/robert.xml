@@ -1,11 +1,20 @@
 <component name="ProjectDictionaryState">
   <dictionary name="robert">
     <words>
+      <w>basehp</w>
+      <w>basemp</w>
       <w>downheld</w>
       <w>heptahedron</w>
       <w>hwall</w>
+      <w>idroid</w>
+      <w>idroidbasic</w>
+      <w>immer</w>
       <w>ipod</w>
       <w>leftheld</w>
+      <w>levelup</w>
+      <w>mages</w>
+      <w>minigame</w>
+      <w>minigames</w>
       <w>movex</w>
       <w>movey</w>
       <w>mweapon</w>
@@ -16,12 +25,16 @@
       <w>requiredy</w>
       <w>rightheld</w>
       <w>riotshield</w>
+      <w>roomx</w>
       <w>rweapon</w>
       <w>swall</w>
+      <w>upxp</w>
       <w>vwall</w>
       <w>xpos</w>
+      <w>xspeed</w>
       <w>xsquare</w>
       <w>ypos</w>
+      <w>yspeed</w>
       <w>ysquare</w>
     </words>
   </dictionary>

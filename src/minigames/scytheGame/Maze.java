@@ -1,22 +1,20 @@
-package rob.mainGame;
+package minigames.scytheGame;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class TestArea {
+public class Maze {
 
     private int x;
     private int y;
     private Image image;
-    public int width, height;
 
-    public TestArea() {
-        ImageIcon i = new ImageIcon(this.getClass().getResource("testArea.png"));
+    public Maze() {
+        String maze = "mazePic.png";
+        ImageIcon i = new ImageIcon(this.getClass().getResource(maze));
         image = i.getImage();
-        x = 0;
-        y = 0;
-        width = 606;
-        height = 353;
+        x = 10;
+        y = 10;
     }
 
     public int getX() {

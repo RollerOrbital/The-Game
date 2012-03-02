@@ -3,20 +3,18 @@ package rob.mainGame;
 import javax.swing.*;
 import java.awt.*;
 
-public class TestArea {
-
-    private int x;
-    private int y;
+public class battleRoom {
     private Image image;
+    public static int x, y;
     public int width, height;
 
-    public TestArea() {
-        ImageIcon i = new ImageIcon(this.getClass().getResource("testArea.png"));
+    public battleRoom() {
+        ImageIcon i = new ImageIcon(this.getClass().getResource("battleRoom.png"));
         image = i.getImage();
         x = 0;
         y = 0;
-        width = 606;
-        height = 353;
+        width = 320;
+        height = 200;
     }
 
     public int getX() {

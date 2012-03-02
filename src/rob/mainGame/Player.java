@@ -6,17 +6,21 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
-    private int dx;
-    private int dy;
-    private int x;
-    private int y;
-    private int movex;
-    private int movey;
+    private IDroid i;
+
+    public String room;
+
+    public int dx;
+    public int dy;
+    public int x;
+    public int y;
+    private int xspeed;
+    private int yspeed;
     private int width;
     private int height;
     private Image image;
-    private int sprframe;
-    private int sprdir;
+    private int frameNumber;
+    public int direction;
     private int[] AnimationFrame;
     private int AnimationCounter;
     private int AnimationSpeed;
@@ -25,19 +29,54 @@ public class Player {
     private boolean leftheld;
     private boolean rightheld;
 
+    public static boolean inCombat = false;
+
+    public int vigor;
+    public int pace;
+    public int fortune;
+    public int twitch;
+    public int aegis;
+    public int scope;
+    public int cognition;
+    public int xp;
+    public int level;
+    public int levelUpxp;
+    public int hp;
+    public int basehp;
+    public int mp;
+    public int basemp;
+
     public Player() {
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
+
+        i = Map.iDroid;
+
+        hp = 100;
+        basehp = 100;
+        mp = 100;
+        basemp = 100;
+        vigor = 15;
+        pace = 3;
+        fortune = 10;
+        twitch = 10;
+        aegis = 5;
+        scope = 10;
+        cognition = 50;
+        xp = 0;
+        level = 1;
+        levelUpxp = level * level + 40;
+        room = "battleRoom";
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
         image = ii.getImage();
-        x = 80;
-        y = 80;
+        x = 32;
+        y = 32;
         dx = 0;
         dy = 0;
-        movex = 0;
-        movey = 0;
-        width = 12; //image.getWidth(null);
-        height = 18; //image.getHeight(null);
-        sprframe = 0;
-        sprdir = 0;
+        xspeed = 0;
+        yspeed = 0;
+        width = 12;
+        height = 18;
+        frameNumber = 0;
+        direction = 0;
         AnimationFrame = new int[4];
         AnimationFrame[0] = 0;
         AnimationFrame[1] = 1;
@@ -46,65 +85,45 @@ public class Player {
         AnimationCounter = 0;
         AnimationSpeed = 1;
     }
-//xbound = 16;
-//ybound = 12;
 
     public void move() {
-        if (movex != 0) {
+        if (xspeed != 0) {
             x += dx;
-            movex -= dx;
-        } else if (movey != 0) {
+            xspeed -= dx;
+        } else if (yspeed != 0) {
             y += dy;
-            movey -= dy;
+            yspeed -= dy;
         } else if (leftheld) {
             AnimationSpeed = 1;
             dx = -1;
-            sprdir = 1;
-            movex = -32;
+            direction = 1;
+            xspeed = -32;
         } else if (rightheld) {
             AnimationSpeed = 1;
             dx = 1;
-            sprdir = 3;
-            movex = 32;
+            direction = 3;
+            xspeed = 32;
         } else if (upheld) {
             dy = -1;
-            sprdir = 2;
-            movey = -24;
+            direction = 2;
+            yspeed = -24;
         } else if (downheld) {
             dy = 1;
-            sprdir = 0;
-            movey = 24;
+            direction = 0;
+            yspeed = 24;
         } else {
             dx = 0;
             dy = 0;
         }
+        findAnimationSpeed();
+        setAnimationSpeed();
+        standardBounds();
+        roomWalls();
+    }
 
-        if ((rightheld) || (leftheld) || (upheld) || (downheld)) {
-            if (AnimationSpeed == 0) {
-                AnimationSpeed = 1;
-            }
-        } else {
-            if ((movex == 0) && (movey == 0)) {
-                AnimationSpeed = 0;
-                if (sprframe != 0 && sprframe != 2) {
-                    sprframe--;
-                }
-            }
-        }
-
-        if (AnimationCounter == 16) {
-            if ((sprframe + AnimationSpeed) > 3) {
-                sprframe = 0;
-            } else {
-                sprframe += AnimationSpeed;
-            }
-            AnimationCounter = 0;
-        } else {
-            AnimationCounter += 1;
-        }
-
-        if (y > 320) {
-            y = 320;
+    private void standardBounds() {
+        if (y > 350) {
+            y = 350;
         } else if (y < 10) {
             y = 10;
         }
@@ -112,31 +131,74 @@ public class Player {
             x = 10;
         } else if (x > 550) {
             x = 550;
+        } else if (Math.abs(x - i.x) <= 30 && Math.abs(y - i.y) <= 25) {
+            y -= dy;
+            x -= dx;
         }
     }
 
-    public void horizontalWall(int xStart, int xEnd, int yStart, int yEnd, int xExtra, int yExtra) {
-        if (x >= xStart && x < xEnd && y >= yStart && y <= yEnd) {
-            if (y > avg(yStart, yEnd) - yExtra) {
-                y = yEnd - yExtra;
-            } else if (y < avg(yStart, yEnd) - yExtra) {
-                y = yStart - yExtra;
+    private void roomWalls() {
+        if (room.equals("testArea")) {
+            hwall(64, 224, 96, 86);
+            hwall(64, 224, 160, 150);
+            vwall(96, 160, 224, 214);
+        } else if (room.equals("testRoom")) {
+            hwall(576, 768, 128, 118);
+            vwall(0, 128, 576, 566);
+        } else if (room.equals("battleRoom")) {
+            hwall(0, 300, 10, 0);
+            hwall(0, 300, 180, 170);
+            vwall(0, 180, 10, 0);
+            vwall(0, 180, 300, 290);
+        }
+    }
+
+    private void setAnimationSpeed() {
+        if (AnimationCounter == 16) {
+            if ((frameNumber + AnimationSpeed) > 3) {
+                frameNumber = 0;
+            } else {
+                frameNumber += AnimationSpeed;
+            }
+            AnimationCounter = 0;
+        } else {
+            AnimationCounter += 1;
+        }
+    }
+
+    private void findAnimationSpeed() {
+        if ((rightheld) || (leftheld) || (upheld) || (downheld)) {
+            if (AnimationSpeed == 0) {
+                AnimationSpeed = 1;
+            }
+        } else {
+            if ((xspeed == 0) && (yspeed == 0)) {
+                AnimationSpeed = 0;
+                if (frameNumber != 0 && frameNumber != 2) {
+                    frameNumber--;
+                }
             }
         }
     }
 
-    public void verticalWall(int xStart, int xEnd, int yStart, int yEnd, int xExtra, int yExtra) {
-        if ((x >= xStart && x < xEnd) && (y >= yStart && y <= yEnd)) {
-            if (x > avg(xStart, xEnd) - xExtra) {
-                x = xEnd - xExtra;
-            } else if (x < avg(xStart, xEnd) - xExtra) {
-                x = xStart - xExtra;
+    public void hwall(int xs, int xe, int ys, int ye) {
+        if ((x >= xs && x < xe) && (y <= ys && y >= ye)) {
+            if (y > (ys + ye) / 2) {
+                y = ys;
+            } else if (y < (ys + ye) / 2) {
+                y = ye;
             }
         }
     }
 
-    public int avg(int x, int y) {
-        return (x + y) / 2;
+    public void vwall(int ys, int ye, int xs, int xe) {
+        if ((y >= ys && y < ye) && (x <= xs && x >= xe)) {
+            if (x > (xs + xe) / 2) {
+                x = xs;
+            } else if (x < (xs + xe) / 2) {
+                x = xe;
+            }
+        }
     }
 
     public int getX() {
@@ -156,11 +218,11 @@ public class Player {
     }
 
     public int getSprFrame() {
-        return (AnimationFrame[sprframe] * width);
+        return (AnimationFrame[frameNumber] * width);
     }
 
     public int getSprDir() {
-        return (sprdir * height);
+        return (direction * height);
     }
 
     public Image getImage() {

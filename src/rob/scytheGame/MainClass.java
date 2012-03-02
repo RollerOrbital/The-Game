@@ -1,4 +1,4 @@
-package rob.mainGame;
+package rob.scytheGame;
 
 import javax.swing.*;
 
@@ -6,13 +6,13 @@ public class MainClass extends JFrame {
 
     public MainClass() {
 
-        add(new Map());
+        add(new Board());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(650, 400);
+        setSize(725, 425);
         setLocationRelativeTo(null);
-        setTitle("RESIST");
-        setResizable(false);
+        setTitle("Scythe Game");
+        setResizable(true);
         setVisible(true);
     }
 

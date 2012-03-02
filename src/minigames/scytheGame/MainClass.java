@@ -1,18 +1,21 @@
-package rob.mainGame;
+package minigames.scytheGame;
 
 import javax.swing.*;
 
 public class MainClass extends JFrame {
 
+    public int sq;
+
     public MainClass() {
 
-        add(new Map());
+        add(new Board());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(650, 400);
+        sq = 32;
+        setSize(sq * 23, sq * 14);
         setLocationRelativeTo(null);
-        setTitle("RESIST");
-        setResizable(false);
+        setTitle("Scythe Game");
+        setResizable(true);
         setVisible(true);
     }
 

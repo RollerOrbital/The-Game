@@ -1,18 +1,19 @@
-package rob.mainGame;
+package minigames.catcherGame;
 
 import javax.swing.*;
 
 public class MainClass extends JFrame {
 
+    public int sq;
+
     public MainClass() {
-
-        add(new Map());
-
+        add(new Arena());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(650, 400);
+        sq = 32;
+        setSize(sq * 23, sq * 14);
         setLocationRelativeTo(null);
-        setTitle("RESIST");
-        setResizable(false);
+        setTitle("Catcher Game");
+        setResizable(true);
         setVisible(true);
     }
 
