@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
+
+    private IDroid i;
+
     public String room;
     public int dx;
     public int dy;
@@ -15,8 +18,8 @@ public class Player {
     private int width;
     private int height;
     private Image image;
-    private int sprframe;
-    private int sprdir;
+    private int frameNumber;
+    public int direction;
     private int[] AnimationFrame;
     private int AnimationCounter;
     private int AnimationSpeed;
@@ -43,6 +46,9 @@ public class Player {
     public int basemp;
 
     public Player() {
+
+        i = Map.iDroid;
+
         hp = 100;
         basehp = 100;
         mp = 100;
@@ -68,8 +74,8 @@ public class Player {
         movey = 0;
         width = 12;
         height = 18;
-        sprframe = 0;
-        sprdir = 0;
+        frameNumber = 0;
+        direction = 0;
         AnimationFrame = new int[4];
         AnimationFrame[0] = 0;
         AnimationFrame[1] = 1;
@@ -89,20 +95,20 @@ public class Player {
         } else if (leftheld) {
             AnimationSpeed = 1;
             dx = -1;
-            sprdir = 1;
+            direction = 1;
             movex = -32;
         } else if (rightheld) {
             AnimationSpeed = 1;
             dx = 1;
-            sprdir = 3;
+            direction = 3;
             movex = 32;
         } else if (upheld) {
             dy = -1;
-            sprdir = 2;
+            direction = 2;
             movey = -24;
         } else if (downheld) {
             dy = 1;
-            sprdir = 0;
+            direction = 0;
             movey = 24;
         } else {
             dx = 0;
@@ -124,6 +130,9 @@ public class Player {
             x = 10;
         } else if (x > 550) {
             x = 550;
+        } else if (Math.abs(x - i.x) <= 30 && Math.abs(y - i.y) <= 25) {
+            y -= dy;
+            x -= dx;
         }
     }
 
@@ -145,10 +154,10 @@ public class Player {
 
     private void setAnimationSpeed() {
         if (AnimationCounter == 16) {
-            if ((sprframe + AnimationSpeed) > 3) {
-                sprframe = 0;
+            if ((frameNumber + AnimationSpeed) > 3) {
+                frameNumber = 0;
             } else {
-                sprframe += AnimationSpeed;
+                frameNumber += AnimationSpeed;
             }
             AnimationCounter = 0;
         } else {
@@ -164,8 +173,8 @@ public class Player {
         } else {
             if ((movex == 0) && (movey == 0)) {
                 AnimationSpeed = 0;
-                if (sprframe != 0 && sprframe != 2) {
-                    sprframe--;
+                if (frameNumber != 0 && frameNumber != 2) {
+                    frameNumber--;
                 }
             }
         }
@@ -208,11 +217,11 @@ public class Player {
     }
 
     public int getSprFrame() {
-        return (AnimationFrame[sprframe] * width);
+        return (AnimationFrame[frameNumber] * width);
     }
 
     public int getSprDir() {
-        return (sprdir * height);
+        return (direction * height);
     }
 
     public Image getImage() {

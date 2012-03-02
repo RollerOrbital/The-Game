@@ -52,8 +52,8 @@ public class IDroid {
         basehp = 40;
         mp = 40;
         basemp = 40;
-        x = 256;
-        y = 160;
+        x = 150;
+        y = 100;
         AnimationFrame = new int[4];
         AnimationFrame[0] = 0;
         AnimationFrame[1] = 2;
