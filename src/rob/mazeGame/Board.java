@@ -11,6 +11,7 @@ public class Board extends JPanel implements ActionListener {
 
     private Player player;
     private Maze maze;
+    int score = Player.fouls;
 
     public Board() {
         addKeyListener(new adapter());
@@ -28,9 +29,10 @@ public class Board extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        Graphics2D g2d2 = (Graphics2D) g;
-        g2d2.drawImage(maze.getImage(), maze.getX(), maze.getY(), this);
+        g2d.setColor(Color.BLACK);
+        g2d.drawImage(maze.getImage(), maze.getX(), maze.getY(), this);
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
+        g2d.drawString("" + score, 200, 100);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }

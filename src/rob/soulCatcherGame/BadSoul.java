@@ -1,25 +1,31 @@
-package rob.bombGame;
+package rob.soulCatcherGame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-public class Bomb {
+public class BadSoul {
     Random random = new Random();
-    public int x, y;
-    public int dx;
+    public static int x, y;
+    public int dx, dy;
     private Image image;
 
-    public Bomb() {
-        dx = 5;
+    public BadSoul() {
+        dx = GoodSoul.lowerOne(random.nextInt(4));
+        dy = GoodSoul.lowerOne(random.nextInt(4));
         x = 0;
         y = random.nextInt(300) + 50;
-        ImageIcon i = new ImageIcon(this.getClass().getResource("bomb.png"));
+        ImageIcon i = new ImageIcon(this.getClass().getResource("badSoul.png"));
         image = i.getImage();
     }
 
     public void move() {
         x += dx;
+        y += dy;
+
+        if (y <= 10 || y >= 350) {
+            dy *= -1;
+        }
     }
 
     public int getX() {

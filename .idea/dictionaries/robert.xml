@@ -1,17 +1,28 @@
 <component name="ProjectDictionaryState">
   <dictionary name="robert">
     <words>
+      <w>downheld</w>
       <w>heptahedron</w>
+      <w>hwall</w>
       <w>ipod</w>
+      <w>leftheld</w>
+      <w>movex</w>
+      <w>movey</w>
       <w>mweapon</w>
       <w>nano</w>
       <w>println</w>
+      <w>psquare</w>
       <w>requiredx</w>
       <w>requiredy</w>
+      <w>rightheld</w>
       <w>riotshield</w>
       <w>rweapon</w>
+      <w>swall</w>
+      <w>vwall</w>
       <w>xpos</w>
+      <w>xsquare</w>
       <w>ypos</w>
+      <w>ysquare</w>
     </words>
   </dictionary>
 </component>

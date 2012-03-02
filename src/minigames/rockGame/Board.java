@@ -1,4 +1,4 @@
-package kaashif;
+package minigames.rockGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +32,7 @@ public class Board extends JPanel implements ActionListener {
         timer = new Timer(5, this);
 
         timer.start();
+
 
         score = 0;
         realscore = 0;

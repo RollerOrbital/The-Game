@@ -1,4 +1,4 @@
-package minigames.part1_demon_soul_dodging;
+package minigames.soulCatcherGame;
 
 import javax.swing.*;
 
@@ -8,7 +8,7 @@ public class MainClass extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(725, 425);
         setLocationRelativeTo(null);
-        setTitle("Bomb Game");
+        setTitle("Soul Catcher Game");
         setResizable(true);
         setVisible(true);
     }

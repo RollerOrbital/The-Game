@@ -1,4 +1,4 @@
-package kaashif;
+package minigames.rockGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +28,7 @@ public class Rock {
         image = ii.getImage();
         vis = true;
         dx = 0;
-        dy = 6;
+        dy = 10;
         width = image.getWidth(null);
         height = image.getHeight(null);
 

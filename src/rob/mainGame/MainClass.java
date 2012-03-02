@@ -6,12 +6,12 @@ public class MainClass extends JFrame {
 
     public MainClass() {
 
-        add(new CombatBoard());
+        add(new Map());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(725, 425);
+        setSize(650, 400);
         setLocationRelativeTo(null);
-        setTitle("Maze Game");
+        setTitle("RESIST");
         setResizable(true);
         setVisible(true);
     }

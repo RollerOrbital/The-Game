@@ -1,4 +1,4 @@
-package minigames.part1_demon_soul_dodging;
+package rob.mainGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,53 +7,56 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Arena extends JPanel implements ActionListener {
-    private Player player;
-    private Bomb bomb;
 
-    public Arena() {
+public class Map extends JPanel implements ActionListener {
+
+    private TestArea ta;
+    private Player player;
+
+
+    public Map() {
+
         addKeyListener(new adapter());
         setFocusable(true);
-        setBackground(Color.WHITE);
+        setBackground(Color.BLACK);
         setDoubleBuffered(true);
+
+        ta = new TestArea();
         player = new Player();
-        bomb = new Bomb();
+
         Timer timer = new Timer(5, this);
         timer.start();
+
     }
 
     public void paint(Graphics g) {
         super.paint(g);
+
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
-        g2d.drawImage(bomb.getImage(), bomb.getX(), bomb.getY(), this);
-        g2d.drawString("YOUR SCORE: " + Player.score, 100, 100);
+        //g2d.drawImage(rock.getImage(), rock.getX(), rock.getY(), this);
+        g2d.drawImage(ta.getImage(), ta.getX(), ta.getY(), this);
+        g2d.drawImage(player.getImage(), player.getX() + 4, player.getY() - 20, (player.getX() + 4 + (player.getWidth() * 2)), (player.getY() + (player.getHeight() * 2) - 20), player.getSprFrame(), player.getSprDir(), (player.getSprFrame() + player.getWidth()), (player.getSprDir() + player.getHeight()), this);
+
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
 
+
     public void actionPerformed(ActionEvent e) {
-        bomb.move();
         player.move();
-        if (Player.bombs <= 10) {
-            if (Math.abs(player.x - bomb.x) < 5) {
-                if (Math.abs(player.y - bomb.y) < 20) {
-                    Player.score++;
-                }
-                Player.bombs++;
-                bomb = new Bomb();
-            }
-            repaint();
-        }
+        repaint();
     }
 
+
     private class adapter extends KeyAdapter {
+
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
         }
 
         public void keyReleased(KeyEvent e) {
             player.keyReleased(e);
+            System.out.println("Position = " + player.getX() + ", " + player.getY());
         }
     }
 }
