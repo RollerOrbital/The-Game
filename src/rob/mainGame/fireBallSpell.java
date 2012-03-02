@@ -14,12 +14,23 @@ public class fireBallSpell {
     public fireBallSpell() {
         p = Map.player;
         i = Map.iDroid;
-        x = 0;
-        y = 0;
+        x = -10;
+        y = -10;
         dx = 0;
         dy = 0;
-        ImageIcon i = new ImageIcon(this.getClass().getResource("fireballSpell"));
+        ImageIcon i = new ImageIcon(this.getClass().getResource("fireballSpell.png"));
         image = i.getImage();
+    }
+
+    public void move() {
+        x += dx;
+        y += dy;
+        if (Math.abs(p.x - x) > p.pace * 32 || Math.abs(i.x - x) <= 30) {
+            x = -10;
+            y = -10;
+            dx = 0;
+            dy = 0;
+        }
     }
 
     public int getX() {
@@ -39,12 +50,20 @@ public class fireBallSpell {
 
         if (key == KeyEvent.VK_SPACE) {
             if (p.direction == 0) {
+                x = p.x - 10;
+                y = p.y;
                 dy++;
             } else if (p.direction == 1) {
+                x = p.x;
+                y = p.y - 10;
                 dx--;
             } else if (p.direction == 2) {
+                x = p.x;
+                y = p.y + 10;
                 dy--;
             } else if (p.direction == 3) {
+                x = p.x + 10;
+                y = p.y;
                 dx++;
             }
         }

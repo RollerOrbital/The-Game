@@ -13,7 +13,7 @@ public class Map extends JPanel implements ActionListener {
 
     private Random random = new Random();
 
-    private CombatEngine ce;
+    private fireBallSpell fb;
     private battleRoom br;
     private TestRoom tr;
     private TestArea ta;
@@ -27,7 +27,7 @@ public class Map extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
-        ce = new CombatEngine();
+        fb = new fireBallSpell();
         br = new battleRoom();
         tr = new TestRoom();
         ta = new TestArea();
@@ -53,6 +53,7 @@ public class Map extends JPanel implements ActionListener {
             g2d.drawImage(br.getImage(), ta.getX(), ta.getY(), this);
         }
 
+        g2d.drawImage(fb.getImage(), fb.getX(), fb.getY(), this);
         g2d.drawLine(0, 300, 650, 300);
         g2d.setColor(Color.BLUE);
         if (player.room.equals(iDroid.room)) {
@@ -118,6 +119,7 @@ public class Map extends JPanel implements ActionListener {
 
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
+            fb.keyPressed(e);
         }
 
         public void keyReleased(KeyEvent e) {
