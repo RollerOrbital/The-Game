@@ -9,7 +9,7 @@ public class MainClass extends JFrame {
         add(new Map());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 400);
+        setSize(650, 400);
         setLocationRelativeTo(null);
         setTitle("RESIST");
         setResizable(false);

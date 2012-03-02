@@ -14,8 +14,8 @@ public class Player {
     public int dy;
     public int x;
     public int y;
-    private int movex;
-    private int movey;
+    private int xspeed;
+    private int yspeed;
     private int width;
     private int height;
     private Image image;
@@ -71,8 +71,8 @@ public class Player {
         y = 32;
         dx = 0;
         dy = 0;
-        movex = 0;
-        movey = 0;
+        xspeed = 0;
+        yspeed = 0;
         width = 12;
         height = 18;
         frameNumber = 0;
@@ -87,30 +87,30 @@ public class Player {
     }
 
     public void move() {
-        if (movex != 0) {
+        if (xspeed != 0) {
             x += dx;
-            movex -= dx;
-        } else if (movey != 0) {
+            xspeed -= dx;
+        } else if (yspeed != 0) {
             y += dy;
-            movey -= dy;
+            yspeed -= dy;
         } else if (leftheld) {
             AnimationSpeed = 1;
             dx = -1;
             direction = 1;
-            movex = -32;
+            xspeed = -32;
         } else if (rightheld) {
             AnimationSpeed = 1;
             dx = 1;
             direction = 3;
-            movex = 32;
+            xspeed = 32;
         } else if (upheld) {
             dy = -1;
             direction = 2;
-            movey = -24;
+            yspeed = -24;
         } else if (downheld) {
             dy = 1;
             direction = 0;
-            movey = 24;
+            yspeed = 24;
         } else {
             dx = 0;
             dy = 0;
@@ -172,7 +172,7 @@ public class Player {
                 AnimationSpeed = 1;
             }
         } else {
-            if ((movex == 0) && (movey == 0)) {
+            if ((xspeed == 0) && (yspeed == 0)) {
                 AnimationSpeed = 0;
                 if (frameNumber != 0 && frameNumber != 2) {
                     frameNumber--;

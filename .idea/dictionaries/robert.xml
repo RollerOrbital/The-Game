@@ -25,13 +25,16 @@
       <w>requiredy</w>
       <w>rightheld</w>
       <w>riotshield</w>
+      <w>roomx</w>
       <w>rweapon</w>
       <w>swall</w>
       <w>upxp</w>
       <w>vwall</w>
       <w>xpos</w>
+      <w>xspeed</w>
       <w>xsquare</w>
       <w>ypos</w>
+      <w>yspeed</w>
       <w>ysquare</w>
     </words>
   </dictionary>
