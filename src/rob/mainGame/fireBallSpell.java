@@ -68,4 +68,7 @@ public class fireBallSpell {
             }
         }
     }
+
+    public void keyReleased(KeyEvent e) {
+    }
 }
