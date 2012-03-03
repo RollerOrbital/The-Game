@@ -2,7 +2,7 @@ package rob.mainGame;
 
 import java.util.Random;
 
-public class CombatEngine {//
+public class CombatEngine {
 
     Random random = new Random();
     private int moves;
