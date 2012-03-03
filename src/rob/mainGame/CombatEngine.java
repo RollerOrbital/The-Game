@@ -19,8 +19,8 @@ public class CombatEngine {
 
     public CombatEngine() {
         moves = 0;
-        p = Map.player;
-        i = Map.iDroid;
+        p = new Player();
+        i = new IDroid();
     }
 
     public void playerStrike() {
@@ -48,31 +48,35 @@ public class CombatEngine {
     }
 
     public void playerMages() {
-        int damage = p.cognition / 2 + random.nextInt(p.fortune);
-        i.hp -= damage;
-        p.mp -= 30;
-        System.out.println("You fire a spell at your opponent for " + damage + " damage.\nThey have " + lowerZero(i.hp) + " hp remaining.\nYou have " + lowerZero(p.mp) + " mp remaining");
+        if (p.cognition >= 30) {
+            int damage = p.cognition / 2 + random.nextInt(p.fortune);
+            i.hp -= damage;
+            p.mp -= 30;
+            System.out.println("You fire a spell at your opponent for " + damage + " damage.\nThey have " + lowerZero(i.hp) + " hp remaining.\nYou have " + lowerZero(p.mp) + " mp remaining");
+        }
     }
 
     public void enemyMages() {
-        int damage = i.cognition / 2 + random.nextInt(i.fortune);
-        p.hp -= damage;
-        i.mp -= 30;
-        System.out.println("Your opponent fires a spell at you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining");
+        if (i.cognition >= 30) {
+            int damage = i.cognition / 2 + random.nextInt(i.fortune);
+            p.hp -= damage;
+            i.mp -= 30;
+            System.out.println("Your opponent fires a spell at you for " + damage + " damage.\nYou have " + lowerZero(p.hp) + " hp remaining");
+        }
     }
 
     public void basicCombat() {
-        if (!(p.twitch > i.twitch)) {
+        while (p.hp > 0 && i.hp > 0) {
             playerMove();
-            playerCombatRun();
-            enemyMove();
-            enemyCombatRun();
-        } else {
-            enemyMove();
-            enemyCombatRun();
-            playerMove();
-            playerCombatRun();
+            if (p.dialogContinue)
+                playerCombatRun();
+            if (p.dialogContinue)
+                enemyMove();
+            if (p.dialogContinue)
+                enemyCombatRun();
+
         }
+        p.inCombat = false;
     }
 
     private void enemyCombatRun() {
@@ -95,14 +99,15 @@ public class CombatEngine {
         }
     }
 
-    public void playerMove() {
+    public boolean playerMove() {
         if (moves <= p.pace) {
             p.move();
             moves++;
         }
+        return true;
     }
 
-    public void enemyMove() {
+    public boolean enemyMove() {
         int stepsReqR = Math.abs(p.x + 32 - i.x) + Math.abs(p.y - i.y);
         int stepsReqL = Math.abs(p.x - 32 - i.x) + Math.abs(p.y - i.y);
         int stepsReqU = Math.abs(p.x - i.x) + Math.abs(p.y - 32 - i.y);
@@ -121,5 +126,6 @@ public class CombatEngine {
             i.x = p.x;
             i.y = p.y + 32;
         }
+        return true;
     }
 }

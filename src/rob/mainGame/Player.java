@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
+    public boolean dialogContinue;
+
     private IDroid i;
 
     public String room;
@@ -29,7 +31,7 @@ public class Player {
     private boolean leftheld;
     private boolean rightheld;
 
-    public static boolean inCombat = false;
+    public boolean inCombat;
 
     public int vigor;
     public int pace;
@@ -48,7 +50,11 @@ public class Player {
 
     public Player() {
 
-        i = Map.iDroid;
+        dialogContinue = false;
+
+        inCombat = false;
+
+        i = new IDroid();
 
         hp = 100;
         basehp = 100;
@@ -64,7 +70,7 @@ public class Player {
         xp = 0;
         level = 1;
         levelUpxp = level * level + 40;
-        room = "battleRoom";
+        room = "testArea";
         ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
         image = ii.getImage();
         x = 32;
@@ -138,11 +144,7 @@ public class Player {
     }
 
     private void roomWalls() {
-        if (room.equals("testArea")) {
-            hwall(64, 224, 96, 86);
-            hwall(64, 224, 160, 150);
-            vwall(96, 160, 224, 214);
-        } else if (room.equals("testRoom")) {
+        if (room.equals("testRoom")) {
             hwall(576, 768, 128, 118);
             vwall(0, 128, 576, 566);
         } else if (room.equals("battleRoom")) {
@@ -237,6 +239,10 @@ public class Player {
         rightheld = (key == KeyEvent.VK_RIGHT);
         upheld = (key == KeyEvent.VK_UP);
         downheld = (key == KeyEvent.VK_DOWN);
+
+        if (key == KeyEvent.VK_Z) {
+            dialogContinue = true;
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -246,5 +252,9 @@ public class Player {
         rightheld = (key == KeyEvent.VK_RIGHT);
         upheld = (key == KeyEvent.VK_UP);
         downheld = (key == KeyEvent.VK_DOWN);
+
+        if (key == KeyEvent.VK_Z) {
+            dialogContinue = false;
+        }
     }
 }
