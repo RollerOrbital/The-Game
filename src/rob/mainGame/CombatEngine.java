@@ -66,16 +66,13 @@ public class CombatEngine {
     }
 
     public void basicCombat() {
-        while (p.hp > 0 && i.hp > 0) {
-            playerMove();
-            if (p.dialogContinue)
-                playerCombatRun();
-            if (p.dialogContinue)
-                enemyMove();
-            if (p.dialogContinue)
-                enemyCombatRun();
-
-        }
+        playerMove();
+        if (p.dialogContinue)
+            playerCombatRun();
+        if (p.dialogContinue)
+            enemyMove();
+        if (p.dialogContinue)
+            enemyCombatRun();
         p.inCombat = false;
     }
 
