@@ -59,8 +59,8 @@ public class Board extends JPanel implements ActionListener {
         if (player.x > 600 && player.x < 740 && player.y > 250 && player.y < 400) {
             final int score = 1000 - Player.fouls;
             win = "YOU WIN, YOUR SCORE WAS " + lowerZero(score);
-            Scythe1.x = 0;
-            Scythe2.x = 0;
+            Scythe1.x = -90;
+            Scythe2.x = -90;
             s1.dx = 0;
             s1.dy = 0;
             s2.dx = 0;
