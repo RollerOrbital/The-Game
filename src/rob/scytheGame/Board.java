@@ -35,9 +35,10 @@ public class Board extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLUE);
         g2d.drawImage(maze.getImage(), maze.getX(), maze.getY(), this);
-        g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
+        g2d.drawImage(player.getImage(), player.getX() + 4, player.getY() - 20, (player.getX() + 4 + (player.getWidth() * 2)), (player.getY() + (player.getHeight() * 2) - 20), player.getSprFrame(), player.getSprDir(), (player.getSprFrame() + player.getWidth()), (player.getSprDir() + player.getHeight()), this);
         g2d.drawImage(s1.getImage(), s1.getX(), s1.getY(), this);
         g2d.drawImage(s2.getImage(), s2.getX(), s2.getY(), this);
+        g2d.drawString(("Position = " + player.getX() + ", " + player.getY()), 10, 315);
         g2d.drawString("" + lowerZero(1000 - Player.fouls), 50, 100);
         g2d.drawString(win, 50, 200);
         Toolkit.getDefaultToolkit().sync();
@@ -48,14 +49,14 @@ public class Board extends JPanel implements ActionListener {
         player.move();
         s1.move();
         s2.move();
-        if (Math.abs(Player.x - Scythe1.x) < 40 && Math.abs(Player.y - Scythe1.y) < 40) {
+        if (Math.abs(player.x - Scythe1.x) < 40 && Math.abs(player.y - Scythe1.y) < 40) {
             Player.fouls += 3;
         }
-        if (Math.abs(Player.x - Scythe2.x) < 40 && Math.abs(Player.y - Scythe2.y) < 40) {
+        if (Math.abs(player.x - Scythe2.x) < 40 && Math.abs(player.y - Scythe2.y) < 40) {
             Player.fouls += 3;
         }
 
-        if (Player.x > 600 && Player.x < 740 && Player.y > 250 && Player.y < 400) {
+        if (player.x > 600 && player.x < 740 && player.y > 250 && player.y < 400) {
             final int score = 1000 - Player.fouls;
             win = "YOU WIN, YOUR SCORE WAS " + lowerZero(score);
             Scythe1.x = 0;

@@ -5,57 +5,153 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-
-
     public static int fouls = 0;
-    private int dx;
-    private int dy;
-    public static int x;
-    public static int y;
+    public int dx;
+    public int dy;
+    public int x;
+    public int y;
+    private int xspeed;
+    private int yspeed;
+    private int width;
+    private int height;
     private Image image;
+    private int frameNumber;
+    public int direction;
+    private int[] AnimationFrame;
+    private int AnimationCounter;
+    private int AnimationSpeed;
+    private boolean upheld;
+    private boolean downheld;
+    private boolean leftheld;
+    private boolean rightheld;
 
     public Player() {
-        String player = "PLAYER.png";
-        ImageIcon i = new ImageIcon(this.getClass().getResource(player));
-        image = i.getImage();
-        x = 40;
-        y = 40;
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
+        image = ii.getImage();
+        x = 32;
+        y = 32;
+        dx = 0;
+        dy = 0;
+        xspeed = 0;
+        yspeed = 0;
+        width = 12;
+        height = 18;
+        frameNumber = 0;
+        direction = 0;
+        AnimationFrame = new int[4];
+        AnimationFrame[0] = 0;
+        AnimationFrame[1] = 1;
+        AnimationFrame[2] = 0;
+        AnimationFrame[3] = 2;
+        AnimationCounter = 0;
+        AnimationSpeed = 1;
     }
 
     public void move() {
-        x += dx;
-        y += dy;
-
-        hwall(-10, 800, 370, 360);
-        hwall(-10, 100, 90, 80);
-        hwall(-10, 100, 270, 260);
-        hwall(90, 320, 195, 185);
-        hwall(150, 370, 50, 40);
-        hwall(150, 370, 120, 110);
-        hwall(-10, 100, 100, 90);
-        hwall(150, 450, 300, 290);
-        hwall(300, 450, 230, 220);
-        hwall(440, 650, 140, 130);
-        hwall(500, 690, 200, 190);
-        hwall(350, 530, 80, 70);
-
-        vwall(-10, 500, 700, 690);
-        vwall(40, 120, 150, 140);
-        vwall(120, 550, 450, 440);
-        vwall(-20, 80, 500, 490);
-        vwall(20, 140, 590, 580);
-        vwall(200, 300, 530, 520);
-        vwall(240, 500, 600, 590);
+        if (xspeed != 0) {
+            x += dx;
+            xspeed -= dx;
+        } else if (yspeed != 0) {
+            y += dy;
+            yspeed -= dy;
+        } else if (leftheld) {
+            AnimationSpeed = 1;
+            dx = -1;
+            direction = 1;
+            xspeed = -32;
+        } else if (rightheld) {
+            AnimationSpeed = 1;
+            dx = 1;
+            direction = 3;
+            xspeed = 32;
+        } else if (upheld) {
+            dy = -1;
+            direction = 2;
+            yspeed = -24;
+        } else if (downheld) {
+            dy = 1;
+            direction = 0;
+            yspeed = 24;
+        } else {
+            dx = 0;
+            dy = 0;
+        }
+        findAnimationSpeed();
+        setAnimationSpeed();
+        standardBounds();
+        mazeWalls();
     }
 
-    private void hwall(int xs, int xe, int ys, int ye) {
+    private void mazeWalls() {
+        hwall(-10, 800, 367, 363);
+        hwall(-10, 100, 87, 83);
+        hwall(-10, 100, 267, 263);
+        hwall(110, 320, 199, 195);
+        hwall(150, 370, 47, 43);
+        hwall(150, 370, 117, 113);
+        hwall(-10, 100, 97, 93);
+        hwall(170, 450, 295, 291);
+        hwall(300, 450, 227, 223);
+        hwall(440, 650, 137, 133);
+        hwall(500, 690, 197, 193);
+        hwall(350, 530, 77, 73);
+        vwall(-10, 500, 697, 693);
+        vwall(40, 120, 143, 139);
+        vwall(150, 550, 447, 443);
+        vwall(-20, 80, 497, 493);
+        vwall(40, 140, 587, 583);
+        vwall(200, 300, 527, 523);
+        vwall(260, 500, 597, 593);
+    }
+
+    private void standardBounds() {
+        if (y > 400) {
+            y = 400;
+        } else if (y < 10) {
+            y = 10;
+        }
+        if (x < 10) {
+            x = 10;
+        } else if (x > 710) {
+            x = 710;
+        }
+    }
+
+    private void setAnimationSpeed() {
+        if (AnimationCounter == 16) {
+            if ((frameNumber + AnimationSpeed) > 3) {
+                frameNumber = 0;
+            } else {
+                frameNumber += AnimationSpeed;
+            }
+            AnimationCounter = 0;
+        } else {
+            AnimationCounter += 1;
+        }
+    }
+
+    private void findAnimationSpeed() {
+        if ((rightheld) || (leftheld) || (upheld) || (downheld)) {
+            if (AnimationSpeed == 0) {
+                AnimationSpeed = 1;
+            }
+        } else {
+            if ((xspeed == 0) && (yspeed == 0)) {
+                AnimationSpeed = 0;
+                if (frameNumber != 0 && frameNumber != 2) {
+                    frameNumber--;
+                }
+            }
+        }
+    }
+
+    public void hwall(int xs, int xe, int ys, int ye) {
         if ((x >= xs && x < xe) && (y <= ys && y >= ye)) {
             if (y > (ys + ye) / 2) {
                 y = ys;
             } else if (y < (ys + ye) / 2) {
                 y = ye;
             }
-            fouls++;
         }
     }
 
@@ -66,7 +162,6 @@ public class Player {
             } else if (x < (xs + xe) / 2) {
                 x = xe;
             }
-            fouls++;
         }
     }
 
@@ -78,6 +173,22 @@ public class Player {
         return y;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getSprFrame() {
+        return (AnimationFrame[frameNumber] * width);
+    }
+
+    public int getSprDir() {
+        return (direction * height);
+    }
+
     public Image getImage() {
         return image;
     }
@@ -86,40 +197,94 @@ public class Player {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            dy = -1;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 1;
-        }
+        leftheld = (key == KeyEvent.VK_LEFT);
+        rightheld = (key == KeyEvent.VK_RIGHT);
+        upheld = (key == KeyEvent.VK_UP);
+        downheld = (key == KeyEvent.VK_DOWN);
     }
 
     public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
+        int key = 1 - (e.getKeyCode());
 
-        if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            dy = 0;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 0;
-        }
+        leftheld = (key == KeyEvent.VK_LEFT);
+        rightheld = (key == KeyEvent.VK_RIGHT);
+        upheld = (key == KeyEvent.VK_UP);
+        downheld = (key == KeyEvent.VK_DOWN);
     }
 }
+
+//    public static int fouls = 0;
+//    private int dx;
+//    private int dy;
+//    public static int x;
+//    public static int y;
+//    private Image image;
+//
+//    public Player() {
+//        String player = "PLAYER.png";
+//        ImageIcon i = new ImageIcon(this.getClass().getResource(player));
+//        image = i.getImage();
+//        x = 40;
+//        y = 40;
+//    }
+//
+//    public void move() {
+//        x += dx;
+//        y += dy;
+//
+//    }
+//
+//
+//    public int getX() {
+//        return x;
+//    }
+//
+//    public int getY() {
+//        return y;
+//    }
+//
+//    public Image getImage() {
+//        return image;
+//    }
+//
+//    public void keyPressed(KeyEvent e) {
+//
+//        int key = e.getKeyCode();
+//
+//        if (key == KeyEvent.VK_LEFT) {
+//            dx = -1;
+//        }
+//
+//        if (key == KeyEvent.VK_RIGHT) {
+//            dx = 1;
+//        }
+//
+//        if (key == KeyEvent.VK_UP) {
+//            dy = -1;
+//        }
+//
+//        if (key == KeyEvent.VK_DOWN) {
+//            dy = 1;
+//        }
+//    }
+//
+//    public void keyReleased(KeyEvent e) {
+//        int key = e.getKeyCode();
+//
+//        if (key == KeyEvent.VK_LEFT) {
+//            dx = 0;
+//        }
+//
+//        if (key == KeyEvent.VK_RIGHT) {
+//            dx = 0;
+//        }
+//
+//        if (key == KeyEvent.VK_UP) {
+//            dy = 0;
+//        }
+//
+//        if (key == KeyEvent.VK_DOWN) {
+//            dy = 0;
+//        }
+//    }
+//}
