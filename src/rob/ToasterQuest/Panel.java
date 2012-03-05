@@ -12,6 +12,7 @@ public class Panel extends JPanel implements ActionListener {
     private Player player;
 
     public Panel() {
+        addKeyListener(new adapter());
         setFocusable(true);
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
@@ -25,7 +26,9 @@ public class Panel extends JPanel implements ActionListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(level.getImage(), level.getX(), level.getY(), this);
-        g2d.drawImage(player.getImage(), 150, 50, this);
+        g2d.drawImage(player.getImage(), 200, 150, this);
+        g2d.drawString("Height = " + level.getY(), 100, 100);
+        g2d.drawString("Distance = " + level.getX(), 100, 150);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }

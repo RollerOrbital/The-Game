@@ -10,8 +10,8 @@ public class Player {
     private Image image;
 
     public Player() {
-        height = 20;
-        distance = 50;
+        height = 326;
+        distance = -200;
         ii = new ImageIcon(getClass().getResource("player.png"));
         image = ii.getImage();
     }
