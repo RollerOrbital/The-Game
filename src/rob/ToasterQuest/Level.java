@@ -5,18 +5,16 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Level {
-    private ImageIcon ii;
     private Image image;
-    private int levelNumber, length, height, x, y, dx, dy;
+    private int x, y, dx, dy;
+    private Player player;
 
     public Level() {
-        levelNumber = 1;
-        ii = new ImageIcon(getClass().getResource("level" + levelNumber));
+        player = new Player();
+        ImageIcon ii = new ImageIcon(getClass().getResource("level1"));
         image = ii.getImage();
-        length = 1250;
-        height = 400;
-        x = 0;
-        y = 0;
+        x = -1 * player.distance;
+        y = -1 * player.height;
         dx = 0;
         dy = 0;
     }
@@ -34,12 +32,13 @@ public class Level {
     }
 
     public void move() {
-        x += dx;
-        y += dy;
-        if (y >= 380) {
-            y = 380;
-        } else if (y <= 0) {
-            y = 0;
+        int h = player.height;
+        x -= dx;
+        y -= dy;
+        player.height += dy;
+        player.distance += dx;
+        if (player.height > h + 50) {
+            dy = 3;
         }
     }
 
@@ -47,13 +46,21 @@ public class Level {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
             dy = -2;
+        } else if (key == KeyEvent.VK_LEFT) {
+            dx = 2;
+        } else if (key == KeyEvent.VK_RIGHT) {
+            dx = 2;
         }
     }
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-            dy = 0;
+            dy = 3;
+        } else if (key == KeyEvent.VK_LEFT) {
+            dx = 0;
+        } else if (key == KeyEvent.VK_RIGHT) {
+            dx = 0;
         }
     }
 }

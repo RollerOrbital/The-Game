@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Player {
-    private int height, distance;
+    public int height;
+    public int distance;
     private ImageIcon ii;
     private Image image;
 
@@ -13,5 +14,9 @@ public class Player {
         distance = 50;
         ii = new ImageIcon(getClass().getResource("player.png"));
         image = ii.getImage();
+    }
+
+    public Image getImage() {
+        return image;
     }
 }
