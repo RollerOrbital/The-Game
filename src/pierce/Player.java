@@ -28,7 +28,7 @@ public class Player {
     private boolean rightheld;
 
     public Player() {
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
         image = ii.getImage();
         x = 0;
         y = 0;
