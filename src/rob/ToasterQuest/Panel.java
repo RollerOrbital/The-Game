@@ -26,7 +26,7 @@ public class Panel extends JPanel implements ActionListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(level.getImage(), level.getX(), level.getY(), this);
-        g2d.drawImage(player.getImage(), 200, 150, this);
+        g2d.drawImage(player.getImage(), 200 + 4, 150 - 20, (200 + 4 + (player.getWidth() * 2)), (150 + (player.getHeight() * 2) - 20), player.getSprFrame(), player.getSprDir(), (player.getSprFrame() + player.getWidth()), (player.getSprDir() + player.getHeight()), this);
         g2d.drawString("Height = " + level.getY(), 100, 100);
         g2d.drawString("Distance = " + level.getX(), 100, 150);
         Toolkit.getDefaultToolkit().sync();
@@ -35,6 +35,7 @@ public class Panel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         level.move();
+        player.move();
         repaint();
     }
 

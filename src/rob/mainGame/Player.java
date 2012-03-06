@@ -239,10 +239,6 @@ public class Player {
         rightheld = (key == KeyEvent.VK_RIGHT);
         upheld = (key == KeyEvent.VK_UP);
         downheld = (key == KeyEvent.VK_DOWN);
-
-        if (key == KeyEvent.VK_Z) {
-            dialogContinue = true;
-        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -252,9 +248,5 @@ public class Player {
         rightheld = (key == KeyEvent.VK_RIGHT);
         upheld = (key == KeyEvent.VK_UP);
         downheld = (key == KeyEvent.VK_DOWN);
-
-        if (key == KeyEvent.VK_Z) {
-            dialogContinue = false;
-        }
     }
 }

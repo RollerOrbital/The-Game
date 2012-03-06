@@ -37,7 +37,7 @@ public class Player {
         movex = 0;
         movey = 0;
         width = 12; //image.getWidth(null);
-        height = 18; //image.getHeight(null);
+        height = 18; //image.getAltitude(null);
         xbound = 16;
         ybound = 12;
         sprframe = 0;
