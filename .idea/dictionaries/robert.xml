@@ -20,6 +20,7 @@
       <w>movey</w>
       <w>mweapon</w>
       <w>nano</w>
+      <w>newh</w>
       <w>println</w>
       <w>psquare</w>
       <w>requiredx</w>
@@ -28,6 +29,8 @@
       <w>riotshield</w>
       <w>roomx</w>
       <w>rweapon</w>
+      <w>startx</w>
+      <w>starty</w>
       <w>swall</w>
       <w>upxp</w>
       <w>vwall</w>
