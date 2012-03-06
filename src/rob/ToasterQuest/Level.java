@@ -9,7 +9,7 @@ public class Level {
     private int x;
     public int y;
     private int dx;
-    private int dy;
+    public int dy;
 
     public boolean left, up, right;
 
