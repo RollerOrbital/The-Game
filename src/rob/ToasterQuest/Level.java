@@ -35,28 +35,27 @@ public class Level {
     }
 
     public void move() {
-        int counter = 0;
-        if (up) {
+        if (right) {
             y -= dy;
-        } else if (right) {
             x -= dx;
         } else if (left) {
-            x += dx;
+            y -= dy;
+            x -= dx;
         } else {
-            if (counter % 40 == 0) {
-                dy = 3;
-                y -= dy;
-            }
+            y -= dy;
         }
         if (x <= -1020) {
             x = -1019;
-        } else if (x >= 200) {
-            x = 199;
+        } else if (x >= 199) {
+            x = 198;
         } else if (y <= -325) {
             dy = 0;
             y = -326;
         }
-        counter++;
+    }
+
+    public void moveUp() {
+        y += 1;
     }
 
     public void keyPressed(KeyEvent e) {
@@ -65,11 +64,16 @@ public class Level {
             dy = -2;
             up = true;
         } else if (key == KeyEvent.VK_LEFT) {
+            dy = 2;
             dx = -2;
             left = true;
+            up = false;
         } else if (key == KeyEvent.VK_RIGHT) {
+            dy = 2;
             dx = 2;
             right = true;
+            up = false;
+
         }
     }
 
@@ -77,10 +81,13 @@ public class Level {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
             dy = 0;
+            up = false;
         } else if (key == KeyEvent.VK_LEFT) {
             dx = 0;
+            left = false;
         } else if (key == KeyEvent.VK_RIGHT) {
             dx = 0;
+            right = false;
         }
     }
 }
