@@ -30,7 +30,7 @@ public class Level {
         y = -1 * Player.altitude;
         dx = 0;
         dy = 0;
-        jumpHeight = 50;
+        jumpHeight = 100;
         upCounter = 0;
 
         width = 12;
@@ -98,7 +98,7 @@ public class Level {
             if (up) {
                 up = false;
             } else {
-                jumpHeight = y + 50;
+                jumpHeight = y + 100;
                 dy = -2;
                 up = true;
                 isRising = true;
@@ -121,7 +121,7 @@ public class Level {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-            dy = 0;
+            dy = 3;
         } else if (key == KeyEvent.VK_LEFT) {
             dx = 0;
             left = false;
