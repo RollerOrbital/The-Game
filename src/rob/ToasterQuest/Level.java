@@ -152,4 +152,4 @@ public class Level {
     public Image getPImage() {
         return player.image;
     }
-}//
+}
