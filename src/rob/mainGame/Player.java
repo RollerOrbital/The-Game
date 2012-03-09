@@ -5,13 +5,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-
     public boolean dialogContinue;
-
     private IDroid i;
-
     public String room;
-
     public int dx;
     public int dy;
     public int x;
@@ -30,9 +26,7 @@ public class Player {
     private boolean downheld;
     private boolean leftheld;
     private boolean rightheld;
-
     public boolean inCombat;
-
     public int vigor;
     public int pace;
     public int fortune;
@@ -49,13 +43,9 @@ public class Player {
     public int basemp;
 
     public Player() {
-
         dialogContinue = false;
-
         inCombat = false;
-
         i = new IDroid();
-
         hp = 100;
         basehp = 100;
         mp = 100;

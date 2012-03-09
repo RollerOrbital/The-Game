@@ -17,11 +17,6 @@ public class Player {
         image = ii.getImage();
         width = 12;
         height = 18;
-        int[] spriteFrame = new int[4];
-        spriteFrame[0] = 0;
-        spriteFrame[1] = 1;
-        spriteFrame[2] = 0;
-        spriteFrame[3] = 2;
         direction = 0;
     }
 }

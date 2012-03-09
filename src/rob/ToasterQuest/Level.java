@@ -15,6 +15,8 @@ public class Level {
     public int frameNumber;
     public int direction;
     private Player player;
+    public boolean isMoving;
+    public boolean isRising;
 
     public boolean left, up, right;
 
@@ -34,7 +36,7 @@ public class Level {
         spriteFrame[1] = 1;
         spriteFrame[2] = 0;
         spriteFrame[3] = 2;
-        direction = 0;
+        direction = 3;
         frameNumber = 0;
     }
 
@@ -51,6 +53,9 @@ public class Level {
     }
 
     public void move() {
+        if (frameNumber == 3) {
+            frameNumber = 0;
+        }
         if (right) {
             y -= dy;
             x -= dx;
@@ -68,6 +73,15 @@ public class Level {
             dy = 0;
             y = -326;
         }
+        if (isMoving) {
+            frameNumber++;
+        }
+        if (isRising) {
+            frameNumber = 1;
+        }
+        if (!isMoving) {
+            frameNumber = 0;
+        }
     }
 
     public void moveUp() {
@@ -79,21 +93,19 @@ public class Level {
         if (key == KeyEvent.VK_UP) {
             dy = -2;
             up = true;
-            frameNumber = 1;
+            isRising = true;
         } else if (key == KeyEvent.VK_LEFT) {
-            dy = 2;
-            dx = -2;
+            dx--;
             left = true;
             up = false;
             direction = 1;
-            frameNumber = 0;
+            isMoving = true;
         } else if (key == KeyEvent.VK_RIGHT) {
-            dy = 2;
-            dx = 2;
+            dx++;
             right = true;
             up = false;
             direction = 3;
-            frameNumber = 0;
+            isMoving = true;
         }
     }
 
@@ -102,12 +114,15 @@ public class Level {
         if (key == KeyEvent.VK_UP) {
             dy = 3;
             up = false;
+            isRising = false;
         } else if (key == KeyEvent.VK_LEFT) {
             dx = 0;
             left = false;
+            isMoving = false;
         } else if (key == KeyEvent.VK_RIGHT) {
             dx = 0;
             right = false;
+            isMoving = false;
         }
     }
 

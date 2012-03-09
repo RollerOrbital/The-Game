@@ -34,8 +34,11 @@ public class Panel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (level.up) {
             level.up = false;
+            final int stopHeight = level.y + 50;
             for (int i = 0; i < 30; i++) {
-                level.moveUp();
+                if (level.y < stopHeight) {
+                    level.moveUp();
+                }
             }
         }
         level.move();
