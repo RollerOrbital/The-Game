@@ -19,6 +19,8 @@ public class Level {
     public boolean isRising;
     public int jumpHeight;
     public int upCounter;
+    public boolean upHeld;
+    public boolean canJump;
 
     public boolean left, up, right;
 
@@ -32,6 +34,8 @@ public class Level {
         dy = 0;
         jumpHeight = 100;
         upCounter = 0;
+        upHeld = false;
+        canJump = true;
 
         width = 12;
         height = 18;
@@ -72,14 +76,9 @@ public class Level {
         } else {
             y -= dy;
         }
-        if (x <= -1020) {
-            x = -1019;
-        } else if (x >= 199) {
-            x = 198;
-        } else if (y <= -325) {
+        basicBounds();
+        if (upHeld) {
             dy = 0;
-            y = -326;
-            isRising = false;
         }
         if (isMoving) {
             frameNumber++;
@@ -92,27 +91,43 @@ public class Level {
         }
     }
 
+    private void basicBounds() {
+        if (x <= -1020) {
+            x = -1019;
+        } else if (x >= 199) {
+            x = 198;
+        } else if (y <= -325) {
+            dy = 0;
+            y = -326;
+            isRising = false;
+        }
+    }
+
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
             if (up) {
                 up = false;
+                dy = 0;
+                upHeld = true;
             } else {
-                jumpHeight = y + 100;
-                dy = -2;
-                up = true;
-                isRising = true;
+                if (canJump) {
+                    jumpHeight = y + 100;
+                    dy = -2;
+                    up = true;
+                    isRising = true;
+                } else {
+                    y++;
+                }
             }
         } else if (key == KeyEvent.VK_LEFT) {
             dx--;
             left = true;
-            up = false;
             direction = 1;
             isMoving = true;
         } else if (key == KeyEvent.VK_RIGHT) {
             dx++;
             right = true;
-            up = false;
             direction = 3;
             isMoving = true;
         }

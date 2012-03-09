@@ -50,13 +50,15 @@ public class Panel extends JPanel implements ActionListener {
         //the player goes down again
         if (level.up) {
             level.y++;
-            if (level.y == level.jumpHeight) {
+            if (level.y >= level.jumpHeight) {
+                level.canJump = false;
+                level.y += 3;
                 level.up = false;
-                level.y -= 3;
             }
         } else {
             level.y -= 3;
         }
+        level.canJump = true;
         level.move();
         repaint();
     }
