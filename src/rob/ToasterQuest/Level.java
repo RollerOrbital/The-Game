@@ -17,6 +17,8 @@ public class Level {
     private Player player;
     public boolean isMoving;
     public boolean isRising;
+    public int jumpHeight;
+    public int upCounter;
 
     public boolean left, up, right;
 
@@ -28,6 +30,8 @@ public class Level {
         y = -1 * Player.altitude;
         dx = 0;
         dy = 0;
+        jumpHeight = 50;
+        upCounter = 0;
 
         width = 12;
         height = 18;
@@ -53,6 +57,9 @@ public class Level {
     }
 
     public void move() {
+        if (!up) {
+            dy = 3;
+        }
         if (frameNumber == 3) {
             frameNumber = 0;
         }
@@ -72,6 +79,7 @@ public class Level {
         } else if (y <= -325) {
             dy = 0;
             y = -326;
+            isRising = false;
         }
         if (isMoving) {
             frameNumber++;
@@ -84,16 +92,17 @@ public class Level {
         }
     }
 
-    public void moveUp() {
-        y += 1;
-    }
-
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-            dy = -2;
-            up = true;
-            isRising = true;
+            if (up) {
+                up = false;
+            } else {
+                jumpHeight = y + 50;
+                dy = -2;
+                up = true;
+                isRising = true;
+            }
         } else if (key == KeyEvent.VK_LEFT) {
             dx--;
             left = true;
@@ -112,9 +121,7 @@ public class Level {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-            dy = 3;
-            up = false;
-            isRising = false;
+            dy = 0;
         } else if (key == KeyEvent.VK_LEFT) {
             dx = 0;
             left = false;
