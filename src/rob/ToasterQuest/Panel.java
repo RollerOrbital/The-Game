@@ -32,28 +32,12 @@ public class Panel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        //jump pseudoCode
-        //max-jump-height = 50
-        //if the player is holding the up key
-        //the up key is no longer being pressed
-        //to do this make an 'isJumping' boolean and when the key is pressed 'up' becomes true
-        //if up is true already then 'isJumping' is false
-        //DONE
-        //The player goes up until they reach their jumpHeight at which point up becomes false
-        //their jumpHeight is determined by their height + 50
-        //this is assigned when they press the up key
-        //DONE
-        //if up is true the player just goes up
-        //the player goes up until they reach y == jumpHeight
-        //when y == jumpHeight
-        //up is false
-        //the player goes down again
         if (level.up) {
             level.y++;
-            if (level.y >= level.jumpHeight) {
-                level.canJump = false;
-                level.y += 3;
+            if (level.y > level.jumpHeight) {
                 level.up = false;
+                level.y += 3;
+                level.canJump = false;
             }
         } else {
             level.y -= 3;
