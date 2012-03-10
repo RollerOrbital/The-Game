@@ -11,11 +11,20 @@ public class Room {
     private int[] spriteFrame;
 
     public int y, jumpHeight;
-    private int x, dx, width, height, frameNumber, direction, dy;
+    public int x;
+    private int dx;
+    private int width;
+    private int height;
+    private int frameNumber;
+    private int direction;
+    private int dy;
 
-    public boolean canJump;
+    public boolean left;
+    public boolean right;
+    public boolean up;
+    public boolean down;
 
-    private boolean left, right, up, down;
+    public int limit = 0;
 
     public Room() {
         player = new Player();
@@ -27,7 +36,6 @@ public class Room {
         dy = 0;
 
         jumpHeight = 100;
-        canJump = true;
 
         width = 12;
         height = 18;
@@ -53,18 +61,20 @@ public class Room {
     }
 
     public void move() {
+        x += dx;
+        y += dy;
         getDirection();
         basicBounds();
     }
 
     private void getDirection() {
-        if (dy > 0) {
+        if (up) {
             direction = 2;
-        } else if (dy < 0) {
+        } else if (down) {
             direction = 0;
-        } else if (dx > 0) {
+        } else if (left) {
             direction = 1;
-        } else if (dx < 0) {
+        } else if (right) {
             direction = 3;
         }
     }
@@ -83,67 +93,27 @@ public class Room {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        final int limit;
+        final int limiter;
         if (key == KeyEvent.VK_UP) {
-            limit = y - 32;
-            if (up) {
-                y += dy;
-                if (y < limit) {
-                    dy = 0;
-                    up = false;
-                }
-            }
-            if (!up) {
-                dy = 1;
-                up = true;
-            } else {
-                dy = 0;
-            }
+            up = true;
+            limiter = y - 32;
+            limit = limiter;
+            dy = 1;
         } else if (key == KeyEvent.VK_LEFT) {
-            limit = x - 32;
-            if (left) {
-                x += dx;
-                if (x < limit) {
-                    dx = 0;
-                    left = false;
-                }
-            }
-            if (!left) {
-                dx = 1;
-                left = true;
-            } else {
-                dx = 0;
-            }
+            left = true;
+            limiter = x - 32;
+            limit = limiter;
+            dx = 1;
         } else if (key == KeyEvent.VK_RIGHT) {
-            limit = x + 32;
-            if (right) {
-                x += dx;
-                if (x > limit) {
-                    dx = 0;
-                    right = false;
-                }
-            }
-            if (!right) {
-                dx = -1;
-                right = true;
-            } else {
-                dx = 0;
-            }
+            right = true;
+            limiter = x + 32;
+            limit = limiter;
+            dx = -1;
         } else if (key == KeyEvent.VK_DOWN) {
-            limit = y + 32;
-            if (down) {
-                y += dy;
-                if (y > limit) {
-                    dy = 0;
-                    down = false;
-                }
-            }
-            if (!down) {
-                dy = -1;
-                down = true;
-            } else {
-                dy = 0;
-            }
+            down = true;
+            limiter = y + 32;
+            limit = limiter;
+            dy = -1;
         }
     }
 
