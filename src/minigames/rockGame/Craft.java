@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 
 public class Craft {
 
-    private String craft = "craft.png";
-
     private int dx;
     private int dy;
     private int x;
@@ -18,7 +16,7 @@ public class Craft {
     private boolean vis = true;
 
     public Craft() {
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(craft));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("craft.png"));
         image = ii.getImage();
         x = 168;
         y = 600;
