@@ -8,6 +8,7 @@ public class Player {
     public int width, height;
     public int direction;
     public int x, y;
+    public String room;
 
     public Player() {
         ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
@@ -17,5 +18,6 @@ public class Player {
         width = 12;
         height = 18;
         direction = 0;
+        room = "testRoom";
     }
 }

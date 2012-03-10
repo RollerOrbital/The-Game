@@ -10,7 +10,7 @@ public class Room {
 
     private int[] spriteFrame;
 
-    public int y, jumpHeight;
+    public int y;
     public int x;
     private int dx;
     private int width;
@@ -34,8 +34,6 @@ public class Room {
         y = -1 * player.y;
         dx = 0;
         dy = 0;
-
-        jumpHeight = 100;
 
         width = 12;
         height = 18;
