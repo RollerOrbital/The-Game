@@ -6,23 +6,15 @@ import java.awt.event.KeyEvent;
 
 public class Level {
     private Image image;
-    private int x;
-    public int y;
-    private int dx;
-    public int dy;
-    private int width, height;
-    private int[] spriteFrame;
-    public int frameNumber;
-    public int direction;
     private Player player;
-    public boolean isMoving;
-    public boolean isRising;
-    public int jumpHeight;
-    public int upCounter;
-    public boolean upHeld;
-    public boolean canJump;
 
-    public boolean left, up, right;
+    private int[] spriteFrame;
+
+    public int y, jumpHeight;
+    private int x, dx, width, height, frameNumber, direction, dy;
+
+    public boolean up, canJump;
+    private boolean isMoving, isRising, upHeld, left, right;
 
     public Level() {
         player = new Player();
@@ -32,8 +24,8 @@ public class Level {
         y = -1 * Player.altitude;
         dx = 0;
         dy = 0;
+
         jumpHeight = 100;
-        upCounter = 0;
         upHeld = false;
         canJump = true;
 
@@ -76,7 +68,9 @@ public class Level {
         } else {
             y -= dy;
         }
+
         basicBounds();
+
         if (upHeld) {
             dy = 0;
         }
@@ -108,7 +102,6 @@ public class Level {
         if (key == KeyEvent.VK_UP) {
             if (up) {
                 up = false;
-                dy = 0;
                 upHeld = true;
             } else {
                 if (canJump) {
