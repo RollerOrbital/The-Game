@@ -31,6 +31,12 @@
       <w>rweapon</w>
       <w>startx</w>
       <w>starty</w>
+      <w>stepsx</w>
+      <w>stepsxb</w>
+      <w>stepsxf</w>
+      <w>stepsy</w>
+      <w>stepsyb</w>
+      <w>stepsyf</w>
       <w>swall</w>
       <w>upxp</w>
       <w>vwall</w>
