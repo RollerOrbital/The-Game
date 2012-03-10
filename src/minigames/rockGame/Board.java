@@ -84,8 +84,6 @@ public class Board extends JPanel implements ActionListener {
             craft.keyReleased(e);
         }
     }
-
-
 }
 
 
