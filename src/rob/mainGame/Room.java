@@ -55,31 +55,6 @@ public class Room {
     public void move() {
         getDirection();
         basicBounds();
-        final int stepsyf = y + 32;
-        final int stepsxf = x + 32;
-        final int stepsyb = y - 32;
-        final int stepsxb = x - 32;
-        if (up) {
-            y += dy;
-            if (y > stepsyf) {
-                up = false;
-            }
-        } else if (right) {
-            x += dx;
-            if (x < stepsxb) {
-                right = false;
-            }
-        } else if (left) {
-            x += dx;
-            if (x > stepsxf) {
-                left = false;
-            }
-        } else if (down) {
-            y += dy;
-            if (y < stepsyb) {
-                down = false;
-            }
-        }
     }
 
     private void getDirection() {
@@ -108,7 +83,16 @@ public class Room {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+        final int limit;
         if (key == KeyEvent.VK_UP) {
+            limit = y - 32;
+            if (up) {
+                y += dy;
+                if (y < limit) {
+                    dy = 0;
+                    up = false;
+                }
+            }
             if (!up) {
                 dy = 1;
                 up = true;
@@ -116,6 +100,14 @@ public class Room {
                 dy = 0;
             }
         } else if (key == KeyEvent.VK_LEFT) {
+            limit = x - 32;
+            if (left) {
+                x += dx;
+                if (x < limit) {
+                    dx = 0;
+                    left = false;
+                }
+            }
             if (!left) {
                 dx = 1;
                 left = true;
@@ -123,6 +115,14 @@ public class Room {
                 dx = 0;
             }
         } else if (key == KeyEvent.VK_RIGHT) {
+            limit = x + 32;
+            if (right) {
+                x += dx;
+                if (x > limit) {
+                    dx = 0;
+                    right = false;
+                }
+            }
             if (!right) {
                 dx = -1;
                 right = true;
@@ -130,6 +130,14 @@ public class Room {
                 dx = 0;
             }
         } else if (key == KeyEvent.VK_DOWN) {
+            limit = y + 32;
+            if (down) {
+                y += dy;
+                if (y > limit) {
+                    dy = 0;
+                    down = false;
+                }
+            }
             if (!down) {
                 dy = -1;
                 down = true;
