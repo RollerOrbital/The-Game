@@ -21,6 +21,7 @@
       <w>mweapon</w>
       <w>nano</w>
       <w>newh</w>
+      <w>onoff</w>
       <w>println</w>
       <w>psquare</w>
       <w>realscore</w>
@@ -38,6 +39,12 @@
       <w>stepsy</w>
       <w>stepsyb</w>
       <w>stepsyf</w>
+      <w>stopd</w>
+      <w>stopl</w>
+      <w>stopr</w>
+      <w>stopu</w>
+      <w>stopx</w>
+      <w>stopy</w>
       <w>swall</w>
       <w>upxp</w>
       <w>vwall</w>

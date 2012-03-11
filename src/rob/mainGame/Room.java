@@ -24,7 +24,13 @@ public class Room {
     public boolean up;
     public boolean down;
 
-    public int limit = 0;
+    public int stopl;
+    public int stopr;
+    public int stopu;
+    public int stopd;
+    public int onoff;
+
+    public boolean isMoving;
 
     public Room() {
         player = new Player();
@@ -44,6 +50,7 @@ public class Room {
         spriteFrame[3] = 2;
         direction = 3;
         frameNumber = 0;
+        onoff = 0;
     }
 
     public int getX() {
@@ -56,13 +63,6 @@ public class Room {
 
     public Image getImage() {
         return image;
-    }
-
-    public void move() {
-        x += dx;
-        y += dy;
-        getDirection();
-        basicBounds();
     }
 
     private void getDirection() {
@@ -89,29 +89,84 @@ public class Room {
         }
     }
 
+    public int getFrameNumber(int frameNumber) {
+        if (frameNumber == 0) {
+            frameNumber = 1;
+        } else if (frameNumber > 0) {
+            frameNumber++;
+        } else if (frameNumber == 3) {
+            frameNumber = 0;
+        }
+        return frameNumber;
+    }
+
+    public void move() {
+        getDirection();
+        frameNumber = 0;
+        if (x < stopl && direction == 1) {
+            x += dx;
+            getFrame();
+        } else if (x > stopr && direction == 3) {
+            x += dx;
+            getFrame();
+        } else if (y < stopu && direction == 2) {
+            y += dy;
+            getFrame();
+        } else if (y > stopd && direction == 0) {
+            y += dy;
+            getFrame();
+            if (frameNumber > 4) {
+                frameNumber = 0;
+            }
+            basicBounds();
+        }
+    }
+
+    private void getFrame() {
+        if (isMoving) {
+            frameNumber = getFrameNumber(frameNumber);
+        }
+        isMoving = false;
+    }
+
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        final int limiter;
+        final int stopLeft = x + 32;
+        final int stopUp = y + 32;
+        final int stopRight = x - 32;
+        final int stopDown = y - 32;
+        stopl = stopLeft;
+        stopu = stopUp;
+        stopd = stopDown;
+        stopr = stopRight;
         if (key == KeyEvent.VK_UP) {
-            up = true;
-            limiter = y - 32;
-            limit = limiter;
             dy = 1;
+            isMoving = true;
+            up = true;
+            left = false;
+            right = false;
+            down = false;
         } else if (key == KeyEvent.VK_LEFT) {
-            left = true;
-            limiter = x - 32;
-            limit = limiter;
             dx = 1;
+            isMoving = true;
+            left = true;
+            up = false;
+            right = false;
+            down = false;
         } else if (key == KeyEvent.VK_RIGHT) {
-            right = true;
-            limiter = x + 32;
-            limit = limiter;
             dx = -1;
+            isMoving = true;
+            right = true;
+            left = false;
+            up = false;
+            down = false;
         } else if (key == KeyEvent.VK_DOWN) {
-            down = true;
-            limiter = y + 32;
-            limit = limiter;
             dy = -1;
+            isMoving = true;
+            down = true;
+            left = false;
+            right = false;
+            up = false;
         }
     }
 

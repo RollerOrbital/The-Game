@@ -86,13 +86,13 @@ public class Level {
     }
 
     private void basicBounds() {
-        if (x <= -1020) {
-            x = -1019;
+        if (x <= -4000) {
+            x = -4019;
         } else if (x >= 199) {
             x = 198;
-        } else if (y <= -325) {
+        } else if (y <= -500) {
             dy = 0;
-            y = -326;
+            y = -500;
             isRising = false;
         }
     }

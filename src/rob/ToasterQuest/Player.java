@@ -11,7 +11,7 @@ public class Player {
     public int direction;
 
     public Player() {
-        altitude = 326;
+        altitude = 520;
         distance = -200;
         ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
         image = ii.getImage();
