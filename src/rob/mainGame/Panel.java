@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 public class Panel extends JPanel implements ActionListener {
     private Room room;
     public Image statPic;
-    private Enemy enemy;
 
     public Panel() {
         ImageIcon ii = new ImageIcon(getClass().getResource("statsPic.png"));
@@ -21,7 +20,6 @@ public class Panel extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
         room = new Room();
-        enemy = enemy.idroid;
         Timer timer = new Timer(5, this);
         timer.start();
     }
@@ -32,6 +30,7 @@ public class Panel extends JPanel implements ActionListener {
         g2d.drawImage(room.getImage(), room.getX(), room.getY(), this);
         g2d.drawImage(statPic, 0, 0, this);
         g2d.drawImage(room.getPImage(), 200 + 4, 150 - 20, (200 + 4 + (room.getPWidth() * 2)), (150 + (room.getPHeight() * 2) - 20), room.getSprFrame(), room.getSprDir(), (room.getSprFrame() + room.getPWidth()), (room.getSprDir() + room.getPHeight()), this);
+        g2d.drawImage(Enemy.idroid.getImage(), 200 + 4, 150 - 20, (200 + 4 + (Enemy.idroid.getWidth() * 2)), (150 + (Enemy.idroid.getHeight() * 2) - 20), Enemy.idroid.getSprFrame(), Enemy.idroid.getSprDir(), (Enemy.idroid.getSprFrame() + Enemy.idroid.getWidth()), (Enemy.idroid.getSprDir() + Enemy.idroid.getHeight()), this);
         g2d.drawString("Height = " + room.getY(), 100, 100);
         g2d.drawString("Distance = " + room.getX(), 100, 150);
         Toolkit.getDefaultToolkit().sync();

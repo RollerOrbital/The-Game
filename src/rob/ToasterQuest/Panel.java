@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener {
     private Level level;
+    public static int lowerBound = -326;
 
     public Panel() {
         addKeyListener(new adapter());
@@ -33,7 +34,7 @@ public class Panel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (level.up) {
-            level.y++;
+            level.y += 2;
             if (level.y > level.jumpHeight) {
                 level.up = false;
                 level.y += 3;

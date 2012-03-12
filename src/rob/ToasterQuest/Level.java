@@ -18,7 +18,7 @@ public class Level {
 
     public Level() {
         player = new Player();
-        ImageIcon ii = new ImageIcon(getClass().getResource("level1.png"));
+        ImageIcon ii = new ImageIcon(getClass().getResource("tutorialStage.png"));
         image = ii.getImage();
         x = -1 * Player.distance;
         y = -1 * Player.altitude;
@@ -86,13 +86,15 @@ public class Level {
     }
 
     private void basicBounds() {
-        if (x <= -4000) {
-            x = -4019;
+        if (x <= -1021) {
+            x = -1010;
+            dx = 0;
         } else if (x >= 199) {
-            x = 198;
-        } else if (y <= -500) {
+            x = 190;
+            dx = 0;
+        } else if (y <= Panel.lowerBound) {
             dy = 0;
-            y = -500;
+            y = Panel.lowerBound + 1;
             isRising = false;
         }
     }
@@ -110,7 +112,7 @@ public class Level {
                     up = true;
                     isRising = true;
                 } else {
-                    y++;
+                    y += 2;
                 }
             }
         } else if (key == KeyEvent.VK_LEFT) {

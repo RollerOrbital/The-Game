@@ -14,6 +14,7 @@ public class Enemy {
         this.y = y;
         ImageIcon ii = new ImageIcon(getClass().getResource(imageName));
         image = ii.getImage();
+
         width = 12;
         height = 18;
         spriteFrame = new int[4];
@@ -21,14 +22,13 @@ public class Enemy {
         spriteFrame[1] = 1;
         spriteFrame[2] = 0;
         spriteFrame[3] = 2;
-        direction = 3;
+        direction = 0;
         frameNumber = 0;
         player = new Player();
-
     }
 
     //Enemies
-    public Enemy idroid = new Enemy(100, 100, "idroid");
+    public static Enemy idroid = new Enemy(100, 100, "idroid");
 
     //Methods
     public int getX() {
@@ -43,17 +43,33 @@ public class Enemy {
         return image;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getSprFrame() {
+        return (spriteFrame[frameNumber] * width);
+    }
+
+    public int getSprDir() {
+        return (direction * height);
+    }
+
     public void move() {
         x += dx;
         y += dy;
     }
 
-    public void moveAi() {
-        final int ydiff = player.y - y;
-        final int xdiff = player.x - x;
-
-        if (xdiff < 0 && x > xdiff) {
-            dx = -1;
-        }
-    }
+//    public void moveAi() {
+//        final int ydiff = player.y - y;
+//        final int xdiff = player.x - x;
+//
+//        if (xdiff < 0 && x > xdiff) {
+//            dx = -1;
+//        }
+//    }
 }
