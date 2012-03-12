@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 public class Panel extends JPanel implements ActionListener {
     private Room room;
     public Image statPic;
+    private Enemy enemy;
 
     public Panel() {
         ImageIcon ii = new ImageIcon(getClass().getResource("statsPic.png"));
@@ -20,6 +21,7 @@ public class Panel extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
         room = new Room();
+        enemy = enemy.idroid;
         Timer timer = new Timer(5, this);
         timer.start();
     }

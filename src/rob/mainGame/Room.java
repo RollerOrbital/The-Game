@@ -7,30 +7,10 @@ import java.awt.event.KeyEvent;
 public class Room {
     private Image image;
     private Player player;
-
     private int[] spriteFrame;
-
-    public int y;
-    public int x;
-    private int dx;
-    private int width;
-    private int height;
-    private int frameNumber;
-    private int direction;
-    private int dy;
-
-    public boolean left;
-    public boolean right;
-    public boolean up;
-    public boolean down;
-
-    public int stopl;
-    public int stopr;
-    public int stopu;
-    public int stopd;
-    public int onoff;
-
-    public boolean isMoving;
+    public int y, x, dy, dx, width, height, frameNumber, direction;
+    public int stopl, stopr, stopu, stopd;
+    public boolean left, right, up, down, isMoving;
 
     public Room() {
         player = new Player();
@@ -40,7 +20,6 @@ public class Room {
         y = -1 * player.y;
         dx = 0;
         dy = 0;
-
         width = 12;
         height = 18;
         spriteFrame = new int[4];
@@ -50,7 +29,6 @@ public class Room {
         spriteFrame[3] = 2;
         direction = 3;
         frameNumber = 0;
-        onoff = 0;
     }
 
     public int getX() {
