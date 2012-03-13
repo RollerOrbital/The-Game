@@ -10,7 +10,7 @@ public class Level {
 
     private int[] spriteFrame;
 
-    public int y, jumpHeight;
+    public int y, maxJumpHeight, jumpHeight;
     public int x;
     private int dx;
     private int width;
@@ -20,16 +20,22 @@ public class Level {
     private int dy;
 
     public boolean up, canJump;
-    private boolean isMoving, isRising, upHeld, left, right;
+    private boolean isMoving;
+    public boolean isRising;
+    private boolean upHeld;
+    private boolean left;
+    private boolean right;
+    public boolean canGoDown;
 
     public Level() {
         player = new Player();
-        ImageIcon ii = new ImageIcon(getClass().getResource("tutorialStage.png"));
+        ImageIcon ii = new ImageIcon(getClass().getResource("level1.png"));
         image = ii.getImage();
         x = -1 * Player.distance;
         y = -1 * Player.altitude;
         dx = 0;
         dy = 0;
+        canGoDown = true;
 
         jumpHeight = 100;
         upHeld = false;
@@ -60,7 +66,7 @@ public class Level {
 
     public void move() {
         if (!up) {
-            dy = 3;
+            dy = 2;
         }
         if (frameNumber == 3) {
             frameNumber = 0;
@@ -100,8 +106,11 @@ public class Level {
             dx = 0;
         } else if (y <= Panel.lowerBound) {
             dy = 0;
-            y = Panel.lowerBound + 1;
+            y = Panel.lowerBound;
             isRising = false;
+            canGoDown = false;
+        } else {
+            canGoDown = true;
         }
     }
 
@@ -113,7 +122,7 @@ public class Level {
                 upHeld = true;
             } else {
                 if (canJump) {
-                    jumpHeight = y + 100;
+                    maxJumpHeight = y + jumpHeight;
                     dy = -2;
                     up = true;
                     isRising = true;
@@ -122,12 +131,12 @@ public class Level {
                 }
             }
         } else if (key == KeyEvent.VK_LEFT) {
-            dx--;
+            dx -= 1;
             left = true;
             direction = 1;
             isMoving = true;
         } else if (key == KeyEvent.VK_RIGHT) {
-            dx++;
+            dx += 1;
             right = true;
             direction = 3;
             isMoving = true;
@@ -137,7 +146,7 @@ public class Level {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-            dy = 3;
+            dy = 2;
         } else if (key == KeyEvent.VK_LEFT) {
             dx = 0;
             left = false;
