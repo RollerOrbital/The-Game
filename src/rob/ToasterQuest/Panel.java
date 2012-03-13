@@ -28,7 +28,6 @@ public class Panel extends JPanel implements ActionListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(level.getImage(), level.getX(), level.getY(), this);
-        //draw tiles along where the first tile has the same xco as the level but the yco is 500 less
         for (int i = 0; i < 38; i++) {
             g2d.drawImage(tile.getImage(), level.getX() + (i * 33), level.getY() + 500, this);
         }

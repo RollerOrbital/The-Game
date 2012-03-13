@@ -11,7 +11,13 @@ public class Level {
     private int[] spriteFrame;
 
     public int y, jumpHeight;
-    private int x, dx, width, height, frameNumber, direction, dy;
+    public int x;
+    private int dx;
+    private int width;
+    private int height;
+    private int frameNumber;
+    private int direction;
+    private int dy;
 
     public boolean up, canJump;
     private boolean isMoving, isRising, upHeld, left, right;
