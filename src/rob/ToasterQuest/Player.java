@@ -12,7 +12,7 @@ public class Player {
 
     public Player() {
         altitude = Panel.lowerBound;
-        distance = -200;
+        distance = -190;
         ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
         image = ii.getImage();
         width = 12;
