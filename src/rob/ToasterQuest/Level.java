@@ -66,7 +66,7 @@ public class Level {
 
     public void move() {
         if (!up) {
-            dy = 2;
+            dy = 1;
         }
         if (frameNumber == 3) {
             frameNumber = 0;
@@ -123,11 +123,11 @@ public class Level {
             } else {
                 if (canJump) {
                     maxJumpHeight = y + jumpHeight;
-                    dy = -2;
+                    dy = -1;
                     up = true;
                     isRising = true;
                 } else {
-                    y += 2;
+                    y += 1;
                 }
             }
         } else if (key == KeyEvent.VK_LEFT) {
@@ -146,7 +146,7 @@ public class Level {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-            dy = 2;
+            dy = 1;
         } else if (key == KeyEvent.VK_LEFT) {
             dx = 0;
             left = false;

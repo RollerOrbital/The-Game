@@ -48,10 +48,10 @@ public class Panel extends JPanel implements ActionListener {
         g2d.drawImage(tile.getImage(), level.getX() + (36 * 16), level.getY() - lowerBound + 167 - 16, this);
         g2d.drawImage(tile.getImage(), level.getX() + (36 * 16), level.getY() - lowerBound + 167 - 16 * 2, this);
         g2d.drawImage(tile.getImage(), level.getX() + (36 * 16), level.getY() - lowerBound + 167 - 16 * 3, this);
+        g2d.drawImage(tile.getImage(), level.getX() + (39 * 16), level.getY() - lowerBound + 167 - 16 * 6, this);
         g2d.drawImage(tile.getImage(), level.getX() + (40 * 16), level.getY() - lowerBound + 167 - 16 * 6, this);
-        g2d.drawImage(tile.getImage(), level.getX() + (41 * 16), level.getY() - lowerBound + 167 - 16 * 6, this);
+        g2d.drawImage(tile.getImage(), level.getX() + (43 * 16), level.getY() - lowerBound + 167 - 16 * 8, this);
         g2d.drawImage(tile.getImage(), level.getX() + (44 * 16), level.getY() - lowerBound + 167 - 16 * 8, this);
-        g2d.drawImage(tile.getImage(), level.getX() + (45 * 16), level.getY() - lowerBound + 167 - 16 * 8, this);
         g2d.drawImage(tile.getImage(), level.getX() + (47 * 16), level.getY() - lowerBound + 167 - 16 * 10, this);
         g2d.drawImage(tile.getImage(), level.getX() + (48 * 16), level.getY() - lowerBound + 167 - 16 * 10, this);
         g2d.drawImage(tile.getImage(), level.getX() + (68 * 16), level.getY() - lowerBound + 167 - 16, this);
@@ -63,14 +63,14 @@ public class Panel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (level.up) {
-            level.y += 2;
+            level.y += 1;
             if (level.y > level.maxJumpHeight) {
                 level.up = false;
-                level.y += 2;
+                level.y += 1;
                 level.canJump = false;
             }
         } else {
-            level.y -= 2;
+            level.y -= 1;
         }
         if (!level.canGoDown) {
             level.canJump = true;
