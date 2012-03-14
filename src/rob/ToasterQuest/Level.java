@@ -37,7 +37,7 @@ public class Level {
         dy = 0;
         canGoDown = true;
 
-        jumpHeight = 100;
+        jumpHeight = 80;
         upHeld = false;
         canJump = true;
 
@@ -80,9 +80,7 @@ public class Level {
         } else {
             y -= dy;
         }
-
         basicBounds();
-
         if (upHeld) {
             dy = 0;
         }

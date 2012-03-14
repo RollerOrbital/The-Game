@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 public class Panel extends JPanel implements ActionListener {
     private Level level;
     private Tile tile;
+    private Kettle k1;
+    private Kettle k2;
     public static int lowerBound = -430;
 
     public Panel() {
@@ -18,6 +20,8 @@ public class Panel extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
 
+        k1 = Kettle.k1;
+        k2 = Kettle.k2;
         tile = new Tile();
         level = new Level();
         Timer timer = new Timer(5, this);
@@ -27,19 +31,28 @@ public class Panel extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
+        //Drawing the map
         g2d.drawImage(level.getImage(), level.getX(), level.getY(), this);
-        for (int i = 0; i < 78; i++) {
-            g2d.drawImage(tile.getImage(), level.getX() + (i * 16), level.getY() - lowerBound + 167, this);
-        }
-        getTiles(g2d);
+        //Drawing the player
         g2d.drawImage(level.getPImage(), 204, 130, (200 + 4 + (level.getPWidth() * 2)), (150 + (level.getPHeight() * 2) - 20), level.getSprFrame(), level.getSprDir(), (level.getSprFrame() + level.getPWidth()), (level.getSprDir() + level.getPHeight()), this);
-        g2d.drawString("Height = " + level.getY(), 100, 100);
-        g2d.drawString("Distance = " + -level.getX(), 100, 150);
+        //Drawing the tiles
+        getTiles(g2d);
+        g2d.drawImage(tile.getImage(), level.getX() + (16 * 16), level.getY() - lowerBound + 167 - 16, this);
+        //Drawing the kettles
+        g2d.drawImage(k1.getImage(), level.getX() + k1.getX(), level.getY() - lowerBound + 167 - k1.getY(), this);
+        g2d.drawImage(k2.getImage(), level.getX() + k2.getX(), level.getY() - lowerBound + 167 - k2.getY(), this);
+        //Drawing the testing Numbers
+        g2d.drawString("Height = " + (level.getY() / 16 + 27), 100, 100);
+        g2d.drawString("Distance = " + (-level.getX() / 16 + 13), 200, 150);
+        //Idk its from Kris
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
 
     private void getTiles(Graphics2D g2d) {
+        for (int i = 0; i < 78; i++) {
+            g2d.drawImage(tile.getImage(), level.getX() + (i * 16), level.getY() - lowerBound + 167, this);
+        }
         g2d.drawImage(tile.getImage(), level.getX() + (16 * 16), level.getY() - lowerBound + 167 - 16, this);
         g2d.drawImage(tile.getImage(), level.getX() + (17 * 16), level.getY() - lowerBound + 167 - 16 * 2, this);
         g2d.drawImage(tile.getImage(), level.getX() + (18 * 16), level.getY() - lowerBound + 167 - 16 * 3, this);
@@ -76,6 +89,8 @@ public class Panel extends JPanel implements ActionListener {
             level.canJump = true;
         }
         level.move();
+        k2.move();
+        k1.move();
         repaint();
     }
 
