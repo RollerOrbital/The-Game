@@ -31,7 +31,7 @@ public class Panel extends JPanel implements ActionListener {
         for (int i = 0; i < 78; i++) {
             g2d.drawImage(tile.getImage(), level.getX() + (i * 16), level.getY() - lowerBound + 167, this);
         }
-        tileBounds(g2d);
+        getTiles(g2d);
         g2d.drawImage(level.getPImage(), 204, 130, (200 + 4 + (level.getPWidth() * 2)), (150 + (level.getPHeight() * 2) - 20), level.getSprFrame(), level.getSprDir(), (level.getSprFrame() + level.getPWidth()), (level.getSprDir() + level.getPHeight()), this);
         g2d.drawString("Height = " + level.getY(), 100, 100);
         g2d.drawString("Distance = " + -level.getX(), 100, 150);
@@ -39,7 +39,7 @@ public class Panel extends JPanel implements ActionListener {
         g.dispose();
     }
 
-    private void tileBounds(Graphics2D g2d) {
+    private void getTiles(Graphics2D g2d) {
         g2d.drawImage(tile.getImage(), level.getX() + (16 * 16), level.getY() - lowerBound + 167 - 16, this);
         g2d.drawImage(tile.getImage(), level.getX() + (17 * 16), level.getY() - lowerBound + 167 - 16 * 2, this);
         g2d.drawImage(tile.getImage(), level.getX() + (18 * 16), level.getY() - lowerBound + 167 - 16 * 3, this);
