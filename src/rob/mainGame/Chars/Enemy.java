@@ -1,4 +1,4 @@
-package rob.mainGame;
+package rob.mainGame.Chars;
 
 import javax.swing.*;
 import java.awt.*;
