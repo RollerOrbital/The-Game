@@ -12,6 +12,7 @@ public class Room {
     public int stopl, stopr, stopu, stopd;
     public boolean left, right, up, down, isMoving;
     public boolean isSmOpen;
+    public int cursorX, cursorY;
 
     public Room() {
         player = new Player();
@@ -30,6 +31,8 @@ public class Room {
         spriteFrame[3] = 2;
         direction = 3;
         frameNumber = 0;
+        cursorX = StartMenu.x;
+        cursorY = StartMenu.y;
     }
 
     public int getX() {
@@ -42,6 +45,26 @@ public class Room {
 
     public Image getImage() {
         return image;
+    }
+
+    public int getPWidth() {
+        return width;
+    }
+
+    public int getPHeight() {
+        return height;
+    }
+
+    public int getSprFrame() {
+        return (spriteFrame[frameNumber] * width);
+    }
+
+    public int getSprDir() {
+        return (direction * height);
+    }
+
+    public Image getPImage() {
+        return player.image;
     }
 
     private void getDirection() {
@@ -113,6 +136,22 @@ public class Room {
         isMoving = false;
     }
 
+    public String cursorSelect() {
+        String returnThing = "";
+        if (cursorY == StartMenu.STATS * 50) {
+            returnThing = "You have 100 hp and 100 mp";
+        } else if (cursorY == StartMenu.LOG * 50) {
+            returnThing = "You have no jobs at the moment";
+        } else if (cursorY == StartMenu.ITEM * 50) {
+            returnThing = "You have a bandage and a laser";
+        } else if (cursorY == StartMenu.SAVE * 50) {
+            returnThing = "No save function is implemented yet";
+        } else if (cursorY == StartMenu.CANCEL * 50) {
+            isSmOpen = false;
+        }
+        return returnThing;
+    }
+
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         final int stopLeft = x + 32;
@@ -161,6 +200,15 @@ public class Room {
                 dy = 0;
             }
         }
+        if (isSmOpen) {
+            if (key == KeyEvent.VK_DOWN) {
+                StartMenu.y += 50;
+            } else if (key == KeyEvent.VK_UP) {
+                StartMenu.y -= 50;
+            } else if (key == KeyEvent.VK_Z) {
+                StartMenu.menuChoice = cursorSelect();
+            }
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -178,25 +226,5 @@ public class Room {
             dy = 0;
             down = false;
         }
-    }
-
-    public int getPWidth() {
-        return width;
-    }
-
-    public int getPHeight() {
-        return height;
-    }
-
-    public int getSprFrame() {
-        return (spriteFrame[frameNumber] * width);
-    }
-
-    public int getSprDir() {
-        return (direction * height);
-    }
-
-    public Image getPImage() {
-        return player.image;
     }
 }
