@@ -146,6 +146,10 @@ public class Room {
             right = false;
             up = false;
         }
+        //non-movement commands:
+        else if (key == KeyEvent.VK_ENTER) {
+
+        }
     }
 
     public void keyReleased(KeyEvent e) {
