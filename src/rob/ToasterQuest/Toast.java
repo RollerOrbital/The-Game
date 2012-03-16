@@ -4,8 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Toast {
-    public int x, y, points;
+    public int x;
+    public int y;
+    public static int score;
+    public int points;
+    public boolean isVis;
     public Image image;
+    private Level level;
 
     public Toast(int x, int y, int points) {
         this.x = x;
@@ -13,6 +18,8 @@ public class Toast {
         this.points = points;
         ImageIcon ii = new ImageIcon(getClass().getResource("toast.png"));
         image = ii.getImage();
+        level = new Level();
+        isVis = true;
     }
 
     public int getX() {
@@ -24,7 +31,16 @@ public class Toast {
     }
 
     public Image getImage() {
+        getToast();
         return image;
+    }
+
+    public void getToast() {
+        if (-level.x >= x + 10 - (13 * 16) && -level.x <= -x - 10 - (13 * 16)) {
+            score += points;
+            isVis = false;
+        }
+
     }
 
     static Toast t1 = new Toast(16 * 45, 16 * 2, 3);

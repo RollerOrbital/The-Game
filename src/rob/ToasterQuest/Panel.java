@@ -40,9 +40,13 @@ public class Panel extends JPanel implements ActionListener {
         //Drawing the map
         g2d.drawImage(level.getImage(), level.getX(), level.getY(), this);
         //Drawing the toast
-        g2d.drawImage(t1.getImage(), level.getX() + t1.getX(), level.getY() - lowerBound + 167 - t1.getY(), this);
-        g2d.drawImage(t2.getImage(), level.getX() + t2.getX(), level.getY() - lowerBound + 167 - t2.getY(), this);
-        g2d.drawImage(t3.getImage(), level.getX() + t3.getX(), level.getY() - lowerBound + 167 - t3.getY(), this);
+        if (t1.isVis) {
+            g2d.drawImage(t1.getImage(), level.getX() + t1.getX(), level.getY() - lowerBound + 167 - t1.getY(), this);
+        } else if (t2.isVis) {
+            g2d.drawImage(t2.getImage(), level.getX() + t2.getX(), level.getY() - lowerBound + 167 - t2.getY(), this);
+        } else if (t3.isVis) {
+            g2d.drawImage(t3.getImage(), level.getX() + t3.getX(), level.getY() - lowerBound + 167 - t3.getY(), this);
+        }
         //Drawing the player
         g2d.drawImage(level.getPImage(), 204, 130, (200 + 4 + (level.getPWidth() * 2)), (150 + (level.getPHeight() * 2) - 20), level.getSprFrame(), level.getSprDir(), (level.getSprFrame() + level.getPWidth()), (level.getSprDir() + level.getPHeight()), this);
         //Drawing the tiles
@@ -52,8 +56,9 @@ public class Panel extends JPanel implements ActionListener {
         g2d.drawImage(k1.getImage(), level.getX() + k1.getX(), level.getY() - lowerBound + 167 - k1.getY(), this);
         g2d.drawImage(k2.getImage(), level.getX() + k2.getX(), level.getY() - lowerBound + 167 - k2.getY(), this);
         //Drawing the testing Numbers
-        g2d.drawString("Height = " + (level.getY() / 16 + 27), 100, 100);
-        g2d.drawString("Distance = " + (-level.getX() / 16 + 13), 200, 150);
+        g2d.drawString("Height = " + level.getY(), 100, 100);
+        g2d.drawString("Distance = " + level.getX(), 100, 150);
+        g2d.drawString("Score = " + Toast.score, 100, 200);
         //Idk its from Kris
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
