@@ -11,6 +11,7 @@ public class Room {
     public int y, x, dy, dx, width, height, frameNumber, direction;
     public int stopl, stopr, stopu, stopd;
     public boolean left, right, up, down, isMoving;
+    public boolean isSmOpen;
 
     public Room() {
         player = new Player();
@@ -79,24 +80,29 @@ public class Room {
     }
 
     public void move() {
-        getDirection();
-        frameNumber = 0;
-        if (x < stopl && direction == 1) {
-            x += dx;
-            getFrame();
-        } else if (x > stopr && direction == 3) {
-            x += dx;
-            getFrame();
-        } else if (y < stopu && direction == 2) {
-            y += dy;
-            getFrame();
-        } else if (y > stopd && direction == 0) {
-            y += dy;
-            getFrame();
-            if (frameNumber > 4) {
-                frameNumber = 0;
+        if (!isSmOpen) {
+            getDirection();
+            frameNumber = 0;
+            if (x < stopl && direction == 1) {
+                x += dx;
+                getFrame();
+            } else if (x > stopr && direction == 3) {
+                x += dx;
+                getFrame();
+            } else if (y < stopu && direction == 2) {
+                y += dy;
+                getFrame();
+            } else if (y > stopd && direction == 0) {
+                y += dy;
+                getFrame();
+                if (frameNumber > 4) {
+                    frameNumber = 0;
+                }
+                basicBounds();
             }
-            basicBounds();
+        } else {
+            dx = 0;
+            dy = 0;
         }
     }
 
@@ -146,9 +152,14 @@ public class Room {
             right = false;
             up = false;
         }
-        //non-movement commands:
-        else if (key == KeyEvent.VK_ENTER) {
-
+        if (key == KeyEvent.VK_ENTER) {
+            if (isSmOpen) {
+                isSmOpen = false;
+            } else {
+                isSmOpen = true;
+                dx = 0;
+                dy = 0;
+            }
         }
     }
 

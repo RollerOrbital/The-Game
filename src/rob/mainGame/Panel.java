@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener {
     private Room room;
+    private StartMenu sm;
 
     public Panel() {
 
@@ -16,6 +17,7 @@ public class Panel extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
+        sm = new StartMenu();
         room = new Room();
         Timer timer = new Timer(5, this);
         timer.start();
@@ -26,6 +28,11 @@ public class Panel extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(room.getImage(), room.getX(), room.getY(), this);
         g2d.drawImage(room.getPImage(), 200 + 4, 150 - 20, (200 + 4 + (room.getPWidth() * 2)), (150 + (room.getPHeight() * 2) - 20), room.getSprFrame(), room.getSprDir(), (room.getSprFrame() + room.getPWidth()), (room.getSprDir() + room.getPHeight()), this);
+        if (room.isSmOpen) {
+            g2d.drawImage(sm.getCursorImage(), getX(), getY(), this);
+            g2d.drawImage(sm.getMenuImage(), 300, 20, this);
+            g2d.drawString("" + sm.menuChoice, 100, 200);
+        }
         g2d.drawString("Height = " + room.getY(), 100, 100);
         g2d.drawString("Distance = " + room.getX(), 100, 150);
         Toolkit.getDefaultToolkit().sync();
@@ -40,6 +47,7 @@ public class Panel extends JPanel implements ActionListener {
     private class adapter extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
             room.keyPressed(e);
+            sm.keyPressed(e);
         }
 
         public void keyReleased(KeyEvent e) {

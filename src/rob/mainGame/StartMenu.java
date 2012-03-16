@@ -2,12 +2,14 @@ package rob.mainGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class StartMenu {
     private Image image;
     private Image cursorImage;
     private int x, y;
-    private boolean isOpen;
+    public String menuChoice;
+    private Room r;
 
     private int STATS, LOG, SAVE, CANCEL, ITEM;
 
@@ -16,9 +18,9 @@ public class StartMenu {
         image = ii.getImage();
         ImageIcon ii2 = new ImageIcon(getClass().getResource("startMenuCursor.png"));
         cursorImage = ii2.getImage();
-        x = 0;
+        r = new Room();
+        x = 300;
         y = 0;
-        isOpen = false;
         STATS = 0;
         LOG = 1;
         ITEM = 2;
@@ -42,29 +44,32 @@ public class StartMenu {
         return cursorImage;
     }
 
-
-    public void menu() {
-        cursorMove();
+    public String cursorSelect() {
+        String returnThing = "";
+        if (y == STATS * 50) {
+            returnThing = "You have 100 hp and 100 mp";
+        } else if (y == LOG * 50) {
+            returnThing = "You have no jobs at the moment";
+        } else if (y == ITEM * 50) {
+            returnThing = "You have a bandage and a laser";
+        } else if (y == SAVE * 50) {
+            returnThing = "No save function is implemented yet";
+        } else if (y == CANCEL * 50) {
+            r.isSmOpen = false;
+        }
+        return returnThing;
     }
 
-    public void cursorMove() {
-        if (isOpen) {
-            cursorSelect();
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (r.isSmOpen) {
+            if (key == KeyEvent.VK_DOWN) {
+                y += 50;
+            } else if (key == KeyEvent.VK_UP) {
+                y -= 50;
+            } else if (key == KeyEvent.VK_Z) {
+                menuChoice = cursorSelect();
+            }
         }
     }
-
-    public void cursorSelect() {
-        if (y == STATS) {
-
-        } else if (y == LOG) {
-
-        } else if (y == ITEM) {
-
-        } else if (y == SAVE) {
-
-        } else if (y == CANCEL) {
-            isOpen = false;
-        }
-    }
-
 }
