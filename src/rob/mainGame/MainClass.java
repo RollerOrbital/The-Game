@@ -1,7 +1,5 @@
 package rob.mainGame;
 
-import rob.mainGame.Screen.Panel;
-
 import javax.swing.*;
 
 public class MainClass extends JFrame {

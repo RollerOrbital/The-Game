@@ -1,4 +1,4 @@
-package rob.mainGame.Screen;
+package rob.mainGame;
 
 import javax.swing.*;
 import java.awt.*;
