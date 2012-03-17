@@ -76,7 +76,13 @@ public class Arena extends JPanel implements ActionListener {
                 Player.score++;
                 new GoodSoul();
                 goodSoul.dx = (GoodSoul.lowerOne(random.nextInt(4))*-1);
-            } else if (GoodSoul.x <= -23*4) {
+            }
+            else if (Math.abs(Bullet.x - GoodSoul.x) <= 25 && Math.abs(Bullet.y - (GoodSoul.y+64)) <= 25) {
+                Player.souls++; if (Player.score-1>=0){Player.score--;}
+                new GoodSoul(); new Bullet(); Bullet.x = 1337;
+                goodSoul.dx = (GoodSoul.lowerOne(random.nextInt(4))*-1);
+            }
+            else if (GoodSoul.x <= -23*4) {
                 new GoodSoul();
                 goodSoul.dx = (GoodSoul.lowerOne(random.nextInt(4))*-1);
             }
@@ -89,7 +95,8 @@ public class Arena extends JPanel implements ActionListener {
                 Player.souls++;
                 new BadSoul(); new Bullet(); Bullet.x = 1337;
                 badSoul.dx = (GoodSoul.lowerOne(random.nextInt(4))*-1);
-            } else if (BadSoul.x <= -23*4) {
+            }
+            else if (BadSoul.x <= -23*4) {
                 new BadSoul();
                 badSoul.dx = (GoodSoul.lowerOne(random.nextInt(4))*-1);
             }

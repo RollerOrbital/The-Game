@@ -1,11 +1,30 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Pierce">
     <words>
+      <w>battlemode</w>
+      <w>canjump</w>
+      <w>downheld</w>
+      <w>grannell</w>
+      <w>hymabaccus</w>
+      <w>kaashif</w>
+      <w>kony's</w>
+      <w>leftheld</w>
+      <w>liberationsheet</w>
+      <w>lushington</w>
+      <w>movex</w>
+      <w>movey</w>
       <w>playerdefault</w>
+      <w>psquare</w>
+      <w>rightheld</w>
+      <w>spacebar</w>
+      <w>spacecow</w>
       <w>sprdir</w>
       <w>sprframe</w>
+      <w>wakeling</w>
       <w>xbound</w>
+      <w>xsquare</w>
       <w>ybound</w>
+      <w>ysquare</w>
     </words>
   </dictionary>
 </component>
