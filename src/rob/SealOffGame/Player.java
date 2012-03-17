@@ -11,7 +11,8 @@ public class Player {
     private int rage;
     public int health, baseDamage, defense;
     static int direction;
-    public boolean isHitting, isBlocking;
+    public static boolean isHitting;
+    public boolean isBlocking;
     private ImageIcon leftStand, leftBlock, leftPunch;
     private ImageIcon rightStand, rightBlock, rightPunch;
 

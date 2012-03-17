@@ -81,11 +81,24 @@ public class Enemy {
         if (x + 149 <= Player.x) {
             dx = 1;
             direction = RIGHT;
+            isHitting = false;
+            isBlocking = false;
         } else if (x >= Player.x + 149) {
             dx = -1;
             direction = LEFT;
+            isHitting = false;
+            isBlocking = false;
         } else {
             dx = 0;
+            decideStrike();
+        }
+    }
+
+    public void decideStrike() {
+        if (Player.isHitting) {
+            isBlocking = true;
+        } else {
+            isHitting = true;
         }
     }
 }
