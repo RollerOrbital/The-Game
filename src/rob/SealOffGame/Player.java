@@ -5,16 +5,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    //z = hit, x = block, enter = special???
-    public int x, y, dx, dy, health, rage, baseDamage, defense;
-    public boolean isHitting;
+    private int x, dx, rage;
+    public int health, baseDamage, defense, direction;
+    private boolean isHitting;
     private Image image;
     private Image powImage;
 
     public Player() {
-        x = 0;
-        y = 250;
-        dx = 0;
         health = 200;
         rage = 0;
         baseDamage = 0;
@@ -30,10 +27,6 @@ public class Player {
         return x;
     }
 
-    public int getY() {
-        return y;
-    }
-
     public Image getImage() {
         return image;
     }
@@ -44,26 +37,28 @@ public class Player {
 
     public void move() {
         x += dx;
+        if (dx < 0) {
+            direction = 1;
+        } else if (dx > 0) {
+            direction = 3;
+        }
         basicBounds();
     }
 
+
     private void basicBounds() {
-        if (x <= -333) {
-            x = -332;
-        } else if (x >= 199) {
-            x = 198;
-        } else if (y <= -193) {
-            y = -193;
-        } else if (y >= 121) {
-            y = 120;
+        if (x <= 0) {
+            x = 0;
+        } else if (x >= 400) {
+            x = 400;
         }
     }
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_RIGHT && !isHitting) {
             dx = 1;
-        } else if (key == KeyEvent.VK_LEFT) {
+        } else if (key == KeyEvent.VK_LEFT && !isHitting) {
             dx = -1;
         } else if (key == KeyEvent.VK_Z) {
             rage += 5;
