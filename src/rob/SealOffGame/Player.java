@@ -5,14 +5,19 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    public int x;
+    private Enemy enemy;
+    public static int x;
     private int dx;
     private int rage;
-    public int health, baseDamage, defense, direction;
-    public boolean isHitting, isBlocking;
+    public int health, baseDamage, defense;
+    static int direction;
+    public static boolean isHitting;
+    public boolean isBlocking;
     private ImageIcon leftStand, leftBlock, leftPunch;
+    private ImageIcon rightStand, rightBlock, rightPunch;
 
     public Player() {
+        enemy = new Enemy();
         health = 200;
         rage = 0;
         baseDamage = 0;
@@ -22,7 +27,10 @@ public class Player {
         //imageIcons START
         leftStand = new ImageIcon(getClass().getResource("leftStand.png"));
         leftPunch = new ImageIcon(getClass().getResource("leftPunch.png"));
-        leftBlock = new ImageIcon(getClass().getResource("leftblock.png"));
+        leftBlock = new ImageIcon(getClass().getResource("leftBlock.png"));
+        rightStand = new ImageIcon(getClass().getResource("rightStand.png"));
+        rightPunch = new ImageIcon(getClass().getResource("rightPunch.png"));
+        rightBlock = new ImageIcon(getClass().getResource("rightBlock.png"));
         //imageIcons END
         direction = 1;
         //left = 1, right = 3;
@@ -44,14 +52,14 @@ public class Player {
             }
         } else if (direction == 3) {
             if (isHitting && !isBlocking) {
-                returnThing = leftPunch.getImage();
+                returnThing = rightPunch.getImage();
             } else if (isBlocking && !isHitting) {
-                returnThing = leftBlock.getImage();
+                returnThing = rightBlock.getImage();
             } else {
-                returnThing = leftStand.getImage();
+                returnThing = rightStand.getImage();
             }
         } else {
-            returnThing = leftStand.getImage();
+            returnThing = rightStand.getImage();
         }
         return returnThing;
     }
@@ -64,14 +72,23 @@ public class Player {
             direction = 3;
         }
         basicBounds();
+        enemyBounds();
     }
 
 
     private void basicBounds() {
         if (x <= 0) {
             x = 0;
-        } else if (x >= 400) {
-            x = 400;
+        } else if (x >= 551) {
+            x = 551;
+        }
+    }
+
+    private void enemyBounds() {
+        if (x + 149 > enemy.x && x < enemy.x) {
+            x = enemy.x - 149;
+        } else if (x < enemy.x + 149 && x > enemy.x) {
+            x = enemy.x + 149;
         }
     }
 
