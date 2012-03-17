@@ -75,7 +75,7 @@ public class Arena extends JPanel implements ActionListener {
         g2d.drawImage(image, 30 * 4 + 16, 8, (117 * 4) + 16, (20 * 4) - 8, 0, 0, 173, 33, this);
 
         if (Player.health == 0) {
-            g2d.drawString("You have done the best you can, and saved " + GoodSoul.lowerZero(Player.score) + " children from", 16 + 24, 90);
+            g2d.drawString("You have done the best you can, and saved " + GoodSoul.lowerZero(Player.score) + " children from", 8, 90);
             g2d.drawString("Kony's grasp. You have taken " + GoodSoul.lowerZero(Player.souls) + " lives away,", 16 + 82, 120);
             g2d.drawString("but you did what you had to do.", 16 + 139, 150);
             g2d.drawString("Press Spacebar to restart", 232 - 39, 405);
