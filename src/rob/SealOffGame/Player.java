@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 public class Player {
     private int x, dx, rage;
     public int health, baseDamage, defense, direction;
-    private boolean isHitting;
+    public boolean isHitting;
     private Image image;
     private Image powImage;
 
@@ -17,8 +17,8 @@ public class Player {
         baseDamage = 0;
         defense = 0;
         isHitting = false;
-        ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
-        ImageIcon aa = new ImageIcon(getClass().getResource("pow.png"));
+        ImageIcon ii = new ImageIcon(getClass().getResource("seal.png"));
+        ImageIcon aa = new ImageIcon(getClass().getResource("powImage.png"));
         image = ii.getImage();
         powImage = aa.getImage();
     }

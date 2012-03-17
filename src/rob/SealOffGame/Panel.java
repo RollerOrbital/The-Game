@@ -23,7 +23,10 @@ public class Panel extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(player.getPowImage(), player.getX(), 200, this);
+        g2d.drawImage(player.getImage(), player.getX(), 150, this);
+        if (player.isHitting) {
+            g2d.drawImage(player.getPowImage(), player.getX() + 130, 220, this);
+        }
         g2d.drawString("X = " + player.getX(), 100, 150);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
