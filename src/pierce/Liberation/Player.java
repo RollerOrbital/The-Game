@@ -72,7 +72,7 @@ public class Player {
             dy = -4;
             canJump = 0;
         } else if (key == KeyEvent.VK_SPACE) {
-            if ((Player.bullets > 0) && (Player.health > 0)) {
+            if ((Player.bullets > 0) && (Player.health > 0)&&(Bullet.x>500)) {
                 new Bullet();
                 Bullet.x = 216;
                 Bullet.y = (getY() + 52);
