@@ -5,10 +5,11 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    public int x;
+    public static int x;
     private int dx;
     private int rage;
-    public int health, baseDamage, defense, direction;
+    public int health, baseDamage, defense;
+    static int direction;
     public boolean isHitting, isBlocking;
     private ImageIcon leftStand, leftBlock, leftPunch;
     private ImageIcon rightStand, rightBlock, rightPunch;
@@ -74,8 +75,8 @@ public class Player {
     private void basicBounds() {
         if (x <= 0) {
             x = 0;
-        } else if (x >= 400) {
-            x = 400;
+        } else if (x >= 251) {
+            x = 251;
         }
     }
 

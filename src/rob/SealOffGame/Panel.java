@@ -9,9 +9,11 @@ import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener {
     private Player player;
+    private Enemy enemy;
 
     public Panel() {
         player = new Player();
+        enemy = new Enemy();
         addKeyListener(new adapter());
         setFocusable(true);
         setBackground(Color.WHITE);
@@ -24,6 +26,7 @@ public class Panel extends JPanel implements ActionListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(player.getImage(), player.getX(), 150, this);
+        g2d.drawImage(enemy.getImage(), enemy.getX(), 150, this);
         g2d.drawString("X = " + player.getX(), 100, 150);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
@@ -31,6 +34,7 @@ public class Panel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         player.move();
+        enemy.move();
         repaint();
     }
 
