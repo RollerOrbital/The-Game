@@ -7,11 +7,10 @@ public class Enemy {
     static int x;
     private int dx;
     public int health, baseDamage, defense, direction;
-    public boolean isHitting;
+    public boolean isHitting, isBlocking;
     private Image image;
-    private Image powImage;
     private Player player;
-    private ImageIcon left, right;
+    private ImageIcon leftStand, leftBlock, leftPunch;
 
     public Enemy() {
         health = 200;
@@ -19,10 +18,9 @@ public class Enemy {
         defense = 0;
         isHitting = false;
         x = 300;
-        left = new ImageIcon(getClass().getResource("sealLeft.png"));
-        right = new ImageIcon(getClass().getResource("sealRight.png"));
-        ImageIcon pow = new ImageIcon(getClass().getResource("powImage.png"));
-        powImage = pow.getImage();
+        leftStand = new ImageIcon(getClass().getResource("leftStand.png"));
+        leftPunch = new ImageIcon(getClass().getResource("leftPunch.png"));
+        leftBlock = new ImageIcon(getClass().getResource("leftblock.png"));
         player = new Player();
         direction = 1;
     }
@@ -34,15 +32,25 @@ public class Enemy {
     public Image getImage() {
         Image returnThing;
         if (direction == 1) {
-            returnThing = image = left.getImage();
+            if (isHitting && !isBlocking) {
+                returnThing = leftPunch.getImage();
+            } else if (isBlocking && !isHitting) {
+                returnThing = leftBlock.getImage();
+            } else {
+                returnThing = leftStand.getImage();
+            }
+        } else if (direction == 3) {
+            if (isHitting && !isBlocking) {
+                returnThing = leftPunch.getImage();
+            } else if (isBlocking && !isHitting) {
+                returnThing = leftBlock.getImage();
+            } else {
+                returnThing = leftStand.getImage();
+            }
         } else {
-            returnThing = image = right.getImage();
+            returnThing = leftStand.getImage();
         }
         return returnThing;
-    }
-
-    public Image getPowImage() {
-        return powImage;
     }
 
     public void move() {

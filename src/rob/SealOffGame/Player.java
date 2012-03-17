@@ -9,10 +9,9 @@ public class Player {
     private int dx;
     private int rage;
     public int health, baseDamage, defense, direction;
-    public boolean isHitting;
+    public boolean isHitting, isBlocking;
     private Image image;
-    private Image powImage;
-    private ImageIcon left, right;
+    private ImageIcon leftStand, leftBlock, leftPunch;
 
     public Player() {
         health = 200;
@@ -20,10 +19,12 @@ public class Player {
         baseDamage = 0;
         defense = 0;
         isHitting = false;
-        left = new ImageIcon(getClass().getResource("sealLeft.png"));
-        right = new ImageIcon(getClass().getResource("sealRight.png"));
-        ImageIcon pow = new ImageIcon(getClass().getResource("powImage.png"));
-        powImage = pow.getImage();
+        isBlocking = false;
+        //imageIcons START
+        leftStand = new ImageIcon(getClass().getResource("leftStand.png"));
+        leftPunch = new ImageIcon(getClass().getResource("leftPunch.png"));
+        leftBlock = new ImageIcon(getClass().getResource("leftblock.png"));
+        //imageIcons END
         direction = 1;
         //left = 1, right = 3;
     }
@@ -35,15 +36,25 @@ public class Player {
     public Image getImage() {
         Image returnThing;
         if (direction == 1) {
-            returnThing = image = left.getImage();
+            if (isHitting && !isBlocking) {
+                returnThing = leftPunch.getImage();
+            } else if (isBlocking && !isHitting) {
+                returnThing = leftBlock.getImage();
+            } else {
+                returnThing = leftStand.getImage();
+            }
+        } else if (direction == 3) {
+            if (isHitting && !isBlocking) {
+                returnThing = leftPunch.getImage();
+            } else if (isBlocking && !isHitting) {
+                returnThing = leftBlock.getImage();
+            } else {
+                returnThing = leftStand.getImage();
+            }
         } else {
-            returnThing = image = right.getImage();
+            returnThing = leftStand.getImage();
         }
         return returnThing;
-    }
-
-    public Image getPowImage() {
-        return powImage;
     }
 
     public void move() {
@@ -67,9 +78,9 @@ public class Player {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_RIGHT && !isHitting) {
+        if (key == KeyEvent.VK_RIGHT && !isHitting && !isBlocking) {
             dx = 3;
-        } else if (key == KeyEvent.VK_LEFT && !isHitting) {
+        } else if (key == KeyEvent.VK_LEFT && !isHitting && !isBlocking) {
             dx = -3;
         } else if (key == KeyEvent.VK_Z) {
             rage += 5;
@@ -78,6 +89,7 @@ public class Player {
         } else if (key == KeyEvent.VK_X) {
             rage -= 3;
             defense = 5;
+            isBlocking = true;
         } else if (key == KeyEvent.VK_ENTER) {
             if (rage == 100) {
                 rage = 0;
@@ -98,6 +110,7 @@ public class Player {
             isHitting = false;
         } else if (key == KeyEvent.VK_X) {
             defense = 0;
+            isBlocking = false;
         } else if (key == KeyEvent.VK_ENTER) {
             baseDamage = 0;
             isHitting = false;

@@ -10,7 +10,7 @@ public class MainClass extends JFrame {
         add(new Arena());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sq = 32;
-        setSize((154*4)+16, (80*4)+37*4);
+        setSize((154 * 4) + 16, (80 * 4) + 37 * 4);
         setLocationRelativeTo(null);
         setTitle("LIBERATION");
         setResizable(true);

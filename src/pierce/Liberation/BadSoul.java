@@ -1,7 +1,5 @@
 package pierce.Liberation;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.Random;
 
 public class BadSoul {
@@ -10,10 +8,10 @@ public class BadSoul {
     public int dx, dy;
 
     public BadSoul() {
-        dx = (GoodSoul.lowerOne(random.nextInt(4))*-1)-1;
+        dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1) - 1;
         dy = 0;//lowerOne(random.nextInt(4));
         x = 700;
-        y = (58*4)+16;//random.nextInt(300) + 50;
+        y = (58 * 4) + 16;//random.nextInt(300) + 50;
     }
 
     public void move() {
