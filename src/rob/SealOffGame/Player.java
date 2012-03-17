@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
+    private Enemy enemy;
     public static int x;
     private int dx;
     private int rage;
@@ -15,6 +16,7 @@ public class Player {
     private ImageIcon rightStand, rightBlock, rightPunch;
 
     public Player() {
+        enemy = new Enemy();
         health = 200;
         rage = 0;
         baseDamage = 0;
@@ -69,14 +71,23 @@ public class Player {
             direction = 3;
         }
         basicBounds();
+        enemyBounds();
     }
 
 
     private void basicBounds() {
         if (x <= 0) {
             x = 0;
-        } else if (x >= 251) {
-            x = 251;
+        } else if (x >= 551) {
+            x = 551;
+        }
+    }
+
+    private void enemyBounds() {
+        if (x + 149 > enemy.x && x < enemy.x) {
+            x = enemy.x - 149;
+        } else if (x < enemy.x + 149 && x > enemy.x) {
+            x = enemy.x + 149;
         }
     }
 

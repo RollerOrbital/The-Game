@@ -72,8 +72,8 @@ public class Enemy {
     private void basicBounds() {
         if (x <= 0) {
             x = 0;
-        } else if (x >= 251) {
-            x = 251;
+        } else if (x >= 551) {
+            x = 551;
         }
     }
 
@@ -84,6 +84,8 @@ public class Enemy {
         } else if (x >= Player.x + 149) {
             dx = -1;
             direction = LEFT;
+        } else {
+            dx = 0;
         }
     }
 }
