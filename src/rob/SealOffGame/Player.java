@@ -11,6 +11,7 @@ public class Player {
     public int health, baseDamage, defense, direction;
     public boolean isHitting, isBlocking;
     private ImageIcon leftStand, leftBlock, leftPunch;
+    private ImageIcon rightStand, rightBlock, rightPunch;
 
     public Player() {
         health = 200;
@@ -22,7 +23,10 @@ public class Player {
         //imageIcons START
         leftStand = new ImageIcon(getClass().getResource("leftStand.png"));
         leftPunch = new ImageIcon(getClass().getResource("leftPunch.png"));
-        leftBlock = new ImageIcon(getClass().getResource("leftblock.png"));
+        leftBlock = new ImageIcon(getClass().getResource("leftBlock.png"));
+        rightStand = new ImageIcon(getClass().getResource("rightStand.png"));
+        rightPunch = new ImageIcon(getClass().getResource("rightPunch.png"));
+        rightBlock = new ImageIcon(getClass().getResource("rightBlock.png"));
         //imageIcons END
         direction = 1;
         //left = 1, right = 3;
@@ -44,14 +48,14 @@ public class Player {
             }
         } else if (direction == 3) {
             if (isHitting && !isBlocking) {
-                returnThing = leftPunch.getImage();
+                returnThing = rightPunch.getImage();
             } else if (isBlocking && !isHitting) {
-                returnThing = leftBlock.getImage();
+                returnThing = rightBlock.getImage();
             } else {
-                returnThing = leftStand.getImage();
+                returnThing = rightStand.getImage();
             }
         } else {
-            returnThing = leftStand.getImage();
+            returnThing = rightStand.getImage();
         }
         return returnThing;
     }

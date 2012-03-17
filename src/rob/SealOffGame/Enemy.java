@@ -18,7 +18,7 @@ public class Enemy {
         x = 300;
         leftStand = new ImageIcon(getClass().getResource("leftStand.png"));
         leftPunch = new ImageIcon(getClass().getResource("leftPunch.png"));
-        leftBlock = new ImageIcon(getClass().getResource("leftblock.png"));
+        leftBlock = new ImageIcon(getClass().getResource("leftBlock.png"));
         player = new Player();
         direction = 1;
     }
