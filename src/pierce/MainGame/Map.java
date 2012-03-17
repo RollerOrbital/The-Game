@@ -1,4 +1,4 @@
-package pierce;
+package pierce.MainGame;
 
 import javax.swing.*;
 import java.awt.*;
