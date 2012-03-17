@@ -10,7 +10,6 @@ public class Player {
     private int rage;
     public int health, baseDamage, defense, direction;
     public boolean isHitting, isBlocking;
-    private Image image;
     private ImageIcon leftStand, leftBlock, leftPunch;
 
     public Player() {

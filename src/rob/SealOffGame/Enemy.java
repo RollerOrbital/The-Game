@@ -5,10 +5,8 @@ import java.awt.*;
 
 public class Enemy {
     static int x;
-    private int dx;
     public int health, baseDamage, defense, direction;
     public boolean isHitting, isBlocking;
-    private Image image;
     private Player player;
     private ImageIcon leftStand, leftBlock, leftPunch;
 
@@ -54,6 +52,7 @@ public class Enemy {
     }
 
     public void move() {
+        int dx;
         if (x < player.x) {
             dx = -1;
         } else {

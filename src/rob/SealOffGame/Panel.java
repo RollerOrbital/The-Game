@@ -9,11 +9,9 @@ import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener {
     private Player player;
-    private Enemy enemy;
 
     public Panel() {
         player = new Player();
-        enemy = new Enemy();
         addKeyListener(new adapter());
         setFocusable(true);
         setBackground(Color.WHITE);
