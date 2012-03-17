@@ -5,11 +5,14 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    private int x, dx, rage;
+    public int x;
+    private int dx;
+    private int rage;
     public int health, baseDamage, defense, direction;
     public boolean isHitting;
     private Image image;
     private Image powImage;
+    private ImageIcon left, right;
 
     public Player() {
         health = 200;
@@ -17,10 +20,12 @@ public class Player {
         baseDamage = 0;
         defense = 0;
         isHitting = false;
-        ImageIcon ii = new ImageIcon(getClass().getResource("seal.png"));
-        ImageIcon aa = new ImageIcon(getClass().getResource("powImage.png"));
-        image = ii.getImage();
-        powImage = aa.getImage();
+        left = new ImageIcon(getClass().getResource("sealLeft.png"));
+        right = new ImageIcon(getClass().getResource("sealRight.png"));
+        ImageIcon pow = new ImageIcon(getClass().getResource("powImage.png"));
+        powImage = pow.getImage();
+        direction = 1;
+        //left = 1, right = 3;
     }
 
     public int getX() {
@@ -28,7 +33,13 @@ public class Player {
     }
 
     public Image getImage() {
-        return image;
+        Image returnThing;
+        if (direction == 1) {
+            returnThing = image = left.getImage();
+        } else {
+            returnThing = image = right.getImage();
+        }
+        return returnThing;
     }
 
     public Image getPowImage() {
@@ -57,9 +68,9 @@ public class Player {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_RIGHT && !isHitting) {
-            dx = 1;
+            dx = 3;
         } else if (key == KeyEvent.VK_LEFT && !isHitting) {
-            dx = -1;
+            dx = -3;
         } else if (key == KeyEvent.VK_Z) {
             rage += 5;
             baseDamage = 5;
