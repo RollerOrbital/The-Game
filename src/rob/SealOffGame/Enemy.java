@@ -19,7 +19,7 @@ public class Enemy {
         RIGHT = 3;
         health = 200;
         rage = 0;
-        baseDamage = 0;
+        baseDamage = 5;
         defense = 0;
         isHitting = false;
         isBlocking = false;
@@ -41,26 +41,60 @@ public class Enemy {
 
     public Image getImage() {
         Image returnThing;
+
         if (direction == LEFT) {
+
             if (isHitting && !isBlocking) {
+
                 returnThing = leftPunch.getImage();
+                rage += 5;
+                isHitting = false;
+                waitFor(50);
+                Player.health -= baseDamage;
+
             } else if (isBlocking && !isHitting) {
+
                 returnThing = leftBlock.getImage();
+                rage -= 3;
+                isBlocking = false;
+                waitFor(50);
+
             } else {
+
                 returnThing = leftStand.getImage();
             }
         } else if (direction == RIGHT) {
+
             if (isHitting && !isBlocking) {
+
                 returnThing = rightPunch.getImage();
+                rage += 5;
+                isHitting = false;
+                waitFor(50);
+
             } else if (isBlocking && !isHitting) {
+
                 returnThing = rightBlock.getImage();
+                rage -= 3;
+                isBlocking = false;
+                waitFor(50);
+
             } else {
+
                 returnThing = rightStand.getImage();
             }
         } else {
             returnThing = rightStand.getImage();
         }
         return returnThing;
+    }
+
+    private void waitFor(int millis) {
+        try {
+            Thread.sleep(millis, 0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void move() {
@@ -71,8 +105,8 @@ public class Enemy {
 
 
     private void basicBounds() {
-        if (x <= 0) {
-            x = 0;
+        if (x <= -Player.width) {
+            x = -Player.width;
         } else if (x >= 551) {
             x = 551;
         }

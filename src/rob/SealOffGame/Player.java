@@ -9,7 +9,9 @@ public class Player {
     public static int x;
     private int dx;
     private int rage;
-    public int health, baseDamage, defense;
+    public static int health;
+    public int baseDamage;
+    public int defense;
     static int direction;
     public static boolean isHitting;
     public boolean isBlocking;
