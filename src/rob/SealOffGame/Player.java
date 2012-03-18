@@ -15,6 +15,7 @@ public class Player {
     private ImageIcon rightStand, rightBlock, rightPunch;
 
     public Player() {
+        x = 400 - width;
         whileHitting = false;
         health = 2000;
         width = 45;

@@ -14,7 +14,7 @@ public class Enemy {
     private ImageIcon rightStand, rightBlock, rightPunch;
 
     public Enemy() {
-        x = 400 - width;
+        x = 0;
         whileHitting = false;
         health = 2000;
         width = 45;
@@ -49,7 +49,6 @@ public class Enemy {
                             Player.health--;
                         }
                     }
-                    System.out.println("" + Player.health);
                 } else {
                     returnThing = leftStand.getImage();
                 }
