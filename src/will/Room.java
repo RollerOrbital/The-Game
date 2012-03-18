@@ -103,6 +103,7 @@ public class Room {
     }
 
     public void move() {
+        basicBounds();
         if (!isSmOpen) {
             getDirection();
             frameNumber = 0;
