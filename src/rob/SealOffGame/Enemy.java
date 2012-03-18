@@ -5,10 +5,11 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Enemy {
-    public int x;
-    public static int health;
+    public static int health, x;
     private int dx, direction, width;
-    private boolean isHitting, isBlocking, whileHitting;
+    private boolean isHitting;
+    public static boolean isBlocking;
+    private boolean whileHitting;
     private ImageIcon leftStand, leftBlock, leftPunch;
     private ImageIcon rightStand, rightBlock, rightPunch;
 
@@ -41,7 +42,13 @@ public class Enemy {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = leftPunch.getImage();
-                    Player.health -= 2;
+                    if ((x <= Player.x && direction == 3) || (x > Player.x && direction == 1)) {
+                        if (!Player.isBlocking) {
+                            Player.health -= 2;
+                        } else {
+                            Player.health--;
+                        }
+                    }
                     System.out.println("" + Player.health);
                 } else {
                     returnThing = leftStand.getImage();
@@ -55,7 +62,13 @@ public class Enemy {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = rightPunch.getImage();
-                    Player.health -= 2;
+                    if ((x <= Player.x && direction == 3) || (x > Player.x && direction == 1)) {
+                        if (!Player.isBlocking) {
+                            Player.health -= 2;
+                        } else {
+                            Player.health--;
+                        }
+                    }
                 } else {
                     returnThing = rightStand.getImage();
                 }

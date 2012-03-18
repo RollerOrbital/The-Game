@@ -10,7 +10,8 @@ public class Player {
     public static int x;
     public static int health;
     private int dx, direction, width;
-    private boolean isHitting, isBlocking, whileHitting;
+    private boolean isHitting, whileHitting;
+    public static boolean isBlocking;
     private ImageIcon leftStand, leftBlock, leftPunch;
     private ImageIcon rightStand, rightBlock, rightPunch;
 
@@ -43,7 +44,13 @@ public class Player {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = leftPunch.getImage();
-                    Enemy.health -= 2;
+                    if ((x <= Enemy.x && direction == 3) || (x > Enemy.x && direction == 1)) {
+                        if (!Enemy.isBlocking) {
+                            Enemy.health -= 2;
+                        } else {
+                            Enemy.health--;
+                        }
+                    }
                 } else {
                     returnThing = leftStand.getImage();
                 }
@@ -56,7 +63,13 @@ public class Player {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = rightPunch.getImage();
-                    Enemy.health -= 2;
+                    if ((x <= Enemy.x && direction == 3) || (x > enemy.x && direction == 1)) {
+                        if (!Enemy.isBlocking) {
+                            Enemy.health -= 2;
+                        } else {
+                            Enemy.health--;
+                        }
+                    }
                 } else {
                     returnThing = rightStand.getImage();
                 }
@@ -91,7 +104,7 @@ public class Player {
     }
 
     private boolean isNextToEnemy() {
-        return (((enemy.x + width > x && enemy.x < x) || (enemy.x < x + width && enemy.x > x)));
+        return (((Enemy.x + width > x && Enemy.x < x) || (Enemy.x < x + width && Enemy.x > x)));
     }
 
     public void keyPressed(KeyEvent e) {
