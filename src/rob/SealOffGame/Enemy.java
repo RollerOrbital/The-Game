@@ -41,46 +41,30 @@ public class Enemy {
 
     public Image getImage() {
         Image returnThing;
-
         if (direction == LEFT) {
-
             if (isHitting && !isBlocking) {
-
                 returnThing = leftPunch.getImage();
                 rage += 5;
                 isHitting = false;
-                waitFor(50);
-                Player.health -= baseDamage;
-
+                getDamage();
             } else if (isBlocking && !isHitting) {
-
                 returnThing = leftBlock.getImage();
                 rage -= 3;
                 isBlocking = false;
-                waitFor(50);
-
             } else {
-
                 returnThing = leftStand.getImage();
             }
         } else if (direction == RIGHT) {
-
             if (isHitting && !isBlocking) {
-
                 returnThing = rightPunch.getImage();
                 rage += 5;
                 isHitting = false;
-                waitFor(50);
-
+                getDamage();
             } else if (isBlocking && !isHitting) {
-
                 returnThing = rightBlock.getImage();
                 rage -= 3;
                 isBlocking = false;
-                waitFor(50);
-
             } else {
-
                 returnThing = rightStand.getImage();
             }
         } else {
@@ -89,12 +73,16 @@ public class Enemy {
         return returnThing;
     }
 
-    private void waitFor(int millis) {
-        try {
-            Thread.sleep(millis, 0);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    private void getDamage() {
+        if (rage >= 100) {
+            baseDamage += 10;
+            rage = 0;
         }
+        if (Player.isBlocking) {
+            baseDamage = 2;
+        }
+        Player.health -= baseDamage;
+        baseDamage = 5;
     }
 
     public void move() {

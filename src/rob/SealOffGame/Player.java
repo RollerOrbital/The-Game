@@ -14,7 +14,7 @@ public class Player {
     public int defense;
     static int direction;
     public static boolean isHitting;
-    public boolean isBlocking;
+    public static boolean isBlocking;
     private ImageIcon leftStand, leftBlock, leftPunch;
     private ImageIcon rightStand, rightBlock, rightPunch;
     static int width;
@@ -49,6 +49,7 @@ public class Player {
         if (direction == 1) {
             if (isHitting && !isBlocking) {
                 returnThing = leftPunch.getImage();
+                getDamage();
             } else if (isBlocking && !isHitting) {
                 returnThing = leftBlock.getImage();
             } else {
@@ -57,6 +58,7 @@ public class Player {
         } else if (direction == 3) {
             if (isHitting && !isBlocking) {
                 returnThing = rightPunch.getImage();
+                getDamage();
             } else if (isBlocking && !isHitting) {
                 returnThing = rightBlock.getImage();
             } else {
@@ -66,6 +68,17 @@ public class Player {
             returnThing = rightStand.getImage();
         }
         return returnThing;
+    }
+
+    private void getDamage() {
+        if (isNextToEnemy()) {
+            baseDamage = 5;
+            if (rage >= 100) {
+                baseDamage += 10;
+            }
+            enemy.health -= baseDamage;
+            baseDamage = 0;
+        }
     }
 
     public void move() {
@@ -96,12 +109,16 @@ public class Player {
         }
     }
 
+    private boolean isNextToEnemy() {
+        return (((x + width > enemy.x && x < enemy.x) || (x < enemy.x + width && x > enemy.x)));
+    }
+
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_RIGHT && !isHitting && !isBlocking) {
-            dx = 3;
+            dx = 1;
         } else if (key == KeyEvent.VK_LEFT && !isHitting && !isBlocking) {
-            dx = -3;
+            dx = -1;
         } else if (key == KeyEvent.VK_Z) {
             rage += 5;
             baseDamage = 5;
