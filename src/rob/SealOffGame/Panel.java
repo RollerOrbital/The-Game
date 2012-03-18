@@ -30,6 +30,12 @@ public class Panel extends JPanel implements ActionListener {
         g2d.drawImage(stage, 0, 0, this);
         g2d.drawImage(enemy.getImage(), enemy.getX(), 150, this);
         g2d.drawImage(player.getImage(), player.getX(), 150, this);
+        g2d.setColor(Color.RED);
+        g2d.fill(new Rectangle(10, 5, Player.health / 10, 20));
+        g2d.fill(new Rectangle(250, 5, enemy.health / 10, 20));
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("PLAYER HEALTH", 10, 20);
+        g2d.drawString("ENEMY HEALTH", 250, 20);
         g2d.drawString("X = " + player.getX(), 100, 150);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();

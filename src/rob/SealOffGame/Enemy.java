@@ -5,25 +5,17 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Enemy {
-    public int x;
-    private int dx;
-    private int rage;
-    private int health;
-    private int baseDamage;
-    private int defense;
-    private int direction;
-    private boolean isHitting;
-    public boolean isBlocking;
+    public int x, health;
+    private int dx, direction, width;
+    private boolean isHitting, isBlocking, whileHitting;
     private ImageIcon leftStand, leftBlock, leftPunch;
     private ImageIcon rightStand, rightBlock, rightPunch;
-    private int width;
 
     public Enemy() {
+        x = 400 - width;
+        whileHitting = false;
+        health = 1000;
         width = 45;
-        health = 200;
-        rage = 0;
-        baseDamage = 0;
-        defense = 0;
         isHitting = false;
         isBlocking = false;
         //imageIcons START
@@ -46,8 +38,12 @@ public class Enemy {
         Image returnThing;
         if (direction == 1) {
             if (isHitting && !isBlocking) {
-                returnThing = leftPunch.getImage();
-                getDamage();
+                if (!whileHitting) {
+                    returnThing = leftPunch.getImage();
+                    Player.health--;
+                } else {
+                    returnThing = leftStand.getImage();
+                }
             } else if (isBlocking && !isHitting) {
                 returnThing = leftBlock.getImage();
             } else {
@@ -55,8 +51,12 @@ public class Enemy {
             }
         } else if (direction == 3) {
             if (isHitting && !isBlocking) {
-                returnThing = rightPunch.getImage();
-                getDamage();
+                if (!whileHitting) {
+                    returnThing = rightPunch.getImage();
+                    Player.health--;
+                } else {
+                    returnThing = rightStand.getImage();
+                }
             } else if (isBlocking && !isHitting) {
                 returnThing = rightBlock.getImage();
             } else {
@@ -68,17 +68,6 @@ public class Enemy {
         return returnThing;
     }
 
-    private void getDamage() {
-        if (isNextToEnemy()) {
-            baseDamage = 5;
-            if (rage >= 100) {
-                baseDamage += 10;
-            }
-            health -= baseDamage;
-            baseDamage = 0;
-        }
-    }
-
     public void move() {
         x += dx;
         if (dx < 0) {
@@ -87,23 +76,14 @@ public class Enemy {
             direction = 3;
         }
         basicBounds();
-        enemyBounds();
     }
 
 
     private void basicBounds() {
-        if (x <= -width) {
-            x = -width;
-        } else if (x >= 551) {
-            x = 551;
-        }
-    }
-
-    private void enemyBounds() {
-        if (Player.x + width > x && Player.x < x) {
-            Player.x = x - width;
-        } else if (Player.x < x + width && Player.x > x) {
-            Player.x = x + width;
+        if (x <= 0) {
+            x = 0;
+        } else if (x >= 400 - width) {
+            x = 400 - width;
         }
     }
 
@@ -118,19 +98,10 @@ public class Enemy {
         } else if (key == KeyEvent.VK_A && !isHitting && !isBlocking) {
             dx = -1;
         } else if (key == KeyEvent.VK_Z) {
-            rage += 5;
-            baseDamage = 5;
             isHitting = true;
         } else if (key == KeyEvent.VK_X) {
-            rage -= 3;
-            defense = 5;
             isBlocking = true;
         } else if (key == KeyEvent.VK_ENTER) {
-            if (rage == 100) {
-                rage = 0;
-                baseDamage = 20;
-                isHitting = true;
-            }
         }
     }
 
@@ -141,13 +112,11 @@ public class Enemy {
         } else if (key == KeyEvent.VK_A) {
             dx = 0;
         } else if (key == KeyEvent.VK_Z) {
-            baseDamage = 0;
             isHitting = false;
+            whileHitting = false;
         } else if (key == KeyEvent.VK_X) {
-            defense = 0;
             isBlocking = false;
         } else if (key == KeyEvent.VK_ENTER) {
-            baseDamage = 0;
             isHitting = false;
         }
     }

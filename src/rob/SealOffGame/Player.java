@@ -8,21 +8,17 @@ import java.awt.event.KeyEvent;
 public class Player {
     private Enemy enemy;
     public static int x;
-    private int dx;
-    private int rage;
-    private int baseDamage;
-    private int direction;
-    private boolean isHitting;
-    private boolean isBlocking;
+    public static int health;
+    private int dx, direction, width;
+    private boolean isHitting, isBlocking, whileHitting;
     private ImageIcon leftStand, leftBlock, leftPunch;
     private ImageIcon rightStand, rightBlock, rightPunch;
-    private int width;
 
     public Player() {
-        width = 45;
         enemy = new Enemy();
-        rage = 0;
-        baseDamage = 0;
+        whileHitting = false;
+        health = 1000;
+        width = 45;
         isHitting = false;
         isBlocking = false;
         //imageIcons START
@@ -45,7 +41,12 @@ public class Player {
         Image returnThing;
         if (direction == 1) {
             if (isHitting && !isBlocking) {
-                returnThing = leftPunch.getImage();
+                if (!whileHitting) {
+                    returnThing = leftPunch.getImage();
+                    enemy.health--;
+                } else {
+                    returnThing = leftStand.getImage();
+                }
             } else if (isBlocking && !isHitting) {
                 returnThing = leftBlock.getImage();
             } else {
@@ -53,7 +54,12 @@ public class Player {
             }
         } else if (direction == 3) {
             if (isHitting && !isBlocking) {
-                returnThing = rightPunch.getImage();
+                if (!whileHitting) {
+                    returnThing = rightPunch.getImage();
+                    enemy.health--;
+                } else {
+                    returnThing = rightStand.getImage();
+                }
             } else if (isBlocking && !isHitting) {
                 returnThing = rightBlock.getImage();
             } else {
@@ -73,28 +79,19 @@ public class Player {
             direction = 3;
         }
         basicBounds();
-        enemyBounds();
     }
 
 
     private void basicBounds() {
-        if (x <= -width) {
-            x = -width;
-        } else if (x >= 551) {
-            x = 551;
-        }
-    }
-
-    private void enemyBounds() {
-        if (x + width > enemy.x && x < enemy.x) {
-            x = enemy.x - width;
-        } else if (x < enemy.x + width && x > enemy.x) {
-            x = enemy.x + width;
+        if (x <= 0) {
+            x = 0;
+        } else if (x >= 400 - width) {
+            x = 400 - width;
         }
     }
 
     private boolean isNextToEnemy() {
-        return (((x + width > enemy.x && x < enemy.x) || (x < enemy.x + width && x > enemy.x)));
+        return (((enemy.x + width > x && enemy.x < x) || (enemy.x < x + width && enemy.x > x)));
     }
 
     public void keyPressed(KeyEvent e) {
@@ -104,18 +101,10 @@ public class Player {
         } else if (key == KeyEvent.VK_LEFT && !isHitting && !isBlocking) {
             dx = -1;
         } else if (key == KeyEvent.VK_N) {
-            rage += 5;
-            baseDamage = 5;
             isHitting = true;
         } else if (key == KeyEvent.VK_M) {
-            rage -= 3;
             isBlocking = true;
         } else if (key == KeyEvent.VK_SPACE) {
-            if (rage == 100) {
-                rage = 0;
-                baseDamage = 20;
-                isHitting = true;
-            }
         }
     }
 
@@ -126,12 +115,11 @@ public class Player {
         } else if (key == KeyEvent.VK_LEFT) {
             dx = 0;
         } else if (key == KeyEvent.VK_N) {
-            baseDamage = 0;
             isHitting = false;
+            whileHitting = false;
         } else if (key == KeyEvent.VK_M) {
             isBlocking = false;
         } else if (key == KeyEvent.VK_SPACE) {
-            baseDamage = 0;
             isHitting = false;
         }
     }
