@@ -24,14 +24,25 @@ public class Panel extends JPanel implements ActionListener {
 
     public void paint(Graphics g) {
         super.paint(g);
+        ImageIcon ii = new ImageIcon(getClass().getResource("jimsKebabs.png"));
+        Image stage = ii.getImage();
         Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(stage, 0, 0, this);
         g2d.drawImage(enemy.getImage(), enemy.getX(), 150, this);
         g2d.drawImage(player.getImage(), player.getX(), 150, this);
         g2d.drawString("X = " + player.getX(), 100, 150);
-        g2d.drawString(" Your Health = " + Player.health, 50, 50);
-        g2d.drawString("Enemy Health = " + enemy.health, 200, 50);
+        g2d.drawString(" Your Health = " + lowerZero(Player.health), 50, 50);
+        g2d.drawString("Enemy Health = " + lowerZero(enemy.health), 200, 50);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
+    }
+
+    private int lowerZero(int x) {
+        if (x <= 0) {
+            return 0;
+        } else {
+            return x;
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
