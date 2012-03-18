@@ -2,24 +2,27 @@ package rob.SealOffGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Enemy {
     public int x;
     private int dx;
     private int rage;
-    public int health, baseDamage, defense, direction;
-    public boolean isHitting, isBlocking;
+    private int health;
+    private int baseDamage;
+    private int defense;
+    private int direction;
+    private boolean isHitting;
+    public boolean isBlocking;
     private ImageIcon leftStand, leftBlock, leftPunch;
     private ImageIcon rightStand, rightBlock, rightPunch;
-    private int LEFT, RIGHT;
+    private int width;
 
     public Enemy() {
-        x = 400 - 45;
-        LEFT = 1;
-        RIGHT = 3;
+        width = 45;
         health = 200;
         rage = 0;
-        baseDamage = 5;
+        baseDamage = 0;
         defense = 0;
         isHitting = false;
         isBlocking = false;
@@ -41,29 +44,21 @@ public class Enemy {
 
     public Image getImage() {
         Image returnThing;
-        if (direction == LEFT) {
+        if (direction == 1) {
             if (isHitting && !isBlocking) {
                 returnThing = leftPunch.getImage();
-                rage += 5;
-                isHitting = false;
                 getDamage();
             } else if (isBlocking && !isHitting) {
                 returnThing = leftBlock.getImage();
-                rage -= 3;
-                isBlocking = false;
             } else {
                 returnThing = leftStand.getImage();
             }
-        } else if (direction == RIGHT) {
+        } else if (direction == 3) {
             if (isHitting && !isBlocking) {
                 returnThing = rightPunch.getImage();
-                rage += 5;
-                isHitting = false;
                 getDamage();
             } else if (isBlocking && !isHitting) {
                 returnThing = rightBlock.getImage();
-                rage -= 3;
-                isBlocking = false;
             } else {
                 returnThing = rightStand.getImage();
             }
@@ -74,54 +69,86 @@ public class Enemy {
     }
 
     private void getDamage() {
-        if (rage >= 100) {
-            baseDamage += 10;
-            rage = 0;
+        if (isNextToEnemy()) {
+            baseDamage = 5;
+            if (rage >= 100) {
+                baseDamage += 10;
+            }
+            health -= baseDamage;
+            baseDamage = 0;
         }
-        if (Player.isBlocking) {
-            baseDamage = 2;
-        }
-        Player.health -= baseDamage;
-        baseDamage = 5;
     }
 
     public void move() {
-        decideMove();
         x += dx;
+        if (dx < 0) {
+            direction = 1;
+        } else if (dx > 0) {
+            direction = 3;
+        }
         basicBounds();
+        enemyBounds();
     }
 
 
     private void basicBounds() {
-        if (x <= -Player.width) {
-            x = -Player.width;
+        if (x <= -width) {
+            x = -width;
         } else if (x >= 551) {
             x = 551;
         }
     }
 
-    public void decideMove() {
-        if (x + Player.width <= Player.x) {
-            dx = 1;
-            direction = RIGHT;
-            isHitting = false;
-            isBlocking = false;
-        } else if (x >= Player.x + Player.width) {
-            dx = -1;
-            direction = LEFT;
-            isHitting = false;
-            isBlocking = false;
-        } else {
-            dx = 0;
-            decideStrike();
+    private void enemyBounds() {
+        if (Player.x + width > x && Player.x < x) {
+            Player.x = x - width;
+        } else if (Player.x < x + width && Player.x > x) {
+            Player.x = x + width;
         }
     }
 
-    public void decideStrike() {
-        if (Player.isHitting) {
-            isBlocking = true;
-        } else {
+    private boolean isNextToEnemy() {
+        return (((Player.x + width > x && Player.x < x) || (Player.x < x + width && Player.x > x)));
+    }
+
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_D && !isHitting && !isBlocking) {
+            dx = 1;
+        } else if (key == KeyEvent.VK_A && !isHitting && !isBlocking) {
+            dx = -1;
+        } else if (key == KeyEvent.VK_Z) {
+            rage += 5;
+            baseDamage = 5;
             isHitting = true;
+        } else if (key == KeyEvent.VK_X) {
+            rage -= 3;
+            defense = 5;
+            isBlocking = true;
+        } else if (key == KeyEvent.VK_ENTER) {
+            if (rage == 100) {
+                rage = 0;
+                baseDamage = 20;
+                isHitting = true;
+            }
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_D) {
+            dx = 0;
+        } else if (key == KeyEvent.VK_A) {
+            dx = 0;
+        } else if (key == KeyEvent.VK_Z) {
+            baseDamage = 0;
+            isHitting = false;
+        } else if (key == KeyEvent.VK_X) {
+            defense = 0;
+            isBlocking = false;
+        } else if (key == KeyEvent.VK_ENTER) {
+            baseDamage = 0;
+            isHitting = false;
         }
     }
 }
