@@ -15,8 +15,10 @@ public class Player {
     public boolean isBlocking;
     private ImageIcon leftStand, leftBlock, leftPunch;
     private ImageIcon rightStand, rightBlock, rightPunch;
+    static int width;
 
     public Player() {
+        width = 45;
         enemy = new Enemy();
         health = 200;
         rage = 0;
@@ -85,10 +87,10 @@ public class Player {
     }
 
     private void enemyBounds() {
-        if (x + 149 > enemy.x && x < enemy.x) {
-            x = enemy.x - 149;
-        } else if (x < enemy.x + 149 && x > enemy.x) {
-            x = enemy.x + 149;
+        if (x + width > enemy.x && x < enemy.x) {
+            x = enemy.x - width;
+        } else if (x < enemy.x + width && x > enemy.x) {
+            x = enemy.x + width;
         }
     }
 

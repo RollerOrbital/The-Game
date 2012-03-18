@@ -78,12 +78,12 @@ public class Enemy {
     }
 
     public void decideMove() {
-        if (x + 149 <= Player.x) {
+        if (x + Player.width <= Player.x) {
             dx = 1;
             direction = RIGHT;
             isHitting = false;
             isBlocking = false;
-        } else if (x >= Player.x + 149) {
+        } else if (x >= Player.x + Player.width) {
             dx = -1;
             direction = LEFT;
             isHitting = false;
