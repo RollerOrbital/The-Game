@@ -28,6 +28,8 @@ public class Panel extends JPanel implements ActionListener {
         Image stage = ii.getImage();
         ImageIcon i2 = new ImageIcon(getClass().getResource("deathScreen.png"));
         Image dScreen = i2.getImage();
+//        ImageIcon i3 = new ImageIcon(getClass().getResource("spacecow_main.png"));
+//        Image logo = i3.getImage();
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(stage, 0, 0, this);
         if (Enemy.health > 0) {
@@ -40,10 +42,11 @@ public class Panel extends JPanel implements ActionListener {
         g2d.fill(new Rectangle(10, 5, Player.health / 20, 20));
         g2d.fill(new Rectangle(250, 5, Enemy.health / 20, 20));
         g2d.setColor(Color.BLACK);
-        g2d.drawString("PLAYER HEALTH", 10, 20);
-        g2d.drawString("ENEMY HEALTH", 250, 20);
+        g2d.drawString("PLAYER 1 HEALTH", 10, 20);
+        g2d.drawString("PLAYER 2 HEALTH", 250, 20);
         if (Enemy.health <= 0 || Player.health <= 0) {
             g2d.drawImage(dScreen, 0, 0, this);
+//            g2d.drawImage(logo, 50, 200, this);
         }
         g2d.drawString("X = " + player.getX(), 100, 150);
         Toolkit.getDefaultToolkit().sync();

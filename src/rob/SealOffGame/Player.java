@@ -1,6 +1,5 @@
 package rob.SealOffGame;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;

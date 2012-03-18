@@ -28,7 +28,7 @@ public class Enemy {
         rightPunch = new ImageIcon(getClass().getResource("rightPunch.png"));
         rightBlock = new ImageIcon(getClass().getResource("rightBlock.png"));
         //imageIcons END
-        direction = 1;
+        direction = 3;
         //left = 1, right = 3;
     }
 
