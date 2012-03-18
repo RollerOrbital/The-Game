@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    private Enemy enemy;
     public static int x;
     public static int health;
     private int dx, direction, width;
@@ -16,7 +15,6 @@ public class Player {
     private ImageIcon rightStand, rightBlock, rightPunch;
 
     public Player() {
-        enemy = new Enemy();
         whileHitting = false;
         health = 2000;
         width = 45;
@@ -63,7 +61,7 @@ public class Player {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = rightPunch.getImage();
-                    if ((x <= Enemy.x && direction == 3) || (x > enemy.x && direction == 1)) {
+                    if ((x <= Enemy.x && direction == 3) || (x > Enemy.x && direction == 1)) {
                         if (!Enemy.isBlocking) {
                             Enemy.health -= 2;
                         } else {
@@ -101,10 +99,6 @@ public class Player {
         } else if (x >= 400 - width) {
             x = 400 - width;
         }
-    }
-
-    private boolean isNextToEnemy() {
-        return (((Enemy.x + width > x && Enemy.x < x) || (Enemy.x < x + width && Enemy.x > x)));
     }
 
     public void keyPressed(KeyEvent e) {

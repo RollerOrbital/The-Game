@@ -102,10 +102,6 @@ public class Enemy {
         }
     }
 
-    private boolean isNextToEnemy() {
-        return (((Player.x + width > x && Player.x < x) || (Player.x < x + width && Player.x > x)));
-    }
-
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_D && !isHitting && !isBlocking) {
