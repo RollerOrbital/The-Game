@@ -17,7 +17,7 @@ public class Player {
     public Player() {
         enemy = new Enemy();
         whileHitting = false;
-        health = 1000;
+        health = 2000;
         width = 45;
         isHitting = false;
         isBlocking = false;
@@ -43,7 +43,7 @@ public class Player {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = leftPunch.getImage();
-                    enemy.health--;
+                    Enemy.health -= 2;
                 } else {
                     returnThing = leftStand.getImage();
                 }
@@ -56,7 +56,7 @@ public class Player {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = rightPunch.getImage();
-                    enemy.health--;
+                    Enemy.health -= 2;
                 } else {
                     returnThing = rightStand.getImage();
                 }

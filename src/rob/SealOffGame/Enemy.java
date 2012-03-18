@@ -5,7 +5,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Enemy {
-    public int x, health;
+    public int x;
+    public static int health;
     private int dx, direction, width;
     private boolean isHitting, isBlocking, whileHitting;
     private ImageIcon leftStand, leftBlock, leftPunch;
@@ -14,7 +15,7 @@ public class Enemy {
     public Enemy() {
         x = 400 - width;
         whileHitting = false;
-        health = 1000;
+        health = 2000;
         width = 45;
         isHitting = false;
         isBlocking = false;
@@ -40,7 +41,8 @@ public class Enemy {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = leftPunch.getImage();
-                    Player.health--;
+                    Player.health -= 2;
+                    System.out.println("" + Player.health);
                 } else {
                     returnThing = leftStand.getImage();
                 }
@@ -53,7 +55,7 @@ public class Enemy {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = rightPunch.getImage();
-                    Player.health--;
+                    Player.health -= 2;
                 } else {
                     returnThing = rightStand.getImage();
                 }
