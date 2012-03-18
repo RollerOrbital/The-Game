@@ -14,6 +14,7 @@ public class Enemy {
     private int LEFT, RIGHT;
 
     public Enemy() {
+        x = 400 - 45;
         LEFT = 1;
         RIGHT = 3;
         health = 200;
