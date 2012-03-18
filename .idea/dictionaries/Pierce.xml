@@ -3,10 +3,13 @@
     <words>
       <w>battlemode</w>
       <w>canjump</w>
+      <w>deathplayer</w>
       <w>downheld</w>
+      <w>enemydie</w>
       <w>grannell</w>
       <w>hymabaccus</w>
       <w>kaashif</w>
+      <w>kony</w>
       <w>kony's</w>
       <w>leftheld</w>
       <w>liberationsheet</w>
@@ -20,6 +23,7 @@
       <w>spacecow</w>
       <w>sprdir</w>
       <w>sprframe</w>
+      <w>titlescreen</w>
       <w>wakeling</w>
       <w>xbound</w>
       <w>xsquare</w>

@@ -13,6 +13,7 @@ public class Player {
     private int canJump;
     private int step;
     private int frame;
+    public boolean titlescreen;
 
     public Player() {
         souls = 0;
@@ -20,6 +21,7 @@ public class Player {
         score = 0;
         bullets = 15;
         canJump = 1;
+        titlescreen = true;//false;
         x = 58 * 2;
         y = (58 * 4) + 16;
         step = 0;
@@ -71,23 +73,26 @@ public class Player {
         if ((key == KeyEvent.VK_UP) && (canJump == 1) && (dy == 0) && (y == (58 * 4) + 16)) {
             dy = -4;
             canJump = 0;
-        } else if (key == KeyEvent.VK_SPACE) {
+        } else if (key == KeyEvent.VK_RIGHT) {
+            if (titlescreen){titlescreen=false;Arena.playSound("shoot.wav");}else{
             if ((Player.bullets > 0) && (Player.health > 0)&&(Bullet.x>500)) {
                 new Bullet();
                 Bullet.x = 216;
                 Bullet.y = (getY() + 52);
                 Player.bullets--;
+                Arena.playSound("shoot.wav");
             } else if (Player.health <= 0) {
                 new Player();
                 Player.health = 5;
                 Player.souls = 0;
                 Player.bullets = 15;
                 Player.score = 0;
+                Arena.playSound("shoot.wav");
             }
 /*        if (key == KeyEvent.VK_DOWN) {
             dy = 2;
         }*/
-        }
+        }}
     }
 
     public void keyReleased(KeyEvent e) {
