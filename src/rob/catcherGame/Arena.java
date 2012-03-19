@@ -31,6 +31,9 @@ public class Arena extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
+        ImageIcon ii = new ImageIcon(getClass().getResource("background.png"));
+        Image back = ii.getImage();
+        g2d.drawImage(back, 0, 0, this);
         g2d.drawImage(goodSoul.getImage(), goodSoul.getX(), goodSoul.getY(), this);
         g2d.drawImage(badSoul.getImage(), badSoul.getX(), badSoul.getY(), this);
         g2d.drawImage(player.getImage(), player.getX(), player.getY(), this);
