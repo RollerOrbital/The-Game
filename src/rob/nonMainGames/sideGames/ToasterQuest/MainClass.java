@@ -1,19 +1,15 @@
-package rob.scytheGame;
+package rob.nonMainGames.sideGames.ToasterQuest;
 
 import javax.swing.*;
 
-public class
-        MainClass extends JFrame {
-
+public class MainClass extends JFrame {
     public MainClass() {
-
-        add(new Board());
-
+        add(new Panel());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(725, 425);
+        setSize(400, 300);
         setLocationRelativeTo(null);
-        setTitle("Scythe Game");
-        setResizable(true);
+        setTitle("Toaster Quest");
+        setResizable(false);
         setVisible(true);
     }
 

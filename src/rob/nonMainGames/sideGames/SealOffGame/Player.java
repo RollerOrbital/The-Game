@@ -1,4 +1,4 @@
-package rob.SealOffGame;
+package rob.nonMainGames.sideGames.SealOffGame;
 
 import javax.swing.*;
 import java.awt.*;

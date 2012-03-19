@@ -1,4 +1,4 @@
-package rob.scytheGame;
+package rob.nonMainGames.miniGames.scytheGame;
 
 import javax.swing.*;
 import java.awt.*;

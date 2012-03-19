@@ -1,4 +1,4 @@
-package rob.catcherGame;
+package rob.nonMainGames.miniGames.catcherGame;
 
 import javax.swing.*;
 import java.awt.*;

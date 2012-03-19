@@ -1,16 +1,19 @@
-package rob.SealOffGame;
+package rob.nonMainGames.miniGames.scytheGame;
 
 import javax.swing.*;
 
-public class MainClass extends JFrame {
+public class
+        MainClass extends JFrame {
+
     public MainClass() {
 
-        add(new Panel());
+        add(new Board());
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(725, 425);
         setLocationRelativeTo(null);
-        setTitle("Seal Off");
-        setResizable(false);
+        setTitle("Scythe Game");
+        setResizable(true);
         setVisible(true);
     }
 

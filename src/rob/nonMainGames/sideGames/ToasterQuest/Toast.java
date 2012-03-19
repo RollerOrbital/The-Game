@@ -1,4 +1,4 @@
-package rob.ToasterQuest;
+package rob.nonMainGames.sideGames.ToasterQuest;
 
 import javax.swing.*;
 import java.awt.*;

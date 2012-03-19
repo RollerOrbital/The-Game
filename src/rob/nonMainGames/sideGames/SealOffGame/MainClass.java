@@ -1,14 +1,15 @@
-package rob.ToasterQuest;
+package rob.nonMainGames.sideGames.SealOffGame;
 
 import javax.swing.*;
 
 public class MainClass extends JFrame {
     public MainClass() {
+
         add(new Panel());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
-        setTitle("Toaster Quest");
+        setTitle("Seal Off");
         setResizable(false);
         setVisible(true);
     }
