@@ -28,7 +28,7 @@ public class Panel extends JPanel implements ActionListener {
         Image stage = ii.getImage();
         ImageIcon i2 = new ImageIcon(getClass().getResource("deathScreen.png"));
         Image dScreen = i2.getImage();
-        ImageIcon i3 = new ImageIcon(getClass().getResource("spacecowsplash.png"));
+        ImageIcon i3 = new ImageIcon(getClass().getResource("spaceCowSplash.png"));
         Image logo = i3.getImage();
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(stage, 0, 0, this);
