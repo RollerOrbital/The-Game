@@ -1,15 +1,12 @@
-package will.ActualGameCode.MainGame;
+package will;
 
 import javax.swing.*;
 
-public class Skeleton extends JFrame {
-
-    public Skeleton() {
-
-        add(new Board());
-
+public class MainClass extends JFrame {
+    public MainClass() {
+        add(new Panel());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(621, 350);
+        setSize(400, 300);
         setLocationRelativeTo(null);
         setTitle("Resist");
         setResizable(false);
@@ -17,6 +14,6 @@ public class Skeleton extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Skeleton();
+        new MainClass();
     }
 }

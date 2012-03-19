@@ -2,7 +2,8 @@ package rob.scytheGame;
 
 import javax.swing.*;
 
-public class MainClass extends JFrame {
+public class
+        MainClass extends JFrame {
 
     public MainClass() {
 
