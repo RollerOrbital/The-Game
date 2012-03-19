@@ -81,13 +81,13 @@ public class Room {
 
     private void basicBounds() {
         if (x <= -333) {
-            x = -332;
+            x = -333;
         } else if (x >= 199) {
-            x = 198;
+            x = 199;
         } else if (y <= -193) {
             y = -193;
         } else if (y >= 121) {
-            y = 120;
+            y = 121;
         }
     }
 
@@ -103,6 +103,7 @@ public class Room {
     }
 
     public void move() {
+        basicBounds();
         if (!isSmOpen) {
             getDirection();
             frameNumber = 0;
@@ -121,7 +122,6 @@ public class Room {
                 if (frameNumber > 4) {
                     frameNumber = 0;
                 }
-                basicBounds();
             }
         } else {
             dx = 0;
