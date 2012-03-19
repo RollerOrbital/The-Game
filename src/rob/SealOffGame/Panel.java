@@ -70,4 +70,8 @@ public class Panel extends JPanel implements ActionListener {
             enemy.keyReleased(e);
         }
     }
+
+    public static boolean isAdjacent(int playerX, int enemyX, int distance) {
+        return Math.abs(playerX - enemyX) < distance;
+    }
 }

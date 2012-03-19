@@ -42,7 +42,7 @@ public class Enemy {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = leftPunch.getImage();
-                    if ((x <= Player.x && direction == 3) || (x > Player.x && direction == 1)) {
+                    if (((x <= Player.x && direction == 3) || (x > Player.x && direction == 1)) && ((Panel.isAdjacent(x, Player.x, width + 10) && direction == 1) || (Panel.isAdjacent(x, Player.x, width + 10) && direction == 3))) {
                         if (!Player.isBlocking) {
                             Player.health -= 2;
                         } else {
@@ -61,7 +61,7 @@ public class Enemy {
             if (isHitting && !isBlocking) {
                 if (!whileHitting) {
                     returnThing = rightPunch.getImage();
-                    if ((x <= Player.x && direction == 3) || (x > Player.x && direction == 1)) {
+                    if (((x <= Player.x && direction == 3) || (x > Player.x && direction == 1)) && ((Panel.isAdjacent(x, Player.x, width + 10) && direction == 1) || (Panel.isAdjacent(x, Player.x, width + 10) && direction == 3))) {
                         if (!Player.isBlocking) {
                             Player.health -= 2;
                         } else {
