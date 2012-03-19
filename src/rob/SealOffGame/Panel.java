@@ -32,15 +32,11 @@ public class Panel extends JPanel implements ActionListener {
         Image logo = i3.getImage();
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(stage, 0, 0, this);
-        if (Enemy.health > 0) {
-            g2d.drawImage(enemy.getImage(), enemy.getX(), 150, this);
-        }
-        if (Player.health > 0) {
-            g2d.drawImage(player.getImage(), player.getX(), 150, this);
-        }
+        g2d.drawImage(enemy.getImage(), enemy.getX(), 150, this);
+        g2d.drawImage(player.getImage(), player.getX(), 150, this);
         g2d.setColor(Color.RED);
-        g2d.fill(new Rectangle(10, 5, Player.health / 20, 20));
-        g2d.fill(new Rectangle(250, 5, Enemy.health / 20, 20));
+        g2d.fill(new Rectangle(10, 5, Player.health / 15, 20));
+        g2d.fill(new Rectangle(250, 5, Enemy.health / 15, 20));
         g2d.setColor(Color.BLACK);
         g2d.drawString("PLAYER 1 HEALTH", 10, 20);
         g2d.drawString("PLAYER 2 HEALTH", 250, 20);
