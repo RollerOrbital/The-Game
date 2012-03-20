@@ -2,6 +2,7 @@ package rob.nonMainGames.sideGames.RebellionPD;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Player {
     private int x, dx, health;
@@ -38,5 +39,12 @@ public class Player {
     public int getX() {
         return x;
     }
-    //KeyEvent stuff HERE
+
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+    }
+
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+    }
 }
