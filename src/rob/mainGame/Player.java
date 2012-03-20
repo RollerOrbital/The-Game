@@ -25,11 +25,7 @@ public class Player {
         ImageIcon playerSheet = new ImageIcon(getClass().getResource("player.png"));
         image = playerSheet.getImage();
         frameNumber = 0;
-        frameArray = new int[4];
-        frameArray[0] = 0;
-        frameArray[1] = 1;
-        frameArray[2] = 0;
-        frameArray[3] = 2;
+        frameArray = new int[]{0, 1, 0, 2};
         MOVING = 1;
         STILL = 0;
     }
