@@ -10,8 +10,10 @@ public class Player {
     private ImageIcon rs, rc, ss, sc;
     private String charChoice;
     private boolean isChoosing, isCrouching;
+    private int WIDTH;
 
     public Player() {
+        WIDTH = 50;
         isCrouching = false;
         isChoosing = true;
         x = 0;
@@ -21,7 +23,7 @@ public class Player {
     }
 
     public Image getImage() {
-        if (charChoice == "sniper") {
+        if (charChoice.equals("sniper")) {
             if (isCrouching) {
                 return sc.getImage();
             } else {
@@ -38,6 +40,20 @@ public class Player {
 
     public int getX() {
         return x;
+    }
+
+    public void getBounds() {
+        if (x <= 0) {
+            x = 0;
+        } else if (x >= 400 - WIDTH) {
+            x = 400 - WIDTH;
+        }
+    }
+
+    public void move() {
+        getBounds();
+        x += dx;
+        getBounds();
     }
 
     public void keyPressed(KeyEvent e) {
