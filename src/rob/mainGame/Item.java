@@ -1,4 +1,5 @@
 package rob.mainGame;
 
-public class Item {
+public interface Item {
+    void useItem(Item i);
 }
