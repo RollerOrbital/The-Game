@@ -9,6 +9,6 @@ public class MainClass {
 //text game
 //bundle game?
 
-//evolution simulator 1st
+//evolution simulator DONE
 
 //use this to practise some skills like interface use!
