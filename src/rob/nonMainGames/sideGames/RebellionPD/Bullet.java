@@ -34,7 +34,7 @@ public class Bullet {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_Z) {
-            dx = 1;
+            dx = 2;
         }
     }
 }

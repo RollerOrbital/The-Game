@@ -13,6 +13,7 @@ public class Enemy {
     private int crouching, stepCount, frameNumber;
 
     public Enemy() {
+        dx = -1;
         random = new Random();
         stepCount = 0;
         frameNumber = 0;
