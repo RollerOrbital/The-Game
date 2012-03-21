@@ -5,45 +5,25 @@ import java.awt.*;
 import java.util.Random;
 
 public class Enemy {
-    private Random random;
-    public ImageIcon egypt, libya, gov;
-    private ImageIcon enemy;
-    private Player player = new Player();
+    Random random = new Random();
     private int x, dx;
-    private int crouching, stepCount, frameNumber;
+    private ImageIcon libya;
+    private int frameNumber, crouching, stepCount;
 
     public Enemy() {
-        dx = -1;
-        random = new Random();
-        stepCount = 0;
+        crouching = random.nextInt(2);
         frameNumber = 0;
-        getEnemyAttributes();
-        //ImageIcons START
+        x = 400;
+        dx = -1;
         libya = new ImageIcon(getClass().getResource("libyaGuy.png"));
-        //ImageIcons END
     }
 
-    private void getEnemyAttributes() {
-        if (player.getImage() == libya.getImage() || player.getImage() == egypt.getImage()) {
-            enemy = gov;
-        } else {
-            int choice = random.nextInt(1);
-            if (choice == 0) {
-                enemy = libya;
-            } else {
-                enemy = egypt;
-            }
-        }
-        int choice2 = random.nextInt(3);
-        if (choice2 == 0) {
-            crouching = 0;
-        } else {
-            crouching = 1;
-        }
+    public int getX() {
+        return x;
     }
 
     public Image getImage() {
-        return enemy.getImage();
+        return libya.getImage();
     }
 
     public int getCrouching() {

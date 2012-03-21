@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 public class Panel extends JPanel implements ActionListener {
     private Player player;
     private Bullet bullet;
+    private Enemy enemy;
     private int WIDTH, HEIGHT;
     private int Y, X;
 
@@ -20,6 +21,7 @@ public class Panel extends JPanel implements ActionListener {
         HEIGHT = 35;
         player = new Player();
         bullet = new Bullet();
+        enemy = new Enemy();
         addKeyListener(new Adapter());
         setFocusable(true);
         setBackground(Color.WHITE);
@@ -33,32 +35,16 @@ public class Panel extends JPanel implements ActionListener {
         super.paint(g);
         Graphics2D d = (Graphics2D) g;
         if (player.isChoosing) {
-            d.drawString("Which character will you be?:", 100, 50);
-            d.setColor(Color.RED);
-            d.drawString("LIBYAN REBEL", 300, 100);
-            d.drawImage(player.libya.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
-            d.setColor(Color.BLUE);
-            d.drawString("GOVERNMENT SNIPER", 150, 100);
-            //d.drawImage(player.gov.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
-            d.setColor(Color.GREEN);
-            d.drawString("EGYPTIAN PROTESTER", 5, 100);
-            //d.drawImage(player.egypt.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
-            d.setColor(Color.BLACK);
-            d.drawString("Press \"E\"", 5, 120);
-            d.drawString("Press \"G\"", 150, 120);
-            d.drawString("Press \"L\"", 300, 120);
+            titleScreen(d);
         } else {
             d.drawImage(player.getImage(), X, Y, X + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
-            if (bullet.getX() > 95) {
-                if (player.crouching == player.STAND) {
-                    if (bullet.getX() < 400) {
-                        d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
-                    }
-                } else {
-                    if (bullet.getX() < 400) {
-                        d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY() + 15, this);
-                    }
-                }
+            getBullet(d);
+            d.drawImage(enemy.getImage(), enemy.getX(), Y, enemy.getX() + HEIGHT * 2, Y + WIDTH * 2, enemy.getFrame(), enemy.getCrouching(), enemy.getFrame() + WIDTH, enemy.getCrouching() + HEIGHT, this);
+            if (enemy.getX() < X) {
+                enemy = new Enemy();
+            } else if (Math.abs(bullet.getX() - enemy.getX()) < 5) {
+                enemy = new Enemy();
+                bullet = new Bullet();
             }
         }
         if (bullet.getX() > 400) {
@@ -68,9 +54,41 @@ public class Panel extends JPanel implements ActionListener {
         g.dispose();
     }
 
+    private void getBullet(Graphics2D d) {
+        if (bullet.getX() > 95) {
+            if (player.crouching == player.STAND) {
+                if (bullet.getX() < 400) {
+                    d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
+                }
+            } else {
+                if (bullet.getX() < 400) {
+                    d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY() + 15, this);
+                }
+            }
+        }
+    }
+
+    private void titleScreen(Graphics2D d) {
+        d.drawString("Which character will you be?:", 100, 50);
+        d.setColor(Color.RED);
+        d.drawString("LIBYAN REBEL", 300, 100);
+        d.drawImage(player.libya.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
+        d.setColor(Color.BLUE);
+        d.drawString("GOVERNMENT SNIPER", 150, 100);
+        //d.drawImage(player.gov.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
+        d.setColor(Color.GREEN);
+        d.drawString("EGYPTIAN PROTESTER", 5, 100);
+        //d.drawImage(player.egypt.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
+        d.setColor(Color.BLACK);
+        d.drawString("Press \"E\"", 5, 120);
+        d.drawString("Press \"G\"", 150, 120);
+        d.drawString("Press \"L\"", 300, 120);
+    }
+
     public void actionPerformed(ActionEvent e) {
         player.move();
         bullet.move();
+        enemy.move();
         repaint();
     }
 
