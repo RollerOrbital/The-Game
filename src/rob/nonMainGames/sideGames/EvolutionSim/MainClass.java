@@ -1,4 +1,4 @@
-package rob.nonMainGames.sideGames.TextGameVSRob;
+package rob.nonMainGames.sideGames.EvolutionSim;
 
 public class MainClass {
     public static void main(String[] args) {

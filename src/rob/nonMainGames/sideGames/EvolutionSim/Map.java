@@ -1,4 +1,4 @@
-package rob.nonMainGames.sideGames.TextGameVSRob;
+package rob.nonMainGames.sideGames.EvolutionSim;
 
 import java.util.Random;
 
