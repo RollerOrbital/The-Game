@@ -6,9 +6,3 @@ public class MainClass {
         map.printMap();
     }
 }
-//text game
-//bundle game?
-
-//evolution simulator DONE
-
-//use this to practise some skills like interface use!
