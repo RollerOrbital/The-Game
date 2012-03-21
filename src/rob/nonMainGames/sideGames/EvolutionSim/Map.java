@@ -33,10 +33,6 @@ public class Map {
         }
     }
 
-    //make a method that:
-    //start 'A' in a random position
-    //every time "generations" increases - there is a random chance that another 'A' will spawn next to it
-    //this continues for every 'A' on the board
     private void setMap(int gens, int x, int y) {
         int days = 0;
         while (days < gens) {
