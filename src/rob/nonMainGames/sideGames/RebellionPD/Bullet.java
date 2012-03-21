@@ -9,9 +9,9 @@ public class Bullet {
     private int x, dx;
 
     public Bullet() {
-        x = 100;
+        x = 95;
         dx = 0;
-        ImageIcon ii = new ImageIcon(getClass().getResource("bullets.png"));
+        ImageIcon ii = new ImageIcon(getClass().getResource("bullet.png"));
         image = ii.getImage();
     }
 
@@ -20,7 +20,7 @@ public class Bullet {
     }
 
     public int getY() {
-        return 190;
+        return 180;
     }
 
     public Image getImage() {

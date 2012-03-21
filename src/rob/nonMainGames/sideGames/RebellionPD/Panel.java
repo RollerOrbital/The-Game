@@ -49,14 +49,14 @@ public class Panel extends JPanel implements ActionListener {
             d.drawString("Press \"L\"", 300, 120);
         } else {
             d.drawImage(player.getImage(), X, Y, X + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
-            if (bullet.getX() > 100) {
+            if (bullet.getX() > 95) {
                 if (player.crouching == player.STAND) {
                     if (bullet.getX() < 400) {
                         d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
                     }
                 } else {
                     if (bullet.getX() < 400) {
-                        d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY() - 15, this);
+                        d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY() + 15, this);
                     }
                 }
             }
