@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 public class Panel extends JPanel implements ActionListener {
     static String charChoice;
     private Player player;
+    private Bullet bullet;
     private int WIDTH, HEIGHT;
     private int Y, X;
 
@@ -19,6 +20,7 @@ public class Panel extends JPanel implements ActionListener {
         WIDTH = 42;
         HEIGHT = 35;
         player = new Player();
+        bullet = new Bullet();
         addKeyListener(new Adapter());
         setFocusable(true);
         setBackground(Color.WHITE);
@@ -45,6 +47,12 @@ public class Panel extends JPanel implements ActionListener {
             d.drawString("Press \"L\"", 300, 120);
         } else {
             d.drawImage(player.getImage(), X, Y, X + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
+            if (bullet.getX() > 100) {
+                d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
+            }
+            if (bullet.getX() > 400) {
+                bullet = new Bullet();
+            }
         }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
@@ -52,12 +60,14 @@ public class Panel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         player.move();
+        bullet.move();
         repaint();
     }
 
     private class Adapter extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
+            bullet.keyPressed(e);
         }
 
         public void keyReleased(KeyEvent e) {

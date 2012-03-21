@@ -5,22 +5,21 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    private int health;
     private ImageIcon egypt, libya, gov;
     private ImageIcon player;
     public boolean isChoosing;
     public int crouching;
     public int CROUCH, STAND;
-    private int WIDTH;
     private int frameNumber;
     private int stepCount;
+    public boolean isFiring;
 
     public Player() {
+        isFiring = false;
         stepCount = 0;
         CROUCH = 0;
         STAND = 1;
         frameNumber = 0;
-        WIDTH = 50;
         crouching = 1;
         isChoosing = true;
         //ImageIcons START
