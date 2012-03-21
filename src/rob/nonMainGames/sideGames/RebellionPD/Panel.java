@@ -39,10 +39,10 @@ public class Panel extends JPanel implements ActionListener {
             d.drawImage(player.libya.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
             d.setColor(Color.BLUE);
             d.drawString("GOVERNMENT SNIPER", 150, 100);
-            //d.drawImage(player.gov.getImage(), 5, 120, this);
+            //d.drawImage(player.gov.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
             d.setColor(Color.GREEN);
             d.drawString("EGYPTIAN PROTESTER", 5, 100);
-            //d.drawImage(player.egypt.getImage(), 5, 120, this);
+            //d.drawImage(player.egypt.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
             d.setColor(Color.BLACK);
             d.drawString("Press \"E\"", 5, 120);
             d.drawString("Press \"G\"", 150, 120);
