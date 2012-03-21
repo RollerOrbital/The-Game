@@ -6,9 +6,10 @@ import java.awt.event.KeyEvent;
 
 public class Player {
     private int x, dx, health;
-    private ImageIcon rs, rc, ss, sc;
-    private String charChoice;
-    private boolean isChoosing, isCrouching;
+    private ImageIcon egypt, libya, gov;
+    private ImageIcon player;
+    public boolean isChoosing;
+    private boolean isCrouching;
     private int WIDTH;
 
     public Player() {
@@ -18,23 +19,12 @@ public class Player {
         x = 0;
         dx = 0;
         //ImageIcons START
+        libya = new ImageIcon(getClass().getResource("libyaGuy.png"));
         //ImageIcons END
     }
 
     public Image getImage() {
-        if (charChoice.equals("sniper")) {
-            if (isCrouching) {
-                return sc.getImage();
-            } else {
-                return ss.getImage();
-            }
-        } else {
-            if (isCrouching) {
-                return rc.getImage();
-            } else {
-                return rs.getImage();
-            }
-        }
+        return player.getImage();
     }
 
     public int getX() {
@@ -57,12 +47,23 @@ public class Player {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_DOWN) {
-            isCrouching = true;
-        } else if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
-        } else if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
+        if (isChoosing) {
+            if (key == KeyEvent.VK_E) {
+                player = egypt;
+            } else if (key == KeyEvent.VK_G) {
+                player = gov;
+            } else if (key == KeyEvent.VK_L) {
+                player = libya;
+            }
+            isChoosing = false;
+        } else {
+            if (key == KeyEvent.VK_DOWN) {
+                isCrouching = true;
+            } else if (key == KeyEvent.VK_RIGHT) {
+                dx = 1;
+            } else if (key == KeyEvent.VK_LEFT) {
+                dx = -1;
+            }
         }
     }
 

@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class MainClass extends JFrame {
     public MainClass() {
+        add(new Panel());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(true);

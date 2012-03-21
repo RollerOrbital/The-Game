@@ -8,7 +8,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener {
+    static String charChoice;
+    private Player player;
+
     public Panel() {
+        player = new Player();
         addKeyListener(new Adapter());
         setFocusable(true);
         setBackground(Color.WHITE);
@@ -21,19 +25,35 @@ public class Panel extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D d = (Graphics2D) g;
+        if (player.isChoosing) {
+            d.drawString("Which character will you be?:", 100, 50);
+            d.setColor(Color.RED);
+            d.drawString("LIBYAN REBEL", 300, 100);
+            d.setColor(Color.BLUE);
+            d.drawString("GOVERNMENT SNIPER", 150, 100);
+            d.setColor(Color.GREEN);
+            d.drawString("EGYPTIAN PROTESTER", 5, 100);
+            d.setColor(Color.BLACK);
+            d.drawString("Press \"E\"", 5, 120);
+            d.drawString("Press \"G\"", 150, 120);
+            d.drawString("Press \"L\"", 300, 120);
+        }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
 
     public void actionPerformed(ActionEvent e) {
+        player.move();
         repaint();
     }
 
     private class Adapter extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
+            player.keyPressed(e);
         }
 
         public void keyReleased(KeyEvent e) {
+            player.keyReleased(e);
         }
     }
 }
