@@ -59,16 +59,8 @@ public class Panel extends JPanel implements ActionListener {
     }
 
     private void getBullet(Graphics2D d) {
-        if (bullet.getX() > 95) {
-            if (player.crouching == player.STAND) {
-                if (bullet.getX() < 400) {
-                    d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
-                }
-            } else {
-                if (bullet.getX() < 400) {
-                    d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY() + 15, this);
-                }
-            }
+        if (bullet.getX() > 95 && bullet.getX() < 400) {
+            d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
         }
     }
 

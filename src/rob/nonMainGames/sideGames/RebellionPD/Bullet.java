@@ -6,9 +6,11 @@ import java.awt.event.KeyEvent;
 
 public class Bullet {
     private Image image;
-    private int x, dx;
+    private int x, y, dx;
+    private Player player = new Player();
 
     public Bullet() {
+        y = 187;
         x = 95;
         dx = 0;
         ImageIcon ii = new ImageIcon(getClass().getResource("bullet.png"));
@@ -20,7 +22,7 @@ public class Bullet {
     }
 
     public int getY() {
-        return 180;
+        return y;
     }
 
     public Image getImage() {
