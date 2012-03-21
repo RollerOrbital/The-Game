@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 
 public class Player {
     private int x, dx, health;
-    private Image image;
     private ImageIcon rs, rc, ss, sc;
     private String charChoice;
     private boolean isChoosing, isCrouching;
@@ -58,9 +57,23 @@ public class Player {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+        if (key == KeyEvent.VK_DOWN) {
+            isCrouching = true;
+        } else if (key == KeyEvent.VK_RIGHT) {
+            dx = 1;
+        } else if (key == KeyEvent.VK_LEFT) {
+            dx = -1;
+        }
     }
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
+        if (key == KeyEvent.VK_DOWN) {
+            isCrouching = false;
+        } else if (key == KeyEvent.VK_RIGHT) {
+            dx = 0;
+        } else if (key == KeyEvent.VK_LEFT) {
+            dx = 0;
+        }
     }
 }
