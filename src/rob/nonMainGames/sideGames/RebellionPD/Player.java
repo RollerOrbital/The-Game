@@ -5,44 +5,52 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    private int x, dx, health;
+    private int health;
     private ImageIcon egypt, libya, gov;
     private ImageIcon player;
     public boolean isChoosing;
-    private boolean isCrouching;
+    public int crouching;
+    public int CROUCH, STAND;
     private int WIDTH;
+    private int frameNumber;
+    private int stepCount;
 
     public Player() {
+        stepCount = 0;
+        CROUCH = 0;
+        STAND = 1;
+        frameNumber = 0;
         WIDTH = 50;
-        isCrouching = false;
+        crouching = 1;
         isChoosing = true;
-        x = 0;
-        dx = 0;
         //ImageIcons START
         libya = new ImageIcon(getClass().getResource("libyaGuy.png"));
         //ImageIcons END
     }
 
     public Image getImage() {
-        return player.getImage();
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void getBounds() {
-        if (x <= 0) {
-            x = 0;
-        } else if (x >= 400 - WIDTH) {
-            x = 400 - WIDTH;
+        try {
+            return player.getImage();
+        } catch (Exception e) {
+            return libya.getImage();
         }
     }
 
+    public int getCrouching() {
+        return crouching * 35;
+    }
+
+    public int getFrame() {
+        return frameNumber * 42;
+    }
+
     public void move() {
-        getBounds();
-        x += dx;
-        getBounds();
+        stepCount++;
+        if (stepCount % 100 < 50) {
+            frameNumber = 0;
+        } else {
+            frameNumber = 1;
+        }
     }
 
     public void keyPressed(KeyEvent e) {
@@ -58,23 +66,16 @@ public class Player {
             isChoosing = false;
         } else {
             if (key == KeyEvent.VK_DOWN) {
-                isCrouching = true;
-            } else if (key == KeyEvent.VK_RIGHT) {
-                dx = 1;
-            } else if (key == KeyEvent.VK_LEFT) {
-                dx = -1;
+                crouching = CROUCH;
             }
         }
     }
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
+        frameNumber = 0;
         if (key == KeyEvent.VK_DOWN) {
-            isCrouching = false;
-        } else if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-        } else if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
+            crouching = STAND;
         }
     }
 }

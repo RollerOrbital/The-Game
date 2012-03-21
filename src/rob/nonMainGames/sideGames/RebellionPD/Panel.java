@@ -10,8 +10,14 @@ import java.awt.event.KeyEvent;
 public class Panel extends JPanel implements ActionListener {
     static String charChoice;
     private Player player;
+    private int WIDTH, HEIGHT;
+    private int Y, X;
 
     public Panel() {
+        Y = 150;
+        X = 50;
+        WIDTH = 42;
+        HEIGHT = 35;
         player = new Player();
         addKeyListener(new Adapter());
         setFocusable(true);
@@ -37,6 +43,8 @@ public class Panel extends JPanel implements ActionListener {
             d.drawString("Press \"E\"", 5, 120);
             d.drawString("Press \"G\"", 150, 120);
             d.drawString("Press \"L\"", 300, 120);
+        } else {
+            d.drawImage(player.getImage(), X, Y, X + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
         }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
