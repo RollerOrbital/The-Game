@@ -42,7 +42,7 @@ public class Panel extends JPanel implements ActionListener {
             d.drawImage(enemy.getImage(), enemy.getX(), Y, enemy.getX() + HEIGHT * 2, Y + WIDTH * 2, enemy.getFrame(), enemy.getCrouching(), enemy.getFrame() + WIDTH, enemy.getCrouching() + HEIGHT, this);
             if (enemy.getX() < X) {
                 enemy = new Enemy();
-            } else if (Math.abs(bullet.getX() - enemy.getX()) < 5) {
+            } else if ((Math.abs(bullet.getX() - enemy.getX()) < 5) && didHit()) {
                 enemy = new Enemy();
                 bullet = new Bullet();
             }
@@ -52,6 +52,10 @@ public class Panel extends JPanel implements ActionListener {
         }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
+    }
+
+    private boolean didHit() {
+        return (enemy.getCrouching() / 35 == player.crouching || enemy.getCrouching() / 35 == player.crouching);
     }
 
     private void getBullet(Graphics2D d) {
