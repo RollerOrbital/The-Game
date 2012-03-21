@@ -7,10 +7,8 @@ import java.awt.event.KeyEvent;
 public class Bullet {
     private Image image;
     private int x, dx;
-    private Player player;
 
     public Bullet() {
-        player = new Player();
         x = 100;
         dx = 0;
         ImageIcon ii = new ImageIcon(getClass().getResource("bullets.png"));

@@ -8,7 +8,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener {
-    static String charChoice;
     private Player player;
     private Bullet bullet;
     private int WIDTH, HEIGHT;
@@ -37,10 +36,13 @@ public class Panel extends JPanel implements ActionListener {
             d.drawString("Which character will you be?:", 100, 50);
             d.setColor(Color.RED);
             d.drawString("LIBYAN REBEL", 300, 100);
+            d.drawImage(player.libya.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
             d.setColor(Color.BLUE);
             d.drawString("GOVERNMENT SNIPER", 150, 100);
+            //d.drawImage(player.gov.getImage(), 5, 120, this);
             d.setColor(Color.GREEN);
             d.drawString("EGYPTIAN PROTESTER", 5, 100);
+            //d.drawImage(player.egypt.getImage(), 5, 120, this);
             d.setColor(Color.BLACK);
             d.drawString("Press \"E\"", 5, 120);
             d.drawString("Press \"G\"", 150, 120);
@@ -48,11 +50,19 @@ public class Panel extends JPanel implements ActionListener {
         } else {
             d.drawImage(player.getImage(), X, Y, X + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
             if (bullet.getX() > 100) {
-                d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
+                if (player.crouching == player.STAND) {
+                    if (bullet.getX() < 400) {
+                        d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
+                    }
+                } else {
+                    if (bullet.getX() < 400) {
+                        d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY() - 15, this);
+                    }
+                }
             }
-            if (bullet.getX() > 400) {
-                bullet = new Bullet();
-            }
+        }
+        if (bullet.getX() > 400) {
+            bullet = new Bullet();
         }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();

@@ -5,14 +5,11 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    private ImageIcon egypt, libya, gov;
+    public ImageIcon egypt, libya, gov;
+    public boolean isChoosing, isFiring;
+    public int crouching, CROUCH, STAND;
+    private int frameNumber, stepCount;
     private ImageIcon player;
-    public boolean isChoosing;
-    public int crouching;
-    public int CROUCH, STAND;
-    private int frameNumber;
-    private int stepCount;
-    public boolean isFiring;
 
     public Player() {
         isFiring = false;
@@ -28,11 +25,7 @@ public class Player {
     }
 
     public Image getImage() {
-        try {
-            return player.getImage();
-        } catch (Exception e) {
-            return libya.getImage();
-        }
+        return player.getImage();
     }
 
     public int getCrouching() {
@@ -57,12 +50,14 @@ public class Player {
         if (isChoosing) {
             if (key == KeyEvent.VK_E) {
                 player = egypt;
+                isChoosing = false;
             } else if (key == KeyEvent.VK_G) {
                 player = gov;
+                isChoosing = false;
             } else if (key == KeyEvent.VK_L) {
                 player = libya;
+                isChoosing = false;
             }
-            isChoosing = false;
         } else {
             if (key == KeyEvent.VK_DOWN) {
                 crouching = CROUCH;
