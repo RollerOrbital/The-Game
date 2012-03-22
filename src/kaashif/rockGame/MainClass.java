@@ -1,4 +1,4 @@
-package minigames.rockGame;
+package kaashif.rockGame;
 
 import javax.swing.*;
 
