@@ -7,8 +7,13 @@ public class Map {
     public Map() {
         area = new int[10][10];
         player = new Player();
+        getTurn();
+    }
+
+    public void getTurn() {
         getMap();
         printMap();
+        player.getPlayerTurn();
     }
 
     public void getMap() {
@@ -21,15 +26,15 @@ public class Map {
     }
 
     private void printMap() {
-        for (int row = 0; row < area.length; row++) {
+        for (int[] row : area) {
             for (int column = 0; column < area.length; column++) {
                 if (column == 9) {
                     System.out.println();
                 } else {
                     String squareIdentity;
-                    if (area[row][column] == 1) {
+                    if (row[column] == 1) {
                         squareIdentity = "P\t";
-                    } else if (area[row][column] == 2) {
+                    } else if (row[column] == 2) {
                         squareIdentity = "W\t";
                     } else {
                         squareIdentity = ".\t";
