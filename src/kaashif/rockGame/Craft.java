@@ -1,12 +1,10 @@
-package kaashif;
+package kaashif.rockGame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Craft {
-
-    private String craft = "craft.png";
 
     private int dx;
     private int dy;
@@ -18,7 +16,7 @@ public class Craft {
     private boolean vis = true;
 
     public Craft() {
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(craft));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("craft.png"));
         image = ii.getImage();
         x = 168;
         y = 600;
@@ -58,19 +56,19 @@ public class Craft {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-            dx = -2;
+            dx = -1;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            dx = 2;
+            dx = 1;
         }
 
         if (key == KeyEvent.VK_UP) {
-            dy = -2;
+            dy = -1;
         }
 
         if (key == KeyEvent.VK_DOWN) {
-            dy = 2;
+            dy = 1;
         }
     }
 

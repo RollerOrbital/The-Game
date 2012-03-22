@@ -1,4 +1,4 @@
-package kaashif;
+package kaashif.rockGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,28 +17,18 @@ public class Board extends JPanel implements ActionListener {
     public long score;
     public int realscore;
 
-
     public Board() {
-
-
         addKeyListener(new adapter());
         setFocusable(true);
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
-
         craft = new Craft();
         rock = new Rock();
-
         timer = new Timer(5, this);
-
         timer.start();
-
         score = 0;
         realscore = 0;
-
-
     }
-
 
     public void paint(Graphics g) {
         super.paint(g);
@@ -58,7 +48,6 @@ public class Board extends JPanel implements ActionListener {
         g.dispose();
     }
 
-
     public void actionPerformed(ActionEvent e) {
         craft.move();
         rock.move();
@@ -74,21 +63,15 @@ public class Board extends JPanel implements ActionListener {
     public void collide() {
         Rectangle rect1 = craft.getBounds();
         Rectangle rect2 = rock.getBounds();
-
-
         if (!rock.getVis()) {
             rock = new Rock();
         }
-
         if (rect1.intersects(rect2)) {
             craft.setVis(false);
             rock.setVis(false);
             lost = true;
             rock = new Rock();
-
         }
-
-
     }
 
     class adapter extends KeyAdapter {
@@ -101,8 +84,6 @@ public class Board extends JPanel implements ActionListener {
             craft.keyReleased(e);
         }
     }
-
-
 }
 
 
