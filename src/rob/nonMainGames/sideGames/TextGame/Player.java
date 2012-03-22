@@ -28,6 +28,7 @@ public class Player {
 
     public void getMove() {
         if (canGo) {
+            System.out.println("Your move...");
             String direction = input.nextLine();
             if (direction.equals("w")) {
                 dy = -1;

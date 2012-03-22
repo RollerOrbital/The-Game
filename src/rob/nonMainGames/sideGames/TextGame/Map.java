@@ -15,8 +15,14 @@ public class Map {
     public void getTurn() {
         getMap();
         printMap();
+        player.canGo = true;
         player.getPlayerTurn();
+        player.canGo = false;
+        troll.canGo = true;
         troll.getTrollTurn();
+        troll.canGo = false;
+        getMap();
+        printMap();
     }
 
     public void getMap() {
