@@ -4,15 +4,15 @@ public class Player {
     private int x, y;
 
     public Player() {
-        x = 10;
-        y = 10;
+        x = 0;
+        y = 4;
     }
 
     public int getX() {
-        return x;
+        return y;
     }
 
     public int getY() {
-        return y;
+        return x;
     }
 }
