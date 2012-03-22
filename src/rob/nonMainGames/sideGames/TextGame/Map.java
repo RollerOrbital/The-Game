@@ -23,6 +23,7 @@ public class Map {
         for (int i = 0; i < area.length; i++) {
             for (int j = 0; j < area.length; j++) {
                 area[i][j] = 0;
+                area[troll.getX()][troll.getY()] = 3;
                 area[player.getX()][player.getY()] = 1;
             }
         }
@@ -39,6 +40,8 @@ public class Map {
                         squareIdentity = "P\t";
                     } else if (row[column] == 2) {
                         squareIdentity = "W\t";
+                    } else if (row[column] == 3) {
+                        squareIdentity = "T\t";
                     } else {
                         squareIdentity = ".\t";
                     }

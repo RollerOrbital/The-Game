@@ -44,6 +44,7 @@ public class Troll implements Enemy {
             } else if (player.getY() < y) {
                 dy = 1;
             }
+            player.canGo = true;
         }
     }
 

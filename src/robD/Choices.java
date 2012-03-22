@@ -53,7 +53,7 @@ public class Choices {
     public void checkHelp(String help2, Player player) {
         if (help2.equals("y")) {
             Turn TurnObject;
-            TurnObject = new Turn(Player player);
+            //TurnObject = new Turn(Player player);
         } else if (help2.equals("n")) {
             System.out.println("You are killed for being indecisive ");
         }
