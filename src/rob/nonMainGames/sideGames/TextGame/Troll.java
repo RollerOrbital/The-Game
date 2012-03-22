@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class Troll implements Enemy {
     private int x, y, dx, dy;
-    private Random random = new Random();
     private Player player;
 
     public Troll() {
+        Random random = new Random();
         x = random.nextInt(10);
         y = random.nextInt(10);
         player = new Player();
@@ -25,17 +25,28 @@ public class Troll implements Enemy {
 
     @Override
     public void move() {
-        x += dx;
-        y += dy;
+        if (!player.canGo) {
+            x += dx;
+            y += dy;
+        }
     }
 
     @Override
     public void getMove() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        if (player.getX() > x) {
+            dx = 1;
+        } else if (player.getX() < x) {
+            dx = -1;
+        }
+        if (player.getY() > y) {
+            dy = -1;
+        } else if (player.getY() < y) {
+            dy = 1;
+        }
     }
 
-    @Override
-    public void getEnemyTurn() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void getTrollTurn() {
+        getMove();
+        move();
     }
 }

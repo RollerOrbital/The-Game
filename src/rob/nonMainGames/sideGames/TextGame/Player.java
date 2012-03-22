@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Player {
     private Scanner input = new Scanner(System.in);
     private int x, y, dx, dy;
-    private boolean canGo;
+    public boolean canGo;
 
     public Player() {
         canGo = true;
