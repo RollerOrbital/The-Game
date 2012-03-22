@@ -1,6 +1,8 @@
 package robD;
 
 
+import static robD.Player.getPlayer;
+
 public class Choices {
     private int PlayerPower;
     public Choices(int choiceNumber, int choice){
@@ -23,8 +25,12 @@ public class Choices {
                     PlayerPower = 5;
                     break;
                 default:
-                    PlayerPower = 0;
+                    PlayerPower = 6;
             }
+        case 2:
+
+        default:
+
     }
     }
 
@@ -32,4 +38,32 @@ public class Choices {
     public int getChoice1(){
         return PlayerPower;
     }
-}
+    public Choices(String help){
+        if(help.equals("y")){
+            System.out.println("Here is a list of basic commands, you may discover other commands by trying things out");
+            System.out.println("kick - kicks");
+            System.out.println("punch - punch");
+            System.out.println("eat - eat");
+            System.out.println("move (insert direction n/s/w/e) - moves in that direction");
+            System.out.println("power - uses one charge of your power");
+            System.out.println("anally insert - ... you get the idea");
+        }else if(help.equals("n")){
+            System.out.println("Are you sure y/n");
+        }}
+    public void checkHelp(String help2,Player player){
+            if(help2.equals("y")){
+                Turn TurnObject;
+                TurnObject = new Turn(Player player);
+            }else if(help2.equals("n")){
+                System.out.println("You are killed for being indecisive ");
+
+
+            
+                
+            }
+
+
+        }
+
+    }
+
