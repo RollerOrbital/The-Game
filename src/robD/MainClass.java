@@ -3,12 +3,12 @@ package robD;
 
 import java.util.Scanner;
 
-public class MainClass{
-    public static void main (String args[]){
+public class MainClass {
+    public static void main(String args[]) {
         mainClass();
-        }
+    }
 
-    public static void mainClass(){
+    public static void mainClass() {
         System.out.println("Welcome to the GAME!!!!!");
         System.out.println("Enter your name");
         Scanner keyboard = new Scanner(System.in);
@@ -24,14 +24,13 @@ public class MainClass{
         System.out.println("6 = HARDCORE MODE (NO POWER!!)");
         int choice1 = keyboard.nextInt();
         Choices ChoiceObject = new Choices(1, choice1);
-        new Player (PlayerName,true,ChoiceObject.getChoice1(),0,0,0);
-        System.out.printf("You have chosen option %s",ChoiceObject.getChoice1());
+        new Player(PlayerName, true, ChoiceObject.getChoice1(), 0, 0, 0);
+        System.out.printf("You have chosen option %s", ChoiceObject.getChoice1());
         System.out.println("");
         System.out.println("Do you wish for help before you start the game? y/n");
         String help = keyboard.next();
         Choices ChoiceObject2 = new Choices(help);
         String help2 = keyboard.next();
-        ChoiceObject2.checkHelp(help2,Player.getPlayer());
-
+        ChoiceObject2.checkHelp(help2, Player.getPlayer());
     }
 }

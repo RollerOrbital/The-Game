@@ -3,10 +3,12 @@ package rob.nonMainGames.sideGames.TextGame;
 public class Map {
     int[][] area;
     private Player player;
+    private Troll troll;
 
     public Map() {
         area = new int[10][10];
         player = new Player();
+        troll = new Troll();
         getTurn();
     }
 
@@ -14,6 +16,7 @@ public class Map {
         getMap();
         printMap();
         player.getPlayerTurn();
+        troll.getTrollTurn();
     }
 
     public void getMap() {

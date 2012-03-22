@@ -33,15 +33,17 @@ public class Troll implements Enemy {
 
     @Override
     public void getMove() {
-        if (player.getX() > x) {
-            dx = 1;
-        } else if (player.getX() < x) {
-            dx = -1;
-        }
-        if (player.getY() > y) {
-            dy = -1;
-        } else if (player.getY() < y) {
-            dy = 1;
+        if (!player.canGo) {
+            if (player.getX() > x) {
+                dx = 1;
+            } else if (player.getX() < x) {
+                dx = -1;
+            }
+            if (player.getY() > y) {
+                dy = -1;
+            } else if (player.getY() < y) {
+                dy = 1;
+            }
         }
     }
 
