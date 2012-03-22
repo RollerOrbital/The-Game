@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 
 public class Craft {
 
-    private String craft = "craft.png";
-
     private int dx;
     private int dy;
     private int x;
@@ -18,7 +16,7 @@ public class Craft {
     private boolean vis = true;
 
     public Craft() {
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(craft));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("craft.png"));
         image = ii.getImage();
         x = 168;
         y = 600;
@@ -29,15 +27,15 @@ public class Craft {
     public void move() {
         x += dx;
         y += dy;
-        if (y>700){
-            y=700;
-        } else if (y<0){
-            y=0;
+        if (y > 700) {
+            y = 700;
+        } else if (y < 0) {
+            y = 0;
         }
-        if(x<0){
-            x=0;
-        }else if(x>378){
-            x=378;
+        if (x < 0) {
+            x = 0;
+        } else if (x > 378) {
+            x = 378;
         }
     }
 
@@ -93,14 +91,17 @@ public class Craft {
             dy = 0;
         }
     }
-    public Rectangle getBounds(){
-        return new Rectangle(x,y,width,height);
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
     }
-    public void setVis(boolean vis){
+
+    public void setVis(boolean vis) {
         this.vis = vis;
 
     }
-    public boolean getVis(){
+
+    public boolean getVis() {
         return vis;
     }
 }

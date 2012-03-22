@@ -3,7 +3,7 @@ package minigames.rockGame;
 import javax.swing.*;
 
 public class MainClass extends JFrame {
-    
+
     public int sq;
 
     public MainClass() {
@@ -12,7 +12,7 @@ public class MainClass extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sq = 32;
-        setSize(13*sq, 22*sq);
+        setSize(13 * sq, 22 * sq);
         setLocationRelativeTo(null);
         setTitle("Rock Game");
         setResizable(false);
