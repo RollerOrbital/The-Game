@@ -3,17 +3,13 @@ package rob.mainGame;
 import javax.swing.*;
 
 public class MainClass extends JFrame {
-
     public MainClass() {
-
-        add(new Map());
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(650, 400);
-        setLocationRelativeTo(null);
+        add(new Panel());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(400, 300);
         setTitle("RESIST");
-        setResizable(true);
         setVisible(true);
+        setResizable(true);
     }
 
     public static void main(String[] args) {

@@ -5,30 +5,62 @@
       <w>basemp</w>
       <w>downheld</w>
       <w>heptahedron</w>
+      <w>hite</w>
       <w>hwall</w>
+      <w>idroid</w>
       <w>idroidbasic</w>
       <w>immer</w>
       <w>ipod</w>
       <w>leftheld</w>
+      <w>levelup</w>
       <w>mages</w>
+      <w>minigame</w>
+      <w>minigames</w>
       <w>movex</w>
       <w>movey</w>
       <w>mweapon</w>
       <w>nano</w>
+      <w>newh</w>
+      <w>onoff</w>
       <w>println</w>
       <w>psquare</w>
+      <w>realscore</w>
       <w>requiredx</w>
       <w>requiredy</w>
       <w>rightheld</w>
       <w>riotshield</w>
+      <w>roomx</w>
       <w>rweapon</w>
+      <w>startx</w>
+      <w>starty</w>
+      <w>stepsx</w>
+      <w>stepsxb</w>
+      <w>stepsxf</w>
+      <w>stepsy</w>
+      <w>stepsyb</w>
+      <w>stepsyf</w>
+      <w>stopd</w>
+      <w>stopl</w>
+      <w>stopr</w>
+      <w>stopu</w>
+      <w>stopx</w>
+      <w>stopxe</w>
+      <w>stopxs</w>
+      <w>stopy</w>
+      <w>stopye</w>
+      <w>stopys</w>
       <w>swall</w>
       <w>upxp</w>
       <w>vwall</w>
+      <w>xdiff</w>
       <w>xpos</w>
+      <w>xspeed</w>
       <w>xsquare</w>
+      <w>ydiff</w>
       <w>ypos</w>
+      <w>yspeed</w>
       <w>ysquare</w>
+      <w>ystart</w>
     </words>
   </dictionary>
 </component>
