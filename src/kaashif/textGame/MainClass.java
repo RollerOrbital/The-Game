@@ -1,12 +1,11 @@
 package kaashif.textGame;
 
-import javax.swing.*;
-
-public class MainClass extends JFrame{
+public class MainClass{
 
     public MainClass(){
-        
-        add(new Text());
+         new Text();
+    }
+
     public static void main(String[] args) {
         new MainClass();
     }
