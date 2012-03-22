@@ -3,7 +3,11 @@ package kaashif.textGame;
 public class MainClass {
 
     public MainClass() {
-        new Text();
+        Text text = new Text();
+        if(text.introEnd()){
+            Game game = new Game();
+        }
+        
     }
 
     public static void main(String[] args) {
