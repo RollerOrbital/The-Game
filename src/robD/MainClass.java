@@ -31,7 +31,7 @@ public class MainClass{
         String help = keyboard.next();
         Choices ChoiceObject2 = new Choices(help);
         String help2 = keyboard.next();
-        ChoiceObject2.checkHelp(help2);
+        ChoiceObject2.checkHelp(help2,Player.getPlayer());
 
-        }
+    }
 }
