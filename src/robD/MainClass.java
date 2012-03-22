@@ -1,8 +1,6 @@
 package robD;
 
 import java.util.Scanner;
-import java.util.Random;
-import java.util.Set;
 
 public class MainClass{
     public static void main (String args[]){
@@ -23,8 +21,8 @@ public class MainClass{
         System.out.println("5 = ARROW TO THE KNEE!!!!!");
         System.out.println("6 = HARDCORE MODE (NO POWER!!)");
         int choice1 = keyboard.nextInt();
-        Choices ChoiceObject = new Choices();
-        new Player (PlayerName,true,ChoiceObject.getChoice1();,0,0,0);
+        Choices ChoiceObject = new Choices(1,1);
+        new Player (PlayerName,true,ChoiceObject.getChoice1(),0,0,0);
         System.out.printf("You can chosen option %s",ChoiceObject.getChoice1());
         System.out.println("Do you wish for help before you start the game?");
 ;
