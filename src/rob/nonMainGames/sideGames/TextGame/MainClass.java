@@ -22,5 +22,10 @@ public class MainClass {
         input.next();
         player.abilityNum = player.getAbilityNum(player.seed);
         System.out.println("Your abilityNum = " + player.abilityNum);
+        input.next();
+        player.areaNum = player.getAreaNum(player.seed);
+        player.targetArea = (player.areaNum + 1) % 3;
+        System.out.println("Your areaNum = " + player.areaNum);
+        System.out.println("Your targetArea = " + player.targetArea);
     }
 }

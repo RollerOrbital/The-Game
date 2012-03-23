@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Player {
     public String name, region;
     public int seed1, seed2, seed;
-    public int abilityNum;
+    public int abilityNum, areaNum, targetArea;
+    public String area;
     private Scanner input = new Scanner(System.in);
 
     public Player() {
@@ -34,6 +35,16 @@ public class Player {
             return 3;
         } else {
             return 4;
+        }
+    }
+
+    public int getAreaNum(int seed) {
+        if (seed % 3 == 0) {
+            return 1;
+        } else if (seed % 3 == 1) {
+            return 2;
+        } else {
+            return 3;
         }
     }
 }
