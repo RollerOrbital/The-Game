@@ -9,6 +9,7 @@ public class MainClass {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
         Player player = new Player();
+        Scene scene = new Scene();
 
         System.out.println("Welcome to KettleQuest!");
         input.next();
@@ -30,9 +31,12 @@ public class MainClass {
         input.next();
 
         player.areaNum = player.getAreaNum(player.seed);
-        player.targetArea = (player.areaNum + 1) % 3;
+        player.targetArea = player.lowerOne((player.areaNum + 1) % 3);
         System.out.println("Your areaNum = " + player.areaNum);
         System.out.println("Your targetArea = " + player.targetArea);
+        input.next();
+
+        scene.describeArea(player.areaNum);
         input.next();
     }
 }

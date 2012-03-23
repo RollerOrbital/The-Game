@@ -47,4 +47,11 @@ public class Player {
             return 3;
         }
     }
+
+    public int lowerOne(int x) {
+        if (x < 1) {
+            x = 1;
+        }
+        return x;
+    }
 }
