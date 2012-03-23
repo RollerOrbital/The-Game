@@ -53,4 +53,24 @@ public class Player {
         }
         return x;
     }
+
+    public void getInstructions() {
+        System.out.println("The commands are NOT case sensitive.");
+        input.next();
+        System.out.println("Any command that refers to an object that should be near the player\ni.e. pick up\n" +
+                "will be done only if the player is on top (same x and y co-ordinates) of the object the player is attempting " +
+                "to access.");
+        input.next();
+        System.out.println("To do:\t\t\tType:\n");
+        System.out.println("Move North\t\t\t\tmn");
+        System.out.println("Move South\t\t\t\tms");
+        System.out.println("Move West\t\t\t\tmw");
+        System.out.println("Move East\t\t\t\tme");
+        System.out.println("General Area Check\t\tgc");
+        System.out.println("Specific Area Check\t\tsc");
+        System.out.println("Pick up\t\t\t\t\tpu");
+        System.out.println("Eat\t\t\t\t\t\teat");
+        System.out.println("Hit\t\t\t\t\t\thit");
+        System.out.println("Help\t\t\t\t\thelp");
+    }
 }

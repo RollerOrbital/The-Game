@@ -38,5 +38,14 @@ public class MainClass {
 
         scene.describeArea(player.areaNum);
         input.next();
+
+        System.out.println("I don't care whether or not you want to - your seeing the instructions :P");
+        input.next();
+        System.out.println("You have a set of commands...I will tell you them:");
+        input.next();
+        System.out.println("When given the prompt \"?-\" You may type your command.\nOtherwise the thing to do will be specified.");
+        input.next();
+        player.getInstructions();
+        input.next();
     }
 }
