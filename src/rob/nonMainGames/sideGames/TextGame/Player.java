@@ -6,7 +6,6 @@ public class Player {
     public String name, region;
     public int seed1, seed2, seed;
     public int abilityNum, areaNum, targetArea;
-    public String area;
     private Scanner input = new Scanner(System.in);
 
     public Player() {
