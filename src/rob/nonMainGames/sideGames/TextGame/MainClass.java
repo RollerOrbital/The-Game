@@ -31,7 +31,7 @@ public class MainClass {
         input.next();
 
         player.areaNum = player.getAreaNum(player.seed);
-        player.targetArea = player.lowerOne((player.areaNum + 1) % 3);
+        player.targetArea = player.getTargetArea(player.areaNum);
         System.out.println("Your areaNum = " + player.areaNum);
         System.out.println("Your targetArea = " + player.targetArea);
         input.next();

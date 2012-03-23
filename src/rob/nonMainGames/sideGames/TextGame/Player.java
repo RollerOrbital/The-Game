@@ -47,11 +47,14 @@ public class Player {
         }
     }
 
-    public int lowerOne(int x) {
-        if (x < 1) {
-            x = 1;
+    public int getTargetArea(int areaNum) {
+        if (areaNum == 1) {
+            return 2;
+        } else if (areaNum == 2) {
+            return 3;
+        } else {
+            return 1;
         }
-        return x;
     }
 
     public void getInstructions() {
