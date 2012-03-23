@@ -19,5 +19,8 @@ public class MainClass {
         input.next();
         player.seed = Math.abs((player.seed1 + player.seed2 + random.nextInt()) % 100);
         System.out.println("Your seed = " + player.seed);
+        input.next();
+        player.abilityNum = player.getAbilityNum(player.seed);
+        System.out.println("Your abilityNum = " + player.abilityNum);
     }
 }

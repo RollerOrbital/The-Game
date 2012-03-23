@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Player {
     public String name, region;
     public int seed1, seed2, seed;
+    public int abilityNum;
     private Scanner input = new Scanner(System.in);
 
     public Player() {
@@ -22,5 +23,17 @@ public class Player {
         String reg = input.next();
         seed2 = reg.hashCode();
         return reg;
+    }
+
+    public int getAbilityNum(int seed) {
+        if (seed > 75 && seed < 101) {
+            return 1;
+        } else if (seed > 50 && seed < 76) {
+            return 2;
+        } else if (seed > 25 && seed < 51) {
+            return 3;
+        } else {
+            return 4;
+        }
     }
 }
