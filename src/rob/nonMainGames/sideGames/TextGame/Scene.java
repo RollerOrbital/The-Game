@@ -22,7 +22,7 @@ public class Scene {
             if (x >= 2 && y <= 3) {
                 System.out.println("There is a door to the road just west of where you are now.");
             } else {
-                System.out.println("There area a lot of nice cars. Although there appear to be no keys to the cars.\n" +
+                System.out.println("There are a lot of nice cars. Although there appear to be no keys to the cars.\n" +
                         "There is a door in the far corner.");
             }
         } else if (areaNum == 3) {
