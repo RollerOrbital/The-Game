@@ -11,6 +11,7 @@ public class Panel extends JPanel implements ActionListener {
     private Player player;
     private Bullet bullet;
     private Enemy enemy;
+    private Screen screen;
     private int WIDTH, HEIGHT;
     private int Y, X;
 
@@ -37,6 +38,7 @@ public class Panel extends JPanel implements ActionListener {
         if (player.isChoosing) {
             titleScreen(d);
         } else {
+            d.drawImage(screen.getImage(), 0, 0, this);
             d.drawImage(player.getImage(), X, Y, X + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
             getBullet(d);
             d.drawImage(enemy.getImage(), enemy.getX(), Y, enemy.getX() + HEIGHT * 2, Y + WIDTH * 2, enemy.getFrame(), enemy.getCrouching(), enemy.getFrame() + WIDTH, enemy.getCrouching() + HEIGHT, this);
