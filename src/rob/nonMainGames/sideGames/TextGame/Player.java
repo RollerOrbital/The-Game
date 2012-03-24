@@ -76,5 +76,6 @@ public class Player {
         System.out.println("Eat\t\t\t\t\t\teat");
         System.out.println("Hit\t\t\t\t\t\thit");
         System.out.println("Help\t\t\t\t\thelp");
+        System.out.println("Goal\t\t\t\t\tgoal");
     }
 }

@@ -11,6 +11,7 @@ public class MainClass {
         Player player = new Player();
         Scene scene = new Scene();
 
+        //START OF INTRO
         System.out.println("Welcome to KettleQuest!");
         input.next();
 
@@ -45,8 +46,27 @@ public class MainClass {
         player.getInstructions();
         input.next();
 
-
         scene.describeArea(player.areaNum);
         input.next();
+        scene.describeSpecArea(player.areaNum, player.x, player.y);
+        input.next();
+
+        System.out.println("The game is on. Your goal is to reach area " + player.targetArea + ".\n" +
+                "It is a secret compound that is known because of it's descriptions by others that have ventured there...\n" +
+                "One description goes:");
+        scene.describeArea(player.targetArea);
+        input.next();
+        System.out.println("A man is pushed into the room with you...");
+        input.next();
+        System.out.println("He starts babbling about a place he claims to have visited before...");
+        input.next();
+        scene.describeSpecArea(player.targetArea, 20, 17);
+        System.out.println("It was scary... so loud and scary...");
+        input.next();
+        System.out.println("The man proceeds to break down emotionally... He has come from area " + player.targetArea + "...");
+        input.next();
+        System.out.println("That's what that place does to people I guess...");
+        input.next();
+        //END OF INTRO
     }
 }
