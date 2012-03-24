@@ -1,7 +1,6 @@
 package robD;
 
 
-import static robD.Player.getPlayer;
 
 public class Choices {
     private int PlayerPower;
@@ -50,20 +49,26 @@ public class Choices {
         }else if(help.equals("n")){
             System.out.println("Are you sure y/n");
         }}
-    public void checkHelp(String help2,Player player){
+    public boolean checkHelp(String help2){
             if(help2.equals("y")){
-                Turn TurnObject;
-                TurnObject = new Turn(Player player);
+                boolean alive = true;
+                return alive;
             }else if(help2.equals("n")){
                 System.out.println("You are killed for being indecisive ");
-
-
-            
+                boolean alive = false;
+                return alive;
+            }else{
+                System.out.println("Invalid Choice");
+                System.out.println("Enter your choice again");
+                checkHelp(help2);
+                boolean alive = true;
+                return alive;
                 
             }
 
 
-        }
+
 
     }
+}
 
