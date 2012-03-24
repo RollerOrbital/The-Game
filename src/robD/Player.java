@@ -21,8 +21,10 @@ package robD;
             effects [4] = 0;
 
             }
-                     
-        
+
+
+
+
         public static int getPower(){
             return power;
         }
