@@ -9,6 +9,7 @@ public class Player {
     public boolean isChoosing, isFiring;
     public int crouching, CROUCH, STAND;
     private int frameNumber, stepCount;
+    public int kills;
     private ImageIcon player;
 
     public Player() {

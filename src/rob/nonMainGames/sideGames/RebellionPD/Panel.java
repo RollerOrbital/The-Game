@@ -11,7 +11,6 @@ public class Panel extends JPanel implements ActionListener {
     private Player player;
     private Bullet bullet;
     private Enemy enemy;
-    private Screen screen;
     private int WIDTH, HEIGHT;
     private int Y, X;
 
@@ -35,10 +34,12 @@ public class Panel extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D d = (Graphics2D) g;
+        ImageIcon background = new ImageIcon(getClass().getResource("bg.png"));
         if (player.isChoosing) {
             titleScreen(d);
         } else {
-            d.drawImage(screen.getImage(), 0, 0, this);
+            d.drawImage(background.getImage(), 0, 0, this);
+            d.drawString("KILLS: " + player.kills, 100, 100);
             d.drawImage(player.getImage(), X, Y, X + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
             getBullet(d);
             d.drawImage(enemy.getImage(), enemy.getX(), Y, enemy.getX() + HEIGHT * 2, Y + WIDTH * 2, enemy.getFrame(), enemy.getCrouching(), enemy.getFrame() + WIDTH, enemy.getCrouching() + HEIGHT, this);
@@ -47,6 +48,7 @@ public class Panel extends JPanel implements ActionListener {
             } else if ((Math.abs(bullet.getX() - enemy.getX()) < 5) && didHit()) {
                 enemy = new Enemy();
                 bullet = new Bullet();
+                player.kills++;
             }
         }
         if (bullet.getX() > 400) {
