@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Panel extends JPanel implements ActionListener {
+public class Panel extends JPanel {
     private final Player player;
 
     public Panel() {
@@ -14,7 +14,7 @@ public class Panel extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
-        Timer timer = new Timer(5, this);
+        Timer timer = new Timer(5, new PlayerMove());
         timer.start();
     }
 
@@ -33,8 +33,10 @@ public class Panel extends JPanel implements ActionListener {
         g.dispose();
     }
 
-    public void actionPerformed(ActionEvent e) {
-        player.move();
-        repaint();
+    private class PlayerMove implements ActionListener {
+        public void actionPerformed(ActionEvent actionEvent) {
+            player.move();
+            repaint();
+        }
     }
 }
