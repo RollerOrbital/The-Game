@@ -69,24 +69,11 @@ public class Player {
         return direction * getHeight();
     }
 
-    public void setDirection() {
-        if (dx > 0) {
-            direction = RIGHT;
-        } else if (dx < 0) {
-            direction = LEFT;
-        } else if (dy > 0) {
-            direction = DOWN;
-        } else if (dy < 0) {
-            direction = UP;
-        }
-    }
-
     public void move() {
         if (isMenuOpen) {
             dx = 0;
             dy = 0;
         } else {
-            setDirection();
             x += dx;
             y += dy;
             if (isMoving == MOVING) {
