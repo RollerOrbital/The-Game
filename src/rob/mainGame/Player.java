@@ -9,8 +9,24 @@ import java.awt.image.ImageObserver;
 public class Player {
     private int x, y;
 
-    private final int UP, RIGHT, LEFT, DOWN;
-    private int direction;
+    private static enum FacingDirection {
+        UP(2),
+        RIGHT(3),
+        LEFT(1),
+        DOWN(0);
+
+        private int frameRow;
+
+        FacingDirection(int frameRow) {
+            this.frameRow = frameRow;
+        }
+
+        public int frameRow() {
+            return frameRow;
+        }
+    }
+
+    private FacingDirection direction;
     private int dx, dy;
     private final int MOVING, STILL;
     private int isMoving;
@@ -29,11 +45,7 @@ public class Player {
         y = 0;
         dx = 0;
         dy = 0;
-        DOWN = 0;
-        LEFT = 1;
-        UP = 2;
-        RIGHT = 3;
-        direction = DOWN;
+        direction = FacingDirection.DOWN;
         ImageIcon playerSheet = new ImageIcon(getClass().getResource("player.png"));
         image = playerSheet.getImage();
         frameNumber = 0;
@@ -67,7 +79,7 @@ public class Player {
     }
 
     public int frameY() {
-        return direction * getHeight();
+        return direction.frameRow() * getHeight();
     }
 
     public void move() {
@@ -89,19 +101,19 @@ public class Player {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_W && !isMenuOpen) {
             dy = -1;
-            direction = UP;
+            direction = FacingDirection.UP;
             isMoving = MOVING;
         } else if (key == KeyEvent.VK_A && !isMenuOpen) {
             dx = -1;
-            direction = LEFT;
+            direction = FacingDirection.LEFT;
             isMoving = MOVING;
         } else if (key == KeyEvent.VK_S && !isMenuOpen) {
             dy = 1;
-            direction = DOWN;
+            direction = FacingDirection.DOWN;
             isMoving = MOVING;
         } else if (key == KeyEvent.VK_D && !isMenuOpen) {
             dx = 1;
-            direction = RIGHT;
+            direction = FacingDirection.RIGHT;
             isMoving = MOVING;
         } else if (key == KeyEvent.VK_ENTER) {
             if (isMenuOpen) {
