@@ -13,6 +13,7 @@ public class Panel extends JPanel implements ActionListener {
     private Enemy enemy;
     private int WIDTH, HEIGHT;
     private int Y, X;
+    public static int textSlide;
 
     public Panel() {
         Y = 150;
@@ -60,14 +61,32 @@ public class Panel extends JPanel implements ActionListener {
     }
 
     private void getBackground(Graphics2D d, ImageIcon fbg, ImageIcon sbg, ImageIcon tbg) {
+        d.setFont(new Font("Courier", Font.PLAIN, 10));
+        String[] slides = new String[]{"THE ARAB SPRING INTERACTIVE", "PRESENTATION", "BY ROBM AND KEMH", "WE WILL COVER THE COUNTRIES",
+                "EGYPT, LIBYA AND SYRIA", "WE HOPE YOU ENJOY :)", "IN EGYPT THE ARMY REFUSES", "TO FIGHT WHICH MEANS THAT", "THE PEOPLE OF EGYPT WERE FREE",
+                "TO PROTEST ABOUT THE OPPRESSIVE", "REGIME OF ", "MUHAMMED HOSNI EL SAYED MUBARAK.", "MUBARAK STEPS DOWN WITHIN",
+                "A FEW MONTHS DUE TO", "PROTESTS AND INTERNATIONAL", "PRESSURE.", "EGYPT IS AN EXCELLENT", "EGYPT IS AN EXCELLENT",
+                "EXAMPLE OF POPULAR", "DEMONSTRATION BRINGING", "ABOUT JUSTICE AND DEMOCRACY.", "HOWEVER IN LIGHT OF THIS",
+                "SUCCESS THERE WAS VIOLENCE", "DURING THE TIME BEFORE", "MUBARAK'S RESIGNATION AND", "PEOPLE DID DIE.",
+                "ALSO THE MUSLIM BROTHERHOOD", "-BELIEVED TO BE LINKED WITH", "AL-QAEDA DID BECOME POPULAR", "WHICH COULD HAVE BECOME A",
+                "SECURITY THREAT", "OVERALL IN EGYPT THE RESULT", "WAS POSITIVE FOR THE PEOPLE", "AND FOR JUSTICE", "IN LIBYA THE CONFLICT",
+                "WAS MORE VIOLENT.", "ALTHOUGH GADDAFI DID", "HEAVILY USE PROPAGANDA", "HIS USE OF THE MILITARY", "WAS MORE VISIBLE", "TO US LOOKING AT OUR",
+                "TELEVISIONS.", "THE BATTLE BETWEEN THE REBEL", "FORCES AND THE GOVERNMENT", "FORCES WAS FOUGHT", "IN A GUERRILLA SURROUNDING",
+                "THIS MEANT THAT NUMBERS", " WERE LESS IMPORTANT IN THE", "CONFLICT WHICH IS WHY AT", "THE BEGINNING THE REBELS",
+                "WERE ABLE TO STAY 'IN IT'", "AFTER THIS IN AREAS", "LIKE TRIPOLI", "THE FIGHTING BECAME MORE", "INTENSE AND THE", "REBELS SEEMED TO BE",
+                "SO CLOSE TO VICTORY", "FOR SO LONG", "THE TEMPO OF THE FIGHTING", "SLOWED CONSIDERABLY", "TOWARDS THE END OF", "THE FIGHTING"};
         if (player.kills < 10) {
             d.drawImage(fbg.getImage(), 3, 3, this);
-        } else if (player.kills >= 10 && player.kills < 20) {
+            d.drawString(slides[textSlide], 90, 80);
+        } else if (player.kills >= 10 && player.kills < 30) {
             d.drawImage(sbg.getImage(), 0, 0, this);
-        } else if (player.kills >= 20 && player.kills < 30) {
+            d.drawString(slides[textSlide], 85, 20);
+        } else if (player.kills >= 30 && player.kills < 50) {
             d.drawImage(tbg.getImage(), 0, 0, this);
+            d.drawString(slides[textSlide], 100, 70);
         } else {
             d.drawImage(fbg.getImage(), 0, 0, this);
+            d.drawString(slides[textSlide], 90, 80);
         }
     }
 

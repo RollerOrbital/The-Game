@@ -62,6 +62,9 @@ public class Player {
                 crouching = CROUCH;
             }
         }
+        if (key == KeyEvent.VK_SPACE) {
+            Panel.textSlide++;
+        }
     }
 
     public void keyReleased(KeyEvent e) {
