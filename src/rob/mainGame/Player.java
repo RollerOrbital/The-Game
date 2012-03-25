@@ -11,11 +11,12 @@ public class Player {
     private final int UP, RIGHT, LEFT, DOWN;
     private int direction;
     private int dx, dy;
-    private int isMoving, MOVING, STILL;
+    private final int MOVING, STILL;
+    private int isMoving;
 
     private final Image image;
     private int frameNumber;
-    private int[] frameArray;
+    private final int[] frameArray;
     public boolean isMenuOpen;
     private final StartMenu startMenu;
     public String menuAction;
