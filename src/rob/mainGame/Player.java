@@ -2,6 +2,7 @@ package rob.mainGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.ImageObserver;
 
@@ -84,7 +85,7 @@ public class Player {
         }
     }
 
-    public void keyPressed(KeyEvent e) {
+    private void onKeyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_W && !isMenuOpen) {
             dy = -1;
@@ -115,7 +116,7 @@ public class Player {
         }
     }
 
-    public void keyReleased(KeyEvent e) {
+    private void onKeyReleased(KeyEvent e) {
         int key = (e.getKeyCode());
         if (key == KeyEvent.VK_W) {
             dy = 0;
@@ -134,5 +135,17 @@ public class Player {
 
     public void draw(Graphics graphics, ImageObserver imageObserver) {
         graphics.drawImage(getImage(), getX(), getY(), getX() + getWidth() * 2, getY() + getHeight() * 2, getFrame(), getDirection(), getFrame() + getWidth(), getDirection() + getHeight(), imageObserver);
+    }
+
+    public KeyAdapter keyListener() {
+        return new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                onKeyPressed(e);
+            }
+
+            public void keyReleased(KeyEvent e) {
+                onKeyReleased(e);
+            }
+        };
     }
 }

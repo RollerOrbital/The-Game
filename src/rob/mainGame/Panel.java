@@ -4,18 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener {
     private final Player player;
 
     public Panel() {
-        addKeyListener(new adapter());
+        player = new Player();
+        addKeyListener(player.keyListener());
         setFocusable(true);
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
-        player = new Player();
         Timer timer = new Timer(5, this);
         timer.start();
     }
@@ -38,15 +36,5 @@ public class Panel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         player.move();
         repaint();
-    }
-
-    private class adapter extends KeyAdapter {
-        public void keyPressed(KeyEvent e) {
-            player.keyPressed(e);
-        }
-
-        public void keyReleased(KeyEvent e) {
-            player.keyReleased(e);
-        }
     }
 }
