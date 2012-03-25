@@ -118,16 +118,8 @@ public class Player {
 
     private void onKeyReleased(KeyEvent e) {
         int key = (e.getKeyCode());
-        if (key == KeyEvent.VK_W) {
+        if (key == KeyEvent.VK_W || key == KeyEvent.VK_A || key == KeyEvent.VK_S || key == KeyEvent.VK_D) {
             dy = 0;
-            isMoving = STILL;
-        } else if (key == KeyEvent.VK_A) {
-            dx = 0;
-            isMoving = STILL;
-        } else if (key == KeyEvent.VK_S) {
-            dy = 0;
-            isMoving = STILL;
-        } else if (key == KeyEvent.VK_D) {
             dx = 0;
             isMoving = STILL;
         }
