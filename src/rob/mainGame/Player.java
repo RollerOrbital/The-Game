@@ -6,14 +6,18 @@ import java.awt.event.KeyEvent;
 import java.awt.image.ImageObserver;
 
 public class Player {
-    private int x, y, dx, dy;
-    private int direction, UP, RIGHT, LEFT, DOWN;
-    private Image image;
+    private int x, y;
+
+    private final int UP, RIGHT, LEFT, DOWN;
+    private int direction;
+    private int dx, dy;
+    private int isMoving, MOVING, STILL;
+
+    private final Image image;
     private int frameNumber;
     private int[] frameArray;
-    private int isMoving, MOVING, STILL;
     public boolean isMenuOpen;
-    private StartMenu startMenu;
+    private final StartMenu startMenu;
     public String menuAction;
 
     public Player() {
