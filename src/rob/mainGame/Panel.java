@@ -8,7 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener {
-    private Player player;
+    private final Player player;
 
     public Panel() {
         addKeyListener(new adapter());
@@ -22,16 +22,15 @@ public class Panel extends JPanel implements ActionListener {
 
     public void paint(Graphics g) {
         super.paint(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(player.getImage(), player.getX(), player.getY(), player.getX() + player.getWidth() * 2, player.getY() + player.getHeight() * 2, player.getFrame(), player.getDirection(), player.getFrame() + player.getWidth(), player.getDirection() + player.getHeight(), this);
+        player.draw(g, this);
         if (player.isMenuOpen) {
             StartMenu startMenu = new StartMenu();
-            g2d.drawRect(startMenu.getMenuX(), 10, 400 - 290, 150);
-            g2d.drawImage(startMenu.getCursorImage(), startMenu.getMenuX(), startMenu.getCursorPosition(), this);
+            g.drawRect(startMenu.getMenuX(), 10, 400 - 290, 150);
+            g.drawImage(startMenu.getCursorImage(), startMenu.getMenuX(), startMenu.getCursorPosition(), this);
 //            g2d.drawString(player.menuAction, startMenu.getMenuX() - 50, 50);
         }
-        g2d.drawString("X = " + player.getX(), 100, 100);
-        g2d.drawString("Y = " + player.getY(), 100, 130);
+        g.drawString("X = " + player.getX(), 100, 100);
+        g.drawString("Y = " + player.getY(), 100, 130);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }

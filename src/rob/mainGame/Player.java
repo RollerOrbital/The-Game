@@ -3,6 +3,7 @@ package rob.mainGame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.ImageObserver;
 
 public class Player {
     private int x, y, dx, dy;
@@ -137,5 +138,9 @@ public class Player {
             dx = 0;
             isMoving = STILL;
         }
+    }
+
+    public void draw(Graphics graphics, ImageObserver imageObserver) {
+        graphics.drawImage(getImage(), getX(), getY(), getX() + getWidth() * 2, getY() + getHeight() * 2, getFrame(), getDirection(), getFrame() + getWidth(), getDirection() + getHeight(), imageObserver);
     }
 }
