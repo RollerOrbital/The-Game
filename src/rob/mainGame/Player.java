@@ -10,19 +10,31 @@ public class Player {
     private int x, y;
 
     private static enum FacingDirection {
-        UP(2),
-        RIGHT(3),
-        LEFT(1),
-        DOWN(0);
+        UP(2, KeyEvent.VK_W, 0, -1),
+        RIGHT(3, KeyEvent.VK_D, 1, 0),
+        LEFT(1, KeyEvent.VK_A, -1, 0),
+        DOWN(0, KeyEvent.VK_S, 0, 1);
 
-        private int frameRow;
+        public final int frameRow;
+        public final int dx;
+        public final int dy;
+        private final int key;
 
-        FacingDirection(int frameRow) {
+        FacingDirection(int frameRow, int key, int dx, int dy) {
             this.frameRow = frameRow;
+            this.key = key;
+            this.dx = dx;
+            this.dy = dy;
         }
 
-        public int frameRow() {
-            return frameRow;
+        public static FacingDirection forKey(int key) {
+            FacingDirection[] values = values();
+            for (FacingDirection direction : values) {
+                if (direction.key == key) {
+                    return direction;
+                }
+            }
+            return null;
         }
     }
 
@@ -79,7 +91,7 @@ public class Player {
     }
 
     public int frameY() {
-        return direction.frameRow() * getHeight();
+        return direction.frameRow * getHeight();
     }
 
     public void move() {
@@ -99,21 +111,11 @@ public class Player {
 
     private void onKeyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_W && !isMenuOpen) {
-            dy = -1;
-            direction = FacingDirection.UP;
-            isMoving = MOVING;
-        } else if (key == KeyEvent.VK_A && !isMenuOpen) {
-            dx = -1;
-            direction = FacingDirection.LEFT;
-            isMoving = MOVING;
-        } else if (key == KeyEvent.VK_S && !isMenuOpen) {
-            dy = 1;
-            direction = FacingDirection.DOWN;
-            isMoving = MOVING;
-        } else if (key == KeyEvent.VK_D && !isMenuOpen) {
-            dx = 1;
-            direction = FacingDirection.RIGHT;
+        FacingDirection facingDirection = FacingDirection.forKey(key);
+        if (facingDirection != null && !isMenuOpen) {
+            direction = facingDirection;
+            dx = facingDirection.dx;
+            dy = facingDirection.dy;
             isMoving = MOVING;
         } else if (key == KeyEvent.VK_ENTER) {
             if (isMenuOpen) {
