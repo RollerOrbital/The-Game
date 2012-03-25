@@ -11,8 +11,13 @@ public class Player {
     private int frameNumber;
     private int[] frameArray;
     private int isMoving, MOVING, STILL;
+    public boolean isMenuOpen;
+    private StartMenu startMenu;
+    public String menuAction;
 
     public Player() {
+        startMenu = new StartMenu();
+        isMenuOpen = false;
         x = 0;
         y = 0;
         dx = 0;
@@ -71,37 +76,49 @@ public class Player {
     }
 
     public void move() {
-        setDirection();
-        if (dy == 0) {
+        if (isMenuOpen) {
+            dx = 0;
+            dy = 0;
+        } else {
+            setDirection();
             x += dx;
-        } else if (dx == 0) {
             y += dy;
-        }
-        if (isMoving == MOVING) {
-            frameNumber = (frameNumber % 4) + 1;
-        } else if (isMoving == STILL) {
-            frameNumber = 0;
+            if (isMoving == MOVING) {
+                frameNumber = (frameNumber % 4) + 1;
+            } else if (isMoving == STILL) {
+                frameNumber = 0;
+            }
         }
     }
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_W) {
+        if (key == KeyEvent.VK_W && !isMenuOpen) {
             dy = -1;
             direction = UP;
             isMoving = MOVING;
-        } else if (key == KeyEvent.VK_A) {
+        } else if (key == KeyEvent.VK_A && !isMenuOpen) {
             dx = -1;
             direction = LEFT;
             isMoving = MOVING;
-        } else if (key == KeyEvent.VK_S) {
+        } else if (key == KeyEvent.VK_S && !isMenuOpen) {
             dy = 1;
             direction = DOWN;
             isMoving = MOVING;
-        } else if (key == KeyEvent.VK_D) {
+        } else if (key == KeyEvent.VK_D && !isMenuOpen) {
             dx = 1;
             direction = RIGHT;
             isMoving = MOVING;
+        } else if (key == KeyEvent.VK_ENTER) {
+            if (isMenuOpen) {
+                isMenuOpen = false;
+                isMoving = MOVING;
+            } else {
+                isMenuOpen = true;
+                isMoving = STILL;
+            }
+        } else if (key == KeyEvent.VK_Z && isMenuOpen) {
+            menuAction = startMenu.getMenuAction(startMenu.getCursorPosition());
         }
     }
 
