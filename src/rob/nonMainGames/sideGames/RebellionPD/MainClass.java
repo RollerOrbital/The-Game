@@ -8,7 +8,7 @@ public class MainClass extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(true);
-        setSize(400, 300);
+        setSize(410, 315);
         setTitle("REBELLION");
     }
 

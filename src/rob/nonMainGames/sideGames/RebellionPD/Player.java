@@ -20,9 +20,7 @@ public class Player {
         frameNumber = 0;
         crouching = 1;
         isChoosing = true;
-        //ImageIcons START
         libya = new ImageIcon(getClass().getResource("libyaGuy.png"));
-        //ImageIcons END
     }
 
     public Image getImage() {

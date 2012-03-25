@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 public class Bullet {
     private Image image;
     private int x, y, dx;
-    private Player player = new Player();
 
     public Bullet() {
         y = 187;

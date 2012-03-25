@@ -34,12 +34,13 @@ public class Panel extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D d = (Graphics2D) g;
-        ImageIcon background = new ImageIcon(getClass().getResource("bg.png"));
+        ImageIcon fbg = new ImageIcon(getClass().getResource("firstBackground.png"));
+        ImageIcon sbg = new ImageIcon(getClass().getResource("secondBackground.png"));
+        ImageIcon tbg = new ImageIcon(getClass().getResource("thirdBackground.png"));
         if (player.isChoosing) {
             titleScreen(d);
         } else {
-            d.drawImage(background.getImage(), 0, 0, this);
-            d.drawString("KILLS: " + player.kills, 100, 100);
+            getBackground(d, fbg, sbg, tbg);
             d.drawImage(player.getImage(), X, Y, X + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
             getBullet(d);
             d.drawImage(enemy.getImage(), enemy.getX(), Y, enemy.getX() + HEIGHT * 2, Y + WIDTH * 2, enemy.getFrame(), enemy.getCrouching(), enemy.getFrame() + WIDTH, enemy.getCrouching() + HEIGHT, this);
@@ -56,6 +57,18 @@ public class Panel extends JPanel implements ActionListener {
         }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
+    }
+
+    private void getBackground(Graphics2D d, ImageIcon fbg, ImageIcon sbg, ImageIcon tbg) {
+        if (player.kills < 10) {
+            d.drawImage(fbg.getImage(), 3, 3, this);
+        } else if (player.kills >= 10 && player.kills < 20) {
+            d.drawImage(sbg.getImage(), 0, 0, this);
+        } else if (player.kills >= 20 && player.kills < 30) {
+            d.drawImage(tbg.getImage(), 0, 0, this);
+        } else {
+            d.drawImage(fbg.getImage(), 0, 0, this);
+        }
     }
 
     private boolean didHit() {
