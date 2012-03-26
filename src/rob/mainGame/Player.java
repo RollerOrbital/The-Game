@@ -46,9 +46,11 @@ public class Player {
     private final Image image;
     private int frameNumber;
     private final int[] frameArray;
+
     public boolean isMenuOpen;
     private final StartMenu startMenu;
     public String menuAction;
+    public int cursorPosition;
 
     public Player() {
         startMenu = new StartMenu();
@@ -64,6 +66,16 @@ public class Player {
         frameArray = new int[]{0, 1, 0, 2};
         MOVING = 1;
         STILL = 0;
+        cursorPosition = 2;
+    }
+
+    public int getCursorPosition() {
+        if (cursorPosition >= 5) {
+            cursorPosition = 5;
+        } else if (cursorPosition <= 0) {
+            cursorPosition = 0;
+        }
+        return cursorPosition;
     }
 
     public int getX() {
@@ -125,10 +137,15 @@ public class Player {
                 isMenuOpen = true;
                 isMoving = STILL;
             }
-        } else if (key == KeyEvent.VK_Z && isMenuOpen) {
-            menuAction = startMenu.getMenuAction(startMenu.getCursorPosition());
-        } else if (key == KeyEvent.VK_S && isMenuOpen) {
-            startMenu.cursorPosition++;
+        }
+        if (isMenuOpen) {
+            if (key == KeyEvent.VK_Z) {
+                menuAction = startMenu.getMenuAction(cursorPosition);
+            } else if (key == KeyEvent.VK_W) {
+                cursorPosition--;
+            } else if (key == KeyEvent.VK_S) {
+                cursorPosition++;
+            }
         }
     }
 

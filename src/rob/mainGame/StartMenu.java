@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class StartMenu {
-    public int cursorPosition;
     private ImageIcon cursor;
 
     public StartMenu() {
@@ -17,10 +16,6 @@ public class StartMenu {
 
     public Image getCursorImage() {
         return cursor.getImage();
-    }
-
-    public int getCursorPosition() {
-        return cursorPosition * 50;
     }
 
     public String getMenuAction(int input) {

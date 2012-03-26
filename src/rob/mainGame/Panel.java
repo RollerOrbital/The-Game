@@ -23,8 +23,8 @@ public class Panel extends JPanel {
         player.draw(g, this);
         if (player.isMenuOpen) {
             StartMenu startMenu = new StartMenu();
-            g.drawRect(startMenu.getMenuX(), 10, 400 - 290, 150);
-            g.drawImage(startMenu.getCursorImage(), startMenu.getMenuX(), startMenu.getCursorPosition(), this);
+            g.drawRect(startMenu.getMenuX(), -10, 110, 200);
+            g.drawImage(startMenu.getCursorImage(), startMenu.getMenuX(), (player.getCursorPosition() * 30) + 10, this);
         }
         g.drawString("X = " + player.getX(), 100, 100);
         g.drawString("Y = " + player.getY(), 100, 130);
