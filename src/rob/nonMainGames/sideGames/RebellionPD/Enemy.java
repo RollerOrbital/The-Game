@@ -7,7 +7,7 @@ import java.util.Random;
 public class Enemy {
     Random random = new Random();
     private int x, dx;
-    private ImageIcon libya;
+    private ImageIcon flag;
     private int frameNumber, crouching, stepCount;
 
     public Enemy() {
@@ -15,7 +15,7 @@ public class Enemy {
         frameNumber = 0;
         x = 400;
         dx = -1;
-        libya = new ImageIcon(getClass().getResource("libyaGuy.png"));
+        flag = new ImageIcon(getClass().getResource("leftEgypt.png"));
     }
 
     public int getX() {
@@ -23,7 +23,7 @@ public class Enemy {
     }
 
     public Image getImage() {
-        return libya.getImage();
+        return flag.getImage();
     }
 
     public int getCrouching() {

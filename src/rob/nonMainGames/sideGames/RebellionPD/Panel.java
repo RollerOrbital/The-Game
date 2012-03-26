@@ -75,20 +75,33 @@ public class Panel extends JPanel implements ActionListener {
                 "THIS MEANT THAT NUMBERS", " WERE LESS IMPORTANT IN THE", "CONFLICT WHICH IS WHY AT", "THE BEGINNING THE REBELS",
                 "WERE ABLE TO STAY 'IN IT'", "AFTER THIS IN AREAS", "LIKE TRIPOLI", "THE FIGHTING BECAME MORE", "INTENSE AND THE", "REBELS SEEMED TO BE",
                 "SO CLOSE TO VICTORY", "FOR SO LONG", "THE TEMPO OF THE FIGHTING", "SLOWED CONSIDERABLY", "TOWARDS THE END OF", "THE FIGHTING.",
-                "Libya was a success in terms", "of overthrowing the old government", ",however the way in which it", "did it caused many people to", "lose their lives.",
-        };
+                "LIBYA WAS A SUCCESS IN TERMS", "OF OVERTHROWING THE", "OLD GOVERNMENT", "HOWEVER THE WAY THEY", "DID IT CAUSED MANY PEOPLE TO", "LOSE THEIR LIVES.",
+                "AT THE MOMENT IN SYRIA", "PEOPLE ARE OPPRESSED BY", "THEIR CRUEL DICTATOR", "BAHSAR AL-ASSAD.", "THE PEOPLE OF THE COUNTRY"
+                , "LIVE IN CONSTANT FEAR OF", "THE SECRET POLICE.", "AL-ASSAD'S FATHER", "WAS IN POWER BEFORE", "HIM FOR 29 YEARS", ""};
         if (player.kills < 20) {
             d.drawImage(fbg.getImage(), 3, 3, this);
-            d.drawString(slides[textSlide], 90, 80);
+            try {
+                d.drawString(slides[textSlide], 90, 80);
+            } catch (Exception ignored) {
+            }
         } else if (player.kills >= 20 && player.kills < 40) {
             d.drawImage(sbg.getImage(), 0, 0, this);
-            d.drawString(slides[textSlide], 85, 20);
+            try {
+                d.drawString(slides[textSlide], 85, 20);
+            } catch (Exception ignored) {
+            }
         } else if (player.kills >= 40 && player.kills < 50) {
             d.drawImage(tbg.getImage(), 0, 0, this);
-            d.drawString(slides[textSlide], 100, 70);
+            try {
+                d.drawString(slides[textSlide], 100, 70);
+            } catch (Exception ignored) {
+            }
         } else {
             d.drawImage(fbg.getImage(), 0, 0, this);
-            d.drawString(slides[textSlide], 90, 80);
+            try {
+                d.drawString(slides[textSlide], 90, 80);
+            } catch (Exception ignored) {
+            }
         }
     }
 
