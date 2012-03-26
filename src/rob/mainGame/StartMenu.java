@@ -27,8 +27,11 @@ public class StartMenu {
             return "You have no quest active at the moment";
         } else if (input == 4) {
             return "There is no save feature yet";
+        } else if (input == 5) {
+            Player.isMenuOpen = false;
+            return "Cancel";
         } else {
-            return "Problem.\ninput < 0 || input > 4";
+            return "Problem";
         }
     }
 }

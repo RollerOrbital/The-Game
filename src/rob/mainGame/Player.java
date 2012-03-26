@@ -47,7 +47,7 @@ public class Player {
     private int frameNumber;
     private final int[] frameArray;
 
-    public boolean isMenuOpen;
+    public static boolean isMenuOpen;
     private final StartMenu startMenu;
     public String menuAction;
     public int cursorPosition;
@@ -111,6 +111,7 @@ public class Player {
             dx = 0;
             dy = 0;
         } else {
+            cursorPosition = 0;
             x += dx;
             y += dy;
             if (isMoving == MOVING) {
