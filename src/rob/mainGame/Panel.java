@@ -7,8 +7,10 @@ import java.awt.event.ActionListener;
 
 public class Panel extends JPanel {
     private final Player player;
+    private final Map map;
 
     public Panel() {
+        map = new Map();
         player = new Player();
         addKeyListener(player.keyListener());
         setFocusable(true);
@@ -20,6 +22,7 @@ public class Panel extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
+        g.drawImage(map.getTestArea(), -player.getX(), -player.getY(), this);
         player.draw(g, this);
         if (Player.isMenuOpen) {
             StartMenu startMenu = new StartMenu();

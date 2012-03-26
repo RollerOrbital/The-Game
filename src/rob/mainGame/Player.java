@@ -168,7 +168,7 @@ public class Player {
     }
 
     public void draw(Graphics graphics, ImageObserver imageObserver) {
-        graphics.drawImage(getImage(), getX(), getY(), getX() + getWidth() * 2, getY() + getHeight() * 2, frameX(), frameY(), frameX() + getWidth(), frameY() + getHeight(), imageObserver);
+        graphics.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, frameX(), frameY(), frameX() + getWidth(), frameY() + getHeight(), imageObserver);
     }
 
     public KeyAdapter keyListener() {
