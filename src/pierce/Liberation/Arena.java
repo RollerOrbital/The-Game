@@ -82,7 +82,7 @@ public class Arena extends JPanel implements ActionListener {
             /*Bullet*/
             g2d.drawImage(image, bullet.getX(), bullet.getY(), (bullet.getX() + 4 * 4), (bullet.getY() + 4 * 4), 176, 2, 180, 6, this);
             if (Player.health > 0) {
-                /*Player*/
+                /*Snake*/
                 g2d.drawImage(image, player.getX(), player.getY(), (player.getX() + 23 * 4), (player.getY() + 25 * 4), player.getFrame(), 34, player.getFrame() + 23, 59, this);
             }
             /*Saves*/

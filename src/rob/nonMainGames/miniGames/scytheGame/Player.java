@@ -221,7 +221,7 @@ public class Player {
 //    public static int y;
 //    private Image image;
 //
-//    public Player() {
+//    public Snake() {
 //        String player = "PLAYER.png";
 //        ImageIcon i = new ImageIcon(this.getClass().getResource(player));
 //        image = i.getImage();
