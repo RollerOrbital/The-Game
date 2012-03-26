@@ -10,10 +10,10 @@ public class Player {
     private int x, y;
 
     private static enum FacingDirection {
-        UP(2, KeyEvent.VK_W, 0, -1),
-        RIGHT(3, KeyEvent.VK_D, 1, 0),
-        LEFT(1, KeyEvent.VK_A, -1, 0),
-        DOWN(0, KeyEvent.VK_S, 0, 1);
+        UP(2, KeyEvent.VK_UP, 0, -1),
+        RIGHT(3, KeyEvent.VK_RIGHT, 1, 0),
+        LEFT(1, KeyEvent.VK_LEFT, -1, 0),
+        DOWN(0, KeyEvent.VK_DOWN, 0, 1);
 
         public final int frameRow;
         public final int dx;
@@ -142,12 +142,16 @@ public class Player {
         }
         if (isMenuOpen) {
             if (key == KeyEvent.VK_Z) {
-                selectedMenuIcon = true;
-                menuAction = startMenu.getMenuAction(cursorPosition);
-            } else if (key == KeyEvent.VK_W) {
+                if (!selectedMenuIcon) {
+                    selectedMenuIcon = true;
+                    menuAction = startMenu.getMenuAction(cursorPosition);
+                } else {
+                    selectedMenuIcon = false;
+                }
+            } else if (key == KeyEvent.VK_UP) {
                 cursorPosition--;
                 selectedMenuIcon = false;
-            } else if (key == KeyEvent.VK_S) {
+            } else if (key == KeyEvent.VK_DOWN) {
                 cursorPosition++;
                 selectedMenuIcon = false;
             }
@@ -156,7 +160,7 @@ public class Player {
 
     private void onKeyReleased(KeyEvent e) {
         int key = (e.getKeyCode());
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_A || key == KeyEvent.VK_S || key == KeyEvent.VK_D) {
+        if (key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
             dy = 0;
             dx = 0;
             isMoving = STILL;
