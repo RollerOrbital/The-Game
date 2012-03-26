@@ -51,6 +51,7 @@ public class Player {
     private final StartMenu startMenu;
     public String menuAction;
     public int cursorPosition;
+    public boolean selectedMenuIcon;
 
     public Player() {
         startMenu = new StartMenu();
@@ -141,11 +142,14 @@ public class Player {
         }
         if (isMenuOpen) {
             if (key == KeyEvent.VK_Z) {
+                selectedMenuIcon = true;
                 menuAction = startMenu.getMenuAction(cursorPosition);
             } else if (key == KeyEvent.VK_W) {
                 cursorPosition--;
+                selectedMenuIcon = false;
             } else if (key == KeyEvent.VK_S) {
                 cursorPosition++;
+                selectedMenuIcon = false;
             }
         }
     }

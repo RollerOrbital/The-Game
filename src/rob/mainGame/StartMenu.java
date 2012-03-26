@@ -23,8 +23,10 @@ public class StartMenu {
             return "You have 100hp and 100mp";
         } else if (input == 1) {
             return "You have a potion and an axe";
+        } else if (input == 2) {
+            return "You have quests available at the moment";
         } else if (input == 3) {
-            return "You have no quest active at the moment";
+            return "You have no active quest";
         } else if (input == 4) {
             return "There is no save feature yet";
         } else if (input == 5) {
