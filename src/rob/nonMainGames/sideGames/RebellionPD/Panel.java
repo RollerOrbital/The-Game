@@ -42,6 +42,8 @@ public class Panel extends JPanel implements ActionListener {
             titleScreen(d);
         } else {
             getBackground(d, fbg, sbg, tbg);
+            d.setColor(Color.YELLOW);
+            d.drawString("textSlides = " + textSlide, 30, 50);
             d.drawImage(player.getImage(), X, Y, X + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
             getBullet(d);
             d.drawImage(enemy.getImage(), enemy.getX(), Y, enemy.getX() + HEIGHT * 2, Y + WIDTH * 2, enemy.getFrame(), enemy.getCrouching(), enemy.getFrame() + WIDTH, enemy.getCrouching() + HEIGHT, this);
@@ -77,20 +79,21 @@ public class Panel extends JPanel implements ActionListener {
                 "SO CLOSE TO VICTORY", "FOR SO LONG", "THE TEMPO OF THE FIGHTING", "SLOWED CONSIDERABLY", "TOWARDS THE END OF", "THE FIGHTING.",
                 "LIBYA WAS A SUCCESS IN TERMS", "OF OVERTHROWING THE", "OLD GOVERNMENT", "HOWEVER THE WAY THEY", "DID IT CAUSED MANY PEOPLE TO", "LOSE THEIR LIVES.",
                 "AT THE MOMENT IN SYRIA", "PEOPLE ARE OPPRESSED BY", "THEIR CRUEL DICTATOR", "BAHSAR AL-ASSAD.", "THE PEOPLE OF THE COUNTRY"
-                , "LIVE IN CONSTANT FEAR OF", "THE SECRET POLICE.", "AL-ASSAD'S FATHER", "WAS IN POWER BEFORE", "HIM FOR 29 YEARS", ""};
-        if (player.kills < 20) {
+                , "LIVE IN CONSTANT FEAR OF", "THE SECRET POLICE.", "AL-ASSAD'S FATHER", "WAS IN POWER BEFORE", "HIM FOR 29 YEARS.", "ASSAD WAS ELECTED",
+                "IN 2000 AND 2007", "UNOPPOSED BOTH TIMES...", ".HIS FATHER WAS ALSO A DICTATOR", "FOR 29 YEARS IN SYRIA."};
+        if (textSlide < 6) {
             d.drawImage(fbg.getImage(), 3, 3, this);
             try {
                 d.drawString(slides[textSlide], 90, 80);
             } catch (Exception ignored) {
             }
-        } else if (player.kills >= 20 && player.kills < 40) {
+        } else if (textSlide >= 6 && textSlide < 34) {
             d.drawImage(sbg.getImage(), 0, 0, this);
             try {
                 d.drawString(slides[textSlide], 85, 20);
             } catch (Exception ignored) {
             }
-        } else if (player.kills >= 40 && player.kills < 50) {
+        } else if (textSlide >= 34 && textSlide < 68) {
             d.drawImage(tbg.getImage(), 0, 0, this);
             try {
                 d.drawString(slides[textSlide], 100, 70);
