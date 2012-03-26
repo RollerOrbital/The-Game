@@ -21,6 +21,7 @@ public class Player {
         crouching = 1;
         isChoosing = true;
         libya = new ImageIcon(getClass().getResource("libyaGuy.png"));
+        egypt = new ImageIcon(getClass().getResource("flagGuy.png"));
     }
 
     public Image getImage() {

@@ -74,14 +74,16 @@ public class Panel extends JPanel implements ActionListener {
                 "TELEVISIONS.", "THE BATTLE BETWEEN THE REBEL", "FORCES AND THE GOVERNMENT", "FORCES WAS FOUGHT", "IN A GUERRILLA SURROUNDING",
                 "THIS MEANT THAT NUMBERS", " WERE LESS IMPORTANT IN THE", "CONFLICT WHICH IS WHY AT", "THE BEGINNING THE REBELS",
                 "WERE ABLE TO STAY 'IN IT'", "AFTER THIS IN AREAS", "LIKE TRIPOLI", "THE FIGHTING BECAME MORE", "INTENSE AND THE", "REBELS SEEMED TO BE",
-                "SO CLOSE TO VICTORY", "FOR SO LONG", "THE TEMPO OF THE FIGHTING", "SLOWED CONSIDERABLY", "TOWARDS THE END OF", "THE FIGHTING"};
-        if (player.kills < 10) {
+                "SO CLOSE TO VICTORY", "FOR SO LONG", "THE TEMPO OF THE FIGHTING", "SLOWED CONSIDERABLY", "TOWARDS THE END OF", "THE FIGHTING.",
+                "Libya was a success in terms", "of overthrowing the old government", ",however the way in which it", "did it caused many people to", "lose their lives.",
+        };
+        if (player.kills < 20) {
             d.drawImage(fbg.getImage(), 3, 3, this);
             d.drawString(slides[textSlide], 90, 80);
-        } else if (player.kills >= 10 && player.kills < 30) {
+        } else if (player.kills >= 20 && player.kills < 40) {
             d.drawImage(sbg.getImage(), 0, 0, this);
             d.drawString(slides[textSlide], 85, 20);
-        } else if (player.kills >= 30 && player.kills < 50) {
+        } else if (player.kills >= 40 && player.kills < 50) {
             d.drawImage(tbg.getImage(), 0, 0, this);
             d.drawString(slides[textSlide], 100, 70);
         } else {
@@ -110,7 +112,7 @@ public class Panel extends JPanel implements ActionListener {
         //d.drawImage(player.gov.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
         d.setColor(Color.GREEN);
         d.drawString("EGYPTIAN PROTESTER", 5, 100);
-        //d.drawImage(player.egypt.getImage(), 300, Y, 300 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
+        d.drawImage(player.egypt.getImage(), 5, Y, 5 + HEIGHT * 2, Y + WIDTH * 2, player.getFrame(), player.getCrouching(), player.getFrame() + WIDTH, player.getCrouching() + HEIGHT, this);
         d.setColor(Color.BLACK);
         d.drawString("Press \"E\"", 5, 120);
         d.drawString("Press \"G\"", 150, 120);
