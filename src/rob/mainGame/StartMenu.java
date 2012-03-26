@@ -4,40 +4,36 @@ import javax.swing.*;
 import java.awt.*;
 
 public class StartMenu {
-    private Image image;
-    private Image cursorImage;
-    static int x, y;
-    static String menuChoice;
-
-    static int STATS, LOG, SAVE, CANCEL, ITEM;
+    private ImageIcon cursor;
 
     public StartMenu() {
-        ImageIcon ii = new ImageIcon(getClass().getResource("startMenu.png"));
-        image = ii.getImage();
-        ImageIcon ii2 = new ImageIcon(getClass().getResource("startMenuCursor.png"));
-        cursorImage = ii2.getImage();
-        x = 270;
-        y = 0;
-        STATS = 0;
-        LOG = 1;
-        ITEM = 2;
-        SAVE = 3;
-        CANCEL = 4;
+        cursor = new ImageIcon(getClass().getResource("cursor.png"));
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public Image getMenuImage() {
-        return image;
+    public int getMenuX() {
+        return 250;
     }
 
     public Image getCursorImage() {
-        return cursorImage;
+        return cursor.getImage();
+    }
+
+    public String getMenuAction(int input) {
+        if (input == 0) {
+            return "You have 100hp and 100mp";
+        } else if (input == 1) {
+            return "You have a potion and an axe";
+        } else if (input == 2) {
+            return "You have quests available at the moment";
+        } else if (input == 3) {
+            return "You have no active quest";
+        } else if (input == 4) {
+            return "There is no save feature yet";
+        } else if (input == 5) {
+            Player.isMenuOpen = false;
+            return "Cancel";
+        } else {
+            return "Problem";
+        }
     }
 }

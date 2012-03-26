@@ -1,5 +1,8 @@
 package pierce.Liberation;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-import javax.sound.sampled.*;
 
 public class Arena extends JPanel implements ActionListener {
     private Player player;
@@ -36,19 +38,22 @@ public class Arena extends JPanel implements ActionListener {
         timer.start();
     }
 
-    public static synchronized void playSound(final String url) {
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(MainClass.class.getResourceAsStream(url));
-                    clip.open(inputStream);
-                    clip.start();
-                } catch (Exception e) {
-                    System.err.println(e.getMessage());
+    public static synchronized void playSound(final String string) {
+        new Thread(
+                new Runnable() {
+                    public void run() {
+                        try {
+                            Clip clip = AudioSystem.getClip();
+                            AudioInputStream inputStream = AudioSystem.getAudioInputStream(MainClass.class.getResource(string));
+                            clip.open(inputStream);
+                            clip.start();
+                        } catch (Exception e) {
+                            System.out.println("No clip found");
+                        }
+                    }
                 }
-            }
-        }).start();
+        )
+                .start();
     }
 
     public void paint(Graphics g) {
@@ -69,7 +74,7 @@ public class Arena extends JPanel implements ActionListener {
         g2d.drawImage(image, foreground.getX() + (154 * 4), foreground.getY(), (foreground.getX() + (154 * 8)), (foreground.getY() + (33 * 4)), 0, 59, 154, 59 + 33, this);
         /*Logo*/
         g2d.drawImage(image, 30 * 4 + 16, 8, (117 * 4) + 16, (20 * 4) - 8, 0, 0, 173, 33, this);
-        if (!player.titlescreen){
+        if (!player.titlescreen) {
             /*Child*/
             g2d.drawImage(image, goodSoul.getX(), goodSoul.getY(), (goodSoul.getX() + 23 * 4), (goodSoul.getY() + 25 * 4), player.getFrame() + 46, 34, player.getFrame() + 23 + 46, 59, this);
             /*Enemy*/
@@ -90,16 +95,16 @@ public class Arena extends JPanel implements ActionListener {
             g2d.drawString("AMMO: " + GoodSoul.lowerZero(Player.bullets), (154 * 4) - 112, 60);
 
             if (Player.health == 0) {
-                g2d.drawString("You have done the best you can, and saved " + GoodSoul.lowerZero(Player.score) + " children from", 24+16, 90);
+                g2d.drawString("You have done the best you can, and saved " + GoodSoul.lowerZero(Player.score) + " children from", 24 + 16, 90);
                 g2d.drawString("Kony's grasp. You have taken " + GoodSoul.lowerZero(Player.souls) + " lives away,", 16 + 82, 120);
                 g2d.drawString("but you did what you had to do.", 16 + 139, 150);
                 g2d.drawString("Press right to restart", 232 - 25, 405);
             }
-    }else{
+        } else {
             /*Controls*/
-            g2d.drawImage(image, 40, 281-32, 40+(32*4), 281+(41*4)-32, 154, 59, 154+32, 59+41, this);
-            g2d.drawImage(image, 464, 281-32, 592, 281+(41*4)-32, 154, 59+41, 154+32, 59+82, this);
-            g2d.drawString("You are an American soldier solicited to save as many children", 24+16, 90);
+            g2d.drawImage(image, 40, 281 - 32, 40 + (32 * 4), 281 + (41 * 4) - 32, 154, 59, 154 + 32, 59 + 41, this);
+            g2d.drawImage(image, 464, 281 - 32, 592, 281 + (41 * 4) - 32, 154, 59 + 41, 154 + 32, 59 + 82, this);
+            g2d.drawString("You are an American soldier solicited to save as many children", 24 + 16, 90);
             g2d.drawString("as possible from the grasp of Kony. You are", 16 + 82, 120);
             g2d.drawString("allowed to use force, but you shouldn't.", 139, 150);
             g2d.drawString("Press right to start", 232 - 17, 405);
@@ -109,50 +114,54 @@ public class Arena extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (!player.titlescreen){
-        badSoul.move();
-        goodSoul.move();
-        player.move();
-        bullet.move();
-        if (Player.health > 0) {
-            foreground.move();
-            if (Math.abs(player.x - GoodSoul.x) <= 25 && Math.abs(player.y - GoodSoul.y) <= 25) {
-                Player.score++;
-                new GoodSoul();
-                goodSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1)-1;
-                playSound("save.wav");
-            } else if (Math.abs(Bullet.x - GoodSoul.x) <= 25 && Math.abs(Bullet.y - (GoodSoul.y + 64)) <= 25) {
-                Player.souls++;
-                if (Player.score - 1 >= 0) {
-                    Player.score--;
+        if (!player.titlescreen) {
+            badSoul.move();
+            goodSoul.move();
+            player.move();
+            bullet.move();
+            if (Player.health > 0) {
+                foreground.move();
+                if (Math.abs(player.x - GoodSoul.x) <= 25 && Math.abs(player.y - GoodSoul.y) <= 25) {
+                    Player.score++;
+                    new GoodSoul();
+                    goodSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1) - 1;
+                    playSound("save.wav");
+                } else if (Math.abs(Bullet.x - GoodSoul.x) <= 25 && Math.abs(Bullet.y - (GoodSoul.y + 64)) <= 25) {
+                    Player.souls++;
+                    if (Player.score - 1 >= 0) {
+                        Player.score--;
+                    }
+                    new GoodSoul();
+                    new Bullet();
+                    Bullet.x = 1337;
+                    goodSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1) - 1;
+                    playSound("enemydie.wav");
+                } else if (GoodSoul.x <= -23 * 4) {
+                    new GoodSoul();
+                    goodSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1) - 1;
                 }
-                new GoodSoul();
-                new Bullet();
-                Bullet.x = 1337;
-                goodSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1)-1;
-                playSound("enemydie.wav");
-            } else if (GoodSoul.x <= -23 * 4) {
-                new GoodSoul();
-                goodSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1)-1;
+                if (Math.abs(player.x - BadSoul.x) <= 25 && Math.abs(player.y - BadSoul.y) <= 25) {
+                    Player.health--;
+                    new BadSoul();
+                    badSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1) - 1;
+                    if (Player.health < 0) {
+                        playSound("hurt.wav");
+                    } else {
+                        playSound("deathplayer.wav");
+                    }
+                } else if (Math.abs(Bullet.x - BadSoul.x) <= 25 && Math.abs(Bullet.y - (BadSoul.y + 52)) <= 25) {
+                    Player.souls++;
+                    new BadSoul();
+                    new Bullet();
+                    Bullet.x = 1337;
+                    badSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1) - 1;
+                    playSound("enemydie.wav");
+                } else if (BadSoul.x <= -23 * 4) {
+                    new BadSoul();
+                    badSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1) - 1;
+                }
             }
-            if (Math.abs(player.x - BadSoul.x) <= 25 && Math.abs(player.y - BadSoul.y) <= 25) {
-                Player.health--;
-                new BadSoul();
-                badSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1)-1;
-                if (Player.health<0)
-                    {playSound("hurt.wav");} else {playSound("deathplayer.wav");}
-            } else if (Math.abs(Bullet.x - BadSoul.x) <= 25 && Math.abs(Bullet.y - (BadSoul.y + 52)) <= 25) {
-                Player.souls++;
-                new BadSoul();
-                new Bullet();
-                Bullet.x = 1337;
-                badSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1)-1;
-                playSound("enemydie.wav");
-            } else if (BadSoul.x <= -23 * 4) {
-                new BadSoul();
-                badSoul.dx = (GoodSoul.lowerOne(random.nextInt(4)) * -1)-1;
-            }
-        }}
+        }
         repaint();
     }
 

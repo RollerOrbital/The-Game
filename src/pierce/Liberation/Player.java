@@ -74,25 +74,29 @@ public class Player {
             dy = -4;
             canJump = 0;
         } else if (key == KeyEvent.VK_RIGHT) {
-            if (titlescreen){titlescreen=false;Arena.playSound("shoot.wav");}else{
-            if ((Player.bullets > 0) && (Player.health > 0)&&(Bullet.x>500)) {
-                new Bullet();
-                Bullet.x = 216;
-                Bullet.y = (getY() + 52);
-                Player.bullets--;
+            if (titlescreen) {
+                titlescreen = false;
                 Arena.playSound("shoot.wav");
-            } else if (Player.health <= 0) {
-                new Player();
-                Player.health = 5;
-                Player.souls = 0;
-                Player.bullets = 15;
-                Player.score = 0;
-                Arena.playSound("shoot.wav");
-            }
+            } else {
+                if ((Player.bullets > 0) && (Player.health > 0) && (Bullet.x > 500)) {
+                    new Bullet();
+                    Bullet.x = 216;
+                    Bullet.y = (getY() + 52);
+                    Player.bullets--;
+                    Arena.playSound("shoot.wav");
+                } else if (Player.health <= 0) {
+                    new Player();
+                    Player.health = 5;
+                    Player.souls = 0;
+                    Player.bullets = 15;
+                    Player.score = 0;
+                    Arena.playSound("shoot.wav");
+                }
 /*        if (key == KeyEvent.VK_DOWN) {
             dy = 2;
         }*/
-        }}
+            }
+        }
     }
 
     public void keyReleased(KeyEvent e) {

@@ -1,18 +1,19 @@
-package pierce.MainGame;
+package rob.nonMainGames.miniGames.scytheGame;
 
 import javax.swing.*;
 
-public class MainClass extends JFrame {
+public class
+        MainClass extends JFrame {
 
     public MainClass() {
 
-        add(new Map());
+        add(new Board());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize((180 * 2) + 6, (110 * 2) + 28);
+        setSize(725, 425);
         setLocationRelativeTo(null);
-        setTitle("RESIST");
-        setResizable(false);
+        setTitle("Scythe Game");
+        setResizable(true);
         setVisible(true);
     }
 
