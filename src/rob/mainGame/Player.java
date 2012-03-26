@@ -127,6 +127,8 @@ public class Player {
             }
         } else if (key == KeyEvent.VK_Z && isMenuOpen) {
             menuAction = startMenu.getMenuAction(startMenu.getCursorPosition());
+        } else if (key == KeyEvent.VK_S && isMenuOpen) {
+            startMenu.cursorPosition++;
         }
     }
 

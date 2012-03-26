@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class StartMenu {
-    private int cursorPosition;
+    public int cursorPosition;
     private ImageIcon cursor;
 
     public StartMenu() {

@@ -25,7 +25,6 @@ public class Panel extends JPanel {
             StartMenu startMenu = new StartMenu();
             g.drawRect(startMenu.getMenuX(), 10, 400 - 290, 150);
             g.drawImage(startMenu.getCursorImage(), startMenu.getMenuX(), startMenu.getCursorPosition(), this);
-//            g2d.drawString(player.menuAction, startMenu.getMenuX() - 50, 50);
         }
         g.drawString("X = " + player.getX(), 100, 100);
         g.drawString("Y = " + player.getY(), 100, 130);
