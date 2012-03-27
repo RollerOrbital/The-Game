@@ -123,7 +123,7 @@ public class Player {
         }
     }
 
-    private void onKeyPressed(KeyEvent e) {
+    private void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         FacingDirection facingDirection = FacingDirection.forKey(key);
         if (facingDirection != null && !isMenuOpen) {
@@ -158,7 +158,7 @@ public class Player {
         }
     }
 
-    private void onKeyReleased(KeyEvent e) {
+    private void keyReleased(KeyEvent e) {
         int key = (e.getKeyCode());
         if (key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
             dy = 0;
@@ -167,18 +167,18 @@ public class Player {
         }
     }
 
-    public void draw(Graphics graphics, ImageObserver imageObserver) {
+    public void drawPlayer(Graphics graphics, ImageObserver imageObserver) {
         graphics.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, frameX(), frameY(), frameX() + getWidth(), frameY() + getHeight(), imageObserver);
     }
 
     public KeyAdapter keyListener() {
         return new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                onKeyPressed(e);
+                Player.this.keyPressed(e);
             }
 
             public void keyReleased(KeyEvent e) {
-                onKeyReleased(e);
+                Player.this.keyReleased(e);
             }
         };
     }

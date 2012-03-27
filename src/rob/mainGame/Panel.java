@@ -22,24 +22,16 @@ public class Panel extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
+        Graphics2D d = (Graphics2D) g;
         g.drawImage(map.getTestArea(), -player.getX(), -player.getY(), this);
-        player.draw(g, this);
+        player.drawPlayer(g, this);
         if (Player.isMenuOpen) {
             StartMenu startMenu = new StartMenu();
-            g.drawRect(startMenu.getMenuX(), -10, 110, 200);
-            g.drawImage(startMenu.getCursorImage(), startMenu.getMenuX() - 32, (player.getCursorPosition() * 30) + 10, this);
-            g.drawString("Stats", startMenu.getMenuX(), 24);
-            g.drawString("Item", startMenu.getMenuX(), 54);
-            g.drawString("Quests", startMenu.getMenuX(), 84);
-            g.drawString("Active Quest", startMenu.getMenuX(), 114);
-            g.drawString("Save", startMenu.getMenuX(), 144);
-            g.drawString("Cancel", startMenu.getMenuX(), 174);
-            if (player.selectedMenuIcon) {
-                g.drawString(startMenu.getMenuAction(player.getCursorPosition()), startMenu.getMenuX() - 100, player.getCursorPosition() * 30 + 10);
-            }
+            startMenu.drawStartMenu(g, d, player, this);
         }
         g.drawString("X = " + player.getX(), 100, 100);
         g.drawString("Y = " + player.getY(), 100, 130);
+        player.menuAction = "";
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }

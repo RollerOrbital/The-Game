@@ -2,6 +2,7 @@ package rob.mainGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
 
 public class StartMenu {
     private ImageIcon cursor;
@@ -34,6 +35,23 @@ public class StartMenu {
             return "Cancel";
         } else {
             return "Problem";
+        }
+    }
+
+    public void drawStartMenu(Graphics g, Graphics2D d, Player player, ImageObserver imageObserver) {
+        g.drawRect(getMenuX() - 1, -11, 112, 202);
+        d.setColor(Color.WHITE);
+        d.fill(new Rectangle(getMenuX(), -10, 110, 200));
+        g.setColor(Color.BLACK);
+        g.drawImage(getCursorImage(), getMenuX() - 32, (player.getCursorPosition() * 30) + 10, imageObserver);
+        g.drawString("Stats", getMenuX(), 24);
+        g.drawString("Item", getMenuX(), 54);
+        g.drawString("Quests", getMenuX(), 84);
+        g.drawString("Active Quest", getMenuX(), 114);
+        g.drawString("Save", getMenuX(), 144);
+        g.drawString("Cancel", getMenuX(), 174);
+        if (player.selectedMenuIcon) {
+            g.drawString(getMenuAction(player.getCursorPosition()), getMenuX() - 100, player.getCursorPosition() * 30 + 10);
         }
     }
 }
