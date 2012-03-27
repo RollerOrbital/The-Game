@@ -149,6 +149,7 @@ public class Player {
             } else {
                 isMenuOpen = true;
                 isMoving = STILL;
+                frameNumber = 0;
             }
         }
         if (isMenuOpen) {
