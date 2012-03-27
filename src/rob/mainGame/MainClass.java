@@ -13,3 +13,7 @@ public class MainClass {
         frame.setResizable(true);
     }
 }
+//arrows    = move
+//enter     = start
+//z         = a
+//x         = b

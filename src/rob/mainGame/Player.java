@@ -151,6 +151,10 @@ public class Player {
                 isMoving = STILL;
                 frameNumber = 0;
             }
+        } else if (key == KeyEvent.VK_X) {
+            if (isMenuOpen) {
+                isMenuOpen = false;
+            }
         }
         if (isMenuOpen) {
             if (key == KeyEvent.VK_Z) {
