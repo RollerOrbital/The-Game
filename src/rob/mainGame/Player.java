@@ -41,11 +41,10 @@ public class Player {
     private FacingDirection direction;
     private int dx, dy;
     private final int MOVING, STILL;
-    private int isMoving;
+    private int isMoving, stepCount;
 
     private final Image image;
     private int frameNumber;
-    private final int[] frameArray;
 
     public static boolean isMenuOpen;
     private final StartMenu startMenu;
@@ -64,7 +63,6 @@ public class Player {
         ImageIcon playerSheet = new ImageIcon(getClass().getResource("player.png"));
         image = playerSheet.getImage();
         frameNumber = 0;
-        frameArray = new int[]{0, 1, 0, 2};
         MOVING = 1;
         STILL = 0;
         cursorPosition = 2;
@@ -100,7 +98,7 @@ public class Player {
     }
 
     private int frameX() {
-        return frameArray[frameNumber % 4] * getWidth();
+        return frameNumber * getWidth();
     }
 
     public int frameY() {
@@ -115,11 +113,25 @@ public class Player {
             cursorPosition = 0;
             x += dx;
             y += dy;
-            if (isMoving == MOVING) {
-                frameNumber = (frameNumber % 4) + 1;
-            } else if (isMoving == STILL) {
+            getFrameNumber();
+        }
+    }
+
+    private void getFrameNumber() {
+        if (isMoving == MOVING) {
+            stepCount++;
+            int stepSpeed = 60;
+            if (stepCount % stepSpeed < stepSpeed / 4) {
                 frameNumber = 0;
+            } else if (stepCount % stepSpeed >= stepSpeed / 4 && stepCount % stepSpeed < stepSpeed / 2) {
+                frameNumber = 1;
+            } else if (stepCount % stepSpeed >= stepSpeed / 2 && stepCount % stepSpeed < (stepSpeed * 3) / 4) {
+                frameNumber = 0;
+            } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
+                frameNumber = 2;
             }
+        } else if (isMoving == STILL) {
+            frameNumber = 0;
         }
     }
 
@@ -134,7 +146,6 @@ public class Player {
         } else if (key == KeyEvent.VK_ENTER) {
             if (isMenuOpen) {
                 isMenuOpen = false;
-                isMoving = MOVING;
             } else {
                 isMenuOpen = true;
                 isMoving = STILL;
@@ -155,6 +166,8 @@ public class Player {
                 cursorPosition++;
                 selectedMenuIcon = false;
             }
+        } else {
+            menuAction = null;
         }
     }
 

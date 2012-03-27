@@ -31,7 +31,6 @@ public class Panel extends JPanel {
         }
         g.drawString("X = " + player.getX(), 100, 100);
         g.drawString("Y = " + player.getY(), 100, 130);
-        player.menuAction = "";
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
