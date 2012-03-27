@@ -69,12 +69,10 @@ public class Player {
     }
 
     public int getCursorPosition() {
-        if (cursorPosition >= 5) {
-            cursorPosition = 5;
-        } else if (cursorPosition <= 0) {
-            cursorPosition = 0;
+        if (cursorPosition < 1) {
+            cursorPosition = 6;
         }
-        return cursorPosition;
+        return cursorPosition % 6;
     }
 
     public int getX() {
@@ -158,11 +156,12 @@ public class Player {
         }
         if (isMenuOpen) {
             if (key == KeyEvent.VK_Z) {
-                if (!selectedMenuIcon) {
+                if (!selectedMenuIcon && menuAction == null) {
                     selectedMenuIcon = true;
                     menuAction = startMenu.getMenuAction(cursorPosition);
                 } else {
                     selectedMenuIcon = false;
+                    menuAction = null;
                 }
             } else if (key == KeyEvent.VK_UP) {
                 cursorPosition--;
@@ -171,8 +170,6 @@ public class Player {
                 cursorPosition++;
                 selectedMenuIcon = false;
             }
-        } else {
-            menuAction = null;
         }
     }
 
