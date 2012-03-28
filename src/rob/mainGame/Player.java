@@ -156,12 +156,11 @@ public class Player {
         }
         if (isMenuOpen) {
             if (key == KeyEvent.VK_Z) {
-                if (!selectedMenuIcon && menuAction == null) {
+                if (!selectedMenuIcon) {
                     selectedMenuIcon = true;
                     menuAction = startMenu.getMenuAction(cursorPosition);
                 } else {
                     selectedMenuIcon = false;
-                    menuAction = null;
                 }
             } else if (key == KeyEvent.VK_UP) {
                 cursorPosition--;

@@ -24,6 +24,7 @@ public class Panel extends JPanel {
         super.paint(g);
         Graphics2D d = (Graphics2D) g;
         g.drawImage(map.getTestArea(), -player.getX(), -player.getY(), this);
+        new Idroid(0, -player.getX() + 100, -player.getY() + 100, 0).drawIdroid(g, this);
         player.drawPlayer(g, this);
         if (Player.isMenuOpen) {
             StartMenu startMenu = new StartMenu();
