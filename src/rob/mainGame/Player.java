@@ -7,7 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.ImageObserver;
 
 public class Player {
-    private int x, y;
+    public int x;
+    public int y;
 
     private static enum FacingDirection {
         UP(2, KeyEvent.VK_UP, 0, -1),
@@ -103,18 +104,6 @@ public class Player {
         return direction.frameRow * getHeight();
     }
 
-    public void move() {
-        if (isMenuOpen) {
-            dx = 0;
-            dy = 0;
-        } else {
-            cursorPosition = 0;
-            x += dx;
-            y += dy;
-            getFrameNumber();
-        }
-    }
-
     private void getFrameNumber() {
         if (isMoving == MOVING) {
             stepCount++;
@@ -130,6 +119,34 @@ public class Player {
             }
         } else if (isMoving == STILL) {
             frameNumber = 0;
+        }
+    }
+
+    private void getBounds() {
+        if (x < -198) {
+            x = -198;
+        }
+        if (x > 376) {
+            x = 376;
+        }
+        if (y < -155) {
+            y = -155;
+        }
+        if (y > 160) {
+            y = 160;
+        }
+    }
+
+    public void move() {
+        if (isMenuOpen) {
+            dx = 0;
+            dy = 0;
+        } else {
+            cursorPosition = 0;
+            x += dx;
+            y += dy;
+            getFrameNumber();
+            getBounds();
         }
     }
 
