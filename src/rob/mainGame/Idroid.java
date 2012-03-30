@@ -42,12 +42,12 @@ public class Idroid {
         return 18;
     }
 
+    public int getFrameNumber() {
+        return frameNumber;
+    }
+
     public void drawIdroid(Graphics g, ImageObserver imageObserver) {
         g.drawImage(getImage(), getX(), getY(), getX() + getWidth() * 2, getY() + getHeight() * 2, getDirection(), getFrameNumber(), getFrameNumber() + getWidth(), getDirection() + getHeight(), imageObserver);
 
-    }
-
-    public int getFrameNumber() {
-        return frameNumber;
     }
 }
