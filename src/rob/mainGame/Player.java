@@ -41,8 +41,8 @@ public class Player {
 
     private FacingDirection direction;
     private int dx, dy;
-    private final int MOVING, STILL;
-    private int isMoving, stepCount;
+    private final int MOVING, STILL, TALKING;
+    private int stateOfBeing, stepCount;
 
     private final Image image;
     private int frameNumber;
@@ -64,6 +64,7 @@ public class Player {
         ImageIcon playerSheet = new ImageIcon(getClass().getResource("player.png"));
         image = playerSheet.getImage();
         frameNumber = 0;
+        TALKING = 3;
         MOVING = 1;
         STILL = 0;
         cursorPosition = 2;
@@ -105,7 +106,7 @@ public class Player {
     }
 
     private void getFrameNumber() {
-        if (isMoving == MOVING) {
+        if (stateOfBeing == MOVING) {
             stepCount++;
             int stepSpeed = 60;
             if (stepCount % stepSpeed < stepSpeed / 4) {
@@ -117,7 +118,7 @@ public class Player {
             } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
                 frameNumber = 2;
             }
-        } else if (isMoving == STILL) {
+        } else if (stateOfBeing == STILL) {
             frameNumber = 0;
         }
     }
@@ -157,19 +158,22 @@ public class Player {
             direction = facingDirection;
             dx = facingDirection.dx;
             dy = facingDirection.dy;
-            isMoving = MOVING;
+            stateOfBeing = MOVING;
         } else if (key == KeyEvent.VK_ENTER) {
             if (isMenuOpen) {
                 isMenuOpen = false;
             } else {
                 isMenuOpen = true;
-                isMoving = STILL;
+                stateOfBeing = STILL;
                 frameNumber = 0;
             }
         } else if (key == KeyEvent.VK_X) {
             if (isMenuOpen) {
                 isMenuOpen = false;
             }
+        }
+        if (key == KeyEvent.VK_Z) {
+            Idroid.speechCounter++;
         }
         if (isMenuOpen) {
             if (key == KeyEvent.VK_Z) {
@@ -194,7 +198,7 @@ public class Player {
         if (key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
             dy = 0;
             dx = 0;
-            isMoving = STILL;
+            stateOfBeing = STILL;
         }
     }
 
