@@ -97,11 +97,11 @@ public class Player {
         return 18;
     }
 
-    private int frameX() {
+    private int getFrame() {
         return frameNumber * getWidth();
     }
 
-    public int frameY() {
+    public int getDirection() {
         return direction.frameRow * getHeight();
     }
 
@@ -202,8 +202,8 @@ public class Player {
         }
     }
 
-    public void drawPlayer(Graphics graphics, ImageObserver imageObserver) {
-        graphics.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, frameX(), frameY(), frameX() + getWidth(), frameY() + getHeight(), imageObserver);
+    public void drawPlayer(Graphics g, ImageObserver imageObserver) {
+        g.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, getFrame(), getDirection(), getFrame() + getWidth(), getDirection() + getHeight(), imageObserver);
     }
 
     public KeyAdapter keyListener() {

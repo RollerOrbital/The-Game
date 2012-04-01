@@ -4,19 +4,24 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Map {
-    public static int altitude;
-    public static int distance;
     public Image image;
-    public int width, height;
-    public int direction;
+    private final Player player;
 
     public Map() {
-        altitude = Panel.lowerBound + 850;
-        distance = -190;
-        ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
+        ImageIcon ii = new ImageIcon(getClass().getResource("level.png"));
         image = ii.getImage();
-        width = 12;
-        height = 18;
-        direction = 0;
+        player = new Player();
+    }
+
+    private Image getImage() {
+        return image;
+    }
+
+    private int getX() {
+        return -player.x;
+    }
+
+    private int getY() {
+        return -player.y;
     }
 }
