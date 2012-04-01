@@ -5,12 +5,10 @@ import java.awt.*;
 
 public class Tile {
     private Image image;
-    private Level level;
 
     public Tile() {
         ImageIcon ii = new ImageIcon((getClass().getResource("tile.png")));
         image = ii.getImage();
-        level = new Level();
     }
 
     public Image getImage() {
@@ -20,5 +18,5 @@ public class Tile {
 
 /*
 tile = new Tile(16*16, 16);
-    if(level.x >= tile.right || level.x <= tile.left && level.y < tile.bottom ||level.y > tile.top
+    if(player.x >= tile.right || player.x <= tile.left && player.y < tile.bottom ||player.y > tile.top
  */
