@@ -23,7 +23,7 @@ public class Panel extends JPanel implements ActionListener {
 
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(player.getImage(), player.getX(), player.getY(), this);
+        player.draw(g, this);
         g.drawString("X = " + player.getX(), 100, 100);
         g.drawString("Y = " + player.getY(), 100, 120);
         Toolkit.getDefaultToolkit().sync();
