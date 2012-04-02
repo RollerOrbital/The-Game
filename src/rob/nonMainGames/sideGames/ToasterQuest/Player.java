@@ -6,37 +6,51 @@ import java.awt.event.KeyEvent;
 import java.awt.image.ImageObserver;
 
 public class Player {
+    //position
+    private int x, y, dx, dy;
+    //vertical
+    public int UP, NONE, keyHeld, jumpHeight, jumpSpeed, gravityStrength, maxJump;
+    //horizontal
+    public int stepSpeed, stepCount;
+    //direction
+    public int direction, LEFT, RIGHT;
+    //frameNumber
+    private int frameNumber;
+    //state
+    public int state, MOVING, STILL, JUMPING, FALLING;
+    //image
     private final Image image;
 
-    private int x, y, dx, dy;
-    private int frameNumber, direction, LEFT, RIGHT;
-
-    public int state, MOVING, STILL, JUMPING, FALLING, stepCount, stepSpeed;
-    private int jumpSpeed, gravityStrength;
-    public int keyHeld, UP, NONE, jumpHeight, maxJump;
-
     public Player() {
+        //position
         x = -195;
         y = 405;
         dx = 0;
         dy = 0;
-        jumpHeight = 100;
+        //vertical
         UP = 1;
         NONE = 0;
         keyHeld = NONE;
+        jumpHeight = 100;
         jumpSpeed = -1;
         gravityStrength = 1;
+        maxJump = 0;
+        //horizontal
         stepSpeed = 60;
         stepCount = 0;
-        RIGHT = 3;
+        //direction
         LEFT = 1;
+        RIGHT = 3;
         direction = RIGHT;
+        //frameNumber
         frameNumber = 0;
+        //state
         MOVING = 0;
         STILL = 1;
         JUMPING = 2;
         FALLING = 3;
         state = STILL;
+        //image
         ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
         image = ii.getImage();
     }
