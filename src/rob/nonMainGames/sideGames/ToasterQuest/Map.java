@@ -4,24 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Map {
-    public Image image;
-    private final Player player;
+    private Image image;
 
     public Map() {
         ImageIcon ii = new ImageIcon(getClass().getResource("level.png"));
         image = ii.getImage();
-        player = new Player();
     }
 
-    private Image getImage() {
+    public Image getImage() {
         return image;
-    }
-
-    private int getX() {
-        return -player.x;
-    }
-
-    private int getY() {
-        return -player.y;
     }
 }

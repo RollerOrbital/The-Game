@@ -8,7 +8,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Panel extends JPanel implements ActionListener {
-    private Player player;
+    private final Player player;
+    private final Map map;
 
     public Panel() {
         addKeyListener(new Adapter());
@@ -16,12 +17,14 @@ public class Panel extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
         player = new Player();
+        map = new Map();
         Timer timer = new Timer(5, this);
         timer.start();
     }
 
     public void paint(Graphics g) {
         super.paint(g);
+        g.drawImage(map.getImage(), -player.getX(), -player.getY(), this);
         player.draw(g, this);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
