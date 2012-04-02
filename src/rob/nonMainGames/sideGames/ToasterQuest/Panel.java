@@ -26,6 +26,9 @@ public class Panel extends JPanel implements ActionListener {
         super.paint(g);
         g.drawImage(map.getImage(), -player.getX(), -player.getY(), this);
         player.draw(g, this);
+        g.drawString("State     = " + player.state, 100, 100);
+        g.drawString("KeyHeld   = " + player.keyHeld, 100, 110);
+        g.drawString("Y         = " + player.getY(), 100, 120);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }

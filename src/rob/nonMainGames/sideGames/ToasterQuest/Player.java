@@ -11,13 +11,21 @@ public class Player {
     private int x, y, dx, dy;
     private int frameNumber, direction, LEFT, RIGHT;
 
-    private int state, MOVING, STILL, stepCount, stepSpeed;
+    public int state, MOVING, STILL, JUMPING, FALLING, stepCount, stepSpeed;
+    private int jumpSpeed, gravityStrength;
+    public int keyHeld, UP, NONE, jumpHeight, maxJump;
 
     public Player() {
         x = -195;
         y = 405;
         dx = 0;
         dy = 0;
+        jumpHeight = 100;
+        UP = 1;
+        NONE = 0;
+        keyHeld = NONE;
+        jumpSpeed = -1;
+        gravityStrength = 1;
         stepSpeed = 60;
         stepCount = 0;
         RIGHT = 3;
@@ -26,6 +34,8 @@ public class Player {
         frameNumber = 0;
         MOVING = 0;
         STILL = 1;
+        JUMPING = 2;
+        FALLING = 3;
         state = STILL;
         ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
         image = ii.getImage();
@@ -66,6 +76,15 @@ public class Player {
             }
         } else if (state == STILL) {
             frameNumber = 0;
+        } else if (state == JUMPING || state == FALLING) {
+            frameNumber = 1;
+        }
+    }
+
+    private void getJump() {
+        if (x < maxJump) {
+            dy = gravityStrength;
+            state = FALLING;
         }
     }
 
@@ -89,26 +108,42 @@ public class Player {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
+            if (keyHeld != UP) {
+                maxJump = x - jumpHeight;
+                state = JUMPING;
+            }
+            state = JUMPING;
+            dy = jumpSpeed;
+            keyHeld = UP;
+            getJump();
         } else if (key == KeyEvent.VK_LEFT) {
-            direction = LEFT;
-            dx = -1;
-            state = MOVING;
+            if (keyHeld == NONE) {
+                direction = LEFT;
+                dx = -1;
+                state = MOVING;
+            }
         } else if (key == KeyEvent.VK_RIGHT) {
-            direction = RIGHT;
-            dx = 1;
-            state = MOVING;
+            if (keyHeld == NONE) {
+                direction = RIGHT;
+                dx = 1;
+                state = MOVING;
+            }
         }
     }
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-        } else if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
-            state = STILL;
-        } else if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-            state = STILL;
+            keyHeld = NONE;
+            if (state == JUMPING) {
+                state = FALLING;
+                dy = gravityStrength;
+            }
+        } else if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
+            if (state != JUMPING || state != FALLING) {
+                dx = 0;
+                state = STILL;
+            }
         }
     }
 }
