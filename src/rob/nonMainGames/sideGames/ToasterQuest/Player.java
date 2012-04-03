@@ -10,21 +10,25 @@ public class Player {
     //My rather poor attempt at using enums...
     private static enum currentState {
         //These are all 'currentState' type objects (I think)
-        LEFT(0, -1, 0, 1),
-        RIGHT(0, 1, 0, 3),
-        STILL(1, 0, 0, 0),
-        JUMPING(2, 0, -1, 0),
-        FALLING(3, 0, 1, 0);
+        LEFT(0, -1, 0, 1, 0, KeyEvent.VK_LEFT),
+        RIGHT(0, 1, 0, 3, 0, KeyEvent.VK_RIGHT),
+        STILL(1, 0, 0, 0, 0, 0),
+        JUMPING(2, 0, -1, 0, 1, KeyEvent.VK_UP),
+        FALLING(3, 0, 1, 0, 1, 0);
 
+        public final int key;
+        public final int frameNumber;
         public final int direction;
         public final int stateNumber;
         public final int dx;
         public final int dy;
 
         //Current state object constructor
-        currentState(int stateNumber, int dx, int dy, int direction) {
+        currentState(int stateNumber, int dx, int dy, int direction, int frameNumber, int key) {
+            this.frameNumber = frameNumber;
             this.direction = direction;
             this.stateNumber = stateNumber;
+            this.key = key;
             this.dx = dx;
             this.dy = dy;
         }
@@ -88,27 +92,25 @@ public class Player {
 
     public int getFrameNumber() {
         getFrame();
-        return frameNumber % 3 * getWidth();
+        return frameNumber * getWidth();
     }
 
     private void getFrame() {
-        if (!offGround) {
-            if (state == currentState.LEFT || state == currentState.RIGHT) {
-                stepCount++;
-                if (stepCount % stepSpeed < stepSpeed / 4) {
-                    frameNumber = 0;
-                } else if (stepCount % stepSpeed >= stepSpeed / 4 && stepCount % stepSpeed < stepSpeed / 2) {
-                    frameNumber = 1;
-                } else if (stepCount % stepSpeed >= stepSpeed / 2 && stepCount % stepSpeed < (stepSpeed * 3) / 4) {
-                    frameNumber = 0;
-                } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
-                    frameNumber = 2;
-                }
-            } else if (state == currentState.STILL) {
+        if (state == currentState.STILL) {
+            frameNumber = currentState.STILL.frameNumber;
+        } else if (state == currentState.LEFT || state == currentState.RIGHT) {
+            stepCount++;
+            if (stepCount % stepSpeed < stepSpeed / 4) {
                 frameNumber = 0;
+            } else if (stepCount % stepSpeed >= stepSpeed / 4 && stepCount % stepSpeed < stepSpeed / 2) {
+                frameNumber = 1;
+            } else if (stepCount % stepSpeed >= stepSpeed / 2 && stepCount % stepSpeed < (stepSpeed * 3) / 4) {
+                frameNumber = 0;
+            } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
+                frameNumber = 2;
             }
-        } else {
-            frameNumber = 1;
+        } else if (state == currentState.JUMPING || state == currentState.FALLING) {
+            frameNumber = currentState.JUMPING.frameNumber;
         }
     }
 
@@ -120,11 +122,19 @@ public class Player {
         return image;
     }
 
+    private void getFloor() {
+        if (y >= 405) {
+            y = 405;
+            offGround = false;
+        }
+    }
+
     public void draw(Graphics g, ImageObserver imageObserver) {
         g.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, getFrameNumber(), getDirection(), getFrameNumber() + getWidth(), getDirection() + getHeight(), imageObserver);
     }
 
     public void move() {
+        getFloor();
         x += dx;
         y += dy;
     }
@@ -136,13 +146,17 @@ public class Player {
             state = currentState.JUMPING;
             dy = currentState.JUMPING.dy;
         } else if (key == KeyEvent.VK_LEFT) {
-            state = currentState.LEFT;
-            dx = currentState.LEFT.dx;
-            direction = currentState.LEFT.direction;
+            if (state != currentState.JUMPING) {
+                state = currentState.LEFT;
+                dx = currentState.LEFT.dx;
+                direction = currentState.LEFT.direction;
+            }
         } else if (key == KeyEvent.VK_RIGHT) {
-            state = currentState.RIGHT;
-            dx = currentState.RIGHT.dx;
-            direction = currentState.RIGHT.direction;
+            if (state != currentState.JUMPING) {
+                state = currentState.RIGHT;
+                dx = currentState.RIGHT.dx;
+                direction = currentState.RIGHT.direction;
+            }
         }
     }
 
