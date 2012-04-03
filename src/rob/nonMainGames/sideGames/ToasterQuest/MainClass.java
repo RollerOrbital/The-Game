@@ -14,9 +14,13 @@ public class MainClass {
 }
 /*
 Make the jumping system work and be elegant and easily understandable
-Make the tiles so that each new tile is a barrier for the player so you don't draw the tiles then set the bounds separately
-Once those 2 are done do a little trimming and neatening to make the programs design more elegant and understandable again
+Make the tiles so that each new tile is a barrier for the player so you
+don't draw the tiles then set the bounds separately. Once those 2 are done
+do a little trimming and neatening to make the programs design more elegant
+and understandable again
 
 PROBLEM 1:
-I need to make 'state' an enum and I don't know how to :/
+I need to make 'stateNumber' an enum and I don't know how to :/ - this is in order
+so that the player can only be going up if they are pressing or have recently
+pressed the up key and at no other time may they go up.
 */

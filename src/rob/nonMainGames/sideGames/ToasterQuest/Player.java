@@ -6,18 +6,51 @@ import java.awt.event.KeyEvent;
 import java.awt.image.ImageObserver;
 
 public class Player {
+
+    //My rather poor attempt at using enums...
+    private static enum currentState {
+        //These are all 'currentState' type objects (I think)
+        LEFT(0, -1, 0),
+        RIGHT(0, 1, 0),
+        STILL(1, 0, 0),
+        JUMPING(2, 0, -1),
+        FALLING(3, 0, 1);
+
+        public final int stateNumber;
+        public final int dx;
+        public final int dy;
+
+        //Current state object constructor
+        currentState(int stateNumber, int dx, int dy) {
+            this.stateNumber = stateNumber;
+            this.dx = dx;
+            this.dy = dy;
+        }
+
+        //This determines the values of each of the things from knowing which state the player is in
+        public static currentState forState(int state) {
+            currentState[] values = values();
+            for (currentState c : values) {
+                if (c.stateNumber == state) {
+                    return c;
+                }
+            }
+            return null;
+        }
+    }
+
     //position
     private int x, y, dx, dy;
     //vertical
-    public int UP, NONE, keyHeld, jumpHeight, jumpSpeed, gravityStrength, maxJump;
+    public int jumpSpeed, gravityStrength;
     //horizontal
     public int stepSpeed, stepCount;
     //direction
     public int direction, LEFT, RIGHT;
     //frameNumber
     private int frameNumber;
-    //state
-    public int state, MOVING, STILL, JUMPING, FALLING;
+    //stateNumber
+    private currentState state;
     //image
     private final Image image;
 
@@ -28,13 +61,8 @@ public class Player {
         dx = 0;
         dy = 0;
         //vertical
-        UP = 1;
-        NONE = 0;
-        keyHeld = NONE;
-        jumpHeight = 100;
         jumpSpeed = -1;
         gravityStrength = 1;
-        maxJump = 0;
         //horizontal
         stepSpeed = 60;
         stepCount = 0;
@@ -44,12 +72,8 @@ public class Player {
         direction = RIGHT;
         //frameNumber
         frameNumber = 0;
-        //state
-        MOVING = 0;
-        STILL = 1;
-        JUMPING = 2;
-        FALLING = 3;
-        state = STILL;
+        //stateNumber
+        state = currentState.STILL;
         //image
         ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
         image = ii.getImage();
@@ -77,7 +101,7 @@ public class Player {
     }
 
     private void getFrame() {
-        if (state == MOVING) {
+        if (state == currentState.LEFT || state == currentState.RIGHT) {
             stepCount++;
             if (stepCount % stepSpeed < stepSpeed / 4) {
                 frameNumber = 0;
@@ -88,17 +112,10 @@ public class Player {
             } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
                 frameNumber = 2;
             }
-        } else if (state == STILL) {
+        } else if (state == currentState.STILL) {
             frameNumber = 0;
-        } else if (state == JUMPING || state == FALLING) {
+        } else if (state == currentState.JUMPING || state == currentState.FALLING) {
             frameNumber = 1;
-        }
-    }
-
-    private void getJump() {
-        if (x < maxJump) {
-            dy = gravityStrength;
-            state = FALLING;
         }
     }
 
@@ -122,42 +139,32 @@ public class Player {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-            if (keyHeld != UP) {
-                maxJump = x - jumpHeight;
-                state = JUMPING;
-            }
-            state = JUMPING;
-            dy = jumpSpeed;
-            keyHeld = UP;
-            getJump();
+            state = currentState.JUMPING;
+            dy = currentState.JUMPING.dy;
+            dx = currentState.JUMPING.dx;
         } else if (key == KeyEvent.VK_LEFT) {
-            if (keyHeld == NONE) {
-                direction = LEFT;
-                dx = -1;
-                state = MOVING;
-            }
+            direction = LEFT;
+            state = currentState.LEFT;
+            dy = currentState.LEFT.dy;
+            dx = currentState.LEFT.dx;
         } else if (key == KeyEvent.VK_RIGHT) {
-            if (keyHeld == NONE) {
-                direction = RIGHT;
-                dx = 1;
-                state = MOVING;
-            }
+            direction = RIGHT;
+            state = currentState.RIGHT;
+            dy = currentState.RIGHT.dy;
+            dx = currentState.RIGHT.dx;
         }
     }
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-            keyHeld = NONE;
-            if (state == JUMPING) {
-                state = FALLING;
-                dy = gravityStrength;
-            }
+            state = currentState.FALLING;
+            dy = currentState.FALLING.dy;
+            dx = currentState.FALLING.dx;
         } else if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
-            if (state != JUMPING || state != FALLING) {
-                dx = 0;
-                state = STILL;
-            }
+            state = currentState.STILL;
+            dy = currentState.STILL.dy;
+            dx = currentState.STILL.dx;
         }
     }
 }
