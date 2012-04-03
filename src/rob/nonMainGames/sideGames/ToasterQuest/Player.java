@@ -28,17 +28,6 @@ public class Player {
             this.dx = dx;
             this.dy = dy;
         }
-
-        //This determines the values of each of the things from knowing which state the player is in
-        public static currentState forState(int state) {
-            currentState[] values = values();
-            for (currentState c : values) {
-                if (c.stateNumber == state) {
-                    return c;
-                }
-            }
-            return null;
-        }
     }
 
     //position
