@@ -141,16 +141,13 @@ public class Player {
         if (key == KeyEvent.VK_UP) {
             state = currentState.JUMPING;
             dy = currentState.JUMPING.dy;
-            dx = currentState.JUMPING.dx;
         } else if (key == KeyEvent.VK_LEFT) {
             direction = LEFT;
             state = currentState.LEFT;
-            dy = currentState.LEFT.dy;
             dx = currentState.LEFT.dx;
         } else if (key == KeyEvent.VK_RIGHT) {
             direction = RIGHT;
             state = currentState.RIGHT;
-            dy = currentState.RIGHT.dy;
             dx = currentState.RIGHT.dx;
         }
     }
@@ -160,10 +157,8 @@ public class Player {
         if (key == KeyEvent.VK_UP) {
             state = currentState.FALLING;
             dy = currentState.FALLING.dy;
-            dx = currentState.FALLING.dx;
         } else if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
             state = currentState.STILL;
-            dy = currentState.STILL.dy;
             dx = currentState.STILL.dx;
         }
     }
