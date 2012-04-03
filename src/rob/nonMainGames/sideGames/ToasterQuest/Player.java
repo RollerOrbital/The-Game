@@ -9,13 +9,14 @@ public class Player {
 
     //My rather poor attempt at using enums...
     private static enum currentState {
-        //These are all 'currentState' type objects (I think)
-        LEFT(0, -1, 0, 1, 0, KeyEvent.VK_LEFT),
-        RIGHT(0, 1, 0, 3, 0, KeyEvent.VK_RIGHT),
-        STILL(1, 0, 0, 0, 0, 0),
-        JUMPING(2, 0, -1, 0, 1, KeyEvent.VK_UP),
-        FALLING(3, 0, 1, 0, 1, 0);
+        //These are all currentState type objects (I think)
+        LEFT(0, -1, 0, 1, 0, KeyEvent.VK_LEFT, false),
+        RIGHT(0, 1, 0, 3, 0, KeyEvent.VK_RIGHT, false),
+        STILL(1, 0, 0, 0, 0, 0, false),
+        JUMPING(2, 0, -1, 0, 1, KeyEvent.VK_UP, true),      //jumpSpeed = 1
+        FALLING(3, 0, 1, 0, 1, 0, true);      //gravityStrength = 1
 
+        public final boolean offGround;
         public final int key;
         public final int frameNumber;
         public final int direction;
@@ -23,11 +24,12 @@ public class Player {
         public final int dx;
         public final int dy;
 
-        //Current state object constructor
-        currentState(int stateNumber, int dx, int dy, int direction, int frameNumber, int key) {
+        //currentState object constructor
+        currentState(int stateNumber, int dx, int dy, int direction, int frameNumber, int key, boolean offGround) {
             this.frameNumber = frameNumber;
             this.direction = direction;
             this.stateNumber = stateNumber;
+            this.offGround = offGround;
             this.key = key;
             this.dx = dx;
             this.dy = dy;
@@ -37,8 +39,7 @@ public class Player {
     //position
     private int x, y, dx, dy;
     //vertical
-    public int jumpSpeed, gravityStrength;
-    public boolean offGround;
+    private boolean offGround;
     //horizontal
     private int stepSpeed, stepCount;
     //frameNumber
@@ -57,11 +58,9 @@ public class Player {
         dx = 0;
         dy = 0;
         //vertical
-        jumpSpeed = -1;
-        gravityStrength = 1;
         offGround = false;
         //horizontal
-        stepSpeed = 60;
+        stepSpeed = 100;
         stepCount = 0;
         //direction
         direction = currentState.RIGHT.direction;
@@ -92,25 +91,25 @@ public class Player {
 
     public int getFrameNumber() {
         getFrame();
-        return frameNumber * getWidth();
+        return frameNumber % 3 * getWidth();
     }
 
     private void getFrame() {
-        if (state == currentState.STILL) {
-            frameNumber = currentState.STILL.frameNumber;
-        } else if (state == currentState.LEFT || state == currentState.RIGHT) {
-            stepCount++;
-            if (stepCount % stepSpeed < stepSpeed / 4) {
-                frameNumber = 0;
-            } else if (stepCount % stepSpeed >= stepSpeed / 4 && stepCount % stepSpeed < stepSpeed / 2) {
-                frameNumber = 1;
-            } else if (stepCount % stepSpeed >= stepSpeed / 2 && stepCount % stepSpeed < (stepSpeed * 3) / 4) {
-                frameNumber = 0;
-            } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
-                frameNumber = 2;
+        if (!offGround) {
+            if (state == currentState.STILL) {
+                frameNumber = currentState.STILL.frameNumber;
+            } else {
+                stepCount++;
+                if (stepCount % stepSpeed < stepSpeed / 4) {
+                    frameNumber = 0;
+                } else if (stepCount % stepSpeed >= stepSpeed / 4 && stepCount % stepSpeed < stepSpeed / 2) {
+                    frameNumber = 1;
+                } else if (stepCount % stepSpeed >= stepSpeed / 2 && stepCount % stepSpeed < (stepSpeed * 3) / 4) {
+                    frameNumber = 0;
+                } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
+                    frameNumber = 2;
+                }
             }
-        } else if (state == currentState.JUMPING || state == currentState.FALLING) {
-            frameNumber = currentState.JUMPING.frameNumber;
         }
     }
 
@@ -142,21 +141,18 @@ public class Player {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
-            offGround = true;
             state = currentState.JUMPING;
+            offGround = currentState.JUMPING.offGround;
             dy = currentState.JUMPING.dy;
+            frameNumber = currentState.JUMPING.frameNumber;
         } else if (key == KeyEvent.VK_LEFT) {
-            if (state != currentState.JUMPING) {
-                state = currentState.LEFT;
-                dx = currentState.LEFT.dx;
-                direction = currentState.LEFT.direction;
-            }
+            state = currentState.LEFT;
+            dx = currentState.LEFT.dx;
+            direction = currentState.LEFT.direction;
         } else if (key == KeyEvent.VK_RIGHT) {
-            if (state != currentState.JUMPING) {
-                state = currentState.RIGHT;
-                dx = currentState.RIGHT.dx;
-                direction = currentState.RIGHT.direction;
-            }
+            state = currentState.RIGHT;
+            dx = currentState.RIGHT.dx;
+            direction = currentState.RIGHT.direction;
         }
     }
 
