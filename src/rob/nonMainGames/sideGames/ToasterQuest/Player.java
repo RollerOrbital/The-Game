@@ -10,18 +10,20 @@ public class Player {
     //My rather poor attempt at using enums...
     private static enum currentState {
         //These are all 'currentState' type objects (I think)
-        LEFT(0, -1, 0),
-        RIGHT(0, 1, 0),
-        STILL(1, 0, 0),
-        JUMPING(2, 0, -1),
-        FALLING(3, 0, 1);
+        LEFT(0, -1, 0, 1),
+        RIGHT(0, 1, 0, 3),
+        STILL(1, 0, 0, 0),
+        JUMPING(2, 0, -1, 0),
+        FALLING(3, 0, 1, 0);
 
+        public final int direction;
         public final int stateNumber;
         public final int dx;
         public final int dy;
 
         //Current state object constructor
-        currentState(int stateNumber, int dx, int dy) {
+        currentState(int stateNumber, int dx, int dy, int direction) {
+            this.direction = direction;
             this.stateNumber = stateNumber;
             this.dx = dx;
             this.dy = dy;
@@ -43,13 +45,14 @@ public class Player {
     private int x, y, dx, dy;
     //vertical
     public int jumpSpeed, gravityStrength;
+    public boolean offGround;
     //horizontal
-    public int stepSpeed, stepCount;
-    //direction
-    public int direction, LEFT, RIGHT;
+    private int stepSpeed, stepCount;
     //frameNumber
     private int frameNumber;
-    //stateNumber
+    //direction
+    private int direction;
+    //state
     private currentState state;
     //image
     private final Image image;
@@ -63,13 +66,12 @@ public class Player {
         //vertical
         jumpSpeed = -1;
         gravityStrength = 1;
+        offGround = false;
         //horizontal
         stepSpeed = 60;
         stepCount = 0;
         //direction
-        LEFT = 1;
-        RIGHT = 3;
-        direction = RIGHT;
+        direction = currentState.RIGHT.direction;
         //frameNumber
         frameNumber = 0;
         //stateNumber
@@ -101,20 +103,22 @@ public class Player {
     }
 
     private void getFrame() {
-        if (state == currentState.LEFT || state == currentState.RIGHT) {
-            stepCount++;
-            if (stepCount % stepSpeed < stepSpeed / 4) {
+        if (!offGround) {
+            if (state == currentState.LEFT || state == currentState.RIGHT) {
+                stepCount++;
+                if (stepCount % stepSpeed < stepSpeed / 4) {
+                    frameNumber = 0;
+                } else if (stepCount % stepSpeed >= stepSpeed / 4 && stepCount % stepSpeed < stepSpeed / 2) {
+                    frameNumber = 1;
+                } else if (stepCount % stepSpeed >= stepSpeed / 2 && stepCount % stepSpeed < (stepSpeed * 3) / 4) {
+                    frameNumber = 0;
+                } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
+                    frameNumber = 2;
+                }
+            } else if (state == currentState.STILL) {
                 frameNumber = 0;
-            } else if (stepCount % stepSpeed >= stepSpeed / 4 && stepCount % stepSpeed < stepSpeed / 2) {
-                frameNumber = 1;
-            } else if (stepCount % stepSpeed >= stepSpeed / 2 && stepCount % stepSpeed < (stepSpeed * 3) / 4) {
-                frameNumber = 0;
-            } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
-                frameNumber = 2;
             }
-        } else if (state == currentState.STILL) {
-            frameNumber = 0;
-        } else if (state == currentState.JUMPING || state == currentState.FALLING) {
+        } else {
             frameNumber = 1;
         }
     }
@@ -139,16 +143,17 @@ public class Player {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
+            offGround = true;
             state = currentState.JUMPING;
             dy = currentState.JUMPING.dy;
         } else if (key == KeyEvent.VK_LEFT) {
-            direction = LEFT;
             state = currentState.LEFT;
             dx = currentState.LEFT.dx;
+            direction = currentState.LEFT.direction;
         } else if (key == KeyEvent.VK_RIGHT) {
-            direction = RIGHT;
             state = currentState.RIGHT;
             dx = currentState.RIGHT.dx;
+            direction = currentState.RIGHT.direction;
         }
     }
 
