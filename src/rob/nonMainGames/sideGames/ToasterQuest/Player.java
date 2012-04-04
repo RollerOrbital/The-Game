@@ -61,9 +61,7 @@ public class Player {
         stepCount = 0;
         //direction
         direction = currentState.RIGHT.direction;
-        //frameNumber
-        frameNumber = 0;
-        //offGround
+        //state
         state = currentState.STILL;
         //image
         ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
