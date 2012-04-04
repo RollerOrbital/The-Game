@@ -39,7 +39,8 @@ public class Player {
     //position
     private int x, y, dx, dy;
     //vertical
-    private boolean offGround;
+    private boolean offGround, canJump;
+    private int newMaxHeight;
     //horizontal
     private int stepSpeed, stepCount;
     //frameNumber
@@ -59,6 +60,8 @@ public class Player {
         dy = 0;
         //vertical
         offGround = false;
+        canJump = true;
+        newMaxHeight = 600;
         //horizontal
         stepSpeed = 100;
         stepCount = 0;
@@ -129,6 +132,15 @@ public class Player {
         if (y >= 405) {
             y = 405;
             offGround = false;
+            canJump = true;
+        }
+    }
+
+    private void getRoof() {
+        if (y <= newMaxHeight) {
+            state = currentState.FALLING;
+            dy = currentState.FALLING.dy;
+            canJump = false;
         }
     }
 
@@ -137,6 +149,7 @@ public class Player {
     }
 
     public void move() {
+        getRoof();
         getFloor();
         x += dx;
         y += dy;
@@ -144,7 +157,11 @@ public class Player {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_UP && canJump) {
+            if (!offGround) {
+                newMaxHeight = y - 70;
+            }
+            canJump = false;
             state = currentState.JUMPING;
             offGround = currentState.JUMPING.offGround;
             dy = currentState.JUMPING.dy;
@@ -166,7 +183,9 @@ public class Player {
             state = currentState.FALLING;
             dy = currentState.FALLING.dy;
         } else if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
-            state = currentState.STILL;
+            if (!offGround) {
+                state = currentState.STILL;
+            }
             dx = currentState.STILL.dx;
         }
     }
