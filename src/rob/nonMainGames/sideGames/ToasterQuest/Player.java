@@ -7,7 +7,6 @@ import java.awt.image.ImageObserver;
 
 public class Player {
 
-    //My rather poor attempt at using enums...
     private static enum currentState {
         //These are all currentState type objects (I think)
         LEFT(0, -1, 0, 1, 0, KeyEvent.VK_LEFT, false),
@@ -39,7 +38,7 @@ public class Player {
     //position
     private int x, y, dx, dy;
     //vertical
-    private boolean offGround, canJump;
+    private boolean canJump;
     private int newMaxHeight;
     //horizontal
     private int stepSpeed, stepCount;
@@ -59,7 +58,6 @@ public class Player {
         dx = 0;
         dy = 0;
         //vertical
-        offGround = false;
         canJump = true;
         newMaxHeight = 600;
         //horizontal
@@ -69,7 +67,7 @@ public class Player {
         direction = currentState.RIGHT.direction;
         //frameNumber
         frameNumber = 0;
-        //stateNumber
+        //offGround
         state = currentState.STILL;
         //image
         ImageIcon ii = new ImageIcon(getClass().getResource("player.png"));
@@ -93,7 +91,7 @@ public class Player {
     }
 
     public int getFrameNumber() {
-        if (offGround == currentState.JUMPING.offGround || offGround == currentState.FALLING.offGround) {
+        if (!canJump) {
             frameNumber = 1;
         } else {
             getFrame();
@@ -131,7 +129,6 @@ public class Player {
     private void getFloor() {
         if (y >= 405) {
             y = 405;
-            offGround = false;
             canJump = true;
         }
     }
@@ -158,12 +155,12 @@ public class Player {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP && canJump) {
-            if (!offGround) {
+            if (canJump) {
                 newMaxHeight = y - 70;
             }
             canJump = false;
             state = currentState.JUMPING;
-            offGround = currentState.JUMPING.offGround;
+            canJump = false;
             dy = currentState.JUMPING.dy;
             frameNumber = currentState.JUMPING.frameNumber;
         } else if (key == KeyEvent.VK_LEFT) {
@@ -183,7 +180,7 @@ public class Player {
             state = currentState.FALLING;
             dy = currentState.FALLING.dy;
         } else if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
-            if (!offGround) {
+            if (canJump) {
                 state = currentState.STILL;
             }
             dx = currentState.STILL.dx;
