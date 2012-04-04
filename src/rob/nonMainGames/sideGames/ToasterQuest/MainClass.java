@@ -13,6 +13,8 @@ public class MainClass {
     }
 }
 /*
+I will now turn verticalState into an enum I think.
+
 Make the jumping system work and be elegant and easily understandable
 Make the tiles so that each new tile is a barrier for the player so you
 don't draw the tiles then set the bounds separately. Once those 2 are done
