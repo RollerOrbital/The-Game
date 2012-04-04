@@ -13,7 +13,9 @@ public class MainClass {
     }
 }
 /*
-I will now turn verticalState into an enum I think.
+Screw the last remaining bug - it's only visual anyway...
+
+I will now make tiles so that each tile object automatically generates a wall so the player cannot pass through it
 
 Make the jumping system work and be elegant and easily understandable
 Make the tiles so that each new tile is a barrier for the player so you

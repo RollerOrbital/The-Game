@@ -8,12 +8,11 @@ import java.awt.image.ImageObserver;
 public class Player {
 
     private static enum currentState {
-        //These are all currentState type objects (I think)
         LEFT(-1, 0, 1, 0, KeyEvent.VK_LEFT),
         RIGHT(1, 0, 3, 0, KeyEvent.VK_RIGHT),
         STILL(0, 0, 0, 0, 0),
-        JUMPING(0, -1, 0, 1, KeyEvent.VK_UP),      //jumpSpeed = 1
-        FALLING(0, 1, 0, 1, 0);      //gravityStrength = 1
+        JUMPING(0, -1, 0, 1, KeyEvent.VK_UP),       //jumpSpeed = 1
+        FALLING(0, 1, 0, 1, 0);                     //gravityStrength = 1
 
         public final int key;
         public final int frameNumber;
@@ -21,7 +20,6 @@ public class Player {
         public final int dx;
         public final int dy;
 
-        //currentState object constructor
         currentState(int dx, int dy, int direction, int frameNumber, int key) {
             this.frameNumber = frameNumber;
             this.direction = direction;
@@ -68,6 +66,10 @@ public class Player {
         image = ii.getImage();
     }
 
+    public Rectangle getBounds() {
+        return (new Rectangle(getX(), getY(), getWidth(), getHeight()));
+    }
+
     public int getX() {
         return x;
     }
@@ -82,6 +84,10 @@ public class Player {
 
     public int getHeight() {
         return 18;
+    }
+
+    private Image getImage() {
+        return image;
     }
 
     public int getFrameNumber() {
@@ -114,10 +120,6 @@ public class Player {
 
     public int getDirection() {
         return direction * getHeight();
-    }
-
-    private Image getImage() {
-        return image;
     }
 
     private void getFloor() {
