@@ -90,25 +90,29 @@ public class Player {
     }
 
     public int getFrameNumber() {
-        getFrame();
+        if (offGround == currentState.JUMPING.offGround || offGround == currentState.FALLING.offGround) {
+            frameNumber = 1;
+        } else {
+            getFrame();
+        }
         return frameNumber % 3 * getWidth();
     }
 
     private void getFrame() {
-        if (!offGround) {
-            if (state == currentState.STILL) {
-                frameNumber = currentState.STILL.frameNumber;
-            } else {
-                stepCount++;
-                if (stepCount % stepSpeed < stepSpeed / 4) {
-                    frameNumber = 0;
-                } else if (stepCount % stepSpeed >= stepSpeed / 4 && stepCount % stepSpeed < stepSpeed / 2) {
-                    frameNumber = 1;
-                } else if (stepCount % stepSpeed >= stepSpeed / 2 && stepCount % stepSpeed < (stepSpeed * 3) / 4) {
-                    frameNumber = 0;
-                } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
-                    frameNumber = 2;
-                }
+        if (state == currentState.STILL) {
+            frameNumber = currentState.STILL.frameNumber;
+        } else if (state == currentState.JUMPING || state == currentState.FALLING) {
+            frameNumber = 1;
+        } else {
+            stepCount++;
+            if (stepCount % stepSpeed < stepSpeed / 4) {
+                frameNumber = 0;
+            } else if (stepCount % stepSpeed >= stepSpeed / 4 && stepCount % stepSpeed < stepSpeed / 2) {
+                frameNumber = 1;
+            } else if (stepCount % stepSpeed >= stepSpeed / 2 && stepCount % stepSpeed < (stepSpeed * 3) / 4) {
+                frameNumber = 0;
+            } else if (stepCount % stepSpeed >= (stepSpeed * 3) / 4 && stepCount % stepSpeed <= stepSpeed) {
+                frameNumber = 2;
             }
         }
     }
