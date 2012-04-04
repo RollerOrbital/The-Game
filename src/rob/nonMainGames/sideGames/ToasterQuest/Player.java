@@ -9,26 +9,22 @@ public class Player {
 
     private static enum currentState {
         //These are all currentState type objects (I think)
-        LEFT(0, -1, 0, 1, 0, KeyEvent.VK_LEFT, false),
-        RIGHT(0, 1, 0, 3, 0, KeyEvent.VK_RIGHT, false),
-        STILL(1, 0, 0, 0, 0, 0, false),
-        JUMPING(2, 0, -1, 0, 1, KeyEvent.VK_UP, true),      //jumpSpeed = 1
-        FALLING(3, 0, 1, 0, 1, 0, true);      //gravityStrength = 1
+        LEFT(-1, 0, 1, 0, KeyEvent.VK_LEFT),
+        RIGHT(1, 0, 3, 0, KeyEvent.VK_RIGHT),
+        STILL(0, 0, 0, 0, 0),
+        JUMPING(0, -1, 0, 1, KeyEvent.VK_UP),      //jumpSpeed = 1
+        FALLING(0, 1, 0, 1, 0);      //gravityStrength = 1
 
-        public final boolean offGround;
         public final int key;
         public final int frameNumber;
         public final int direction;
-        public final int stateNumber;
         public final int dx;
         public final int dy;
 
         //currentState object constructor
-        currentState(int stateNumber, int dx, int dy, int direction, int frameNumber, int key, boolean offGround) {
+        currentState(int dx, int dy, int direction, int frameNumber, int key) {
             this.frameNumber = frameNumber;
             this.direction = direction;
-            this.stateNumber = stateNumber;
-            this.offGround = offGround;
             this.key = key;
             this.dx = dx;
             this.dy = dy;
@@ -155,9 +151,7 @@ public class Player {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP && canJump) {
-            if (canJump) {
-                newMaxHeight = y - 70;
-            }
+            newMaxHeight = y - 70;
             canJump = false;
             state = currentState.JUMPING;
             canJump = false;
