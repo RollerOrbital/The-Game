@@ -154,7 +154,6 @@ public class Player {
             state = currentState.JUMPING;
             canJump = false;
             dy = currentState.JUMPING.dy;
-            frameNumber = currentState.JUMPING.frameNumber;
         } else if (key == KeyEvent.VK_LEFT) {
             state = currentState.LEFT;
             dx = currentState.LEFT.dx;
