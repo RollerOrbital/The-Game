@@ -137,6 +137,23 @@ public class Player {
         }
     }
 
+    private void getTiles() {
+        for (Tile tile : Tile.tiles) {
+            if (tile.getBounds().intersects(getBounds())) {
+                if (x >= tile.getX()) {
+                    x = tile.getX();
+                } else if (x <= tile.getX()) {
+                    x = tile.getX() - 16;
+                } else if (y <= tile.getY()) {
+                    y = tile.getY();
+                    canJump = true;
+                } else if (y <= tile.getY()) {
+                    dy = 1;
+                }
+            }
+        }
+    }
+
     public void draw(Graphics g, ImageObserver imageObserver) {
         g.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, getFrameNumber(), getDirection(), getFrameNumber() + getWidth(), getDirection() + getHeight(), imageObserver);
     }
@@ -144,6 +161,7 @@ public class Player {
     public void move() {
         getRoof();
         getFloor();
+        getTiles();
         x += dx;
         y += dy;
     }
@@ -154,7 +172,6 @@ public class Player {
             newMaxHeight = y - 70;
             canJump = false;
             state = currentState.JUMPING;
-            canJump = false;
             dy = currentState.JUMPING.dy;
         } else if (key == KeyEvent.VK_LEFT) {
             state = currentState.LEFT;

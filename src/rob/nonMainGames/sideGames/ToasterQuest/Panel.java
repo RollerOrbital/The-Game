@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 public class Panel extends JPanel implements ActionListener {
     private final Player player;
     private final Map map;
-    private final Tile t1;
 
     public Panel() {
         addKeyListener(new Adapter());
@@ -19,7 +18,6 @@ public class Panel extends JPanel implements ActionListener {
         setDoubleBuffered(true);
         player = new Player();
         map = new Map();
-        t1 = new Tile(100, 406);
         Timer timer = new Timer(5, this);
         timer.start();
     }
@@ -27,10 +25,10 @@ public class Panel extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         g.drawImage(map.getImage(), -player.getX(), -player.getY(), this);
-        for (int i = 0; i < 20; i++) {
-            g.drawImage(t1.getImage(), -player.getX() + (i * 15), -player.getY() + 595, this);
-        }
         player.draw(g, this);
+        for (Tile tile : Tile.tiles) {
+            g.drawImage(tile.getImage(), -player.getX() + tile.getX(), -player.getY() + tile.getY(), this);
+        }
         g.drawString("X         = " + player.getX(), 100, 100);
         g.drawString("Y         = " + player.getY(), 100, 110);
         Toolkit.getDefaultToolkit().sync();

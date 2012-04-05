@@ -4,14 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Tile {
-    private final Player player;
     private int x, y;
     private final Image image;
+    public static Tile[] tiles = new Tile[]{new Tile(5 * 18, 16), new Tile(15 * 18, 16)};
 
     public Tile(int x, int y) {
+        Player player = new Player();
         this.x = x;
-        this.y = y;
-        player = new Player();
+        this.y = -y + 595;
         ImageIcon ii = new ImageIcon(getClass().getResource("tile.png"));
         image = ii.getImage();
     }
