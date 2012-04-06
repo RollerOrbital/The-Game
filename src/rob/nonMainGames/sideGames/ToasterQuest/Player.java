@@ -139,13 +139,18 @@ public class Player {
         }
     }
 
-    public void draw(Graphics g, ImageObserver imageObserver) {
-        g.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, getFrameNumber(), getDirection(), getFrameNumber() + getWidth(), getDirection() + getHeight(), imageObserver);
+    private void getTiles() {
+        for (Tile tile : Tile.tiles) {
+            if (getBounds().intersects(tile.getBounds())) {
+                System.out.println("INTERSECT - TEST PASSED");
+            }
+        }
     }
 
     public void move() {
         getRoof();
         getFloor();
+        getTiles();
         x += dx;
         y += dy;
     }
@@ -179,5 +184,9 @@ public class Player {
             }
             dx = currentState.STILL.dx;
         }
+    }
+
+    public void draw(Graphics g, ImageObserver imageObserver) {
+        g.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, getFrameNumber(), getDirection(), getFrameNumber() + getWidth(), getDirection() + getHeight(), imageObserver);
     }
 }
