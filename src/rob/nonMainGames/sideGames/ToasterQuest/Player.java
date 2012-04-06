@@ -8,22 +8,18 @@ import java.awt.image.ImageObserver;
 public class Player {
 
     private static enum currentState {
-        LEFT(-1, 0, 1, 0, KeyEvent.VK_LEFT),
-        RIGHT(1, 0, 3, 0, KeyEvent.VK_RIGHT),
-        STILL(0, 0, 0, 0, 0),
-        JUMPING(0, -1, 0, 1, KeyEvent.VK_UP),       //jumpSpeed = 1
-        FALLING(0, 1, 0, 1, 0);                     //gravityStrength = 1
+        LEFT(-1, 0, 1),
+        RIGHT(1, 0, 3),
+        STILL(0, 0, 0),
+        JUMPING(0, -3, 0),
+        FALLING(0, 0, 0);
 
-        public final int key;
-        public final int frameNumber;
         public final int direction;
         public final int dx;
         public final int dy;
 
-        currentState(int dx, int dy, int direction, int frameNumber, int key) {
-            this.frameNumber = frameNumber;
+        currentState(int dx, int dy, int direction) {
             this.direction = direction;
-            this.key = key;
             this.dx = dx;
             this.dy = dy;
         }
@@ -52,7 +48,6 @@ public class Player {
         dx = 0;
         dy = 0;
         //vertical
-        canJump = true;
         newMaxHeight = 600;
         //horizontal
         stepSpeed = 100;
@@ -101,7 +96,7 @@ public class Player {
 
     private void getFrame() {
         if (state == currentState.STILL) {
-            frameNumber = currentState.STILL.frameNumber;
+            frameNumber = 0;
         } else if (state == currentState.JUMPING || state == currentState.FALLING) {
             frameNumber = 1;
         } else {
@@ -132,25 +127,21 @@ public class Player {
     private void getRoof() {
         if (y <= newMaxHeight) {
             state = currentState.FALLING;
-            dy = currentState.FALLING.dy;
+            dy++;
             canJump = false;
+        } else if ((state == currentState.JUMPING || state == currentState.FALLING)) {
+            if (y % 20 == 0 && y <= newMaxHeight + 50 && dy < 4) {
+                dy++;
+            }
+        }
+        if (dy == 0 && !canJump) {
+            dy++;
         }
     }
 
     private void getTiles() {
         for (Tile tile : Tile.tiles) {
-            if (tile.getBounds().intersects(getBounds())) {
-                if (x >= tile.getX()) {
-                    x = tile.getX();
-                } else if (x <= tile.getX()) {
-                    x = tile.getX() - 16;
-                } else if (y <= tile.getY()) {
-                    y = tile.getY();
-                    canJump = true;
-                } else if (y <= tile.getY()) {
-                    dy = 1;
-                }
-            }
+            //tile bounds
         }
     }
 
@@ -188,7 +179,7 @@ public class Player {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP) {
             state = currentState.FALLING;
-            dy = currentState.FALLING.dy;
+            dy++;
         } else if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
             if (canJump) {
                 state = currentState.STILL;
