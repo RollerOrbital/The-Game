@@ -48,7 +48,7 @@ public class Player {
         dx = 0;
         dy = 0;
         //vertical
-        newMaxHeight = 600;
+        canJump = true;
         //horizontal
         stepSpeed = 100;
         stepCount = 0;
