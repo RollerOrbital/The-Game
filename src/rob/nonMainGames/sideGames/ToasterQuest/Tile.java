@@ -9,7 +9,6 @@ public class Tile {
     public static Tile[] tiles = new Tile[]{new Tile(5 * 18, 16), new Tile(15 * 18, 16)};
 
     public Tile(int x, int y) {
-        Player player = new Player();
         this.x = x;
         this.y = -y + 595;
         ImageIcon ii = new ImageIcon(getClass().getResource("tile.png"));

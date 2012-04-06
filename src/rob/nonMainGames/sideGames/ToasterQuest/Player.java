@@ -139,12 +139,6 @@ public class Player {
         }
     }
 
-    private void getTiles() {
-        for (Tile tile : Tile.tiles) {
-            //tile bounds
-        }
-    }
-
     public void draw(Graphics g, ImageObserver imageObserver) {
         g.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, getFrameNumber(), getDirection(), getFrameNumber() + getWidth(), getDirection() + getHeight(), imageObserver);
     }
@@ -152,7 +146,6 @@ public class Player {
     public void move() {
         getRoof();
         getFloor();
-        getTiles();
         x += dx;
         y += dy;
     }

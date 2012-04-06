@@ -49,8 +49,4 @@ public class Panel extends JPanel implements ActionListener {
             player.keyReleased(e);
         }
     }
-
-    private void getTileBounds() {
-
-    }
 }
