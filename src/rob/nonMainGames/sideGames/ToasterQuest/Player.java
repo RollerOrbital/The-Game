@@ -12,7 +12,7 @@ public class Player {
         RIGHT(1, 0, 3),
         STILL(0, 0, 0),
         JUMPING(0, -3, 0),
-        FALLING(0, 0, 0);
+        FALLING(0, 1, 0);
 
         public final int direction;
         public final int dx;
