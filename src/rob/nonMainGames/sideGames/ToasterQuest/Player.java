@@ -142,7 +142,19 @@ public class Player {
     private void getTiles() {
         for (Tile tile : Tile.tiles) {
             if (getBounds().intersects(tile.getBounds())) {
-                System.out.println("INTERSECT - TEST PASSED");
+                if (x >= tile.getX() + 9) {
+                    System.out.println("right barrier");
+                    x = tile.getX() + 18;
+                    dx = 0;
+                } else if (x <= tile.getX() + 9) {
+                    System.out.println("left barrier");
+                    x = tile.getX() - 18;
+                    dx = 0;
+                }
+                if (y >= tile.getY()) {
+                    System.out.println("upper barrier");
+                    y = tile.getY();
+                }
             }
         }
     }
