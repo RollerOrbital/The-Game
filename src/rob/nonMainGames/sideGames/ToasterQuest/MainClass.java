@@ -19,5 +19,5 @@ Make the jumping system work and be elegant and easily understandable
 Make the tiles so that each new tile is a barrier for the player so you
 don't draw the tiles then set the bounds separately. Once those 2 are done
 do a little trimming and neatening to make the programs design more elegant
-and understandable again.
+and understandable again.+++
 */
