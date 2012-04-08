@@ -6,7 +6,7 @@ import java.awt.*;
 public class Tile {
     private int x, y;
     private final Image image;
-    public static Tile[] tiles = new Tile[]{new Tile(-195 + (18 * 10), 405), new Tile(-195 + (18 * 15), 405 - (16 * 5))};
+    public static Tile[] tiles = new Tile[]{new Tile(-195, 405), new Tile(-195 + (18 * 15), 405 - (16 * 5))};
 
     public Tile(int x, int y) {
         this.x = x;

@@ -142,18 +142,27 @@ public class Player {
     private void getTiles() {
         for (Tile tile : Tile.tiles) {
             if (getBounds().intersects(tile.getBounds())) {
-                if (x >= tile.getX() + 9) {
-                    System.out.println("right barrier");
-                    x = tile.getX() + 18;
-                    dx = 0;
-                } else if (x <= tile.getX() + 9) {
-                    System.out.println("left barrier");
-                    x = tile.getX() - 18;
-                    dx = 0;
-                }
-                if (y >= tile.getY()) {
-                    System.out.println("upper barrier");
-                    y = tile.getY();
+                if (dy == 0) {
+                    if (x >= tile.getX() + 9) {
+                        System.out.println("right barrier");
+                        x = tile.getX() + 19;
+                        dx = 0;
+                    } else if (x <= tile.getX() + 9) {
+                        System.out.println("left barrier");
+                        x = tile.getX() - 19;
+                        dx = 0;
+                    }
+                } else {
+                    if (y >= tile.getY() + 8) {
+                        System.out.println("lower barrier");
+                        y = tile.getY() + 17;
+                        dy++;
+                        canJump = false;
+                    } else if (y <= tile.getY() + 8) {
+                        System.out.println("upper barrier");
+                        y = tile.getY() - 17;
+                        canJump = true;
+                    }
                 }
             }
         }
@@ -169,6 +178,9 @@ public class Player {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+        if (canJump) {
+            dy = 0;
+        }
         if (key == KeyEvent.VK_UP && canJump) {
             newMaxHeight = y - 70;
             canJump = false;
@@ -182,6 +194,9 @@ public class Player {
             state = currentState.RIGHT;
             dx = currentState.RIGHT.dx;
             direction = currentState.RIGHT.direction;
+        }
+        if (dy == 0) {
+            canJump = true;
         }
     }
 
