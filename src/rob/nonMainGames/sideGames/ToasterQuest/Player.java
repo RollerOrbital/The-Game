@@ -142,25 +142,23 @@ public class Player {
     private void getTiles() {
         for (Tile tile : Tile.tiles) {
             if (getBounds().intersects(tile.getBounds())) {
-                if (dy == 0) {
+                if (y > tile.getY() || y < tile.getY() + 16) {
                     if (x >= tile.getX() + 9) {
                         System.out.println("right barrier");
-                        x = tile.getX() + 19;
-                        dx = 0;
+                        x = tile.getX() + 18;
                     } else if (x <= tile.getX() + 9) {
                         System.out.println("left barrier");
-                        x = tile.getX() - 19;
-                        dx = 0;
+                        x = tile.getX() - 18;
                     }
                 } else {
                     if (y >= tile.getY() + 8) {
                         System.out.println("lower barrier");
-                        y = tile.getY() + 17;
+                        y = tile.getY() + 16;
                         dy++;
                         canJump = false;
                     } else if (y <= tile.getY() + 8) {
                         System.out.println("upper barrier");
-                        y = tile.getY() - 17;
+                        y = tile.getY() - 16;
                         canJump = true;
                     }
                 }
