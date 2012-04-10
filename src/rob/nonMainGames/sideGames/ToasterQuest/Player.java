@@ -146,12 +146,8 @@ public class Player {
                     System.out.println("upper barrier");
                     y = tile.getY() - 16;
                     canJump = true;
-                } else if (y - 18 <= tile.getY() && dy <= 0 && y - 18 >= tile.getY() - 7) {
-                    System.out.println("lower barrier");
-                    y = tile.getY() + 18;
-                    state = currentState.FALLING;
-                    dy = 1;
                 }
+
             } else {
                 if (y >= 405) {
                     y = 405;
