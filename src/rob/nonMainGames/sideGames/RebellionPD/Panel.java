@@ -25,7 +25,7 @@ public class Panel extends JPanel implements ActionListener {
         enemy = new Enemy();
         addKeyListener(new Adapter());
         setFocusable(true);
-        setBackground(Color.WHITE);
+        setBackground(Color.GRAY);
         setVisible(true);
         setDoubleBuffered(true);
         Timer timer = new Timer(5, this);
@@ -65,44 +65,62 @@ public class Panel extends JPanel implements ActionListener {
     private void getBackground(Graphics2D d, ImageIcon fbg, ImageIcon sbg, ImageIcon tbg) {
         d.setFont(new Font("Courier", Font.PLAIN, 10));
         String[] slides = new String[]{"THE ARAB SPRING INTERACTIVE", "PRESENTATION", "BY ROBM AND KEMH", "WE WILL COVER THE COUNTRIES",
-                "EGYPT, LIBYA AND SYRIA", "WE HOPE YOU ENJOY :)", "IN EGYPT THE ARMY REFUSES", "TO FIGHT WHICH MEANS THAT", "THE PEOPLE OF EGYPT WERE FREE",
-                "TO PROTEST ABOUT THE OPPRESSIVE", "REGIME OF ", "MUHAMMED HOSNI EL SAYED MUBARAK.", "MUBARAK STEPS FALLING WITHIN",
-                "A FEW MONTHS DUE TO", "PROTESTS AND INTERNATIONAL", "PRESSURE.", "EGYPT IS AN EXCELLENT", "EGYPT IS AN EXCELLENT",
+                "EGYPT, LIBYA AND SYRIA", "WE HOPE YOU ENJOY :)", "IN EGYPT THE ARMY REFUSES", "TO FIGHT WHICH MEANS THAT",
+                "THE PEOPLE OF EGYPT WERE", "FREE TO PROTEST ABOUT THE, ", "OPPRESSIVE REGIME OF", "MUHAMMED HOSNI EL", "SAYED MUBARAK.",
+                "MUBARAK STEPS DOWN", "WITHIN A FEW MONTHS", "DUE TO PROTESTS AND", "INTERNATIONAL PRESSURE.", "EGYPT IS AN EXCELLENT",
                 "EXAMPLE OF POPULAR", "DEMONSTRATION BRINGING", "ABOUT JUSTICE AND DEMOCRACY.", "HOWEVER IN LIGHT OF THIS",
                 "SUCCESS THERE WAS VIOLENCE", "DURING THE TIME BEFORE", "MUBARAK'S RESIGNATION AND", "PEOPLE DID DIE.",
                 "ALSO THE MUSLIM BROTHERHOOD", "-BELIEVED TO BE LINKED WITH", "AL-QAEDA DID BECOME POPULAR", "WHICH COULD HAVE BECOME A",
                 "SECURITY THREAT", "OVERALL IN EGYPT THE RESULT", "WAS POSITIVE FOR THE PEOPLE", "AND FOR JUSTICE", "IN LIBYA THE CONFLICT",
-                "WAS MORE VIOLENT.", "ALTHOUGH GADDAFI DID", "HEAVILY USE PROPAGANDA", "HIS USE OF THE MILITARY", "WAS MORE VISIBLE", "TO US LOOKING AT OUR",
-                "TELEVISIONS.", "THE BATTLE BETWEEN THE REBEL", "FORCES AND THE GOVERNMENT", "FORCES WAS FOUGHT", "IN A GUERRILLA SURROUNDING",
-                "THIS MEANT THAT NUMBERS", " WERE LESS IMPORTANT IN THE", "CONFLICT WHICH IS WHY AT", "THE BEGINNING THE REBELS",
-                "WERE ABLE TO STAY 'IN IT'", "AFTER THIS IN AREAS", "LIKE TRIPOLI", "THE FIGHTING BECAME MORE", "INTENSE AND THE", "REBELS SEEMED TO BE",
-                "SO CLOSE TO VICTORY", "FOR SO LONG", "THE TEMPO OF THE FIGHTING", "SLOWED CONSIDERABLY", "TOWARDS THE END OF", "THE FIGHTING.",
-                "LIBYA WAS A SUCCESS IN TERMS", "OF OVERTHROWING THE", "OLD GOVERNMENT", "HOWEVER THE WAY THEY", "DID IT CAUSED MANY PEOPLE TO", "LOSE THEIR LIVES.",
-                "AT THE MOMENT IN SYRIA", "PEOPLE ARE OPPRESSED BY", "THEIR CRUEL DICTATOR", "BAHSAR AL-ASSAD.", "THE PEOPLE OF THE COUNTRY"
-                , "LIVE IN CONSTANT FEAR OF", "THE SECRET POLICE.", "AL-ASSAD'S FATHER", "WAS IN POWER BEFORE", "HIM FOR 29 YEARS.", "ASSAD WAS ELECTED",
-                "IN 2000 AND 2007", "UNOPPOSED BOTH TIMES...", ".HIS FATHER WAS ALSO A DICTATOR", "FOR 29 YEARS IN SYRIA."};
-        if (textSlide < 6) {
-            d.drawImage(fbg.getImage(), 3, 3, this);
+                "WAS MORE VIOLENT.", "ALTHOUGH GADDAFI DID", "HEAVILY USE PROPAGANDA", "HIS USE OF THE MILITARY", "WAS MORE VISIBLE",
+                "TO US LOOKING AT OUR", "TELEVISIONS.", "THE BATTLE BETWEEN THE REBEL", "FORCES AND THE GOVERNMENT", "FORCES WAS FOUGHT",
+                "IN A GUERRILLA SURROUNDING", "THIS MEANT THAT NUMBERS", "WERE LESS IMPORTANT IN THE", "CONFLICT WHICH IS WHY AT",
+                "THE BEGINNING THE REBELS", "WERE ABLE TO STAY 'IN IT'", "AFTER THIS IN AREAS", "LIKE TRIPOLI", "THE FIGHTING BECAME MORE",
+                "INTENSE AND THE", "REBELS SEEMED TO BE", "SO CLOSE TO VICTORY", "FOR SO LONG", "THE TEMPO OF THE FIGHTING",
+                "SLOWED CONSIDERABLY", "TOWARDS THE END OF", "THE FIGHTING.", "LIBYA WAS A SUCCESS IN TERMS", "OF OVERTHROWING THE",
+                "OLD GOVERNMENT", "HOWEVER THE WAY THEY", "DID IT CAUSED MANY PEOPLE TO", "LOSE THEIR LIVES.", "AT THE MOMENT IN SYRIA",
+                "PEOPLE ARE OPPRESSED BY", "THEIR CRUEL DICTATOR", "BAHSAR AL-ASSAD.", "THE PEOPLE OF THE COUNTRY",
+                "LIVE IN CONSTANT FEAR OF", "THE SECRET POLICE.", "AL-ASSAD'S FATHER", "WAS IN POWER BEFORE", "HIM FOR 29 YEARS.",
+                "ASSAD WAS ELECTED", "IN 2000 AND 2007", "UNOPPOSED BOTH TIMES...", ".HIS FATHER WAS ALSO A DICTATOR",
+                "FOR 29 YEARS IN SYRIA."};
+        if (textSlide < 3) {
+            d.drawImage(fbg.getImage(), 0, 0, this);
             try {
                 d.drawString(slides[textSlide], 90, 80);
+                d.drawString(slides[textSlide + 1], 90, 90);
+                d.drawString(slides[textSlide + 2], 90, 100);
+                d.drawString(slides[textSlide + 3], 90, 110);
+                d.drawString(slides[textSlide + 4], 90, 120);
             } catch (Exception ignored) {
             }
-        } else if (textSlide >= 6 && textSlide < 34) {
+        } else if (textSlide >= 3 && textSlide < 31) {
             d.drawImage(sbg.getImage(), 0, 0, this);
             try {
                 d.drawString(slides[textSlide], 85, 20);
+                d.drawString(slides[textSlide + 1], 85, 30);
+                d.drawString(slides[textSlide + 2], 85, 40);
+                d.drawString(slides[textSlide + 3], 85, 50);
+                d.drawString(slides[textSlide + 4], 85, 60);
             } catch (Exception ignored) {
             }
-        } else if (textSlide >= 34 && textSlide < 68) {
+        } else if (textSlide >= 31 && textSlide < 65) {
             d.drawImage(tbg.getImage(), 0, 0, this);
             try {
                 d.drawString(slides[textSlide], 100, 70);
+                d.drawString(slides[textSlide + 1], 100, 80);
+                d.drawString(slides[textSlide + 2], 100, 90);
+                d.drawString(slides[textSlide + 3], 100, 100);
+                d.drawString(slides[textSlide + 4], 100, 110);
             } catch (Exception ignored) {
             }
         } else {
             d.drawImage(fbg.getImage(), 0, 0, this);
             try {
                 d.drawString(slides[textSlide], 90, 80);
+                d.drawString(slides[textSlide + 1], 90, 90);
+                d.drawString(slides[textSlide + 2], 90, 100);
+                d.drawString(slides[textSlide + 3], 90, 110);
+                d.drawString(slides[textSlide + 4], 90, 120);
             } catch (Exception ignored) {
             }
         }

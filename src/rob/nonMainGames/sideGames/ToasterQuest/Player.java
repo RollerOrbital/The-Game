@@ -139,15 +139,18 @@ public class Player {
         }
     }
 
-    private void getTiles() {
+    private void getTiles() {//BOTTOM LEFT
         for (Tile tile : Tile.tiles) {
             if (getBounds().intersects(tile.getBounds())) {
-                if (y >= tile.getY() - 16 && dy > 0 && y <= tile.getY() - 9) {
+                if (y >= tile.getY() - 16 && y <= tile.getY() - 13) {
                     System.out.println("upper barrier");
                     y = tile.getY() - 16;
                     canJump = true;
                 }
-
+            } else if (y >= tile.getY() + 31 && y <= tile.getY() + 34 && x >= tile.getX() && x <= tile.getX() + 18) {
+                System.out.println("lower barrier");
+                dy = 1;
+                state = currentState.FALLING;
             } else {
                 if (y >= 405) {
                     y = 405;
@@ -155,6 +158,7 @@ public class Player {
                 }
             }
         }
+
     }
 
     public void move() {
