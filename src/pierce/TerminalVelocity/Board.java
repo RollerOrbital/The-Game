@@ -37,7 +37,7 @@ public class Board extends JPanel implements ActionListener {
         g2d.setColor(Color.white);
         g2d.drawString("Score:" + score, 0, 15);
         if (craft.getVis()) {
-            g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(), this);
+            g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(), (craft.getX() + craft.getWidth()), (craft.getY() + craft.getHeight()), craft.getFrame(), 0, (craft.getFrame() + craft.getWidth()), craft.getHeight(), this);
             g2d.drawImage(rock.getImage(), rock.getX(), rock.getY(), this);
         }
         if (lost) {

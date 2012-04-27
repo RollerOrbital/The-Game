@@ -14,16 +14,21 @@ public class Craft {
     private int height;
     private Image image;
     private boolean vis = true;
+    private int step;
+    private int frame;
 
     public Craft() {
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("craft.png"));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("ship_sheet.png"));
         image = ii.getImage();
         x = 168;
         y = 600;
-        width = image.getWidth(null);
-        height = image.getHeight(null);
+        width = 37;
+        height = 22;
+        step = 0;
+        frame = 0;
     }
 
+    //37,22
     public void move() {
         x += dx;
         y += dy;
@@ -37,6 +42,16 @@ public class Craft {
         } else if (x > 378) {
             x = 378;
         }
+        if (step < 16) {
+            step++;
+        } else {
+            step = 0;
+            if (frame < 1) {
+                frame++;
+            } else {
+                frame = 0;
+            }
+        }
     }
 
     public int getX() {
@@ -47,8 +62,20 @@ public class Craft {
         return y;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public Image getImage() {
         return image;
+    }
+
+    public int getFrame() {
+        return frame;
     }
 
     public void keyPressed(KeyEvent e) {
