@@ -139,33 +139,26 @@ public class Player {
         }
     }
 
-    private void getTiles() {
+    private void getTiles() {//BOTTOM LEFT
         for (Tile tile : Tile.tiles) {
             if (getBounds().intersects(tile.getBounds())) {
-                if (dy == 0) {
-                    if (x >= tile.getX() + 9) {
-                        System.out.println("right barrier");
-                        x = tile.getX() + 19;
-                        dx = 0;
-                    } else if (x <= tile.getX() + 9) {
-                        System.out.println("left barrier");
-                        x = tile.getX() - 19;
-                        dx = 0;
-                    }
-                } else {
-                    if (y >= tile.getY() + 8) {
-                        System.out.println("lower barrier");
-                        y = tile.getY() + 17;
-                        dy++;
-                        canJump = false;
-                    } else if (y <= tile.getY() + 8) {
-                        System.out.println("upper barrier");
-                        y = tile.getY() - 17;
-                        canJump = true;
-                    }
+                if (y >= tile.getY() - 16 && y <= tile.getY() - 13) {
+                    System.out.println("upper barrier");
+                    y = tile.getY() - 16;
+                    canJump = true;
+                }
+            } else if (y >= tile.getY() + 31 && y <= tile.getY() + 34 && x >= tile.getX() && x <= tile.getX() + 18) {
+                System.out.println("lower barrier");
+                dy = 1;
+                state = currentState.FALLING;
+            } else {
+                if (y >= 405) {
+                    y = 405;
+                    canJump = true;
                 }
             }
         }
+
     }
 
     public void move() {
@@ -178,9 +171,6 @@ public class Player {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if (canJump) {
-            dy = 0;
-        }
         if (key == KeyEvent.VK_UP && canJump) {
             newMaxHeight = y - 70;
             canJump = false;
@@ -195,10 +185,8 @@ public class Player {
             dx = currentState.RIGHT.dx;
             direction = currentState.RIGHT.direction;
         }
-        if (dy == 0) {
-            canJump = true;
-        }
     }
+
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();

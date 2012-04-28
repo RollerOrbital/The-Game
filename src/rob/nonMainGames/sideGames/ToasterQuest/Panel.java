@@ -27,7 +27,7 @@ public class Panel extends JPanel implements ActionListener {
         g.drawImage(map.getImage(), -player.getX(), -player.getY(), this);
         player.draw(g, this);
         for (Tile tile : Tile.tiles) {
-            g.drawImage(tile.getImage(), -player.getX() + tile.getX() + 203, -player.getY() + tile.getY() + 172, this);
+            g.drawImage(tile.getImage(), -player.getX() + tile.getX(), -player.getY() + tile.getY() + 172, this);
         }
         g.drawString("X         = " + player.getX(), 100, 100);
         g.drawString("Y         = " + player.getY(), 100, 110);
