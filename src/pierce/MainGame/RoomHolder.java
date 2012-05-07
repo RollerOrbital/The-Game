@@ -27,20 +27,24 @@ public class RoomHolder {
         height = 80;
         ImageIcon ii = new ImageIcon(this.getClass().getResource("room_001.png"));
         image = ii.getImage();
-        for (int w=0; w < 11; w++)
-            for (int h=0; h < 9; h++)
+        for (int w = 0; w < 11; w++)
+            for (int h = 0; h < 9; h++)
                 board[0][w][h] = blank;
         board[0][1][1] = box;
         board[0][1][2] = box;
     }
 
     public void step() {
-        if (rnum==0){x=160;y=72;}
+        if (rnum == 0) {
+            x = 160;
+            y = 72;
+        }
     }
 
     public Image getImage() {
         return image;
     }
+
     public int getX() {
         return x;
     }
@@ -48,6 +52,7 @@ public class RoomHolder {
     public int getY() {
         return y;
     }
+
     public int getWidth() {
         return width;
     }
@@ -55,7 +60,7 @@ public class RoomHolder {
     public int getHeight() {
         return height;
     }
-    
+
     public int getSpace(int xbox, int ybox) {
         return board[rnum][xbox][ybox];
     }
