@@ -54,12 +54,12 @@ public class Player {
         AnimationFrame[3] = 2;
         AnimationCounter = 0;
         AnimationSpeed = 1;
-        roomholder = this.super.roomholder;
+        //roomholder = this.super.roomholder;
     }
 
     public void move() {
         
-        if (movex != 0 && ((roomholder.getSpace(xbox+1,ybox)!=1)||(roomholder.getSpace(xbox+1,ybox)!=2))) {
+        if (movex != 0 /*&& ((roomholder.getSpace(xbox+1,ybox)!=1)||(roomholder.getSpace(xbox+1,ybox)!=2))*/) {
             x += dx;
             movex -= dx;
         } else if (movey != 0) {
