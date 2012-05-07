@@ -28,6 +28,7 @@ public class Player {
     private boolean downheld;
     private boolean leftheld;
     private boolean rightheld;
+    private RoomHolder roomholder;
 
     public Player() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
@@ -53,12 +54,12 @@ public class Player {
         AnimationFrame[3] = 2;
         AnimationCounter = 0;
         AnimationSpeed = 1;
+        roomholder = this.super.roomholder;
     }
 
     public void move() {
-        //if RoomHolder.board[0][1][1] =
         
-        if (movex != 0) {
+        if (movex != 0 && ((roomholder.getSpace(xbox+1,ybox)!=1)||(roomholder.getSpace(xbox+1,ybox)!=2))) {
             x += dx;
             movex -= dx;
         } else if (movey != 0) {

@@ -12,7 +12,7 @@ public class Map extends JPanel implements ActionListener {
 
     private Player player;
     //private PlayerSquare psquare;
-    private RoomHolder roomholder;
+    public RoomHolder roomholder;
 
 
     public Map() {
