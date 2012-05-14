@@ -19,6 +19,8 @@ public class Player {
     private int sprdir;
     private int xbound;
     private int ybound;
+    private int xbox;
+    private int ybox;
     private int[] AnimationFrame;
     private int AnimationCounter;
     private int AnimationSpeed;
@@ -26,12 +28,13 @@ public class Player {
     private boolean downheld;
     private boolean leftheld;
     private boolean rightheld;
+    private RoomHolder roomholder;
 
     public Player() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("char_playerdefault.png"));
         image = ii.getImage();
-        x = 0;
-        y = 0;
+        x = (4*16*2);
+        y = (3*12*2);
         dx = 0;
         dy = 0;
         movex = 0;
@@ -40,6 +43,8 @@ public class Player {
         height = 18; //image.getAltitude(null);
         xbound = 16;
         ybound = 12;
+        xbox = (x/xbound);
+        ybox = (y/ybound);
         sprframe = 0;
         sprdir = 0;
         AnimationFrame = new int[4];
@@ -49,10 +54,12 @@ public class Player {
         AnimationFrame[3] = 2;
         AnimationCounter = 0;
         AnimationSpeed = 1;
+        //roomholder = this.super.roomholder;
     }
 
     public void move() {
-        if (movex != 0) {
+        
+        if (movex != 0 /*&& ((roomholder.getSpace(xbox+1,ybox)!=1)||(roomholder.getSpace(xbox+1,ybox)!=2))*/) {
             x += dx;
             movex -= dx;
         } else if (movey != 0) {
@@ -81,6 +88,7 @@ public class Player {
             dy = 0;
         }
 
+        //Animation speed
         if ((rightheld) || (leftheld) || (upheld) || (downheld)) {
             if (AnimationSpeed == 0) {
                 AnimationSpeed = 1;
@@ -93,7 +101,7 @@ public class Player {
                 }
             }
         }
-
+        //Animation counter
         if (AnimationCounter == 16) {
             if ((sprframe + AnimationSpeed) > 3) {
                 sprframe = 0;
@@ -105,7 +113,11 @@ public class Player {
             AnimationCounter += 1;
         }
 
-        if (y > (110 - ybound) * 2) {
+        //Setting rectangle location (for collision)
+        xbox = (x/xbound);
+        ybox = (y/ybound);
+
+        /*if (y > (110 - ybound) * 2) {
             y = (110 - ybound) * 2;
         } else if (y < 0) {
             y = 0;
@@ -114,7 +126,7 @@ public class Player {
             x = 0;
         } else if (x > (180 - xbound) * 2) {
             x = (180 - xbound) * 2;
-        }
+        }*/
     }
 
     public int getX() {
