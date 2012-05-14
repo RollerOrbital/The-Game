@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Board extends JPanel implements ActionListener {
+public class Panel extends JPanel implements ActionListener {
 
     private Scythe1 s1;
     private Scythe2 s2;
@@ -15,7 +15,7 @@ public class Board extends JPanel implements ActionListener {
     private Maze maze;
     String win = "";
 
-    public Board() {
+    public Panel() {
         addKeyListener(new adapter());
         setFocusable(true);
         setBackground(Color.BLACK);

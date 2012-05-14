@@ -8,13 +8,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-public class Arena extends JPanel implements ActionListener {
+public class Panel extends JPanel implements ActionListener {
     private Player player;
     private GoodSoul goodSoul;
     private BadSoul badSoul;
     Random random = new Random();
 
-    public Arena() {
+    public Panel() {
         addKeyListener(new adapter());
         setFocusable(true);
         setBackground(Color.WHITE);

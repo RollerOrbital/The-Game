@@ -7,8 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.ImageObserver;
 
 public class Player {
-    public int x;
-    public int y;
+    public int x, y;
 
     private static enum FacingDirection {
         UP(2, KeyEvent.VK_UP, 0, -1),
@@ -41,7 +40,7 @@ public class Player {
 
     private FacingDirection direction;
     private int dx, dy;
-    private final int MOVING, STILL, TALKING;
+    private final int MOVING, STILL;
     private int stateOfBeing, stepCount;
 
     private final Image image;
@@ -64,7 +63,6 @@ public class Player {
         ImageIcon playerSheet = new ImageIcon(getClass().getResource("player.png"));
         image = playerSheet.getImage();
         frameNumber = 0;
-        TALKING = 3;
         MOVING = 1;
         STILL = 0;
         cursorPosition = 2;
@@ -194,7 +192,7 @@ public class Player {
     }
 
     private void keyReleased(KeyEvent e) {
-        int key = (e.getKeyCode());
+        int key = e.getKeyCode();
         if (key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
             dy = 0;
             dx = 0;

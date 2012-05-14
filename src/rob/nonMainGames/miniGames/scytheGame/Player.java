@@ -6,24 +6,11 @@ import java.awt.event.KeyEvent;
 
 public class Player {
     public static int fouls = 0;
-    public int dx;
-    public int dy;
-    public int x;
-    public int y;
-    private int xspeed;
-    private int yspeed;
-    private int width;
-    private int height;
+    public int dx, dy, x, y, direction, xspeed, yspeed;
+    private int animationCounter, animationSpeed, frameNumber, width, height;
+    private boolean upheld, downheld, leftheld, rightheld;
+    private int[] animationFrame;
     private Image image;
-    private int frameNumber;
-    public int direction;
-    private int[] AnimationFrame;
-    private int AnimationCounter;
-    private int AnimationSpeed;
-    private boolean upheld;
-    private boolean downheld;
-    private boolean leftheld;
-    private boolean rightheld;
 
     public Player() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource("player.png"));
@@ -38,13 +25,9 @@ public class Player {
         height = 18;
         frameNumber = 0;
         direction = 0;
-        AnimationFrame = new int[4];
-        AnimationFrame[0] = 0;
-        AnimationFrame[1] = 1;
-        AnimationFrame[2] = 0;
-        AnimationFrame[3] = 2;
-        AnimationCounter = 0;
-        AnimationSpeed = 1;
+        animationFrame = new int[]{0, 1, 0, 2};
+        animationCounter = 0;
+        animationSpeed = 1;
     }
 
     public void move() {
@@ -55,12 +38,12 @@ public class Player {
             y += dy;
             yspeed -= dy;
         } else if (leftheld) {
-            AnimationSpeed = 1;
+            animationSpeed = 1;
             dx = -1;
             direction = 1;
             xspeed = -32;
         } else if (rightheld) {
-            AnimationSpeed = 1;
+            animationSpeed = 1;
             dx = 1;
             direction = 3;
             xspeed = 32;
@@ -119,26 +102,26 @@ public class Player {
     }
 
     private void setAnimationSpeed() {
-        if (AnimationCounter == 16) {
-            if ((frameNumber + AnimationSpeed) > 3) {
+        if (animationCounter == 16) {
+            if ((frameNumber + animationSpeed) > 3) {
                 frameNumber = 0;
             } else {
-                frameNumber += AnimationSpeed;
+                frameNumber += animationSpeed;
             }
-            AnimationCounter = 0;
+            animationCounter = 0;
         } else {
-            AnimationCounter += 1;
+            animationCounter += 1;
         }
     }
 
     private void findAnimationSpeed() {
         if ((rightheld) || (leftheld) || (upheld) || (downheld)) {
-            if (AnimationSpeed == 0) {
-                AnimationSpeed = 1;
+            if (animationSpeed == 0) {
+                animationSpeed = 1;
             }
         } else {
             if ((xspeed == 0) && (yspeed == 0)) {
-                AnimationSpeed = 0;
+                animationSpeed = 0;
                 if (frameNumber != 0 && frameNumber != 2) {
                     frameNumber--;
                 }
@@ -183,7 +166,7 @@ public class Player {
     }
 
     public int getSprFrame() {
-        return (AnimationFrame[frameNumber] * width);
+        return (animationFrame[frameNumber] * width);
     }
 
     public int getSprDir() {
