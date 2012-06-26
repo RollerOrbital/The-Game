@@ -8,6 +8,7 @@ import java.awt.image.ImageObserver;
 
 public class Player {
     public int x, y;
+    public Room room;
 
     private static enum FacingDirection {
         UP(2, KeyEvent.VK_UP, 0, -1),
@@ -54,18 +55,30 @@ public class Player {
 
     public Player() {
         startMenu = new StartMenu();
+        room = new TestArea();
+        positionAndDirectionInit();
+        frameRowsInit();
+        cursorVarsInit();
+        image = new ImageIcon(getClass().getResource("player.png")).getImage();
+        MOVING = 1;
+        STILL = 0;
+    }
+
+    private void cursorVarsInit() {
         isMenuOpen = false;
+        cursorPosition = 2;
+    }
+
+    private void frameRowsInit() {
+        direction = FacingDirection.DOWN;
+        frameNumber = 0;
+    }
+
+    private void positionAndDirectionInit() {
         x = 0;
         y = 0;
         dx = 0;
         dy = 0;
-        direction = FacingDirection.DOWN;
-        ImageIcon playerSheet = new ImageIcon(getClass().getResource("player.png"));
-        image = playerSheet.getImage();
-        frameNumber = 0;
-        MOVING = 1;
-        STILL = 0;
-        cursorPosition = 2;
     }
 
     public int getCursorPosition() {
@@ -121,19 +134,8 @@ public class Player {
         }
     }
 
-    private void getBounds() {
-        if (x < -198) {
-            x = -198;
-        }
-        if (x > 376) {
-            x = 376;
-        }
-        if (y < -155) {
-            y = -155;
-        }
-        if (y > 160) {
-            y = 160;
-        }
+    private Rectangle getBounds() {
+        return new Rectangle(x, y, 12, 8);
     }
 
     public void move() {
@@ -145,8 +147,11 @@ public class Player {
             x += dx;
             y += dy;
             getFrameNumber();
-            getBounds();
+            getRoomEdges();
         }
+    }
+
+    private void getRoomEdges() {
     }
 
     private void keyPressed(KeyEvent e) {
@@ -200,7 +205,7 @@ public class Player {
         }
     }
 
-    public void drawPlayer(Graphics g, ImageObserver imageObserver) {
+    public void draw(Graphics g, ImageObserver imageObserver) {
         g.drawImage(getImage(), 200, 150, 200 + getWidth() * 2, 150 + getHeight() * 2, getFrame(), getDirection(), getFrame() + getWidth(), getDirection() + getHeight(), imageObserver);
     }
 

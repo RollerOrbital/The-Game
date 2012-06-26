@@ -38,10 +38,10 @@ public class StartMenu {
         }
     }
 
-    public void drawStartMenu(Graphics g, Graphics2D d, Player player, ImageObserver imageObserver) {
+    public void drawStartMenu(Graphics g, Player player, ImageObserver imageObserver) {
         g.drawRect(getMenuX() - 1, -11, 112, 202);
-        d.setColor(Color.WHITE);
-        d.fill(new Rectangle(getMenuX(), -10, 110, 200));
+        g.setColor(Color.WHITE);
+        g.fillRect(getMenuX(), -10, 110, 200);
         g.setColor(Color.BLACK);
         g.drawImage(getCursorImage(), getMenuX() - 32, (player.getCursorPosition() * 30) + 10, imageObserver);
         g.drawString("Stats", getMenuX(), 24);

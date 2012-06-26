@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 
 public class Panel extends JPanel {
     private final Player player;
-    private final Map map;
+    private final TestArea testArea;
 
     public Panel() {
-        map = new Map();
         player = new Player();
+        testArea = new TestArea();
         addKeyListener(player.keyListener());
         setFocusable(true);
         setBackground(Color.WHITE);
@@ -22,20 +22,20 @@ public class Panel extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
-        Graphics2D d = (Graphics2D) g;
-        g.drawImage(map.getTestArea(), -player.getX(), -player.getY(), this);
-        Idroid testDroid = new Idroid(0, -player.getX() + 100, -player.getY() + 100, 0, new String[]{"Hello!"});
-        testDroid.drawIdroid(g, this);
-        testDroid.getSpeech(g, d);
-        player.drawPlayer(g, this);
-        if (Player.isMenuOpen) {
-            StartMenu startMenu = new StartMenu();
-            startMenu.drawStartMenu(g, d, player, this);
-        }
+        testArea.draw(g, this, player);
+        player.draw(g, this);
+        getStartMenu(g);
         g.drawString("X = " + player.getX(), 100, 100);
         g.drawString("Y = " + player.getY(), 100, 130);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
+    }
+
+    private void getStartMenu(Graphics g) {
+        if (Player.isMenuOpen) {
+            StartMenu startMenu = new StartMenu();
+            startMenu.drawStartMenu(g, player, this);
+        }
     }
 
     private class PlayerMove implements ActionListener {

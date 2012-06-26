@@ -4,7 +4,8 @@ package robD;
 import java.util.Scanner;
 
 public class MainClass {
-    public static void main(String args[]) {
+
+    public static void main(String[] args) {
         System.out.println("Welcome to the GAME!!!!!");
         System.out.println("Enter your name");
         Scanner keyboard = new Scanner(System.in);
@@ -28,6 +29,5 @@ public class MainClass {
         String help2 = keyboard.next();
         new Player(ChoiceObject2.checkHelp(help2), ChoiceObject.getChoice1(), 0, 0, 0);
         new Turn(Player.getAlive(), Player.getPower(), Player.getPosition(), Player.getEffects());
-
     }
 }
