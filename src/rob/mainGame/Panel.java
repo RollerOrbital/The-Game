@@ -25,6 +25,8 @@ public class Panel extends JPanel {
         testArea.draw(g, this, player);
         player.draw(g, this);
         getStartMenu(g);
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 270, 400, 30);
         g.drawString("X = " + player.getX(), 100, 100);
         g.drawString("Y = " + player.getY(), 100, 130);
         Toolkit.getDefaultToolkit().sync();
@@ -32,7 +34,7 @@ public class Panel extends JPanel {
     }
 
     private void getStartMenu(Graphics g) {
-        if (Player.isMenuOpen) {
+        if (player.isMenuOpen) {
             StartMenu startMenu = new StartMenu();
             startMenu.drawStartMenu(g, player, this);
         }

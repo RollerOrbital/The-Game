@@ -10,6 +10,10 @@ public class Player {
     public int x, y;
     public Room room;
 
+    public void setIsMenuOpen(boolean menuOpen) {
+        isMenuOpen = menuOpen;
+    }
+
     private static enum FacingDirection {
         UP(2, KeyEvent.VK_UP, 0, -1),
         RIGHT(3, KeyEvent.VK_RIGHT, 1, 0),
@@ -47,7 +51,7 @@ public class Player {
     private final Image image;
     private int frameNumber;
 
-    public static boolean isMenuOpen;
+    public boolean isMenuOpen;
     private final StartMenu startMenu;
     public String menuAction;
     public int cursorPosition;
@@ -182,7 +186,7 @@ public class Player {
             if (key == KeyEvent.VK_Z) {
                 if (!selectedMenuIcon) {
                     selectedMenuIcon = true;
-                    menuAction = startMenu.getMenuAction(cursorPosition);
+                    menuAction = startMenu.getMenuAction(cursorPosition, this);
                 } else {
                     selectedMenuIcon = false;
                 }

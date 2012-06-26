@@ -19,7 +19,7 @@ public class StartMenu {
         return cursor.getImage();
     }
 
-    public String getMenuAction(int input) {
+    public String getMenuAction(int input, Player player) {
         if (input == 0) {
             return "You have 100hp and 100mp";
         } else if (input == 1) {
@@ -31,7 +31,7 @@ public class StartMenu {
         } else if (input == 4) {
             return "There is no save feature yet";
         } else if (input == 5) {
-            Player.isMenuOpen = false;
+            player.setIsMenuOpen(false);
             return "Cancel";
         } else {
             return "Problem";
@@ -51,7 +51,7 @@ public class StartMenu {
         g.drawString("Save", getMenuX(), 144);
         g.drawString("Cancel", getMenuX(), 174);
         if (player.selectedMenuIcon) {
-            g.drawString(getMenuAction(player.getCursorPosition()), getMenuX() - 100, player.getCursorPosition() * 30 + 10);
+            g.drawString(getMenuAction(player.getCursorPosition(), player), 10, 280);
         }
     }
 }
